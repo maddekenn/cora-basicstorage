@@ -63,7 +63,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		storeLinks(recordType, recordId, linkList);
 	}
 
-	private void ensureStorageExistsForRecordType(String recordType) {
+	protected void ensureStorageExistsForRecordType(String recordType) {
 		if (holderForRecordTypeDoesNotExistInStorage(recordType)) {
 			createHolderForRecordTypeInStorage(recordType);
 		}
@@ -97,7 +97,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		return SpiderDataGroup.fromDataGroup(record).toDataGroup();
 	}
 
-	private DataGroup storeRecordByRecordTypeAndRecordId(String recordType, String recordId,
+	protected DataGroup storeRecordByRecordTypeAndRecordId(String recordType, String recordId,
 			DataGroup recordIndependentOfEnteredRecord) {
 		return records.get(recordType).put(recordId, recordIndependentOfEnteredRecord);
 	}

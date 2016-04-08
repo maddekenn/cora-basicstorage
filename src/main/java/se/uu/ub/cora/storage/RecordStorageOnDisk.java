@@ -7,9 +7,14 @@ import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
+import se.uu.ub.cora.bookkeeper.data.DataElement;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.bookkeeper.data.DataPart;
 import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
@@ -32,11 +37,20 @@ public class RecordStorageOnDisk extends RecordStorageInMemory implements Record
 
 	private RecordStorageOnDisk(String basePath) {
 		this.basePath = basePath;
+		readStoredData();
 	}
 
-	@Override
-	public DataGroup read(String type, String id) {
-		Path path = FileSystems.getDefault().getPath(basePath, type + ".json");
+	private void readStoredData() {
+		try {
+			Stream<Path> list = Files.list(Paths.get(basePath));
+			list.forEach(p -> readFile(p));
+			list.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void readFile(Path path) {
 		try {
 			BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset());
 			String line = null;
@@ -44,12 +58,37 @@ public class RecordStorageOnDisk extends RecordStorageInMemory implements Record
 			while ((line = reader.readLine()) != null) {
 				json += line;
 			}
-			return convertJsonStringToDataGroup(json);
+			String fileName = path.getFileName().toString();
+			String recordType = fileName.substring(0, fileName.length() - 5);
+			DataGroup recordList = convertJsonStringToDataGroup(json);
+			ensureStorageExistsForRecordType(recordType);
+
+			List<DataElement> records = recordList.getChildren();
+
+			for (DataElement dataElement : records) {
+				DataGroup record = (DataGroup) dataElement;
+
+				DataGroup recordInfo = record.getFirstGroupWithNameInData("recordInfo");
+				String recordId = recordInfo.getFirstAtomicValueWithNameInData("id");
+
+				storeRecordByRecordTypeAndRecordId(recordType, recordId, record);
+			}
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+	}
+
+	public RecordStorageOnDisk(Map<String, Map<String, DataGroup>> records) {
+		throwErrorIfConstructorArgumentIsNull(records);
+		this.records = records;
+	}
+
+	private void throwErrorIfConstructorArgumentIsNull(Map<String, Map<String, DataGroup>> records) {
+		if (null == records) {
+			throw new IllegalArgumentException("Records must not be null");
+		}
 	}
 
 	private DataGroup convertJsonStringToDataGroup(String jsonRecord) {
@@ -62,10 +101,17 @@ public class RecordStorageOnDisk extends RecordStorageInMemory implements Record
 	}
 
 	@Override
-	public void create(String type, String id, DataGroup record, DataGroup linkList) {
-		Path path = FileSystems.getDefault().getPath(basePath, type + ".json");
-		String json = convertDataRecordToJsonString(record);
-		String content = "";
+	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList) {
+		super.create(recordType, recordId, record, linkList);
+
+		Path path = FileSystems.getDefault().getPath(basePath, recordType + ".json");
+
+		DataGroup recordList = DataGroup.withNameInData("recordList");
+		Collection<DataGroup> readList = readList(recordType);
+		for (DataElement dataElement : readList) {
+			recordList.addChild(dataElement);
+		}
+		String json = convertDataRecordToJsonString(recordList);
 		BufferedWriter writer;
 		try {
 			writer = Files.newBufferedWriter(path, Charset.defaultCharset(), StandardOpenOption.CREATE);
@@ -75,7 +121,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory implements Record
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			// throw new Exception();
-			throw new RecordNotFoundException("No records exists with recordType: " + type);
+			throw new RecordNotFoundException("No records exists with recordType: " + recordType);
 		}
 	}
 
@@ -87,42 +133,6 @@ public class RecordStorageOnDisk extends RecordStorageInMemory implements Record
 	private DataGroupToJsonConverter convertDataGroupToJson(DataGroup dataGroup) {
 		se.uu.ub.cora.json.builder.JsonBuilderFactory jsonBuilderFactory = new se.uu.ub.cora.json.builder.org.OrgJsonBuilderFactoryAdapter();
 		return DataGroupToJsonConverter.usingJsonFactoryForDataGroup(jsonBuilderFactory, dataGroup);
-	}
-
-	@Override
-	public void deleteByTypeAndId(String type, String id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean linksExistForRecord(String type, String id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void update(String type, String id, DataGroup record, DataGroup linkList) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Collection<DataGroup> readList(String type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public DataGroup readLinkList(String type, String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Collection<DataGroup> generateLinkCollectionPointingToRecord(String type, String id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
