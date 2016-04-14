@@ -21,14 +21,14 @@ import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
 import se.uu.ub.cora.json.parser.JsonParser;
 import se.uu.ub.cora.json.parser.JsonValue;
 import se.uu.ub.cora.json.parser.org.OrgJsonParser;
-import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.spider.record.storage.RecordStorage;
 import se.uu.ub.cora.storage.data.converter.DataGroupToJsonConverter;
 import se.uu.ub.cora.storage.data.converter.JsonToDataConverter;
 import se.uu.ub.cora.storage.data.converter.JsonToDataConverterFactory;
 import se.uu.ub.cora.storage.data.converter.JsonToDataConverterFactoryImp;
 
-public class RecordStorageOnDisk extends RecordStorageInMemory implements RecordStorage, MetadataStorage {
+public class RecordStorageOnDisk extends RecordStorageInMemory
+		implements RecordStorage, MetadataStorage {
 	private String basePath;
 
 	public static RecordStorageOnDisk createRecordStorageOnDiskWithBasePath(String basePath) {
@@ -37,30 +37,49 @@ public class RecordStorageOnDisk extends RecordStorageInMemory implements Record
 
 	private RecordStorageOnDisk(String basePath) {
 		this.basePath = basePath;
-		readStoredData();
+		tryToReadStoredDataFromDisk();
 	}
 
-	private void readStoredData() {
+	private void tryToReadStoredDataFromDisk() {
 		try {
-			Stream<Path> list = Files.list(Paths.get(basePath));
-			list.forEach(p -> readFile(p));
-			list.close();
+			readStoredDataFromDisk();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void readFile(Path path) {
+	private void readStoredDataFromDisk() throws IOException {
+		Stream<Path> list = Files.list(Paths.get(basePath));
+		list.forEach(p -> tryToReadFile(p));
+		list.close();
+	}
+
+	private void tryToReadFile(Path path) {
 		try {
-			BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset());
-			String line = null;
-			String json = "";
-			while ((line = reader.readLine()) != null) {
-				json += line;
-			}
-			String fileName = path.getFileName().toString();
-			String recordType = fileName.substring(0, fileName.length() - 5);
-			DataGroup recordList = convertJsonStringToDataGroup(json);
+			readFile(path);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			throw new IllegalArgumentException("Records must not be null");
+		}
+	}
+
+	private void readFile(Path path) throws IOException {
+		BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset());
+		String line = null;
+		String json = "";
+		while ((line = reader.readLine()) != null) {
+			json += line;
+		}
+		String fileName = path.getFileName().toString();
+		String recordType = fileName.substring(0, fileName.length() - 5);
+
+		DataGroup recordList = convertJsonStringToDataGroup(json);
+		if (fileName.equals("linkLists.json")) {
+
+		} else if (fileName.equals("incomingLinks.json")) {
+
+		} else {
 			ensureStorageExistsForRecordType(recordType);
 
 			List<DataElement> records = recordList.getChildren();
@@ -74,9 +93,6 @@ public class RecordStorageOnDisk extends RecordStorageInMemory implements Record
 				storeRecordByRecordTypeAndRecordId(recordType, recordId, record);
 			}
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 
@@ -85,7 +101,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory implements Record
 		this.records = records;
 	}
 
-	private void throwErrorIfConstructorArgumentIsNull(Map<String, Map<String, DataGroup>> records) {
+	private void throwErrorIfConstructorArgumentIsNull(
+			Map<String, Map<String, DataGroup>> records) {
 		if (null == records) {
 			throw new IllegalArgumentException("Records must not be null");
 		}
@@ -95,7 +112,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory implements Record
 		JsonParser jsonParser = new OrgJsonParser();
 		JsonValue jsonValue = jsonParser.parseString(jsonRecord);
 		JsonToDataConverterFactory jsonToDataConverterFactory = new JsonToDataConverterFactoryImp();
-		JsonToDataConverter jsonToDataConverter = jsonToDataConverterFactory.createForJsonObject(jsonValue);
+		JsonToDataConverter jsonToDataConverter = jsonToDataConverterFactory
+				.createForJsonObject(jsonValue);
 		DataPart dataPart = jsonToDataConverter.toInstance();
 		return (DataGroup) dataPart;
 	}
@@ -104,35 +122,123 @@ public class RecordStorageOnDisk extends RecordStorageInMemory implements Record
 	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList) {
 		super.create(recordType, recordId, record, linkList);
 
-		Path path = FileSystems.getDefault().getPath(basePath, recordType + ".json");
+		writeRecordsToDisk(recordType);
+		writeLinkListToDisk();
+		writeIncomingLinksToDisk();
 
-		DataGroup recordList = DataGroup.withNameInData("recordList");
+	}
+
+	private void writeRecordsToDisk(String recordType) {
+		// TODO: first check that we have links for this type
+
 		Collection<DataGroup> readList = readList(recordType);
-		for (DataElement dataElement : readList) {
-			recordList.addChild(dataElement);
+		if (!readList.isEmpty()) {
+			Path path = FileSystems.getDefault().getPath(basePath, recordType + ".json");
+
+			DataGroup recordList = DataGroup.withNameInData("recordList");
+			for (DataElement dataElement : readList) {
+				recordList.addChild(dataElement);
+			}
+			writeDataGroupToDiskAsJson(path, recordList);
 		}
-		String json = convertDataRecordToJsonString(recordList);
+	}
+
+	private void writeDataGroupToDiskAsJson(Path path, DataGroup dataGroup) {
+		String json = convertDataGroupToJsonString(dataGroup);
 		BufferedWriter writer;
 		try {
-			writer = Files.newBufferedWriter(path, Charset.defaultCharset(), StandardOpenOption.CREATE);
+			writer = Files.newBufferedWriter(path, Charset.defaultCharset(),
+					StandardOpenOption.CREATE);
 			writer.write(json, 0, json.length());
 			writer.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			// throw new Exception();
-			throw new RecordNotFoundException("No records exists with recordType: " + recordType);
+			// throw new RecordNotFoundException("No records exists with
+			// recordType: " + recordType);
 		}
 	}
 
-	private String convertDataRecordToJsonString(DataGroup dataGroup) {
-		DataGroupToJsonConverter dataToJsonConverter = convertDataGroupToJson(dataGroup);
+	private String convertDataGroupToJsonString(DataGroup dataGroup) {
+		DataGroupToJsonConverter dataToJsonConverter = createDataGroupToJsonConvert(dataGroup);
 		return dataToJsonConverter.toJson();
 	}
 
-	private DataGroupToJsonConverter convertDataGroupToJson(DataGroup dataGroup) {
+	private DataGroupToJsonConverter createDataGroupToJsonConvert(DataGroup dataGroup) {
 		se.uu.ub.cora.json.builder.JsonBuilderFactory jsonBuilderFactory = new se.uu.ub.cora.json.builder.org.OrgJsonBuilderFactoryAdapter();
 		return DataGroupToJsonConverter.usingJsonFactoryForDataGroup(jsonBuilderFactory, dataGroup);
+	}
+
+	private void writeLinkListToDisk() {
+		Path path = FileSystems.getDefault().getPath(basePath, "linkLists.json");
+
+		boolean writeToFile = false;
+		DataGroup linkListsGroup = DataGroup.withNameInData("linkLists");
+		for (String recordTypeKey : linkLists.keySet()) {
+			DataGroup recordTypeGroup = DataGroup.withNameInData(recordTypeKey);
+			linkListsGroup.addChild(recordTypeGroup);
+			Map<String, DataGroup> recordGroupMap = linkLists.get(recordTypeKey);
+			for (String recordIdKey : recordGroupMap.keySet()) {
+				DataGroup recordIdGroup = DataGroup.withNameInData(recordIdKey);
+				recordTypeGroup.addChild(recordIdGroup);
+				recordIdGroup.addChild(recordGroupMap.get(recordIdKey));
+				writeToFile = true;
+			}
+		}
+		if (writeToFile) {
+			writeDataGroupToDiskAsJson(path, linkListsGroup);
+		}
+	}
+
+	private void writeIncomingLinksToDisk() {
+		Path path = FileSystems.getDefault().getPath(basePath, "incomingLinks.json");
+
+		boolean writeToFile = false;
+		DataGroup linkListsGroup = DataGroup.withNameInData("incomingLinks");
+
+		for (String recordTypeToKey : incomingLinks.keySet()) {
+			DataGroup recordTypeToGroup = DataGroup.withNameInData(recordTypeToKey);
+			linkListsGroup.addChild(recordTypeToGroup);
+			Map<String, Map<String, Map<String, List<DataGroup>>>> recordGroupMap = incomingLinks
+					.get(recordTypeToKey);
+
+			for (String recordIdKey : recordGroupMap.keySet()) {
+				DataGroup recordIdGroup = DataGroup.withNameInData(recordIdKey);
+				recordTypeToGroup.addChild(recordIdGroup);
+				Map<String, Map<String, List<DataGroup>>> map2 = recordGroupMap.get(recordIdKey);
+
+				for (String string2 : map2.keySet()) {
+					DataGroup recordIdGroup2 = DataGroup.withNameInData(string2);
+					recordIdGroup.addChild(recordIdGroup2);
+					Map<String, List<DataGroup>> group2 = map2.get(string2);
+
+					for (String string3 : group2.keySet()) {
+						DataGroup recordIdGroup3 = DataGroup.withNameInData(string3);
+						recordIdGroup2.addChild(recordIdGroup3);
+						List<DataGroup> list = group2.get(string3);
+
+						for (DataGroup dataGroup5 : list) {
+							DataGroup recordIdGroup4 = DataGroup.withNameInData("list");
+							recordIdGroup3.addChild(recordIdGroup4);
+							recordIdGroup4.addChild(dataGroup5);
+							writeToFile = true;
+						}
+					}
+				}
+				// recordIdGroup.addChild(recordGroupMap.get(recordIdKey));
+			}
+		}
+		if (writeToFile) {
+			writeDataGroupToDiskAsJson(path, linkListsGroup);
+		}
+	}
+
+	@Override
+	public void update(String recordType, String recordId, DataGroup record, DataGroup linkList) {
+		super.update(recordType, recordId, record, linkList);
+
+		writeRecordsToDisk(recordType);
 	}
 
 }
