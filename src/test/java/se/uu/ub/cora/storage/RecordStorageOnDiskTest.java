@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Collection;
 import java.util.stream.Stream;
 
 import org.testng.annotations.AfterMethod;
@@ -30,7 +31,7 @@ public class RecordStorageOnDiskTest {
 	private static final String FROM_RECORD_ID = "fromRecordId";
 	private static final String TO_RECORD_ID = "toRecordId";
 	private static final String TO_RECORD_TYPE = "toRecordType";
-	private String basePath = "/tmp/recordStorageOnDisk/";
+	private String basePath = "/tmp/recordStorageOnDiskTemp/";
 	private DataGroup emptyLinkList = DataCreator.createLinkList();
 
 	@BeforeMethod
@@ -96,11 +97,10 @@ public class RecordStorageOnDiskTest {
 			json += line;
 		}
 		return json;
-
 	}
 
 	@Test
-	public void testInitNoFilesOnDiskWithLinks() throws IOException {
+	public void testRecordWithLinks() throws IOException {
 		DataGroup linkListWithTwoLinks = createLinkListWithTwoLinks("place:0001");
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
@@ -208,15 +208,6 @@ public class RecordStorageOnDiskTest {
 
 		String fileName = "place.json";
 		writeFileToDisk(json, fileName);
-
-		// String linkListJson = "{\"children\":[{\"children\":[{\"children\":["
-		// + "{\"name\":\"collectedDataLinks\"}],\"name\":\"place:0001\"}]"
-		// + ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
-		// String linkListJson = "{\"children\":[{\"children\":[{\"children\":["
-		// +
-		// "{\"name\":\"collectedDataLinks\",\"children\":[{}]}],\"name\":\"place:0001\"}]"
-		// + ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
-		// writeFileToDisk(linkListJson, "linkLists.json");
 	}
 
 	private void writeFileToDisk(String json, String fileName) {
@@ -264,7 +255,7 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
-	public void testUpdatePlaceFileOnDisk() throws IOException {
+	public void testUpdate() throws IOException {
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
@@ -283,6 +274,66 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
+	public void testDelete() throws IOException {
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList);
+		Path path = Paths.get(basePath, "place.json");
+		assertTrue(Files.exists(path));
+
+		recordStorage.deleteByTypeAndId("place", "place:0001");
+		assertFalse(Files.exists(path));
+	}
+
+	@Test
+	public void testDeleteRemoveOneRecord() throws IOException {
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList);
+		Path path = Paths.get(basePath, "place.json");
+		String expectedRecordJsonOneRecord = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
+				+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}]"
+				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}],\"name\":\"recordList\"}";
+
+		assertEquals(readJsonFileFromDisk("place.json"), expectedRecordJsonOneRecord);
+
+		DataGroup dataGroup2 = DataCreator
+				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("authority",
+						"place", "place:0002");
+		recordStorage.create("place", "place:0002", dataGroup2, emptyLinkList);
+		String expectedRecordJsonTwoRecords = "{\"children\":[{\"children\":[{\"children\":["
+				+ "{\"name\":\"type\",\"value\":\"place\"},"
+				+ "{\"name\":\"id\",\"value\":\"place:0001\"}]"
+				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}"
+				+ ",{\"children\":[{\"children\":[{\"name\":\"type\",\"value\":\"place\"}"
+				+ ",{\"name\":\"id\",\"value\":\"place:0002\"}],\"name\":\"recordInfo\"}]"
+				+ ",\"name\":\"authority\"}],\"name\":\"recordList\"}";
+
+		assertEquals(readJsonFileFromDisk("place.json"), expectedRecordJsonTwoRecords);
+
+		recordStorage.deleteByTypeAndId("place", "place:0002");
+		assertEquals(readJsonFileFromDisk("place.json"), expectedRecordJsonOneRecord);
+	}
+
+	@Test
+	public void testDeleteFileOnDiskRemovedWhenNoRecordsLeft() throws IOException {
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList);
+		Path path = Paths.get(basePath, "place.json");
+		assertTrue(Files.exists(path));
+
+		recordStorage.deleteByTypeAndId("place", "place:0001");
+		assertFalse(Files.exists(path));
+	}
+
+	@Test
 	public void testInitWithFileOnDiskLinksOnDisk() {
 		writePlaceFileToDisk();
 		writePlaceLinksFileToDisk();
@@ -296,32 +347,37 @@ public class RecordStorageOnDiskTest {
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
 		DataGroup linkListPlace = recordStorage.readLinkList("place", "place:0001");
-		assertJsonEqualDataGroup(linkListPlace, emptyLinkList);
+		String expectedLinkListJson = "{\"children\":[" + "{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
+				+ ",\"name\":\"from\"},{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]"
+				+ ",\"name\":\"to\"},{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]" + ",\"name\":\"to\"}]"
+				+ ",\"name\":\"recordToRecordLink\"}" + ",{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
+				+ ",\"name\":\"from\"},{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
+				+ ",\"name\":\"to\"},{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
+				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
+				+ ",\"name\":\"collectedDataLinks\"}";
+		assertEquals(convertDataGroupToJsonString(linkListPlace), expectedLinkListJson);
+
+		DataGroup dataGroupTo = createDataGroupWithRecordInfo();
+		recordStorage.create("toRecordType", "toRecordId", dataGroupTo, emptyLinkList);
+		Collection<DataGroup> incomingLinksTo = recordStorage
+				.generateLinkCollectionPointingToRecord("toRecordType", "toRecordId");
+
+		assertEquals(incomingLinksTo.size(), 1);
 	}
 
 	private void writePlaceLinksFileToDisk() {
-		// String json =
-		// "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
-		// + ",\"value\":\"place\"}" +
-		// ",{\"name\":\"id\",\"value\":\"place:0001\"}]"
-		// +
-		// ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}],\"name\":\"recordList\"}";
-		//
-		// String fileName = "place.json";
-		// writeFileToDisk(json, fileName);
-
-		// String linkListJson = "{\"children\":[{\"children\":[{\"children\":["
-		// + "{\"name\":\"collectedDataLinks\"}],\"name\":\"place:0001\"}]"
-		// + ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
-		// String linkListJson = "{\"children\":[{\"children\":[{\"children\":["
-		// +
-		// "{\"name\":\"collectedDataLinks\",\"children\":[{}]}],\"name\":\"place:0001\"}]"
-		// + ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
-		// DataGroup linkListWithTwoLinks =
-		// createLinkListWithTwoLinks("place:0001");
-		// writeFileToDisk(convertDataGroupToJsonString(linkListWithTwoLinks),
-		// "linkLists.json");
-
 		String expectedLinkListJson = "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
 				+ "{\"children\":[{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
@@ -371,7 +427,5 @@ public class RecordStorageOnDiskTest {
 				+ ",\"name\":\"toRecordId\"}],\"name\":\"toRecordType\"}]"
 				+ ",\"name\":\"incomingLinks\"}";
 		writeFileToDisk(expectedIncomingLinksJson, "incomingLinks.json");
-
 	}
-
 }

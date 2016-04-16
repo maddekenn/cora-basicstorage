@@ -72,15 +72,31 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			json += line;
 		}
 		String fileName = path.getFileName().toString();
-		String recordType = fileName.substring(0, fileName.length() - 5);
+		String recordTypeName = fileName.substring(0, fileName.length() - 5);
 
 		DataGroup recordList = convertJsonStringToDataGroup(json);
 		if (fileName.equals("linkLists.json")) {
+			List<DataElement> recordTypes = recordList.getChildren();
+
+			for (DataElement typesElement : recordTypes) {
+				DataGroup recordType = (DataGroup) typesElement;
+				recordTypeName = recordType.getNameInData();
+				ensureStorageExistsForRecordType(recordTypeName);
+
+				List<DataElement> records = recordType.getChildren();
+				for (DataElement recordElement : records) {
+					DataGroup record = (DataGroup) recordElement;
+					String recordId = record.getNameInData();
+					DataGroup collectedDataLinks = (DataGroup) record
+							.getFirstChildWithNameInData("collectedDataLinks");
+					storeLinks(recordTypeName, recordId, collectedDataLinks);
+				}
+			}
 
 		} else if (fileName.equals("incomingLinks.json")) {
 
 		} else {
-			ensureStorageExistsForRecordType(recordType);
+			ensureStorageExistsForRecordType(recordTypeName);
 
 			List<DataElement> records = recordList.getChildren();
 
@@ -90,7 +106,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 				DataGroup recordInfo = record.getFirstGroupWithNameInData("recordInfo");
 				String recordId = recordInfo.getFirstAtomicValueWithNameInData("id");
 
-				storeRecordByRecordTypeAndRecordId(recordType, recordId, record);
+				storeRecordByRecordTypeAndRecordId(recordTypeName, recordId, record);
 			}
 
 		}
@@ -120,26 +136,40 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	@Override
 	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList) {
-		super.create(recordType, recordId, record, linkList);
+		try {
+			super.create(recordType, recordId, record, linkList);
 
-		writeRecordsToDisk(recordType);
-		writeLinkListToDisk();
-		writeIncomingLinksToDisk();
+			writeDataToDisk(recordType);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			throw new IllegalArgumentException("Records must not be null");
+		}
 
 	}
 
-	private void writeRecordsToDisk(String recordType) {
+	private void writeDataToDisk(String recordType) throws IOException {
+		writeRecordsToDisk(recordType);
+		writeLinkListToDisk();
+		writeIncomingLinksToDisk();
+	}
+
+	private void writeRecordsToDisk(String recordType) throws IOException {
 		// TODO: first check that we have links for this type
 
-		Collection<DataGroup> readList = readList(recordType);
-		if (!readList.isEmpty()) {
-			Path path = FileSystems.getDefault().getPath(basePath, recordType + ".json");
+		Path path = FileSystems.getDefault().getPath(basePath, recordType + ".json");
+		if (recordsExistForRecordType(recordType)) {
+			Collection<DataGroup> readList = readList(recordType);
+			// if (!readList.isEmpty()) {
 
 			DataGroup recordList = DataGroup.withNameInData("recordList");
 			for (DataElement dataElement : readList) {
 				recordList.addChild(dataElement);
 			}
 			writeDataGroupToDiskAsJson(path, recordList);
+			// }
+		} else {
+			Files.delete(path);
 		}
 	}
 
@@ -147,6 +177,11 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		String json = convertDataGroupToJsonString(dataGroup);
 		BufferedWriter writer;
 		try {
+			if (Files.exists(path)) {
+				// TODO: write test for this (add two posts, delete one, see
+				// that file is too long
+				Files.delete(path);
+			}
 			writer = Files.newBufferedWriter(path, Charset.defaultCharset(),
 					StandardOpenOption.CREATE);
 			writer.write(json, 0, json.length());
@@ -236,9 +271,28 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	@Override
 	public void update(String recordType, String recordId, DataGroup record, DataGroup linkList) {
-		super.update(recordType, recordId, record, linkList);
+		try {
+			super.update(recordType, recordId, record, linkList);
 
-		writeRecordsToDisk(recordType);
+			writeDataToDisk(recordType);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			throw new IllegalArgumentException("Records must not be null");
+		}
+	}
+
+	@Override
+	public void deleteByTypeAndId(String recordType, String recordId) {
+		try {
+			super.deleteByTypeAndId(recordType, recordId);
+
+			writeDataToDisk(recordType);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			throw new IllegalArgumentException("Records must not be null");
+		}
 	}
 
 }

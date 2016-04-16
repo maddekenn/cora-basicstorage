@@ -107,7 +107,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		return records.get(recordType).put(recordId, recordIndependentOfEnteredRecord);
 	}
 
-	private void storeLinks(String recordType, String recordId, DataGroup linkList) {
+	protected void storeLinks(String recordType, String recordId, DataGroup linkList) {
 		if (linkList.getChildren().size() > 0) {
 			DataGroup linkListIndependentFromEntered = createIndependentCopy(linkList);
 			storeLinkList(recordType, recordId, linkListIndependentFromEntered);
@@ -230,11 +230,11 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	@Override
 	public DataGroup readLinkList(String recordType, String recordId) {
 		checkRecordExists(recordType, recordId);
-		if (!linkLists.containsKey(recordType)) {
-			// throw new RecordNotFoundException("No linkList exists with
-			// recordType: " + recordType);
-			return DataGroup.withNameInData("collectedDataLinks");
-		}
+		// if (!linkLists.containsKey(recordType)) {
+		// throw new RecordNotFoundException("No linkList exists with
+		// recordType: " + recordType);
+		// return DataGroup.withNameInData("collectedDataLinks");
+		// }
 		if (!linkLists.get(recordType).containsKey(recordId)) {
 			// throw new RecordNotFoundException("No linkList exists with
 			// recordId: " + recordId);
