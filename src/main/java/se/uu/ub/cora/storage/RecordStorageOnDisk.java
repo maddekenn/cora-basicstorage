@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -44,24 +45,18 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		try {
 			readStoredDataFromDisk();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw DataStorageException.withMessage("can not read files from disk on init");
 		}
 	}
 
 	private void readStoredDataFromDisk() throws IOException {
 		Stream<Path> list = Files.list(Paths.get(basePath));
-		list.forEach(p -> tryToReadFile(p));
-		list.close();
-	}
-
-	private void tryToReadFile(Path path) {
-		try {
-			readFile(path);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			throw new IllegalArgumentException("Records must not be null");
+		Iterator<Path> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			Path p = iterator.next();
+			readFile(p);
 		}
+		list.close();
 	}
 
 	private void readFile(Path path) throws IOException {
@@ -108,19 +103,6 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 				storeRecordByRecordTypeAndRecordId(recordTypeName, recordId, record);
 			}
-
-		}
-	}
-
-	public RecordStorageOnDisk(Map<String, Map<String, DataGroup>> records) {
-		throwErrorIfConstructorArgumentIsNull(records);
-		this.records = records;
-	}
-
-	private void throwErrorIfConstructorArgumentIsNull(
-			Map<String, Map<String, DataGroup>> records) {
-		if (null == records) {
-			throw new IllegalArgumentException("Records must not be null");
 		}
 	}
 
@@ -136,31 +118,20 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	@Override
 	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList) {
-		try {
-			super.create(recordType, recordId, record, linkList);
-
-			writeDataToDisk(recordType);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			throw new IllegalArgumentException("Records must not be null");
-		}
-
+		super.create(recordType, recordId, record, linkList);
+		writeDataToDisk(recordType);
 	}
 
-	private void writeDataToDisk(String recordType) throws IOException {
+	private void writeDataToDisk(String recordType) {
 		writeRecordsToDisk(recordType);
 		writeLinkListToDisk();
 		writeIncomingLinksToDisk();
 	}
 
-	private void writeRecordsToDisk(String recordType) throws IOException {
-		// TODO: first check that we have links for this type
-
+	private void writeRecordsToDisk(String recordType) {
 		Path path = FileSystems.getDefault().getPath(basePath, recordType + ".json");
 		if (recordsExistForRecordType(recordType)) {
 			Collection<DataGroup> readList = readList(recordType);
-			// if (!readList.isEmpty()) {
 
 			DataGroup recordList = DataGroup.withNameInData("recordList");
 			for (DataElement dataElement : readList) {
@@ -169,7 +140,11 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			writeDataGroupToDiskAsJson(path, recordList);
 			// }
 		} else {
-			Files.delete(path);
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				throw DataStorageException.withMessage("can not read files from disk on init");
+			}
 		}
 	}
 
@@ -178,8 +153,6 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		BufferedWriter writer;
 		try {
 			if (Files.exists(path)) {
-				// TODO: write test for this (add two posts, delete one, see
-				// that file is too long
 				Files.delete(path);
 			}
 			writer = Files.newBufferedWriter(path, Charset.defaultCharset(),
@@ -187,11 +160,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			writer.write(json, 0, json.length());
 			writer.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			// throw new Exception();
-			// throw new RecordNotFoundException("No records exists with
-			// recordType: " + recordType);
+			throw DataStorageException.withMessage("can not read files from disk on init");
 		}
 	}
 
@@ -261,7 +230,6 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 						}
 					}
 				}
-				// recordIdGroup.addChild(recordGroupMap.get(recordIdKey));
 			}
 		}
 		if (writeToFile) {
@@ -271,28 +239,13 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	@Override
 	public void update(String recordType, String recordId, DataGroup record, DataGroup linkList) {
-		try {
-			super.update(recordType, recordId, record, linkList);
-
-			writeDataToDisk(recordType);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			throw new IllegalArgumentException("Records must not be null");
-		}
+		super.update(recordType, recordId, record, linkList);
+		writeDataToDisk(recordType);
 	}
 
 	@Override
 	public void deleteByTypeAndId(String recordType, String recordId) {
-		try {
-			super.deleteByTypeAndId(recordType, recordId);
-
-			writeDataToDisk(recordType);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			throw new IllegalArgumentException("Records must not be null");
-		}
+		super.deleteByTypeAndId(recordType, recordId);
+		writeDataToDisk(recordType);
 	}
-
 }

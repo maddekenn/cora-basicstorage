@@ -58,9 +58,11 @@ public class RecordStorageOnDiskTest {
 
 	@AfterMethod
 	public void removeTempFiles() throws IOException {
-		deleteFiles();
-		File dir = new File(basePath);
-		dir.delete();
+		if (Files.exists(Paths.get(basePath))) {
+			deleteFiles();
+			File dir = new File(basePath);
+			dir.delete();
+		}
 	}
 
 	@Test
@@ -427,5 +429,43 @@ public class RecordStorageOnDiskTest {
 				+ ",\"name\":\"toRecordId\"}],\"name\":\"toRecordType\"}]"
 				+ ",\"name\":\"incomingLinks\"}";
 		writeFileToDisk(expectedIncomingLinksJson, "incomingLinks.json");
+	}
+
+	@Test(expectedExceptions = DataStorageException.class)
+	public void testInitMissingPath() throws IOException {
+		removeTempFiles();
+		RecordStorageOnDisk.createRecordStorageOnDiskWithBasePath(basePath);
+	}
+
+	@Test(expectedExceptions = DataStorageException.class)
+	public void testCreateMissingPath() throws IOException {
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+		removeTempFiles();
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList);
+
+	}
+
+	@Test(expectedExceptions = DataStorageException.class)
+	public void testUpdateMissingPath() throws IOException {
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList);
+		removeTempFiles();
+		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList);
+
+	}
+
+	@Test(expectedExceptions = DataStorageException.class)
+	public void testDeleteMissingPath() throws IOException {
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList);
+		removeTempFiles();
+		recordStorage.deleteByTypeAndId("place", "place:0001");
+
 	}
 }

@@ -230,14 +230,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	@Override
 	public DataGroup readLinkList(String recordType, String recordId) {
 		checkRecordExists(recordType, recordId);
-		// if (!linkLists.containsKey(recordType)) {
-		// throw new RecordNotFoundException("No linkList exists with
-		// recordType: " + recordType);
-		// return DataGroup.withNameInData("collectedDataLinks");
-		// }
 		if (!linkLists.get(recordType).containsKey(recordId)) {
-			// throw new RecordNotFoundException("No linkList exists with
-			// recordId: " + recordId);
 			return DataGroup.withNameInData("collectedDataLinks");
 		}
 		return linkLists.get(recordType).get(recordId);
@@ -326,7 +319,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	private void removeIncomingLink(DataElement linkElement) {
 		DataGroup link = (DataGroup) linkElement;
 		DataGroup recordLinkTo = link.getFirstGroupWithNameInData("to");
-		if (incomingLinksContainsTo(recordLinkTo)) {
+		if (incomingLinksContainsToType(recordLinkTo)) {
 			Map<String, Map<String, List<DataGroup>>> toPartOfIncomingLinks = extractToPartOfIncomingLinks(
 					recordLinkTo);
 
@@ -336,19 +329,15 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		}
 	}
 
-	private boolean incomingLinksContainsTo(DataGroup to) {
+	private boolean incomingLinksContainsToType(DataGroup to) {
 		String toType = extractLinkedRecordTypeValue(to);
 		String toId = extractLinkedRecordIdValue(to);
-
-		// null pointer.. here
-		return (incomingLinks.containsKey(toType) && incomingLinks.get(toType).containsKey(toId));
+		return incomingLinks.containsKey(toType);
 	}
 
 	private Map<String, Map<String, List<DataGroup>>> extractToPartOfIncomingLinks(DataGroup to) {
 		String toType = extractLinkedRecordTypeValue(to);
 		String toId = extractLinkedRecordIdValue(to);
-
-		// null pointer.. here
 		return incomingLinks.get(toType).get(toId);
 	}
 
