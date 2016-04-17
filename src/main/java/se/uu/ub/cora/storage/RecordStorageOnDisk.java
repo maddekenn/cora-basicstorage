@@ -179,62 +179,107 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 		boolean writeToFile = false;
 		DataGroup linkListsGroup = DataGroup.withNameInData("linkLists");
-		for (String recordTypeKey : linkLists.keySet()) {
-			DataGroup recordTypeGroup = DataGroup.withNameInData(recordTypeKey);
-			linkListsGroup.addChild(recordTypeGroup);
-			Map<String, DataGroup> recordGroupMap = linkLists.get(recordTypeKey);
-			for (String recordIdKey : recordGroupMap.keySet()) {
-				DataGroup recordIdGroup = DataGroup.withNameInData(recordIdKey);
-				recordTypeGroup.addChild(recordIdGroup);
-				recordIdGroup.addChild(recordGroupMap.get(recordIdKey));
-				writeToFile = true;
-			}
-		}
+		writeToFile = addRecordTypes(writeToFile, linkListsGroup);
 		if (writeToFile) {
 			writeDataGroupToDiskAsJson(path, linkListsGroup);
 		}
 	}
 
+	private boolean addRecordTypes(boolean writeToFile, DataGroup linkListsGroup) {
+		for (String recordTypeKey : linkLists.keySet()) {
+			DataGroup recordTypeGroup = DataGroup.withNameInData(recordTypeKey);
+			linkListsGroup.addChild(recordTypeGroup);
+			Map<String, DataGroup> recordGroupMap = linkLists.get(recordTypeKey);
+			writeToFile = addRecordIds(writeToFile, recordTypeGroup, recordGroupMap);
+		}
+		return writeToFile;
+	}
+
+	private boolean addRecordIds(boolean writeToFile, DataGroup recordTypeGroup,
+			Map<String, DataGroup> recordGroupMap) {
+		for (String recordIdKey : recordGroupMap.keySet()) {
+			DataGroup recordIdGroup = DataGroup.withNameInData(recordIdKey);
+			recordTypeGroup.addChild(recordIdGroup);
+			recordIdGroup.addChild(recordGroupMap.get(recordIdKey));
+			writeToFile = true;
+		}
+		return writeToFile;
+	}
+
 	private void writeIncomingLinksToDisk() {
 		Path path = FileSystems.getDefault().getPath(basePath, "incomingLinks.json");
 
-		boolean writeToFile = false;
 		DataGroup linkListsGroup = DataGroup.withNameInData("incomingLinks");
+		boolean writeToFile = addLinksToLinkList(linkListsGroup);
+		if (writeToFile) {
+			writeDataGroupToDiskAsJson(path, linkListsGroup);
+		}
+	}
 
+	private boolean addLinksToLinkList(DataGroup linkListsGroup) {
+		boolean writeToFile = false;
+		// TODO: refactor this
+		writeToFile = addToTypeToList(linkListsGroup, writeToFile);
+		return writeToFile;
+	}
+
+	private boolean addToTypeToList(DataGroup linkListsGroup, boolean writeToFile) {
 		for (String recordTypeToKey : incomingLinks.keySet()) {
 			DataGroup recordTypeToGroup = DataGroup.withNameInData(recordTypeToKey);
 			linkListsGroup.addChild(recordTypeToGroup);
 			Map<String, Map<String, Map<String, List<DataGroup>>>> recordGroupMap = incomingLinks
 					.get(recordTypeToKey);
 
-			for (String recordIdKey : recordGroupMap.keySet()) {
-				DataGroup recordIdGroup = DataGroup.withNameInData(recordIdKey);
-				recordTypeToGroup.addChild(recordIdGroup);
-				Map<String, Map<String, List<DataGroup>>> map2 = recordGroupMap.get(recordIdKey);
-
-				for (String string2 : map2.keySet()) {
-					DataGroup recordIdGroup2 = DataGroup.withNameInData(string2);
-					recordIdGroup.addChild(recordIdGroup2);
-					Map<String, List<DataGroup>> group2 = map2.get(string2);
-
-					for (String string3 : group2.keySet()) {
-						DataGroup recordIdGroup3 = DataGroup.withNameInData(string3);
-						recordIdGroup2.addChild(recordIdGroup3);
-						List<DataGroup> list = group2.get(string3);
-
-						for (DataGroup dataGroup5 : list) {
-							DataGroup recordIdGroup4 = DataGroup.withNameInData("list");
-							recordIdGroup3.addChild(recordIdGroup4);
-							recordIdGroup4.addChild(dataGroup5);
-							writeToFile = true;
-						}
-					}
-				}
-			}
+			writeToFile = addToIdToList(writeToFile, recordTypeToGroup, recordGroupMap);
 		}
-		if (writeToFile) {
-			writeDataGroupToDiskAsJson(path, linkListsGroup);
+		return writeToFile;
+	}
+
+	private boolean addToIdToList(boolean writeToFile, DataGroup recordTypeToGroup,
+			Map<String, Map<String, Map<String, List<DataGroup>>>> recordGroupMap) {
+		for (String recordIdKey : recordGroupMap.keySet()) {
+			DataGroup recordIdGroup = DataGroup.withNameInData(recordIdKey);
+			recordTypeToGroup.addChild(recordIdGroup);
+			Map<String, Map<String, List<DataGroup>>> fromGroupMap = recordGroupMap
+					.get(recordIdKey);
+
+			writeToFile = addFromType(writeToFile, recordIdGroup, fromGroupMap);
 		}
+		return writeToFile;
+	}
+
+	private boolean addFromType(boolean writeToFile, DataGroup recordIdGroup,
+			Map<String, Map<String, List<DataGroup>>> fromGroupMap) {
+		for (String fromGroupKey : fromGroupMap.keySet()) {
+			DataGroup fromTypeGroup = DataGroup.withNameInData(fromGroupKey);
+			recordIdGroup.addChild(fromTypeGroup);
+			Map<String, List<DataGroup>> fromIdGroup = fromGroupMap.get(fromGroupKey);
+
+			writeToFile = addFromId(writeToFile, fromTypeGroup, fromIdGroup);
+		}
+		return writeToFile;
+	}
+
+	private boolean addFromId(boolean writeToFile, DataGroup fromTypeGroup,
+			Map<String, List<DataGroup>> fromIdGroup) {
+		for (String fromIdKey : fromIdGroup.keySet()) {
+			DataGroup recordIdGroup3 = DataGroup.withNameInData(fromIdKey);
+			fromTypeGroup.addChild(recordIdGroup3);
+			List<DataGroup> links = fromIdGroup.get(fromIdKey);
+
+			writeToFile = addLinks(writeToFile, recordIdGroup3, links);
+		}
+		return writeToFile;
+	}
+
+	private boolean addLinks(boolean writeToFile, DataGroup recordIdGroup3, List<DataGroup> links) {
+		for (DataGroup link : links) {
+			DataGroup recordIdGroup4 = DataGroup.withNameInData("list");
+			recordIdGroup3.addChild(recordIdGroup4);
+			recordIdGroup4.addChild(link);
+			writeToFile = true;
+		}
+		return writeToFile;
 	}
 
 	@Override
