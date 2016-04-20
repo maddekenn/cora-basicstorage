@@ -40,8 +40,6 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	protected Map<String, Map<String, DataGroup>> linkLists = new HashMap<>();
 	protected Map<String, Map<String, Map<String, Map<String, List<DataGroup>>>>> incomingLinks = new HashMap<>();
 
-	protected DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
-
 	public RecordStorageInMemory() {
 		// Make it possible to use default empty record storage
 	}
@@ -331,7 +329,6 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 
 	private boolean incomingLinksContainsToType(DataGroup to) {
 		String toType = extractLinkedRecordTypeValue(to);
-		String toId = extractLinkedRecordIdValue(to);
 		return incomingLinks.containsKey(toType);
 	}
 

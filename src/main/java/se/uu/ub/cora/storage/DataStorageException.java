@@ -19,7 +19,7 @@
 
 package se.uu.ub.cora.storage;
 
-public class DataStorageException extends RuntimeException {
+public final class DataStorageException extends RuntimeException {
 	private static final long serialVersionUID = 72005255019256838L;
 
 	public static DataStorageException withMessage(String message) {

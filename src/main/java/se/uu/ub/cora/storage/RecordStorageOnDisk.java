@@ -22,7 +22,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,6 +30,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 import se.uu.ub.cora.bookkeeper.data.DataElement;
@@ -46,8 +46,9 @@ import se.uu.ub.cora.storage.data.converter.JsonToDataConverter;
 import se.uu.ub.cora.storage.data.converter.JsonToDataConverterFactory;
 import se.uu.ub.cora.storage.data.converter.JsonToDataConverterFactoryImp;
 
-public class RecordStorageOnDisk extends RecordStorageInMemory
+public final class RecordStorageOnDisk extends RecordStorageInMemory
 		implements RecordStorage, MetadataStorage {
+	private static final int JSON_FILE_END = 5;
 	private String basePath;
 
 	public static RecordStorageOnDisk createRecordStorageOnDiskWithBasePath(String basePath) {
@@ -63,7 +64,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		try {
 			readStoredDataFromDisk();
 		} catch (IOException e) {
-			throw DataStorageException.withMessage("can not read files from disk on init");
+			throw DataStorageException.withMessage("can not read files from disk on init" + e);
 		}
 	}
 
@@ -80,14 +81,15 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private void readFile(Path path) throws IOException {
 		BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset());
 		String line = null;
-		String json = "";
+		StringBuilder jsonBuilder = new StringBuilder();
 		while ((line = reader.readLine()) != null) {
-			json += line;
+			jsonBuilder.append(line);
 		}
+		reader.close();
 		String fileName = path.getFileName().toString();
-		String recordTypeName = fileName.substring(0, fileName.length() - 5);
+		String recordTypeName = fileName.substring(0, fileName.length() - JSON_FILE_END);
 
-		DataGroup recordList = convertJsonStringToDataGroup(json);
+		DataGroup recordList = convertJsonStringToDataGroup(jsonBuilder.toString());
 		if (fileName.equals("linkLists.json")) {
 			List<DataElement> recordTypes = recordList.getChildren();
 
@@ -107,7 +109,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			}
 
 		} else if (fileName.equals("incomingLinks.json")) {
-
+			// not read as information is recreated from linkLists.json
 		} else {
 			ensureStorageExistsForRecordType(recordTypeName);
 
@@ -147,7 +149,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void writeRecordsToDisk(String recordType) {
-		Path path = FileSystems.getDefault().getPath(basePath, recordType + ".json");
+		String pathString = recordType + ".json";
 		if (recordsExistForRecordType(recordType)) {
 			Collection<DataGroup> readList = readList(recordType);
 
@@ -155,21 +157,22 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			for (DataElement dataElement : readList) {
 				recordList.addChild(dataElement);
 			}
-			writeDataGroupToDiskAsJson(path, recordList);
-			// }
+			writeDataGroupToDiskAsJson(pathString, recordList);
 		} else {
 			try {
+				Path path = Paths.get(basePath, pathString);
 				Files.delete(path);
 			} catch (IOException e) {
-				throw DataStorageException.withMessage("can not read files from disk on init");
+				throw DataStorageException.withMessage("can not write record files to disk" + e);
 			}
 		}
 	}
 
-	private void writeDataGroupToDiskAsJson(Path path, DataGroup dataGroup) {
+	private void writeDataGroupToDiskAsJson(String pathString, DataGroup dataGroup) {
 		String json = convertDataGroupToJsonString(dataGroup);
 		BufferedWriter writer;
 		try {
+			Path path = Paths.get(basePath, pathString);
 			if (Files.exists(path)) {
 				Files.delete(path);
 			}
@@ -177,8 +180,9 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 					StandardOpenOption.CREATE);
 			writer.write(json, 0, json.length());
 			writer.flush();
+			writer.close();
 		} catch (IOException e) {
-			throw DataStorageException.withMessage("can not read files from disk on init");
+			throw DataStorageException.withMessage("can not write files to disk" + e);
 		}
 	}
 
@@ -193,104 +197,123 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void writeLinkListToDisk() {
-		Path path = FileSystems.getDefault().getPath(basePath, "linkLists.json");
+		String pathString = "linkLists.json";
 
 		boolean writeToFile = false;
 		DataGroup linkListsGroup = DataGroup.withNameInData("linkLists");
-		writeToFile = addRecordTypes(writeToFile, linkListsGroup);
+		writeToFile = addRecordTypes(linkListsGroup);
 		if (writeToFile) {
-			writeDataGroupToDiskAsJson(path, linkListsGroup);
+			writeDataGroupToDiskAsJson(pathString, linkListsGroup);
 		}
+
 	}
 
-	private boolean addRecordTypes(boolean writeToFile, DataGroup linkListsGroup) {
-		for (String recordTypeKey : linkLists.keySet()) {
-			DataGroup recordTypeGroup = DataGroup.withNameInData(recordTypeKey);
+	private boolean addRecordTypes(DataGroup linkListsGroup) {
+		boolean writeToFile = false;
+		for (Entry<String, Map<String, DataGroup>> recordType : linkLists.entrySet()) {
+			DataGroup recordTypeGroup = DataGroup.withNameInData(recordType.getKey());
 			linkListsGroup.addChild(recordTypeGroup);
-			Map<String, DataGroup> recordGroupMap = linkLists.get(recordTypeKey);
-			writeToFile = addRecordIds(writeToFile, recordTypeGroup, recordGroupMap);
+			Map<String, DataGroup> recordGroupMap = recordType.getValue();
+			boolean currentWriteToFile = addRecordIds(recordTypeGroup, recordGroupMap);
+			if (currentWriteToFile) {
+				writeToFile = true;
+			}
 		}
 		return writeToFile;
 	}
 
-	private boolean addRecordIds(boolean writeToFile, DataGroup recordTypeGroup,
-			Map<String, DataGroup> recordGroupMap) {
-		for (String recordIdKey : recordGroupMap.keySet()) {
-			DataGroup recordIdGroup = DataGroup.withNameInData(recordIdKey);
+	private boolean addRecordIds(DataGroup recordTypeGroup, Map<String, DataGroup> recordGroupMap) {
+		boolean writeToFile = false;
+		for (Entry<String, DataGroup> recordId : recordGroupMap.entrySet()) {
+			DataGroup recordIdGroup = DataGroup.withNameInData(recordId.getKey());
 			recordTypeGroup.addChild(recordIdGroup);
-			recordIdGroup.addChild(recordGroupMap.get(recordIdKey));
+			recordIdGroup.addChild(recordId.getValue());
 			writeToFile = true;
 		}
 		return writeToFile;
 	}
 
 	private void writeIncomingLinksToDisk() {
-		Path path = FileSystems.getDefault().getPath(basePath, "incomingLinks.json");
+		String pathString = "incomingLinks.json";
 
 		DataGroup linkListsGroup = DataGroup.withNameInData("incomingLinks");
 		boolean writeToFile = addLinksToLinkList(linkListsGroup);
 		if (writeToFile) {
-			writeDataGroupToDiskAsJson(path, linkListsGroup);
+			writeDataGroupToDiskAsJson(pathString, linkListsGroup);
 		}
 	}
 
 	private boolean addLinksToLinkList(DataGroup linkListsGroup) {
+		return addToTypeToList(linkListsGroup);
+	}
+
+	private boolean addToTypeToList(DataGroup linkListsGroup) {
 		boolean writeToFile = false;
-		// TODO: refactor this
-		writeToFile = addToTypeToList(linkListsGroup, writeToFile);
-		return writeToFile;
-	}
-
-	private boolean addToTypeToList(DataGroup linkListsGroup, boolean writeToFile) {
-		for (String recordTypeToKey : incomingLinks.keySet()) {
-			DataGroup recordTypeToGroup = DataGroup.withNameInData(recordTypeToKey);
+		for (Entry<String, Map<String, Map<String, Map<String, List<DataGroup>>>>> recordTypeTo : incomingLinks
+				.entrySet()) {
+			DataGroup recordTypeToGroup = DataGroup.withNameInData(recordTypeTo.getKey());
 			linkListsGroup.addChild(recordTypeToGroup);
-			Map<String, Map<String, Map<String, List<DataGroup>>>> recordGroupMap = incomingLinks
-					.get(recordTypeToKey);
+			Map<String, Map<String, Map<String, List<DataGroup>>>> recordGroupMap = recordTypeTo
+					.getValue();
 
-			writeToFile = addToIdToList(writeToFile, recordTypeToGroup, recordGroupMap);
+			boolean currentWriteToFile = addToIdToList(recordTypeToGroup, recordGroupMap);
+			if (currentWriteToFile) {
+				writeToFile = true;
+			}
 		}
 		return writeToFile;
 	}
 
-	private boolean addToIdToList(boolean writeToFile, DataGroup recordTypeToGroup,
+	private boolean addToIdToList(DataGroup recordTypeToGroup,
 			Map<String, Map<String, Map<String, List<DataGroup>>>> recordGroupMap) {
-		for (String recordIdKey : recordGroupMap.keySet()) {
-			DataGroup recordIdGroup = DataGroup.withNameInData(recordIdKey);
+		boolean writeToFile = false;
+		for (Entry<String, Map<String, Map<String, List<DataGroup>>>> recordId : recordGroupMap
+				.entrySet()) {
+			DataGroup recordIdGroup = DataGroup.withNameInData(recordId.getKey());
 			recordTypeToGroup.addChild(recordIdGroup);
-			Map<String, Map<String, List<DataGroup>>> fromGroupMap = recordGroupMap
-					.get(recordIdKey);
+			Map<String, Map<String, List<DataGroup>>> fromGroupMap = recordId.getValue();
 
-			writeToFile = addFromType(writeToFile, recordIdGroup, fromGroupMap);
+			boolean currentWriteToFile = addFromType(recordIdGroup, fromGroupMap);
+			if (currentWriteToFile) {
+				writeToFile = true;
+			}
 		}
 		return writeToFile;
 	}
 
-	private boolean addFromType(boolean writeToFile, DataGroup recordIdGroup,
+	private boolean addFromType(DataGroup recordIdGroup,
 			Map<String, Map<String, List<DataGroup>>> fromGroupMap) {
-		for (String fromGroupKey : fromGroupMap.keySet()) {
-			DataGroup fromTypeGroup = DataGroup.withNameInData(fromGroupKey);
+		boolean writeToFile = false;
+		for (Entry<String, Map<String, List<DataGroup>>> fromGroup : fromGroupMap.entrySet()) {
+			DataGroup fromTypeGroup = DataGroup.withNameInData(fromGroup.getKey());
 			recordIdGroup.addChild(fromTypeGroup);
-			Map<String, List<DataGroup>> fromIdGroup = fromGroupMap.get(fromGroupKey);
+			Map<String, List<DataGroup>> fromIdGroup = fromGroup.getValue();
 
-			writeToFile = addFromId(writeToFile, fromTypeGroup, fromIdGroup);
+			boolean currentWriteToFile = addFromId(fromTypeGroup, fromIdGroup);
+			if (currentWriteToFile) {
+				writeToFile = true;
+			}
 		}
 		return writeToFile;
 	}
 
-	private boolean addFromId(boolean writeToFile, DataGroup fromTypeGroup,
-			Map<String, List<DataGroup>> fromIdGroup) {
-		for (String fromIdKey : fromIdGroup.keySet()) {
-			DataGroup recordIdGroup3 = DataGroup.withNameInData(fromIdKey);
+	private boolean addFromId(DataGroup fromTypeGroup, Map<String, List<DataGroup>> fromIdGroup) {
+		boolean writeToFile = false;
+		for (Entry<String, List<DataGroup>> fromId : fromIdGroup.entrySet()) {
+			DataGroup recordIdGroup3 = DataGroup.withNameInData(fromId.getKey());
 			fromTypeGroup.addChild(recordIdGroup3);
-			List<DataGroup> links = fromIdGroup.get(fromIdKey);
+			List<DataGroup> links = fromId.getValue();
 
-			writeToFile = addLinks(writeToFile, recordIdGroup3, links);
+			boolean currentWriteToFile = addLinks(recordIdGroup3, links);
+			if (currentWriteToFile) {
+				writeToFile = true;
+			}
 		}
 		return writeToFile;
 	}
 
-	private boolean addLinks(boolean writeToFile, DataGroup recordIdGroup3, List<DataGroup> links) {
+	private boolean addLinks(DataGroup recordIdGroup3, List<DataGroup> links) {
+		boolean writeToFile = false;
 		for (DataGroup link : links) {
 			DataGroup recordIdGroup4 = DataGroup.withNameInData("list");
 			recordIdGroup3.addChild(recordIdGroup4);

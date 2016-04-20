@@ -21,7 +21,6 @@ package se.uu.ub.cora.storage.data.converter;
 
 import se.uu.ub.cora.bookkeeper.data.DataAtomic;
 import se.uu.ub.cora.bookkeeper.data.DataAttribute;
-import se.uu.ub.cora.bookkeeper.data.DataElement;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.bookkeeper.data.DataPart;
 import se.uu.ub.cora.json.builder.JsonBuilderFactory;
@@ -29,14 +28,9 @@ import se.uu.ub.cora.json.builder.JsonBuilderFactory;
 public class DataToJsonConverterFactoryImp implements DataToJsonConverterFactory {
 
 	@Override
-	public DataToJsonConverter createForDataElement(JsonBuilderFactory factory,
-			DataPart dataPart) {
+	public DataToJsonConverter createForDataElement(JsonBuilderFactory factory, DataPart dataPart) {
 
 		if (dataPart instanceof DataGroup) {
-//			if (dataPart instanceof DataRecordLink) {
-//				return DataRecordLinkToJsonConverter.usingJsonFactoryForDataLink(factory,
-//						(DataRecordLink) dataPart);
-//			}
 			return DataGroupToJsonConverter.usingJsonFactoryForDataGroup(factory,
 					(DataGroup) dataPart);
 		}
