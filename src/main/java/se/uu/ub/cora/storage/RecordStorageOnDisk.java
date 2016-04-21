@@ -256,71 +256,51 @@ public final class RecordStorageOnDisk extends RecordStorageInMemory
 			Map<String, Map<String, Map<String, List<DataGroup>>>> recordGroupMap = recordTypeTo
 					.getValue();
 
-			boolean currentWriteToFile = addToIdToList(recordTypeToGroup, recordGroupMap);
-			if (currentWriteToFile) {
-				writeToFile = true;
-			}
+			addToIdToList(recordTypeToGroup, recordGroupMap);
+			writeToFile = true;
 		}
 		return writeToFile;
 	}
 
-	private boolean addToIdToList(DataGroup recordTypeToGroup,
+	private void addToIdToList(DataGroup recordTypeToGroup,
 			Map<String, Map<String, Map<String, List<DataGroup>>>> recordGroupMap) {
-		boolean writeToFile = false;
 		for (Entry<String, Map<String, Map<String, List<DataGroup>>>> recordId : recordGroupMap
 				.entrySet()) {
 			DataGroup recordIdGroup = DataGroup.withNameInData(recordId.getKey());
 			recordTypeToGroup.addChild(recordIdGroup);
 			Map<String, Map<String, List<DataGroup>>> fromGroupMap = recordId.getValue();
 
-			boolean currentWriteToFile = addFromType(recordIdGroup, fromGroupMap);
-			if (currentWriteToFile) {
-				writeToFile = true;
-			}
+			addFromType(recordIdGroup, fromGroupMap);
 		}
-		return writeToFile;
 	}
 
-	private boolean addFromType(DataGroup recordIdGroup,
+	private void addFromType(DataGroup recordIdGroup,
 			Map<String, Map<String, List<DataGroup>>> fromGroupMap) {
-		boolean writeToFile = false;
 		for (Entry<String, Map<String, List<DataGroup>>> fromGroup : fromGroupMap.entrySet()) {
 			DataGroup fromTypeGroup = DataGroup.withNameInData(fromGroup.getKey());
 			recordIdGroup.addChild(fromTypeGroup);
 			Map<String, List<DataGroup>> fromIdGroup = fromGroup.getValue();
 
-			boolean currentWriteToFile = addFromId(fromTypeGroup, fromIdGroup);
-			if (currentWriteToFile) {
-				writeToFile = true;
-			}
+			addFromId(fromTypeGroup, fromIdGroup);
 		}
-		return writeToFile;
 	}
 
-	private boolean addFromId(DataGroup fromTypeGroup, Map<String, List<DataGroup>> fromIdGroup) {
-		boolean writeToFile = false;
+	private void addFromId(DataGroup fromTypeGroup, Map<String, List<DataGroup>> fromIdGroup) {
 		for (Entry<String, List<DataGroup>> fromId : fromIdGroup.entrySet()) {
 			DataGroup recordIdGroup3 = DataGroup.withNameInData(fromId.getKey());
 			fromTypeGroup.addChild(recordIdGroup3);
 			List<DataGroup> links = fromId.getValue();
 
-			boolean currentWriteToFile = addLinks(recordIdGroup3, links);
-			if (currentWriteToFile) {
-				writeToFile = true;
-			}
+			addLinks(recordIdGroup3, links);
 		}
-		return writeToFile;
 	}
 
-	private boolean addLinks(DataGroup recordIdGroup3, List<DataGroup> links) {
-		boolean writeToFile = false;
+	private void addLinks(DataGroup recordIdGroup3, List<DataGroup> links) {
 		for (DataGroup link : links) {
 			DataGroup recordIdGroup4 = DataGroup.withNameInData("list");
 			recordIdGroup3.addChild(recordIdGroup4);
 			recordIdGroup4.addChild(link);
-			writeToFile = true;
 		}
-		return writeToFile;
 	}
 
 	@Override
