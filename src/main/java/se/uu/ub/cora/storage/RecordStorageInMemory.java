@@ -228,19 +228,25 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	@Override
 	public DataGroup readLinkList(String recordType, String recordId) {
 		checkRecordExists(recordType, recordId);
-		if (!linkLists.get(recordType).containsKey(recordId)) {
+		if (linksMissingForRecord(recordType, recordId)) {
 			return DataGroup.withNameInData("collectedDataLinks");
 		}
 		return linkLists.get(recordType).get(recordId);
+	}
+
+	private boolean linksMissingForRecord(String recordType, String recordId) {
+		return !linkLists.get(recordType).containsKey(recordId);
 	}
 
 	@Override
 	public void deleteByTypeAndId(String recordType, String recordId) {
 		checkRecordExists(recordType, recordId);
 		removeIncomingLinks(recordType, recordId);
-		linkLists.get(recordType).remove(recordId);
-		if (linkLists.get(recordType).isEmpty()) {
-			linkLists.remove(recordType);
+		if (!linksMissingForRecord(recordType, recordId)) {
+			linkLists.get(recordType).remove(recordId);
+			if (linkLists.get(recordType).isEmpty()) {
+				linkLists.remove(recordType);
+			}
 		}
 		records.get(recordType).remove(recordId);
 		if (records.get(recordType).isEmpty()) {
