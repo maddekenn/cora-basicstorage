@@ -46,7 +46,7 @@ import se.uu.ub.cora.storage.data.converter.JsonToDataConverter;
 import se.uu.ub.cora.storage.data.converter.JsonToDataConverterFactory;
 import se.uu.ub.cora.storage.data.converter.JsonToDataConverterFactoryImp;
 
-public final class RecordStorageOnDisk extends RecordStorageInMemory
+public class RecordStorageOnDisk extends RecordStorageInMemory
 		implements RecordStorage, MetadataStorage {
 	private static final int JSON_FILE_END = 5;
 	private String basePath;
@@ -55,7 +55,7 @@ public final class RecordStorageOnDisk extends RecordStorageInMemory
 		return new RecordStorageOnDisk(basePath);
 	}
 
-	private RecordStorageOnDisk(String basePath) {
+	protected RecordStorageOnDisk(String basePath) {
 		this.basePath = basePath;
 		tryToReadStoredDataFromDisk();
 	}
@@ -142,7 +142,7 @@ public final class RecordStorageOnDisk extends RecordStorageInMemory
 		writeDataToDisk(recordType);
 	}
 
-	private void writeDataToDisk(String recordType) {
+	protected void writeDataToDisk(String recordType) {
 		writeRecordsToDisk(recordType);
 		writeLinkListToDisk();
 		writeIncomingLinksToDisk();
