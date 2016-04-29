@@ -39,12 +39,6 @@ public final class DataAttributeToJsonConverter extends DataToJsonConverter {
 	}
 
 	@Override
-	public String toJson() {
-		JsonObjectBuilder attribute = toJsonObjectBuilder();
-		return attribute.toJsonFormattedString();
-	}
-
-	@Override
 	JsonObjectBuilder toJsonObjectBuilder() {
 		JsonObjectBuilder jsonObjectBuilder = factory.createObjectBuilder();
 

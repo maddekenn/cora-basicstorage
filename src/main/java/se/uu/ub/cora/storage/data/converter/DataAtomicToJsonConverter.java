@@ -39,12 +39,6 @@ public final class DataAtomicToJsonConverter extends DataToJsonConverter {
 	}
 
 	@Override
-	public String toJson() {
-		JsonObjectBuilder atomic = toJsonObjectBuilder();
-		return atomic.toJsonFormattedString();
-	}
-
-	@Override
 	JsonObjectBuilder toJsonObjectBuilder() {
 		JsonObjectBuilder jsonObjectBuilder = factory.createObjectBuilder();
 

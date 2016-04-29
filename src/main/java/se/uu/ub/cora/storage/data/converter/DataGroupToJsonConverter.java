@@ -46,11 +46,6 @@ public final class DataGroupToJsonConverter extends DataToJsonConverter {
 	}
 
 	@Override
-	public String toJson() {
-		return toJsonObjectBuilder().toJsonFormattedString();
-	}
-
-	@Override
 	JsonObjectBuilder toJsonObjectBuilder() {
 		possiblyAddRepeatId();
 		if (hasAttributes()) {
