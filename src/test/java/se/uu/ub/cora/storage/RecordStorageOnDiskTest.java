@@ -116,6 +116,7 @@ public class RecordStorageOnDiskTest {
 		while ((line = reader.readLine()) != null) {
 			json += line;
 		}
+		reader.close();
 		return json;
 	}
 
@@ -238,6 +239,7 @@ public class RecordStorageOnDiskTest {
 					StandardOpenOption.CREATE);
 			writer.write(json, 0, json.length());
 			writer.flush();
+			writer.close();
 		} catch (IOException e) {
 		}
 	}
