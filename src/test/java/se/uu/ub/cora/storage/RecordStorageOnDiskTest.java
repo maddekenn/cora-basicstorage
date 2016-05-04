@@ -200,13 +200,10 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks);
 		recordStorage.create("organisation", "organisation:0001", dataGroup, emptyLinkList);
-//		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
-//		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
+
 		String expectedRecordJson = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
 				+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}]"
 				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}],\"name\":\"recordList\"}";
-
-		assertEquals(readJsonFileFromDisk("place.json"), expectedRecordJson);
 
 		String expectedLinkListJson = "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
 				+ "{\"children\":[{\"children\":["
@@ -234,33 +231,6 @@ public class RecordStorageOnDiskTest {
 		assertTrue(Files.exists(path));
 		assertEquals(readJsonFileFromDisk("linkLists.json"), expectedLinkListJson);
 
-//		String expectedIncomingLinksJson = "{\"children\":[{\"children\":["
-//				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-//				+ "{\"children\":[{\"children\":[{\"name\":\"linkedRecordType\""
-//				+ ",\"value\":\"fromRecordType\"},{\"name\":\"linkedRecordId\""
-//				+ ",\"value\":\"place:0001\"}],\"name\":\"from\"},{\"children\":["
-//				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-//				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
-//				+ ",\"name\":\"to\"},{\"children\":[{\"name\":\"linkedRecordType\""
-//				+ ",\"value\":\"toRecordType\"},{\"name\":\"linkedRecordId\""
-//				+ ",\"value\":\"toRecordId2\"}],\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
-//				+ ",\"name\":\"list\"}],\"name\":\"place:0001\"}],\"name\":\"fromRecordType\"}]"
-//				+ ",\"name\":\"toRecordId2\"},{\"children\":[{\"children\":["
-//				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-//				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-//				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
-//				+ ",\"name\":\"from\"},{\"children\":[{\"name\":\"linkedRecordType\""
-//				+ ",\"value\":\"toRecordType\"},{\"name\":\"linkedRecordId\""
-//				+ ",\"value\":\"toRecordId\"}],\"name\":\"to\"},{\"children\":["
-//				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-//				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]"
-//				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}],\"name\":\"list\"}]"
-//				+ ",\"name\":\"place:0001\"}],\"name\":\"fromRecordType\"}]"
-//				+ ",\"name\":\"toRecordId\"}],\"name\":\"toRecordType\"}]"
-//				+ ",\"name\":\"incomingLinks\"}";
-//		Path path2 = Paths.get(basePath, "incomingLinks.json");
-//		assertTrue(Files.exists(path2));
-//		assertEquals(readJsonFileFromDisk("incomingLinks.json"), expectedIncomingLinksJson);
 	}
 
 	private DataGroup createLinkListWithTwoLinks(String fromRecordId) {
