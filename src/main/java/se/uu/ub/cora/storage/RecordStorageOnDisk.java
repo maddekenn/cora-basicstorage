@@ -216,9 +216,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			boolean currentWriteToFile = addRecordIds(recordTypeGroup, recordGroupMap);
 			if(currentWriteToFile) {
 				linkListsGroup.addChild(recordTypeGroup);
-//				if (currentWriteToFile) {
 					writeToFile = true;
-//				}
 			}
 		}
 		return writeToFile;
