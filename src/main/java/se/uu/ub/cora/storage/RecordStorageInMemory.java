@@ -57,7 +57,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	}
 
 	@Override
-	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList) {
+	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList,
+			String dataDivider) {
 		ensureStorageExistsForRecordType(recordType);
 		checkNoConflictOnRecordId(recordType, recordId);
 		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record);
@@ -306,7 +307,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	}
 
 	@Override
-	public void update(String recordType, String recordId, DataGroup record, DataGroup linkList) {
+	public void update(String recordType, String recordId, DataGroup record, DataGroup linkList,
+			String dataDivider) {
 		checkRecordExists(recordType, recordId);
 		removeIncomingLinks(recordType, recordId);
 		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record);
