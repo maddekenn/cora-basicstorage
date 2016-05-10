@@ -213,11 +213,11 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		boolean writeToFile = false;
 		for (Entry<String, Map<String, DataGroup>> recordType : linkLists.entrySet()) {
 			DataGroup recordTypeGroup = DataGroup.withNameInData(recordType.getKey());
-			linkListsGroup.addChild(recordTypeGroup);
 			Map<String, DataGroup> recordGroupMap = recordType.getValue();
 			boolean currentWriteToFile = addRecordIds(recordTypeGroup, recordGroupMap);
-			if (currentWriteToFile) {
-				writeToFile = true;
+			if(currentWriteToFile) {
+				linkListsGroup.addChild(recordTypeGroup);
+					writeToFile = true;
 			}
 		}
 		return writeToFile;
