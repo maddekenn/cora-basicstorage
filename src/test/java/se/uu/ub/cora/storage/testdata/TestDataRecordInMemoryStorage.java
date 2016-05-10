@@ -43,28 +43,34 @@ public class TestDataRecordInMemoryStorage {
 
 		DataGroup dummy = DataGroup.withNameInData("dummy");
 		recordsInMemory.create("metadataCollectionVariable", "dummy1", dummy,
-				DataGroup.withNameInData("collectedLinksList"));
-		recordsInMemory.create("metadataCollectionVariableChild", "dummy1", dummy, DataGroup.withNameInData("dummy"));
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+		recordsInMemory.create("metadataCollectionVariableChild", "dummy1", dummy,
+				DataGroup.withNameInData("dummy"), "cora");
 		recordsInMemory.create("metadataItemCollection", "dummy1", dummy,
-				DataGroup.withNameInData("collectedLinksList"));
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 		recordsInMemory.create("metadataCollectionItem", "dummy1", dummy,
-				DataGroup.withNameInData("collectedLinksList"));
-		recordsInMemory.create("metadataTextVariable", "dummy1", dummy, DataGroup.withNameInData("collectedLinksList"));
-		recordsInMemory.create("metadataRecordLink", "dummy1", dummy, DataGroup.withNameInData("collectedLinksList"));
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+		recordsInMemory.create("metadataTextVariable", "dummy1", dummy,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+		recordsInMemory.create("metadataRecordLink", "dummy1", dummy,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 		recordsInMemory.create("metadataRecordRelation", "dummyRecordRelation", dummy,
-				DataGroup.withNameInData("collectedLinksList"));
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 		return recordsInMemory;
 	}
 
 	private static void addPlace(RecordStorageInMemory recordsInMemory) {
-		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId("place", "place:0001");
+		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId("place",
+				"place:0001");
 		DataGroup dataGroup = DataGroup.withNameInData("authority");
 		dataGroup.addChild(recordInfo);
-		recordsInMemory.create("place", "place:0001", dataGroup, DataGroup.withNameInData("collectedLinksList"));
+		recordsInMemory.create("place", "place:0001", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addSecondPlace(RecordStorage recordsInMemory) {
-		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId("place", "place:0002");
+		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId("place",
+				"place:0002");
 
 		DataGroup dataGroup = DataGroup.withNameInData("authority");
 		dataGroup.addChild(recordInfo);
@@ -77,15 +83,17 @@ public class TestDataRecordInMemoryStorage {
 		// "place", "place:0001"));
 
 		DataGroup collectedLinksList = createLinkList();
-		recordsInMemory.create("place", "place:0002", dataGroup, collectedLinksList);
+		recordsInMemory.create("place", "place:0002", dataGroup, collectedLinksList, "cora");
 	}
 
-	private static void addLinkedRecordTypeAndLinkedRecordIdToRecordLink(String linkedRecordTypeString,
-			String linkedRecordIdString, DataGroup dataRecordLink) {
-		DataAtomic linkedRecordType = DataAtomic.withNameInDataAndValue("linkedRecordType", linkedRecordTypeString);
+	private static void addLinkedRecordTypeAndLinkedRecordIdToRecordLink(
+			String linkedRecordTypeString, String linkedRecordIdString, DataGroup dataRecordLink) {
+		DataAtomic linkedRecordType = DataAtomic.withNameInDataAndValue("linkedRecordType",
+				linkedRecordTypeString);
 		dataRecordLink.addChild(linkedRecordType);
 
-		DataAtomic linkedRecordId = DataAtomic.withNameInDataAndValue("linkedRecordId", linkedRecordIdString);
+		DataAtomic linkedRecordId = DataAtomic.withNameInDataAndValue("linkedRecordId",
+				linkedRecordIdString);
 		dataRecordLink.addChild(linkedRecordId);
 	}
 
@@ -116,84 +124,100 @@ public class TestDataRecordInMemoryStorage {
 		String metadata = "metadataGroup";
 		DataGroup dataGroup = DataGroup.withNameInData("metadata");
 
-		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId(metadata, "place");
+		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId(metadata,
+				"place");
 		dataGroup.addChild(recordInfo);
-		recordsInMemory.create(metadata, "place", dataGroup, DataGroup.withNameInData("collectedLinksList"));
+		recordsInMemory.create(metadata, "place", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addPresentation(RecordStorageInMemory recordsInMemory) {
 		String presentation = "presentation";
 		DataGroup dataGroup = DataGroup.withNameInData(presentation);
 
-		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId(presentation, "placeView");
+		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId(presentation,
+				"placeView");
 		dataGroup.addChild(recordInfo);
 
-		recordsInMemory.create(presentation, "placeView", dataGroup, DataGroup.withNameInData("collectedLinksList"));
+		recordsInMemory.create(presentation, "placeView", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addText(RecordStorageInMemory recordsInMemory) {
 		String text = "text";
 		DataGroup dataGroup = DataGroup.withNameInData("text");
 
-		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId(text, "placeText");
+		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId(text,
+				"placeText");
 		dataGroup.addChild(recordInfo);
-		recordsInMemory.create(text, "placeText", dataGroup, DataGroup.withNameInData("collectedLinksList"));
+		recordsInMemory.create(text, "placeText", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addRecordType(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
 		DataGroup dataGroup = DataGroup.withNameInData(recordType);
 
-		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId(recordType, "metadata");
+		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId(recordType,
+				"metadata");
 		dataGroup.addChild(recordInfo);
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("abstract", "false"));
-		recordsInMemory.create(recordType, "metadata", dataGroup, DataGroup.withNameInData("collectedLinksList"));
+		recordsInMemory.create(recordType, "metadata", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addRecordTypeRecordType(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
-		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("recordType", "true",
-				"false");
-		recordsInMemory.create(recordType, "recordType", dataGroup, DataGroup.withNameInData("collectedLinksList"));
+		DataGroup dataGroup = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("recordType", "true", "false");
+		recordsInMemory.create(recordType, "recordType", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
-	private static void addRecordTypeRecordTypeAutoGeneratedId(RecordStorageInMemory recordsInMemory) {
+	private static void addRecordTypeRecordTypeAutoGeneratedId(
+			RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
-		DataGroup dataGroup = DataCreator
-				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("recordTypeAutoGeneratedId", "false", "false");
+		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndAbstract(
+				"recordTypeAutoGeneratedId", "false", "false");
 		recordsInMemory.create(recordType, "recordTypeAutoGeneratedId", dataGroup,
-				DataGroup.withNameInData("collectedLinksList"));
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 
 	}
 
 	private static void addRecordTypeBinary(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
-		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("binary", "true", "true");
-		recordsInMemory.create(recordType, "binary", dataGroup, DataGroup.withNameInData("collectedLinksList"));
+		DataGroup dataGroup = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("binary", "true", "true");
+		recordsInMemory.create(recordType, "binary", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addRecordTypeImage(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
-		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId("image", "true", "binary");
-		recordsInMemory.create(recordType, "image", dataGroup, DataGroup.withNameInData("collectedLinksList"));
+		DataGroup dataGroup = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndParentId("image", "true", "binary");
+		recordsInMemory.create(recordType, "image", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addRecordTypePlace(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
 
-		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "false", "false");
+		DataGroup dataGroup = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "false", "false");
 
-		recordsInMemory.create(recordType, "place", dataGroup, DataGroup.withNameInData("collectedLinksList"));
+		recordsInMemory.create(recordType, "place", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addRecordTypeAbstractAuthority(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
 
-		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("abstractAuthority",
-				"false", "true");
+		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndAbstract(
+				"abstractAuthority", "false", "true");
 
 		recordsInMemory.create(recordType, "abstractAuthority", dataGroup,
-				DataGroup.withNameInData("collectedLinksList"));
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 }

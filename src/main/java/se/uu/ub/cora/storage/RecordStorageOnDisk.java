@@ -137,8 +137,9 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	@Override
-	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList) {
-		super.create(recordType, recordId, record, linkList);
+	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList,
+			String dataDivider) {
+		super.create(recordType, recordId, record, linkList, dataDivider);
 		writeDataToDisk(recordType);
 	}
 
@@ -304,8 +305,9 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	@Override
-	public void update(String recordType, String recordId, DataGroup record, DataGroup linkList) {
-		super.update(recordType, recordId, record, linkList);
+	public void update(String recordType, String recordId, DataGroup record, DataGroup linkList,
+			String dataDivider) {
+		super.update(recordType, recordId, record, linkList, dataDivider);
 		writeDataToDisk(recordType);
 	}
 

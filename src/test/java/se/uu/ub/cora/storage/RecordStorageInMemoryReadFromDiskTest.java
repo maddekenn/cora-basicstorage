@@ -82,7 +82,7 @@ public class RecordStorageInMemoryReadFromDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList);
+		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
@@ -105,7 +105,7 @@ public class RecordStorageInMemoryReadFromDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks);
+		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
@@ -151,10 +151,10 @@ public class RecordStorageInMemoryReadFromDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList);
+		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("someNameInData", "someValue"));
-		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList);
+		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
 
 		Path placePath = Paths.get(basePath, "place.json");
 		assertFalse(Files.exists(placePath));
