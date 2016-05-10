@@ -198,8 +198,8 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks);
-		recordStorage.create("organisation", "organisation:0001", dataGroup, emptyLinkList);
+		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
+		recordStorage.create("organisation", "organisation:0001", dataGroup, emptyLinkList, "cora");
 
 		String expectedRecordJson = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
 				+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}]"
