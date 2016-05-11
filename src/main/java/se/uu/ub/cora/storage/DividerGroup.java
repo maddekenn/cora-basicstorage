@@ -21,15 +21,14 @@ package se.uu.ub.cora.storage;
 
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
 
-public class DividerGroup {
+final class DividerGroup {
 
-	public static DividerGroup withDataDividerAndDataGroup(String dataDivider,
-			DataGroup dataGroup) {
+	static DividerGroup withDataDividerAndDataGroup(String dataDivider, DataGroup dataGroup) {
 		return new DividerGroup(dataDivider, dataGroup);
 	}
 
-	public String dataDivider;
-	public DataGroup dataGroup;
+	String dataDivider;
+	DataGroup dataGroup;
 
 	private DividerGroup(String dataDivider, DataGroup dataGroup) {
 		this.dataDivider = dataDivider;

@@ -220,17 +220,11 @@ public class RecordStorageOnDiskTest {
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
 				+ ",\"name\":\"from\"},{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]"
-				+ ",\"name\":\"to\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]" + ",\"name\":\"to\"}]"
 				+ ",\"name\":\"recordToRecordLink\"}" + ",{\"children\":[{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
 				+ ",\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
-				+ ",\"name\":\"to\"},{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
 				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
@@ -247,17 +241,13 @@ public class RecordStorageOnDiskTest {
 				+ ",\"value\":\"place:0001\"}],\"name\":\"from\"},{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
-				+ ",\"name\":\"to\"},{\"children\":[{\"name\":\"linkedRecordType\""
-				+ ",\"value\":\"toRecordType\"},{\"name\":\"linkedRecordId\""
-				+ ",\"value\":\"toRecordId2\"}],\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
+				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
 				+ ",\"name\":\"list\"}],\"name\":\"place:0001\"}],\"name\":\"fromRecordType\"}]"
 				+ ",\"name\":\"toRecordId2\"},{\"children\":[{\"children\":["
 				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"from\"},{\"children\":[{\"name\":\"linkedRecordType\""
-				+ ",\"value\":\"toRecordType\"},{\"name\":\"linkedRecordId\""
-				+ ",\"value\":\"toRecordId\"}],\"name\":\"to\"},{\"children\":["
+				+ ",\"name\":\"from\"},{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]"
 				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}],\"name\":\"list\"}]"
@@ -285,17 +275,11 @@ public class RecordStorageOnDiskTest {
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
 				+ ",\"name\":\"from\"},{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]"
-				+ ",\"name\":\"to\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]" + ",\"name\":\"to\"}]"
 				+ ",\"name\":\"recordToRecordLink\"}" + ",{\"children\":[{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
 				+ ",\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
-				+ ",\"name\":\"to\"},{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
 				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
 				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
@@ -316,6 +300,101 @@ public class RecordStorageOnDiskTest {
 		linkList.addChild(DataCreator.createRecordToRecordLink(FROM_RECORD_TYPE, fromRecordId,
 				TO_RECORD_TYPE, "toRecordId2"));
 		return linkList;
+	}
+
+	@Test
+	public void testRecordWithLinksTwoSystems() throws IOException {
+		DataGroup linkListWithTwoLinks = createLinkListWithTwoLinks("place:0001");
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
+		recordStorage.create("place", "place:0002", dataGroup, linkListWithTwoLinks, "jsClient");
+		recordStorage.create("place", "place:0003", dataGroup, linkListWithTwoLinks, "jsClient");
+		recordStorage.create("organisation", "org:0001", dataGroup, linkListWithTwoLinks, "cora");
+		recordStorage.create("organisation", "org:0002", dataGroup, linkListWithTwoLinks,
+				"jsClient");
+
+		String expectedLinkListJson = "{\"children\":[{\"children\":["
+				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"},"
+				+ "{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}],\"name\":\"to\"}],"
+				+ "\"name\":\"recordToRecordLink\"},{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
+				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}],\"name\":\"to\"}]"
+				+ ",\"name\":\"recordToRecordLink\"}],\"name\":\"collectedDataLinks\"}]"
+				+ ",\"name\":\"org:0001\"}],\"name\":\"organisation\"},{\"children\":[{"
+				+ "\"children\":[{\"children\":[{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
+				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}],\"name\":\"to\"}]"
+				+ ",\"name\":\"recordToRecordLink\"},{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"},"
+				+ "{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}],\"name\":\"to\"}]"
+				+ ",\"name\":\"recordToRecordLink\"}],\"name\":\"collectedDataLinks\"}],"
+				+ "\"name\":\"place:0001\"}],\"name\":\"place\"}],\"name\":\"linkLists\"}";
+		Path path = Paths.get(basePath, LINK_LISTS_FILENAME);
+		assertTrue(Files.exists(path));
+		assertEquals(readJsonFileFromDisk(LINK_LISTS_FILENAME), expectedLinkListJson);
+
+		String expectedLinkListJson2 = "{\"children\":[{\"children\":["
+				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
+				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}],\"name\":\"to\"}]"
+				+ ",\"name\":\"recordToRecordLink\"},{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"},"
+				+ "{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}],\"name\":\"to\"}]"
+				+ ",\"name\":\"recordToRecordLink\"}],\"name\":\"collectedDataLinks\"}]"
+				+ ",\"name\":\"org:0002\"}],\"name\":\"organisation\"},{\"children\":["
+				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"},"
+				+ "{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}],\"name\":\"to\"}]"
+				+ ",\"name\":\"recordToRecordLink\"},{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
+				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}],\"name\":\"to\"}]"
+				+ ",\"name\":\"recordToRecordLink\"}],\"name\":\"collectedDataLinks\"}]"
+				+ ",\"name\":\"place:0002\"},{\"children\":[{\"children\":[{\"children\":["
+				+ "{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
+				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}],\"name\":\"to\"}]"
+				+ ",\"name\":\"recordToRecordLink\"},{\"children\":[{\"children\":["
+				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
+				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
+				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}],\"name\":\"to\"}]"
+				+ ",\"name\":\"recordToRecordLink\"}],\"name\":\"collectedDataLinks\"}]"
+				+ ",\"name\":\"place:0003\"}],\"name\":\"place\"}],\"name\":\"linkLists\"}";
+		Path path2 = Paths.get(basePath, "linkLists_jsClient.json");
+		assertTrue(Files.exists(path2));
+		assertEquals(readJsonFileFromDisk("linkLists_jsClient.json"), expectedLinkListJson2);
+
+		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.update("place", "place:0002", dataGroup, emptyLinkList, "jsClient");
+		recordStorage.update("place", "place:0003", dataGroup, emptyLinkList, "jsClient");
+		recordStorage.update("organisation", "org:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.update("organisation", "org:0002", dataGroup, emptyLinkList, "jsClient");
+
+		assertFalse(Files.exists(path));
+		// assertEquals(readJsonFileFromDisk("linkLists_cora.json"), "{}");
+		assertFalse(Files.exists(path2));
+		// assertEquals(readJsonFileFromDisk("linkLists_jsClient.json"), "{}");
 	}
 
 	@Test

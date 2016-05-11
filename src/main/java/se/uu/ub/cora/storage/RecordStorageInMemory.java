@@ -115,6 +115,10 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 			DataGroup linkListIndependentFromEntered = createIndependentCopy(linkList);
 			storeLinkList(recordType, recordId, linkListIndependentFromEntered, dataDivider);
 			storeLinksInIncomingLinks(linkListIndependentFromEntered);
+		} else {
+			if (!linksMissingForRecord(recordType, recordId)) {
+				linkLists.get(recordType).remove(recordId);
+			}
 		}
 	}
 
@@ -252,15 +256,19 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	public void deleteByTypeAndId(String recordType, String recordId) {
 		checkRecordExists(recordType, recordId);
 		removeIncomingLinks(recordType, recordId);
+		removeFromLinkList(recordType, recordId);
+		records.get(recordType).remove(recordId);
+		if (records.get(recordType).isEmpty()) {
+			records.remove(recordType);
+		}
+	}
+
+	private void removeFromLinkList(String recordType, String recordId) {
 		if (!linksMissingForRecord(recordType, recordId)) {
 			linkLists.get(recordType).remove(recordId);
 			if (linkLists.get(recordType).isEmpty()) {
 				linkLists.remove(recordType);
 			}
-		}
-		records.get(recordType).remove(recordId);
-		if (records.get(recordType).isEmpty()) {
-			records.remove(recordType);
 		}
 	}
 

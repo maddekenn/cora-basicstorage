@@ -131,7 +131,6 @@ public final class DataCreator {
 				toRecordId);
 		to.addChild(toLinkedRecordId);
 
-		recordToRecordLink.addChild(to);
 		return recordToRecordLink;
 	}
 }
