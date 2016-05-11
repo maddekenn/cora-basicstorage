@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import se.uu.ub.cora.bookkeeper.data.DataElement;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
@@ -36,21 +37,21 @@ import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.spider.record.storage.RecordStorage;
 
 public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
-	protected Map<String, Map<String, DataGroup>> records = new HashMap<>();
-	protected Map<String, Map<String, DataGroup>> linkLists = new HashMap<>();
+	protected Map<String, Map<String, DividerGroup>> records = new HashMap<>();
+	protected Map<String, Map<String, DividerGroup>> linkLists = new HashMap<>();
 	protected Map<String, Map<String, Map<String, Map<String, List<DataGroup>>>>> incomingLinks = new HashMap<>();
 
 	public RecordStorageInMemory() {
 		// Make it possible to use default empty record storage
 	}
 
-	public RecordStorageInMemory(Map<String, Map<String, DataGroup>> records) {
+	public RecordStorageInMemory(Map<String, Map<String, DividerGroup>> records) {
 		throwErrorIfConstructorArgumentIsNull(records);
 		this.records = records;
 	}
 
 	private void throwErrorIfConstructorArgumentIsNull(
-			Map<String, Map<String, DataGroup>> records) {
+			Map<String, Map<String, DividerGroup>> records) {
 		if (null == records) {
 			throw new IllegalArgumentException("Records must not be null");
 		}
@@ -61,8 +62,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 			String dataDivider) {
 		ensureStorageExistsForRecordType(recordType);
 		checkNoConflictOnRecordId(recordType, recordId);
-		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record);
-		storeLinks(recordType, recordId, linkList);
+		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record, dataDivider);
+		storeLinks(recordType, recordId, linkList, dataDivider);
 	}
 
 	protected void ensureStorageExistsForRecordType(String recordType) {
@@ -76,8 +77,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	}
 
 	private void createHolderForRecordTypeInStorage(String recordType) {
-		records.put(recordType, new HashMap<String, DataGroup>());
-		linkLists.put(recordType, new HashMap<String, DataGroup>());
+		records.put(recordType, new HashMap<String, DividerGroup>());
+		linkLists.put(recordType, new HashMap<String, DividerGroup>());
 	}
 
 	private void checkNoConflictOnRecordId(String recordType, String recordId) {
@@ -92,31 +93,39 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	}
 
 	private void storeIndependentRecordByRecordTypeAndRecordId(String recordType, String recordId,
-			DataGroup record) {
+			DataGroup record, String dataDivider) {
 		DataGroup recordIndependentOfEnteredRecord = createIndependentCopy(record);
-		storeRecordByRecordTypeAndRecordId(recordType, recordId, recordIndependentOfEnteredRecord);
+		storeRecordByRecordTypeAndRecordId(recordType, recordId, recordIndependentOfEnteredRecord,
+				dataDivider);
 	}
 
 	private DataGroup createIndependentCopy(DataGroup record) {
 		return SpiderDataGroup.fromDataGroup(record).toDataGroup();
 	}
 
-	protected DataGroup storeRecordByRecordTypeAndRecordId(String recordType, String recordId,
-			DataGroup recordIndependentOfEnteredRecord) {
-		return records.get(recordType).put(recordId, recordIndependentOfEnteredRecord);
+	protected void storeRecordByRecordTypeAndRecordId(String recordType, String recordId,
+			DataGroup recordIndependentOfEnteredRecord, String dataDivider) {
+		records.get(recordType).put(recordId, DividerGroup.withDataDividerAndDataGroup(dataDivider,
+				recordIndependentOfEnteredRecord));
 	}
 
-	protected void storeLinks(String recordType, String recordId, DataGroup linkList) {
+	protected void storeLinks(String recordType, String recordId, DataGroup linkList,
+			String dataDivider) {
 		if (linkList.getChildren().size() > 0) {
 			DataGroup linkListIndependentFromEntered = createIndependentCopy(linkList);
-			storeLinkList(recordType, recordId, linkListIndependentFromEntered);
+			storeLinkList(recordType, recordId, linkListIndependentFromEntered, dataDivider);
 			storeLinksInIncomingLinks(linkListIndependentFromEntered);
+		} else {
+			if (!linksMissingForRecord(recordType, recordId)) {
+				linkLists.get(recordType).remove(recordId);
+			}
 		}
 	}
 
 	private void storeLinkList(String recordType, String recordId,
-			DataGroup linkListIndependentFromEntered) {
-		linkLists.get(recordType).put(recordId, linkListIndependentFromEntered);
+			DataGroup linkListIndependentFromEntered, String dataDivider) {
+		linkLists.get(recordType).put(recordId, DividerGroup
+				.withDataDividerAndDataGroup(dataDivider, linkListIndependentFromEntered));
 	}
 
 	private void storeLinksInIncomingLinks(DataGroup incomingLinkList) {
@@ -195,16 +204,20 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 
 	@Override
 	public Collection<DataGroup> readList(String type) {
-		Map<String, DataGroup> typeRecords = records.get(type);
-		if (null == typeRecords) {
+		Map<String, DividerGroup> typeDividerRecords = records.get(type);
+		if (null == typeDividerRecords) {
 			throw new RecordNotFoundException("No records exists with recordType: " + type);
+		}
+		Map<String, DataGroup> typeRecords = new HashMap<>();
+		for (Entry<String, DividerGroup> entry : typeDividerRecords.entrySet()) {
+			typeRecords.put(entry.getKey(), entry.getValue().dataGroup);
 		}
 		return typeRecords.values();
 	}
 
 	@Override
 	public boolean recordsExistForRecordType(String type) {
-		Map<String, DataGroup> typeRecords = records.get(type);
+		Map<String, DividerGroup> typeRecords = records.get(type);
 		if (null == typeRecords) {
 			return false;
 		}
@@ -214,7 +227,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	@Override
 	public DataGroup read(String recordType, String recordId) {
 		checkRecordExists(recordType, recordId);
-		return records.get(recordType).get(recordId);
+		return records.get(recordType).get(recordId).dataGroup;
 	}
 
 	private void checkRecordExists(String recordType, String recordId) {
@@ -232,7 +245,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		if (linksMissingForRecord(recordType, recordId)) {
 			return DataGroup.withNameInData("collectedDataLinks");
 		}
-		return linkLists.get(recordType).get(recordId);
+		return linkLists.get(recordType).get(recordId).dataGroup;
 	}
 
 	private boolean linksMissingForRecord(String recordType, String recordId) {
@@ -243,15 +256,19 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	public void deleteByTypeAndId(String recordType, String recordId) {
 		checkRecordExists(recordType, recordId);
 		removeIncomingLinks(recordType, recordId);
+		removeFromLinkList(recordType, recordId);
+		records.get(recordType).remove(recordId);
+		if (records.get(recordType).isEmpty()) {
+			records.remove(recordType);
+		}
+	}
+
+	private void removeFromLinkList(String recordType, String recordId) {
 		if (!linksMissingForRecord(recordType, recordId)) {
 			linkLists.get(recordType).remove(recordId);
 			if (linkLists.get(recordType).isEmpty()) {
 				linkLists.remove(recordType);
 			}
-		}
-		records.get(recordType).remove(recordId);
-		if (records.get(recordType).isEmpty()) {
-			records.remove(recordType);
 		}
 	}
 
@@ -311,8 +328,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 			String dataDivider) {
 		checkRecordExists(recordType, recordId);
 		removeIncomingLinks(recordType, recordId);
-		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record);
-		storeLinks(recordType, recordId, linkList);
+		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record, dataDivider);
+		storeLinks(recordType, recordId, linkList, dataDivider);
 	}
 
 	private void removeIncomingLinks(String recordType, String recordId) {

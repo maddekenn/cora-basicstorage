@@ -16,25 +16,24 @@
  *     You should have received a copy of the GNU General Public License
  *     along with Cora.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package se.uu.ub.cora.storage;
 
-import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
-import se.uu.ub.cora.spider.record.storage.RecordStorage;
+import static org.testng.Assert.assertEquals;
 
-public final class RecordStorageInMemoryReadFromDisk extends RecordStorageOnDisk
-		implements RecordStorage, MetadataStorage {
+import org.testng.annotations.Test;
 
-	public static RecordStorageInMemoryReadFromDisk createRecordStorageOnDiskWithBasePath(
-			String basePath) {
-		return new RecordStorageInMemoryReadFromDisk(basePath);
-	}
+import se.uu.ub.cora.bookkeeper.data.DataGroup;
 
-	private RecordStorageInMemoryReadFromDisk(String basePath) {
-		super(basePath);
-	}
+public class DividerGroupTest {
+	@Test
+	public void testInit() {
+		String dataDivider = "cora";
+		DataGroup dataGroup = DataGroup.withNameInData("someGroup");
+		DividerGroup dividerGroup = DividerGroup.withDataDividerAndDataGroup(dataDivider,
+				dataGroup);
+		assertEquals(dividerGroup.dataDivider, "cora");
+		assertEquals(dividerGroup.dataGroup, dataGroup);
 
-	@Override
-	protected void writeDataToDisk(String recordType, String dataDivider) {
-		// do not write to disk
 	}
 }
