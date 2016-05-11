@@ -55,12 +55,13 @@ public class RecordStorageInMemoryTest {
 
 	@Test
 	public void testInitWithData() {
-		Map<String, Map<String, DataGroup>> records = new HashMap<>();
-		records.put("place", new HashMap<String, DataGroup>());
+		Map<String, Map<String, DividerGroup>> records = new HashMap<>();
+		records.put("place", new HashMap<String, DividerGroup>());
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 
-		records.get("place").put("place:0001", dataGroup);
+		records.get("place").put("place:0001",
+				DividerGroup.withDataDividerAndDataGroup(dataDivider, dataGroup));
 
 		RecordStorageInMemory recordsInMemoryWithData = new RecordStorageInMemory(records);
 		assertEquals(recordsInMemoryWithData.read("place", "place:0001"), dataGroup,

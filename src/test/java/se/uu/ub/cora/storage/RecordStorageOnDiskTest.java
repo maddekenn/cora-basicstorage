@@ -45,12 +45,39 @@ import se.uu.ub.cora.storage.data.converter.DataGroupToJsonConverter;
 import se.uu.ub.cora.storage.testdata.DataCreator;
 
 public class RecordStorageOnDiskTest {
+	private static final String PERSON_FILENAME = "person_cora.json";
+	private static final String PLACE_FILENAME = "place_cora.json";
+	private static final String LINK_LISTS_FILENAME = "linkLists_cora.json";
+	private static final String INCOMING_LINKS_FILENAME = "incomingLinks_cora.json";
 	private static final String FROM_RECORD_TYPE = "fromRecordType";
-	private static final String FROM_RECORD_ID = "fromRecordId";
 	private static final String TO_RECORD_ID = "toRecordId";
 	private static final String TO_RECORD_TYPE = "toRecordType";
 	private String basePath = "/tmp/recordStorageOnDiskTemp/";
 	private DataGroup emptyLinkList = DataCreator.createLinkList();
+
+	private String expectedRecordJsonOneRecordPlace1 = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
+			+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}"
+			+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"}"
+			+ ",{\"name\":\"linkedRecordId\",\"value\":\"cora\"}],\"name\":\"dataDivider\"}]"
+			+ ",\"name\":\"recordInfo\"}" + "],\"name\":\"authority\"}],\"name\":\"recordList\"}";
+
+	private String expectedRecordJsonOneRecordPlace2 = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
+			+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0002\"}"
+			+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"}"
+			+ ",{\"name\":\"linkedRecordId\",\"value\":\"cora\"}],\"name\":\"dataDivider\"}]"
+			+ ",\"name\":\"recordInfo\"}" + "],\"name\":\"authority\"}],\"name\":\"recordList\"}";
+
+	private String expectedRecordJsonTwoRecords = "{\"children\":[{\"children\":[{\"children\":["
+			+ "{\"name\":\"type\"" + ",\"value\":\"place\"}"
+			+ ",{\"name\":\"id\",\"value\":\"place:0001\"}"
+			+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"}"
+			+ ",{\"name\":\"linkedRecordId\",\"value\":\"cora\"}],\"name\":\"dataDivider\"}]"
+			+ ",\"name\":\"recordInfo\"}" + "],\"name\":\"authority\"},"
+			+ "{\"children\":[{\"children\":[" + "{\"name\":\"type\"" + ",\"value\":\"place\"}"
+			+ ",{\"name\":\"id\",\"value\":\"place:0002\"}"
+			+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"}"
+			+ ",{\"name\":\"linkedRecordId\",\"value\":\"cora\"}],\"name\":\"dataDivider\"}]"
+			+ ",\"name\":\"recordInfo\"}" + "],\"name\":\"authority\"}],\"name\":\"recordList\"}";
 
 	@BeforeMethod
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
@@ -93,19 +120,30 @@ public class RecordStorageOnDiskTest {
 		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
-		String expectedRecordJson = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
-				+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}],\"name\":\"recordList\"}";
 
-		assertEquals(readJsonFileFromDisk("place.json"), expectedRecordJson);
-
-		Path path = Paths.get(basePath, "linkLists.json");
+		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
+		Path path = Paths.get(basePath, LINK_LISTS_FILENAME);
 		assertFalse(Files.exists(path));
 	}
 
 	private DataGroup createDataGroupWithRecordInfo() {
 		return DataCreator.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId(
 				"authority", "place", "place:0001");
+	}
+
+	@Test
+	public void testInitNoFilesOnDiskTwoSystems() throws IOException {
+		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
+
+		recordStorage.create("place", "place:0002", dataGroup, emptyLinkList, "jsClient");
+		assertEquals(readJsonFileFromDisk("place_jsClient.json"),
+				expectedRecordJsonOneRecordPlace1);
 	}
 
 	private String readJsonFileFromDisk(String fileName) throws IOException {
@@ -121,6 +159,49 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
+	public void testInitNoFilesOnDiskTwoSystemsMoveRecordBetweenSystems() throws IOException {
+		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
+
+		recordStorage.create("place", "place:0002", dataGroup, emptyLinkList, "jsClient");
+		assertEquals(readJsonFileFromDisk("place_jsClient.json"),
+				expectedRecordJsonOneRecordPlace1);
+
+		DataGroup dataGroup2 = DataCreator
+				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("authority",
+						"place", "place:0002");
+		recordStorage.update("place", "place:0002", dataGroup2, emptyLinkList, "cora");
+		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonTwoRecords);
+
+		Path path = Paths.get(basePath, "place_jsClient.json");
+		assertFalse(Files.exists(path));
+	}
+
+	@Test
+	public void testInitTwoFilesOnDiskTwoSystems() throws IOException {
+		writeFileToDisk(expectedRecordJsonOneRecordPlace1, PLACE_FILENAME);
+		writeFileToDisk(expectedRecordJsonOneRecordPlace2, "place_jsClient.json");
+
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
+		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
+
+		DataGroup dataGroup2 = DataCreator
+				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("authority",
+						"place", "place:0002");
+		DataGroup dataGroupOut2 = recordStorage.read("place", "place:0002");
+		assertJsonEqualDataGroup(dataGroupOut2, dataGroup2);
+	}
+
+	@Test
 	public void testRecordWithLinks() throws IOException {
 		DataGroup linkListWithTwoLinks = createLinkListWithTwoLinks("place:0001");
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
@@ -130,11 +211,8 @@ public class RecordStorageOnDiskTest {
 		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
-		String expectedRecordJson = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
-				+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}],\"name\":\"recordList\"}";
 
-		assertEquals(readJsonFileFromDisk("place.json"), expectedRecordJson);
+		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
 
 		String expectedLinkListJson = "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
 				+ "{\"children\":[{\"children\":["
@@ -158,9 +236,9 @@ public class RecordStorageOnDiskTest {
 				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
 				+ ",\"name\":\"collectedDataLinks\"}],\"name\":\"place:0001\"}]"
 				+ ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
-		Path path = Paths.get(basePath, "linkLists.json");
+		Path path = Paths.get(basePath, LINK_LISTS_FILENAME);
 		assertTrue(Files.exists(path));
-		assertEquals(readJsonFileFromDisk("linkLists.json"), expectedLinkListJson);
+		assertEquals(readJsonFileFromDisk(LINK_LISTS_FILENAME), expectedLinkListJson);
 
 		String expectedIncomingLinksJson = "{\"children\":[{\"children\":["
 				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
@@ -186,9 +264,9 @@ public class RecordStorageOnDiskTest {
 				+ ",\"name\":\"place:0001\"}],\"name\":\"fromRecordType\"}]"
 				+ ",\"name\":\"toRecordId\"}],\"name\":\"toRecordType\"}]"
 				+ ",\"name\":\"incomingLinks\"}";
-		Path path2 = Paths.get(basePath, "incomingLinks.json");
+		Path path2 = Paths.get(basePath, INCOMING_LINKS_FILENAME);
 		assertTrue(Files.exists(path2));
-		assertEquals(readJsonFileFromDisk("incomingLinks.json"), expectedIncomingLinksJson);
+		assertEquals(readJsonFileFromDisk(INCOMING_LINKS_FILENAME), expectedIncomingLinksJson);
 	}
 
 	@Test
@@ -200,10 +278,6 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
 		recordStorage.create("organisation", "organisation:0001", dataGroup, emptyLinkList, "cora");
-
-		String expectedRecordJson = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
-				+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}],\"name\":\"recordList\"}";
 
 		String expectedLinkListJson = "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
 				+ "{\"children\":[{\"children\":["
@@ -227,9 +301,9 @@ public class RecordStorageOnDiskTest {
 				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
 				+ ",\"name\":\"collectedDataLinks\"}],\"name\":\"place:0001\"}]"
 				+ ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
-		Path path = Paths.get(basePath, "linkLists.json");
+		Path path = Paths.get(basePath, LINK_LISTS_FILENAME);
 		assertTrue(Files.exists(path));
-		assertEquals(readJsonFileFromDisk("linkLists.json"), expectedLinkListJson);
+		assertEquals(readJsonFileFromDisk(LINK_LISTS_FILENAME), expectedLinkListJson);
 
 	}
 
@@ -265,12 +339,7 @@ public class RecordStorageOnDiskTest {
 	}
 
 	private void writePlaceFileToDisk() {
-		String json = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
-				+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}],\"name\":\"recordList\"}";
-
-		String fileName = "place.json";
-		writeFileToDisk(json, fileName);
+		writeFileToDisk(expectedRecordJsonOneRecordPlace1, PLACE_FILENAME);
 	}
 
 	private void writeFileToDisk(String json, String fileName) {
@@ -314,7 +383,7 @@ public class RecordStorageOnDiskTest {
 				+ ",\"value\":\"person\"}" + ",{\"name\":\"id\",\"value\":\"person:0001\"}]"
 				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}],\"name\":\"recordList\"}";
 
-		String fileName = "person.json";
+		String fileName = PERSON_FILENAME;
 		writeFileToDisk(json, fileName);
 	}
 
@@ -328,13 +397,15 @@ public class RecordStorageOnDiskTest {
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("someNameInData", "someValue"));
 		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
-		String json = "{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"name\":\"type\",\"value\":\"place\"},"
-				+ "{\"name\":\"id\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"recordInfo\"},{\"name\":\"someNameInData\",\"value\":\"someValue\"}]"
-				+ ",\"name\":\"authority\"}],\"name\":\"recordList\"}";
 
-		assertEquals(readJsonFileFromDisk("place.json"), json);
+		String json = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
+				+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}"
+				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"}"
+				+ ",{\"name\":\"linkedRecordId\",\"value\":\"cora\"}],\"name\":\"dataDivider\"}]"
+				+ ",\"name\":\"recordInfo\"}"
+				+ ",{\"name\":\"someNameInData\",\"value\":\"someValue\"}"
+				+ "],\"name\":\"authority\"}],\"name\":\"recordList\"}";
+		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), json);
 	}
 
 	@Test
@@ -344,7 +415,7 @@ public class RecordStorageOnDiskTest {
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
-		Path path = Paths.get(basePath, "place.json");
+		Path path = Paths.get(basePath, PLACE_FILENAME);
 		assertTrue(Files.exists(path));
 
 		recordStorage.deleteByTypeAndId("place", "place:0001");
@@ -358,29 +429,17 @@ public class RecordStorageOnDiskTest {
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
-		Path path = Paths.get(basePath, "place.json");
-		String expectedRecordJsonOneRecord = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
-				+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}],\"name\":\"recordList\"}";
-
-		assertEquals(readJsonFileFromDisk("place.json"), expectedRecordJsonOneRecord);
+		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
 
 		DataGroup dataGroup2 = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("authority",
 						"place", "place:0002");
 		recordStorage.create("place", "place:0002", dataGroup2, emptyLinkList, "cora");
-		String expectedRecordJsonTwoRecords = "{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"name\":\"type\",\"value\":\"place\"},"
-				+ "{\"name\":\"id\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}"
-				+ ",{\"children\":[{\"children\":[{\"name\":\"type\",\"value\":\"place\"}"
-				+ ",{\"name\":\"id\",\"value\":\"place:0002\"}],\"name\":\"recordInfo\"}]"
-				+ ",\"name\":\"authority\"}],\"name\":\"recordList\"}";
 
-		assertEquals(readJsonFileFromDisk("place.json"), expectedRecordJsonTwoRecords);
+		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonTwoRecords);
 
 		recordStorage.deleteByTypeAndId("place", "place:0002");
-		assertEquals(readJsonFileFromDisk("place.json"), expectedRecordJsonOneRecord);
+		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
 	}
 
 	@Test
@@ -390,7 +449,7 @@ public class RecordStorageOnDiskTest {
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
-		Path path = Paths.get(basePath, "place.json");
+		Path path = Paths.get(basePath, PLACE_FILENAME);
 		assertTrue(Files.exists(path));
 
 		recordStorage.deleteByTypeAndId("place", "place:0001");
@@ -464,7 +523,7 @@ public class RecordStorageOnDiskTest {
 				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
 				+ ",\"name\":\"collectedDataLinks\"}],\"name\":\"place:0001\"}]"
 				+ ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
-		writeFileToDisk(expectedLinkListJson, "linkLists.json");
+		writeFileToDisk(expectedLinkListJson, LINK_LISTS_FILENAME);
 
 		String expectedIncomingLinksJson = "{\"children\":[{\"children\":["
 				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
@@ -490,7 +549,7 @@ public class RecordStorageOnDiskTest {
 				+ ",\"name\":\"place:0001\"}],\"name\":\"fromRecordType\"}]"
 				+ ",\"name\":\"toRecordId\"}],\"name\":\"toRecordType\"}]"
 				+ ",\"name\":\"incomingLinks\"}";
-		writeFileToDisk(expectedIncomingLinksJson, "incomingLinks.json");
+		writeFileToDisk(expectedIncomingLinksJson, INCOMING_LINKS_FILENAME);
 	}
 
 	@Test(expectedExceptions = DataStorageException.class)

@@ -26,7 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +48,7 @@ import se.uu.ub.cora.storage.data.converter.JsonToDataConverterFactoryImp;
 
 public class RecordStorageOnDisk extends RecordStorageInMemory
 		implements RecordStorage, MetadataStorage {
-	private static final int JSON_FILE_END = 5;
+	private static final String JSON_FILE_END = ".json";
 	private String basePath;
 
 	public static RecordStorageOnDisk createRecordStorageOnDiskWithBasePath(String basePath) {
@@ -87,15 +87,15 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 		reader.close();
 		String fileName = path.getFileName().toString();
-		String recordTypeName = fileName.substring(0, fileName.length() - JSON_FILE_END);
-
+		String fileNameTypePart = fileName.substring(0, fileName.lastIndexOf("_"));
+		String dataDivider = fileName.substring(fileName.lastIndexOf("_"));
 		DataGroup recordList = convertJsonStringToDataGroup(jsonBuilder.toString());
-		if (fileName.equals("linkLists.json")) {
+		if (fileNameTypePart.equals("linkLists")) {
 			List<DataElement> recordTypes = recordList.getChildren();
 
 			for (DataElement typesElement : recordTypes) {
 				DataGroup recordType = (DataGroup) typesElement;
-				recordTypeName = recordType.getNameInData();
+				String recordTypeName = recordType.getNameInData();
 				ensureStorageExistsForRecordType(recordTypeName);
 
 				List<DataElement> records = recordType.getChildren();
@@ -104,14 +104,14 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 					String recordId = record.getNameInData();
 					DataGroup collectedDataLinks = (DataGroup) record
 							.getFirstChildWithNameInData("collectedDataLinks");
-					storeLinks(recordTypeName, recordId, collectedDataLinks);
+					storeLinks(recordTypeName, recordId, collectedDataLinks, dataDivider);
 				}
 			}
 
-		} else if (fileName.equals("incomingLinks.json")) {
+		} else if (fileName.equals("incomingLinks_cora.json")) {
 			// not read as information is recreated from linkLists.json
 		} else {
-			ensureStorageExistsForRecordType(recordTypeName);
+			ensureStorageExistsForRecordType(fileNameTypePart);
 
 			List<DataElement> records = recordList.getChildren();
 
@@ -121,7 +121,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 				DataGroup recordInfo = record.getFirstGroupWithNameInData("recordInfo");
 				String recordId = recordInfo.getFirstAtomicValueWithNameInData("id");
 
-				storeRecordByRecordTypeAndRecordId(recordTypeName, recordId, record);
+				storeRecordByRecordTypeAndRecordId(fileNameTypePart, recordId, record, dataDivider);
 			}
 		}
 	}
@@ -140,32 +140,52 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList,
 			String dataDivider) {
 		super.create(recordType, recordId, record, linkList, dataDivider);
-		writeDataToDisk(recordType);
+		writeDataToDisk(recordType, dataDivider);
 	}
 
-	protected void writeDataToDisk(String recordType) {
-		writeRecordsToDisk(recordType);
-		writeLinkListToDisk();
+	protected void writeDataToDisk(String recordType, String dataDivider) {
+		writeRecordsToDisk(recordType, dataDivider);
+		writeLinkListToDisk(dataDivider);
 		writeIncomingLinksToDisk();
 	}
 
-	private void writeRecordsToDisk(String recordType) {
-		String pathString = recordType + ".json";
+	private void writeRecordsToDisk(String recordType, String dataDivider) {
 		if (recordsExistForRecordType(recordType)) {
-			Collection<DataGroup> readList = readList(recordType);
-
-			DataGroup recordList = DataGroup.withNameInData("recordList");
-			for (DataElement dataElement : readList) {
-				recordList.addChild(dataElement);
-			}
-			writeDataGroupToDiskAsJson(pathString, recordList);
+			writeRecordsToDiskWhereRecordTypeExists(recordType, dataDivider);
 		} else {
-			try {
-				Path path = Paths.get(basePath, pathString);
-				Files.delete(path);
-			} catch (IOException e) {
-				throw DataStorageException.withMessage("can not write record files to disk" + e);
+			removeFileFromDisk(recordType, dataDivider);
+		}
+	}
+
+	private void removeFileFromDisk(String recordType, String dataDivider) {
+		String pathString2 = recordType + "_" + dataDivider + JSON_FILE_END;
+		try {
+			Path path = Paths.get(basePath, pathString2);
+			Files.delete(path);
+		} catch (IOException e) {
+			throw DataStorageException.withMessage("can not delete record files from disk" + e);
+		}
+	}
+
+	private void writeRecordsToDiskWhereRecordTypeExists(String recordType, String dataDivider) {
+		Map<String, DataGroup> recordLists = new HashMap<>();
+		Map<String, DividerGroup> readList = records.get(recordType);
+
+		for (Entry<String, DividerGroup> dividerEntry : readList.entrySet()) {
+			DividerGroup dividerGroup = dividerEntry.getValue();
+			String currentDataDivider = dividerGroup.dataDivider;
+			DataGroup currentDataGroup = dividerGroup.dataGroup;
+			if (!recordLists.containsKey(currentDataDivider)) {
+				recordLists.put(currentDataDivider, DataGroup.withNameInData("recordList"));
 			}
+			recordLists.get(currentDataDivider).addChild(currentDataGroup);
+		}
+		for (Entry<String, DataGroup> recordListEntry : recordLists.entrySet()) {
+			String pathString2 = recordType + "_" + recordListEntry.getKey() + JSON_FILE_END;
+			writeDataGroupToDiskAsJson(pathString2, recordListEntry.getValue());
+		}
+		if (!recordLists.containsKey(dataDivider)) {
+			removeFileFromDisk(recordType, dataDivider);
 		}
 	}
 
@@ -197,8 +217,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		return DataGroupToJsonConverter.usingJsonFactoryForDataGroup(jsonBuilderFactory, dataGroup);
 	}
 
-	private void writeLinkListToDisk() {
-		String pathString = "linkLists.json";
+	private void writeLinkListToDisk(String dataDivider) {
+		String pathString = "linkLists_" + dataDivider + JSON_FILE_END;
 
 		boolean writeToFile = false;
 		DataGroup linkListsGroup = DataGroup.withNameInData("linkLists");
@@ -211,31 +231,32 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	private boolean addRecordTypes(DataGroup linkListsGroup) {
 		boolean writeToFile = false;
-		for (Entry<String, Map<String, DataGroup>> recordType : linkLists.entrySet()) {
+		for (Entry<String, Map<String, DividerGroup>> recordType : linkLists.entrySet()) {
 			DataGroup recordTypeGroup = DataGroup.withNameInData(recordType.getKey());
-			Map<String, DataGroup> recordGroupMap = recordType.getValue();
+			Map<String, DividerGroup> recordGroupMap = recordType.getValue();
 			boolean currentWriteToFile = addRecordIds(recordTypeGroup, recordGroupMap);
-			if(currentWriteToFile) {
+			if (currentWriteToFile) {
 				linkListsGroup.addChild(recordTypeGroup);
-					writeToFile = true;
+				writeToFile = true;
 			}
 		}
 		return writeToFile;
 	}
 
-	private boolean addRecordIds(DataGroup recordTypeGroup, Map<String, DataGroup> recordGroupMap) {
+	private boolean addRecordIds(DataGroup recordTypeGroup,
+			Map<String, DividerGroup> recordGroupMap) {
 		boolean writeToFile = false;
-		for (Entry<String, DataGroup> recordId : recordGroupMap.entrySet()) {
-			DataGroup recordIdGroup = DataGroup.withNameInData(recordId.getKey());
+		for (Entry<String, DividerGroup> recordEntry : recordGroupMap.entrySet()) {
+			DataGroup recordIdGroup = DataGroup.withNameInData(recordEntry.getKey());
 			recordTypeGroup.addChild(recordIdGroup);
-			recordIdGroup.addChild(recordId.getValue());
+			recordIdGroup.addChild(recordEntry.getValue().dataGroup);
 			writeToFile = true;
 		}
 		return writeToFile;
 	}
 
 	private void writeIncomingLinksToDisk() {
-		String pathString = "incomingLinks.json";
+		String pathString = "incomingLinks_cora.json";
 
 		DataGroup linkListsGroup = DataGroup.withNameInData("incomingLinks");
 		boolean writeToFile = addLinksToLinkList(linkListsGroup);
@@ -307,13 +328,15 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	@Override
 	public void update(String recordType, String recordId, DataGroup record, DataGroup linkList,
 			String dataDivider) {
+		String previousDataDivider = records.get(recordType).get(recordId).dataDivider;
 		super.update(recordType, recordId, record, linkList, dataDivider);
-		writeDataToDisk(recordType);
+		writeDataToDisk(recordType, previousDataDivider);
 	}
 
 	@Override
 	public void deleteByTypeAndId(String recordType, String recordId) {
+		String dataDivider = records.get(recordType).get(recordId).dataDivider;
 		super.deleteByTypeAndId(recordType, recordId);
-		writeDataToDisk(recordType);
+		writeDataToDisk(recordType, dataDivider);
 	}
 }

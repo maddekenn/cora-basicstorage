@@ -16,25 +16,24 @@
  *     You should have received a copy of the GNU General Public License
  *     along with Cora.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package se.uu.ub.cora.storage;
 
-import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
-import se.uu.ub.cora.spider.record.storage.RecordStorage;
+import se.uu.ub.cora.bookkeeper.data.DataGroup;
 
-public final class RecordStorageInMemoryReadFromDisk extends RecordStorageOnDisk
-		implements RecordStorage, MetadataStorage {
+public class DividerGroup {
 
-	public static RecordStorageInMemoryReadFromDisk createRecordStorageOnDiskWithBasePath(
-			String basePath) {
-		return new RecordStorageInMemoryReadFromDisk(basePath);
+	public static DividerGroup withDataDividerAndDataGroup(String dataDivider,
+			DataGroup dataGroup) {
+		return new DividerGroup(dataDivider, dataGroup);
 	}
 
-	private RecordStorageInMemoryReadFromDisk(String basePath) {
-		super(basePath);
+	public String dataDivider;
+	public DataGroup dataGroup;
+
+	private DividerGroup(String dataDivider, DataGroup dataGroup) {
+		this.dataDivider = dataDivider;
+		this.dataGroup = dataGroup;
 	}
 
-	@Override
-	protected void writeDataToDisk(String recordType, String dataDivider) {
-		// do not write to disk
-	}
 }

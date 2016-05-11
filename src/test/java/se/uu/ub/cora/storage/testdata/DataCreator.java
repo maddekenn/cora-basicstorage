@@ -36,34 +36,38 @@ public final class DataCreator {
 	private static final String NEW_METADATA_ID = "newMetadataId";
 	private static final String RECORD_TYPE = "recordType";
 
-	public static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndAbstract(String id, String userSuppliedId,
-			String abstractValue) {
-		return createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(id, userSuppliedId, abstractValue, null);
+	public static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndAbstract(String id,
+			String userSuppliedId, String abstractValue) {
+		return createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(id, userSuppliedId,
+				abstractValue, null);
 	}
 
-	private static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(String id,
-			String userSuppliedId, String abstractValue, String parentId) {
+	private static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(
+			String id, String userSuppliedId, String abstractValue, String parentId) {
 		String idWithCapitalFirst = id.substring(0, 1).toUpperCase() + id.substring(1);
 
 		DataGroup dataGroup = DataGroup.withNameInData(RECORD_TYPE);
 		dataGroup.addChild(createRecordInfoWithRecordTypeAndRecordId(RECORD_TYPE, id));
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue(METADATA_ID, id));
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue(PRESENTATION_VIEW_ID, "pg" + idWithCapitalFirst + "View"));
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue(PRESENTATION_FORM_ID, "pg" + idWithCapitalFirst + "Form"));
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue(PRESENTATION_VIEW_ID,
+				"pg" + idWithCapitalFirst + "View"));
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue(PRESENTATION_FORM_ID,
+				"pg" + idWithCapitalFirst + "Form"));
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue(NEW_METADATA_ID, id + "New"));
-		dataGroup.addChild(
-				DataAtomic.withNameInDataAndValue(NEW_PRESENTATION_FORM_ID, "pg" + idWithCapitalFirst + "FormNew"));
-		dataGroup.addChild(
-				DataAtomic.withNameInDataAndValue(LIST_PRESENTATION_VIEW_ID, "pg" + idWithCapitalFirst + "List"));
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue(NEW_PRESENTATION_FORM_ID,
+				"pg" + idWithCapitalFirst + "FormNew"));
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue(LIST_PRESENTATION_VIEW_ID,
+				"pg" + idWithCapitalFirst + "List"));
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue(SEARCH_METADATA_ID, id + "Search"));
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue(SEARCH_PRESENTATION_FORM_ID,
 				"pg" + idWithCapitalFirst + "SearchForm"));
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue(USER_SUPPLIED_ID, userSuppliedId));
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue(PERMISSION_KEY, "RECORDTYPE_" + id.toUpperCase()));
-		dataGroup.addChild(
-				DataAtomic.withNameInDataAndValue(SELF_PRESENTATION_VIEW_ID, "pg" + idWithCapitalFirst + "Self"));
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue(PERMISSION_KEY,
+				"RECORDTYPE_" + id.toUpperCase()));
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue(SELF_PRESENTATION_VIEW_ID,
+				"pg" + idWithCapitalFirst + "Self"));
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("abstract", abstractValue));
 		if (null != parentId) {
 			dataGroup.addChild(DataAtomic.withNameInDataAndValue("parentId", parentId));
@@ -71,20 +75,27 @@ public final class DataCreator {
 		return dataGroup;
 	}
 
-	public static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndParentId(String id, String userSuppliedId,
-			String parentId) {
-		return createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(id, userSuppliedId, "false", parentId);
+	public static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndParentId(String id,
+			String userSuppliedId, String parentId) {
+		return createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(id, userSuppliedId,
+				"false", parentId);
 	}
 
-	public static DataGroup createRecordInfoWithRecordTypeAndRecordId(String recordType, String recordId) {
+	public static DataGroup createRecordInfoWithRecordTypeAndRecordId(String recordType,
+			String recordId) {
 		DataGroup recordInfo = DataGroup.withNameInData("recordInfo");
 		recordInfo.addChild(DataAtomic.withNameInDataAndValue("type", recordType));
 		recordInfo.addChild(DataAtomic.withNameInDataAndValue("id", recordId));
+
+		DataGroup dataDivider = DataGroup.withNameInData("dataDivider");
+		dataDivider.addChild(DataAtomic.withNameInDataAndValue("linkedRecordType", "system"));
+		dataDivider.addChild(DataAtomic.withNameInDataAndValue("linkedRecordId", "cora"));
+		recordInfo.addChild(dataDivider);
 		return recordInfo;
 	}
 
-	public static DataGroup createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId(String nameInData,
-			String recordType, String recordId) {
+	public static DataGroup createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId(
+			String nameInData, String recordType, String recordId) {
 		DataGroup dataGroup = DataGroup.withNameInData(nameInData);
 		dataGroup.addChild(createRecordInfoWithRecordTypeAndRecordId(recordType, recordId));
 		return dataGroup;
@@ -94,26 +105,30 @@ public final class DataCreator {
 		return DataGroup.withNameInData("collectedDataLinks");
 	}
 
-	public static DataGroup createRecordToRecordLink(String fromRecordType, String fromRecordId, String toRecordType,
-			String toRecordId) {
+	public static DataGroup createRecordToRecordLink(String fromRecordType, String fromRecordId,
+			String toRecordType, String toRecordId) {
 		DataGroup recordToRecordLink = DataGroup.withNameInData("recordToRecordLink");
 
 		DataGroup from = DataGroup.withNameInData("from");
 		recordToRecordLink.addChild(from);
 
-		DataAtomic fromLinkedRecordType = DataAtomic.withNameInDataAndValue("linkedRecordType", fromRecordType);
+		DataAtomic fromLinkedRecordType = DataAtomic.withNameInDataAndValue("linkedRecordType",
+				fromRecordType);
 		from.addChild(fromLinkedRecordType);
 
-		DataAtomic fromLinkedRecordId = DataAtomic.withNameInDataAndValue("linkedRecordId", fromRecordId);
+		DataAtomic fromLinkedRecordId = DataAtomic.withNameInDataAndValue("linkedRecordId",
+				fromRecordId);
 		from.addChild(fromLinkedRecordId);
 
 		DataGroup to = DataGroup.withNameInData("to");
 		recordToRecordLink.addChild(to);
 
-		DataAtomic toLinkedRecordType = DataAtomic.withNameInDataAndValue("linkedRecordType", toRecordType);
+		DataAtomic toLinkedRecordType = DataAtomic.withNameInDataAndValue("linkedRecordType",
+				toRecordType);
 		to.addChild(toLinkedRecordType);
 
-		DataAtomic toLinkedRecordId = DataAtomic.withNameInDataAndValue("linkedRecordId", toRecordId);
+		DataAtomic toLinkedRecordId = DataAtomic.withNameInDataAndValue("linkedRecordId",
+				toRecordId);
 		to.addChild(toLinkedRecordId);
 
 		recordToRecordLink.addChild(to);
