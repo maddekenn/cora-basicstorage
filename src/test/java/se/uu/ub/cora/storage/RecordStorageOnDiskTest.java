@@ -233,30 +233,6 @@ public class RecordStorageOnDiskTest {
 		Path path = Paths.get(basePath, LINK_LISTS_FILENAME);
 		assertTrue(Files.exists(path));
 		assertEquals(readJsonFileFromDisk(LINK_LISTS_FILENAME), expectedLinkListJson);
-
-		String expectedIncomingLinksJson = "{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"children\":[{\"name\":\"linkedRecordType\""
-				+ ",\"value\":\"fromRecordType\"},{\"name\":\"linkedRecordId\""
-				+ ",\"value\":\"place:0001\"}],\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
-				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
-				+ ",\"name\":\"list\"}],\"name\":\"place:0001\"}],\"name\":\"fromRecordType\"}]"
-				+ ",\"name\":\"toRecordId2\"},{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]"
-				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}],\"name\":\"list\"}]"
-				+ ",\"name\":\"place:0001\"}],\"name\":\"fromRecordType\"}]"
-				+ ",\"name\":\"toRecordId\"}],\"name\":\"toRecordType\"}]"
-				+ ",\"name\":\"incomingLinks\"}";
-		Path path2 = Paths.get(basePath, INCOMING_LINKS_FILENAME);
-		assertTrue(Files.exists(path2));
-		assertEquals(readJsonFileFromDisk(INCOMING_LINKS_FILENAME), expectedIncomingLinksJson);
 	}
 
 	@Test
@@ -392,9 +368,7 @@ public class RecordStorageOnDiskTest {
 		recordStorage.update("organisation", "org:0002", dataGroup, emptyLinkList, "jsClient");
 
 		assertFalse(Files.exists(path));
-		// assertEquals(readJsonFileFromDisk("linkLists_cora.json"), "{}");
 		assertFalse(Files.exists(path2));
-		// assertEquals(readJsonFileFromDisk("linkLists_jsClient.json"), "{}");
 	}
 
 	@Test
@@ -604,31 +578,6 @@ public class RecordStorageOnDiskTest {
 				+ ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
 		writeFileToDisk(expectedLinkListJson, LINK_LISTS_FILENAME);
 
-		String expectedIncomingLinksJson = "{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"children\":[{\"name\":\"linkedRecordType\""
-				+ ",\"value\":\"fromRecordType\"},{\"name\":\"linkedRecordId\""
-				+ ",\"value\":\"place:0001\"}],\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
-				+ ",\"name\":\"to\"},{\"children\":[{\"name\":\"linkedRecordType\""
-				+ ",\"value\":\"toRecordType\"},{\"name\":\"linkedRecordId\""
-				+ ",\"value\":\"toRecordId2\"}],\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
-				+ ",\"name\":\"list\"}],\"name\":\"place:0001\"}],\"name\":\"fromRecordType\"}]"
-				+ ",\"name\":\"toRecordId2\"},{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"from\"},{\"children\":[{\"name\":\"linkedRecordType\""
-				+ ",\"value\":\"toRecordType\"},{\"name\":\"linkedRecordId\""
-				+ ",\"value\":\"toRecordId\"}],\"name\":\"to\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]"
-				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}],\"name\":\"list\"}]"
-				+ ",\"name\":\"place:0001\"}],\"name\":\"fromRecordType\"}]"
-				+ ",\"name\":\"toRecordId\"}],\"name\":\"toRecordType\"}]"
-				+ ",\"name\":\"incomingLinks\"}";
-		writeFileToDisk(expectedIncomingLinksJson, INCOMING_LINKS_FILENAME);
 	}
 
 	@Test(expectedExceptions = DataStorageException.class)

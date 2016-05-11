@@ -1,5 +1,6 @@
 /*
  * Copyright 2016 Olov McKie
+ * Copyright 2016 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -49,6 +50,7 @@ import se.uu.ub.cora.storage.data.converter.JsonToDataConverterFactoryImp;
 
 public class RecordStorageOnDisk extends RecordStorageInMemory
 		implements RecordStorage, MetadataStorage {
+	private static final String LINK_LISTS = "linkLists";
 	private static final String JSON_FILE_END = ".json";
 	private String basePath;
 
@@ -74,12 +76,30 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		Iterator<Path> iterator = list.iterator();
 		while (iterator.hasNext()) {
 			Path p = iterator.next();
-			readFile(p);
+			readFileAndParseFileByPath(p);
 		}
 		list.close();
 	}
 
-	private void readFile(Path path) throws IOException {
+	private void readFileAndParseFileByPath(Path path) throws IOException {
+		String fileNameTypePart = getTypeFromPath(path);
+		String dataDivider = getDataDividerFromPath(path);
+		List<DataElement> recordTypes = extractChildrenFromFileByPath(path);
+
+		if (fileContainsLinkLists(fileNameTypePart)) {
+			parseAndStoreDataLinksInMemory(dataDivider, recordTypes);
+		} else {
+			parseAndStoreRecordsInMemory(fileNameTypePart, dataDivider, recordTypes);
+		}
+	}
+
+	private List<DataElement> extractChildrenFromFileByPath(Path path) throws IOException {
+		String json = readJsonFileByPath(path);
+		DataGroup recordList = convertJsonStringToDataGroup(json);
+		return recordList.getChildren();
+	}
+
+	private String readJsonFileByPath(Path path) throws IOException {
 		BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset());
 		String line = null;
 		StringBuilder jsonBuilder = new StringBuilder();
@@ -87,45 +107,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			jsonBuilder.append(line);
 		}
 		reader.close();
-		String fileName = path.getFileName().toString();
-		String fileNameTypePart = fileName.substring(0, fileName.lastIndexOf("_"));
-		String dataDivider = fileName.substring(fileName.lastIndexOf("_") + 1,
-				fileName.indexOf("."));
-		DataGroup recordList = convertJsonStringToDataGroup(jsonBuilder.toString());
-		if (fileNameTypePart.equals("linkLists")) {
-			List<DataElement> recordTypes = recordList.getChildren();
-
-			for (DataElement typesElement : recordTypes) {
-				DataGroup recordType = (DataGroup) typesElement;
-				String recordTypeName = recordType.getNameInData();
-				ensureStorageExistsForRecordType(recordTypeName);
-
-				List<DataElement> records = recordType.getChildren();
-				for (DataElement recordElement : records) {
-					DataGroup record = (DataGroup) recordElement;
-					String recordId = record.getNameInData();
-					DataGroup collectedDataLinks = (DataGroup) record
-							.getFirstChildWithNameInData("collectedDataLinks");
-					storeLinks(recordTypeName, recordId, collectedDataLinks, dataDivider);
-				}
-			}
-
-		} else if (fileName.equals("incomingLinks_cora.json")) {
-			// not read as information is recreated from linkLists.json
-		} else {
-			ensureStorageExistsForRecordType(fileNameTypePart);
-
-			List<DataElement> records = recordList.getChildren();
-
-			for (DataElement dataElement : records) {
-				DataGroup record = (DataGroup) dataElement;
-
-				DataGroup recordInfo = record.getFirstGroupWithNameInData("recordInfo");
-				String recordId = recordInfo.getFirstAtomicValueWithNameInData("id");
-
-				storeRecordByRecordTypeAndRecordId(fileNameTypePart, recordId, record, dataDivider);
-			}
-		}
+		return jsonBuilder.toString();
 	}
 
 	private DataGroup convertJsonStringToDataGroup(String jsonRecord) {
@@ -138,6 +120,66 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		return (DataGroup) dataPart;
 	}
 
+	private boolean fileContainsLinkLists(String fileNameTypePart) {
+		return fileNameTypePart.equals(LINK_LISTS);
+	}
+
+	private void parseAndStoreDataLinksInMemory(String dataDivider, List<DataElement> recordTypes) {
+		for (DataElement typesElement : recordTypes) {
+			parseAndStoreRecordTypeDataLinksInMemory(dataDivider, typesElement);
+		}
+	}
+
+	private void parseAndStoreRecordTypeDataLinksInMemory(String dataDivider,
+			DataElement typesElement) {
+		DataGroup recordType = (DataGroup) typesElement;
+		String recordTypeName = recordType.getNameInData();
+		ensureStorageExistsForRecordType(recordTypeName);
+
+		List<DataElement> records = recordType.getChildren();
+		for (DataElement recordElement : records) {
+			parseAndStoreRecordDataLinksInMemory(dataDivider, recordTypeName, recordElement);
+		}
+	}
+
+	private void parseAndStoreRecordDataLinksInMemory(String dataDivider, String recordTypeName,
+			DataElement recordElement) {
+		DataGroup record = (DataGroup) recordElement;
+		String recordId = record.getNameInData();
+		DataGroup collectedDataLinks = (DataGroup) record
+				.getFirstChildWithNameInData("collectedDataLinks");
+		storeLinks(recordTypeName, recordId, collectedDataLinks, dataDivider);
+	}
+
+	private void parseAndStoreRecordsInMemory(String fileNameTypePart, String dataDivider,
+			List<DataElement> recordTypes) {
+		ensureStorageExistsForRecordType(fileNameTypePart);
+
+		for (DataElement dataElement : recordTypes) {
+			parseAndStoreRecordInMemory(fileNameTypePart, dataDivider, dataElement);
+		}
+	}
+
+	private void parseAndStoreRecordInMemory(String fileNameTypePart, String dataDivider,
+			DataElement dataElement) {
+		DataGroup record = (DataGroup) dataElement;
+
+		DataGroup recordInfo = record.getFirstGroupWithNameInData("recordInfo");
+		String recordId = recordInfo.getFirstAtomicValueWithNameInData("id");
+
+		storeRecordByRecordTypeAndRecordId(fileNameTypePart, recordId, record, dataDivider);
+	}
+
+	private String getDataDividerFromPath(Path path) {
+		String fileName2 = path.getFileName().toString();
+		return fileName2.substring(fileName2.lastIndexOf("_") + 1, fileName2.indexOf("."));
+	}
+
+	private String getTypeFromPath(Path path) {
+		String fileName = path.getFileName().toString();
+		return fileName.substring(0, fileName.lastIndexOf("_"));
+	}
+
 	@Override
 	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList,
 			String dataDivider) {
@@ -148,7 +190,6 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	protected void writeDataToDisk(String recordType, String dataDivider) {
 		writeRecordsToDisk(recordType, dataDivider);
 		writeLinkListToDisk(dataDivider);
-		writeIncomingLinksToDisk();
 	}
 
 	private void writeRecordsToDisk(String recordType, String dataDivider) {
@@ -170,43 +211,62 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void writeRecordsToDiskWhereRecordTypeExists(String recordType, String dataDivider) {
-		Map<String, DataGroup> recordLists = new HashMap<>();
-		Map<String, DividerGroup> readList = records.get(recordType);
+		Map<String, DataGroup> recordLists = divideRecordTypeDataByDataDivider(recordType);
+		writeDividedRecordsToDisk(recordType, recordLists);
+		possiblyRemoveOldDataDividerFile(recordType, dataDivider, recordLists);
+	}
 
+	private Map<String, DataGroup> divideRecordTypeDataByDataDivider(String recordType) {
+		Map<String, DividerGroup> readList = records.get(recordType);
+		Map<String, DataGroup> recordLists = new HashMap<>();
 		for (Entry<String, DividerGroup> dividerEntry : readList.entrySet()) {
-			DividerGroup dividerGroup = dividerEntry.getValue();
-			String currentDataDivider = dividerGroup.dataDivider;
-			DataGroup currentDataGroup = dividerGroup.dataGroup;
-			if (!recordLists.containsKey(currentDataDivider)) {
-				recordLists.put(currentDataDivider, DataGroup.withNameInData("recordList"));
-			}
-			recordLists.get(currentDataDivider).addChild(currentDataGroup);
+			addRecordToListBasedOnDataDivider(recordLists, dividerEntry);
 		}
-		for (Entry<String, DataGroup> recordListEntry : recordLists.entrySet()) {
-			String pathString2 = recordType + "_" + recordListEntry.getKey() + JSON_FILE_END;
-			writeDataGroupToDiskAsJson(pathString2, recordListEntry.getValue());
-		}
-		if (!recordLists.containsKey(dataDivider)) {
-			removeFileFromDisk(recordType, dataDivider);
+		return recordLists;
+	}
+
+	private void addRecordToListBasedOnDataDivider(Map<String, DataGroup> recordLists,
+			Entry<String, DividerGroup> dividerEntry) {
+		DividerGroup dividerGroup = dividerEntry.getValue();
+		String currentDataDivider = dividerGroup.dataDivider;
+		DataGroup currentDataGroup = dividerGroup.dataGroup;
+		ensureListForDataDivider(recordLists, currentDataDivider);
+		recordLists.get(currentDataDivider).addChild(currentDataGroup);
+	}
+
+	private void ensureListForDataDivider(Map<String, DataGroup> recordLists,
+			String currentDataDivider) {
+		if (!recordLists.containsKey(currentDataDivider)) {
+			recordLists.put(currentDataDivider, DataGroup.withNameInData("recordList"));
 		}
 	}
 
-	private void writeDataGroupToDiskAsJson(String pathString, DataGroup dataGroup) {
+	private void writeDividedRecordsToDisk(String recordType, Map<String, DataGroup> recordLists) {
+		for (Entry<String, DataGroup> recordListEntry : recordLists.entrySet()) {
+			String pathString2 = recordType + "_" + recordListEntry.getKey() + JSON_FILE_END;
+			tryToWriteDataGroupToDiskAsJson(pathString2, recordListEntry.getValue());
+		}
+	}
+
+	private void tryToWriteDataGroupToDiskAsJson(String pathString, DataGroup dataGroup) {
 		String json = convertDataGroupToJsonString(dataGroup);
-		BufferedWriter writer;
 		try {
-			Path path = Paths.get(basePath, pathString);
-			if (Files.exists(path)) {
-				Files.delete(path);
-			}
-			writer = Files.newBufferedWriter(path, Charset.defaultCharset(),
-					StandardOpenOption.CREATE);
-			writer.write(json, 0, json.length());
-			writer.flush();
-			writer.close();
+			writeDataGroupToDiskAsJson(pathString, json);
 		} catch (IOException e) {
 			throw DataStorageException.withMessage("can not write files to disk" + e);
 		}
+	}
+
+	private void writeDataGroupToDiskAsJson(String pathString, String json) throws IOException {
+		BufferedWriter writer;
+		Path path = Paths.get(basePath, pathString);
+		if (Files.exists(path)) {
+			Files.delete(path);
+		}
+		writer = Files.newBufferedWriter(path, Charset.defaultCharset(), StandardOpenOption.CREATE);
+		writer.write(json, 0, json.length());
+		writer.flush();
+		writer.close();
 	}
 
 	private String convertDataGroupToJsonString(DataGroup dataGroup) {
@@ -219,186 +279,88 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		return DataGroupToJsonConverter.usingJsonFactoryForDataGroup(jsonBuilderFactory, dataGroup);
 	}
 
-	// Map<String, DataGroup> recordLists = new HashMap<>();
-	// Map<String, DividerGroup> readList = records.get(recordType);
-
-	// for (Entry<String, DividerGroup> dividerEntry : readList.entrySet()) {
-	// DividerGroup dividerGroup = dividerEntry.getValue();
-	// String currentDataDivider = dividerGroup.dataDivider;
-	// DataGroup currentDataGroup = dividerGroup.dataGroup;
-	// if (!recordLists.containsKey(currentDataDivider)) {
-	// recordLists.put(currentDataDivider,
-	// DataGroup.withNameInData("recordList"));
-	// }
-	// recordLists.get(currentDataDivider).addChild(currentDataGroup);
-	// }
-	// for (Entry<String, DataGroup> recordListEntry : recordLists.entrySet()) {
-	// String pathString2 = recordType + "_" + recordListEntry.getKey() +
-	// JSON_FILE_END;
-	// writeDataGroupToDiskAsJson(pathString2, recordListEntry.getValue());
-	// }
-	// if (!recordLists.containsKey(dataDivider)) {
-	// removeFileFromDisk(recordType, dataDivider);
-	// }
-	private void writeLinkListToDisk(String dataDivider) {
-		String pathString = "linkLists_" + dataDivider + JSON_FILE_END;
-
-		Map<String, DataGroup> linkListsGroups = new HashMap<>();
-
-		boolean writeToFile = false;
-		// DataGroup linkListsGroup = DataGroup.withNameInData("linkLists");
-		boolean writeToFile1 = false;
-		for (Entry<String, Map<String, DividerGroup>> recordType : linkLists.entrySet()) {
-
-			// DataGroup recordTypeGroup =
-			// DataGroup.withNameInData(recordType.getKey());
-			Map<String, DividerGroup> recordGroupMap = recordType.getValue();
-			boolean writeToFile2 = false;
-			for (Entry<String, DividerGroup> recordEntry : recordGroupMap.entrySet()) {
-				DividerGroup dataDividerGroup = recordEntry.getValue();
-				String currentDataDivider = dataDividerGroup.dataDivider;
-				if (!linkListsGroups.containsKey(currentDataDivider)) {
-					linkListsGroups.put(currentDataDivider, DataGroup.withNameInData("linkLists"));
-				}
-				if (!linkListsGroups.get(currentDataDivider)
-						.containsChildWithNameInData(recordType.getKey())) {
-					DataGroup recordTypeGroup2 = DataGroup.withNameInData(recordType.getKey());
-					linkListsGroups.get(currentDataDivider).addChild(recordTypeGroup2);
-				}
-				DataGroup recordTypeChild = (DataGroup) linkListsGroups.get(currentDataDivider)
-						.getFirstChildWithNameInData(recordType.getKey());
-
-				DataGroup recordIdGroup = DataGroup.withNameInData(recordEntry.getKey());
-				// recordTypeGroup.addChild(recordIdGroup);
-				recordTypeChild.addChild(recordIdGroup);
-				recordIdGroup.addChild(dataDividerGroup.dataGroup);
-				writeToFile2 = true;
-			}
-			// boolean currentWriteToFile =
-			// addRecordIdsToGroupFromMap(recordTypeGroup,
-			boolean currentWriteToFile = writeToFile2;
-			if (currentWriteToFile) {
-				// linkListsGroup.addChild(recordTypeGroup);
-				writeToFile1 = true;
-			}
-
+	private void possiblyRemoveOldDataDividerFile(String recordType, String dataDivider,
+			Map<String, DataGroup> recordLists) {
+		if (!recordLists.containsKey(dataDivider)) {
+			removeFileFromDisk(recordType, dataDivider);
 		}
-		// writeToFile = addRecordTypes(linkListsGroup);
-		writeToFile = writeToFile1;
-		// if (writeToFile) {
-		// writeDataGroupToDiskAsJson(pathString, linkListsGroup);
-		// }
+	}
+
+	private void writeLinkListToDisk(String dataDivider) {
+		Map<String, DataGroup> linkListsGroups = new HashMap<>();
+		divideLinkListsByDataDivider(linkListsGroups);
+		writeDividedLinkListsToDisk(linkListsGroups);
+		possiblyRemoveOldDataDividerLinkListFile(dataDivider, linkListsGroups);
+
+	}
+
+	private void divideLinkListsByDataDivider(Map<String, DataGroup> linkListsGroups) {
+		for (Entry<String, Map<String, DividerGroup>> recordType : linkLists.entrySet()) {
+			addLinkListsForRecordTypeBasedOnDataDivider(linkListsGroups, recordType);
+		}
+	}
+
+	private void addLinkListsForRecordTypeBasedOnDataDivider(Map<String, DataGroup> linkListsGroups,
+			Entry<String, Map<String, DividerGroup>> recordType) {
+		Map<String, DividerGroup> recordGroupMap = recordType.getValue();
+		for (Entry<String, DividerGroup> recordEntry : recordGroupMap.entrySet()) {
+			addLinkListsForRecordToListBasedOnDataDivider(linkListsGroups, recordType, recordEntry);
+		}
+	}
+
+	private void addLinkListsForRecordToListBasedOnDataDivider(
+			Map<String, DataGroup> linkListsGroups,
+			Entry<String, Map<String, DividerGroup>> recordType,
+			Entry<String, DividerGroup> recordEntry) {
+		DividerGroup dataDividerGroup = recordEntry.getValue();
+		String currentDataDivider = dataDividerGroup.dataDivider;
+		ensureLinkListForDataDivider(linkListsGroups, currentDataDivider);
+		ensureLinkListForRecordType(linkListsGroups, recordType, currentDataDivider);
+
+		DataGroup recordTypeChild = (DataGroup) linkListsGroups.get(currentDataDivider)
+				.getFirstChildWithNameInData(recordType.getKey());
+		addLinkListsForRecord(recordEntry, dataDividerGroup, recordTypeChild);
+	}
+
+	private void ensureLinkListForDataDivider(Map<String, DataGroup> linkListsGroups,
+			String currentDataDivider) {
+		if (!linkListsGroups.containsKey(currentDataDivider)) {
+			linkListsGroups.put(currentDataDivider, DataGroup.withNameInData(LINK_LISTS));
+		}
+	}
+
+	private void ensureLinkListForRecordType(Map<String, DataGroup> linkListsGroups,
+			Entry<String, Map<String, DividerGroup>> recordType, String currentDataDivider) {
+		if (!linkListsGroups.get(currentDataDivider)
+				.containsChildWithNameInData(recordType.getKey())) {
+			DataGroup recordTypeGroup = DataGroup.withNameInData(recordType.getKey());
+			linkListsGroups.get(currentDataDivider).addChild(recordTypeGroup);
+		}
+	}
+
+	private void addLinkListsForRecord(Entry<String, DividerGroup> recordEntry,
+			DividerGroup dataDividerGroup, DataGroup recordTypeChild) {
+		DataGroup recordIdGroup = DataGroup.withNameInData(recordEntry.getKey());
+		recordIdGroup.addChild(dataDividerGroup.dataGroup);
+
+		recordTypeChild.addChild(recordIdGroup);
+	}
+
+	private void writeDividedLinkListsToDisk(Map<String, DataGroup> linkListsGroups) {
 		for (Entry<String, DataGroup> recordListEntry : linkListsGroups.entrySet()) {
 			String pathString2 = "linkLists_" + recordListEntry.getKey() + JSON_FILE_END;
-			writeDataGroupToDiskAsJson(pathString2, recordListEntry.getValue());
+			tryToWriteDataGroupToDiskAsJson(pathString2, recordListEntry.getValue());
 		}
+	}
+
+	private void possiblyRemoveOldDataDividerLinkListFile(String dataDivider,
+			Map<String, DataGroup> linkListsGroups) {
 		if (!linkListsGroups.containsKey(dataDivider)) {
 			String pathString2 = "linkLists_" + dataDivider + JSON_FILE_END;
 			Path path = Paths.get(basePath, pathString2);
 			if (Files.exists(path)) {
-				removeFileFromDisk("linkLists", dataDivider);
+				removeFileFromDisk(LINK_LISTS, dataDivider);
 			}
-		}
-
-	}
-
-	// private boolean addRecordTypes(DataGroup linkListsGroup) {
-	// boolean writeToFile = false;
-	// for (Entry<String, Map<String, DividerGroup>> recordType :
-	// linkLists.entrySet()) {
-	// DataGroup recordTypeGroup =
-	// DataGroup.withNameInData(recordType.getKey());
-	// Map<String, DividerGroup> recordGroupMap = recordType.getValue();
-	// boolean currentWriteToFile = addRecordIdsToGroupFromMap(recordTypeGroup,
-	// recordGroupMap);
-	// if (currentWriteToFile) {
-	// linkListsGroup.addChild(recordTypeGroup);
-	// writeToFile = true;
-	// }
-	// }
-	// return writeToFile;
-	// }
-
-	// private boolean addRecordIdsToGroupFromMap(DataGroup recordTypeGroup,
-	// Map<String, DividerGroup> recordGroupMap) {
-	// boolean writeToFile = false;
-	// for (Entry<String, DividerGroup> recordEntry : recordGroupMap.entrySet())
-	// {
-	// DataGroup recordIdGroup = DataGroup.withNameInData(recordEntry.getKey());
-	// recordTypeGroup.addChild(recordIdGroup);
-	// recordIdGroup.addChild(recordEntry.getValue().dataGroup);
-	// writeToFile = true;
-	// }
-	// return writeToFile;
-	// }
-
-	private void writeIncomingLinksToDisk() {
-		String pathString = "incomingLinks_cora.json";
-
-		DataGroup linkListsGroup = DataGroup.withNameInData("incomingLinks");
-		boolean writeToFile = addLinksToLinkList(linkListsGroup);
-		if (writeToFile) {
-			writeDataGroupToDiskAsJson(pathString, linkListsGroup);
-		}
-	}
-
-	private boolean addLinksToLinkList(DataGroup linkListsGroup) {
-		return addToTypeToList(linkListsGroup);
-	}
-
-	private boolean addToTypeToList(DataGroup linkListsGroup) {
-		boolean writeToFile = false;
-		for (Entry<String, Map<String, Map<String, Map<String, List<DataGroup>>>>> recordTypeTo : incomingLinks
-				.entrySet()) {
-			DataGroup recordTypeToGroup = DataGroup.withNameInData(recordTypeTo.getKey());
-			linkListsGroup.addChild(recordTypeToGroup);
-			Map<String, Map<String, Map<String, List<DataGroup>>>> recordGroupMap = recordTypeTo
-					.getValue();
-
-			addToIdToList(recordTypeToGroup, recordGroupMap);
-			writeToFile = true;
-		}
-		return writeToFile;
-	}
-
-	private void addToIdToList(DataGroup recordTypeToGroup,
-			Map<String, Map<String, Map<String, List<DataGroup>>>> recordGroupMap) {
-		for (Entry<String, Map<String, Map<String, List<DataGroup>>>> recordId : recordGroupMap
-				.entrySet()) {
-			DataGroup recordIdGroup = DataGroup.withNameInData(recordId.getKey());
-			recordTypeToGroup.addChild(recordIdGroup);
-			Map<String, Map<String, List<DataGroup>>> fromGroupMap = recordId.getValue();
-
-			addFromType(recordIdGroup, fromGroupMap);
-		}
-	}
-
-	private void addFromType(DataGroup recordIdGroup,
-			Map<String, Map<String, List<DataGroup>>> fromGroupMap) {
-		for (Entry<String, Map<String, List<DataGroup>>> fromGroup : fromGroupMap.entrySet()) {
-			DataGroup fromTypeGroup = DataGroup.withNameInData(fromGroup.getKey());
-			recordIdGroup.addChild(fromTypeGroup);
-			Map<String, List<DataGroup>> fromIdGroup = fromGroup.getValue();
-
-			addFromId(fromTypeGroup, fromIdGroup);
-		}
-	}
-
-	private void addFromId(DataGroup fromTypeGroup, Map<String, List<DataGroup>> fromIdGroup) {
-		for (Entry<String, List<DataGroup>> fromId : fromIdGroup.entrySet()) {
-			DataGroup recordIdGroup3 = DataGroup.withNameInData(fromId.getKey());
-			fromTypeGroup.addChild(recordIdGroup3);
-			List<DataGroup> links = fromId.getValue();
-
-			addLinks(recordIdGroup3, links);
-		}
-	}
-
-	private void addLinks(DataGroup recordIdGroup3, List<DataGroup> links) {
-		for (DataGroup link : links) {
-			DataGroup recordIdGroup4 = DataGroup.withNameInData("list");
-			recordIdGroup3.addChild(recordIdGroup4);
-			recordIdGroup4.addChild(link);
 		}
 	}
 
