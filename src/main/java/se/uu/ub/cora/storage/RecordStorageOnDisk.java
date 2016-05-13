@@ -172,12 +172,12 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	private String getDataDividerFromPath(Path path) {
 		String fileName2 = path.getFileName().toString();
-		return fileName2.substring(fileName2.lastIndexOf("_") + 1, fileName2.indexOf("."));
+		return fileName2.substring(fileName2.lastIndexOf('_') + 1, fileName2.indexOf('.'));
 	}
 
 	private String getTypeFromPath(Path path) {
 		String fileName = path.getFileName().toString();
-		return fileName.substring(0, fileName.lastIndexOf("_"));
+		return fileName.substring(0, fileName.lastIndexOf('_'));
 	}
 
 	@Override
