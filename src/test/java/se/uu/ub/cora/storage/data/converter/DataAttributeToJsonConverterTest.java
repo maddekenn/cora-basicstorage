@@ -1,5 +1,6 @@
 /*
  * Copyright 2015 Uppsala University Library
+ * Copyright 2016 Olov McKie
  *
  * This file is part of Cora.
  *
@@ -40,21 +41,23 @@ public class DataAttributeToJsonConverterTest {
 
 	@Test
 	public void testToJson() {
-		DataAttribute dataAttribute = DataAttribute.withNameInDataAndValue("attributeNameInData", "attributeValue");
-		DataToJsonConverter dataToJsonConverter = dataToJsonConverterFactory.createForDataElement(factory,
-				dataAttribute);
+		DataAttribute dataAttribute = DataAttribute.withNameInDataAndValue("attributeNameInData",
+				"attributeValue");
+		DataToJsonConverter dataToJsonConverter = dataToJsonConverterFactory
+				.createForDataElement(factory, dataAttribute);
 		String json = dataToJsonConverter.toJson();
 
-		Assert.assertEquals(json, "{\"attributeNameInData\":\"attributeValue\"}");
+		Assert.assertEquals(json, "{\"attributeNameInData\": \"attributeValue\"}");
 	}
 
 	@Test
 	public void testToJsonEmptyValue() {
-		DataAttribute dataAttribute = DataAttribute.withNameInDataAndValue("attributeNameInData", "");
-		DataToJsonConverter dataToJsonConverter = dataToJsonConverterFactory.createForDataElement(factory,
-				dataAttribute);
+		DataAttribute dataAttribute = DataAttribute.withNameInDataAndValue("attributeNameInData",
+				"");
+		DataToJsonConverter dataToJsonConverter = dataToJsonConverterFactory
+				.createForDataElement(factory, dataAttribute);
 		String json = dataToJsonConverter.toJson();
 
-		Assert.assertEquals(json, "{\"attributeNameInData\":\"\"}");
+		Assert.assertEquals(json, "{\"attributeNameInData\": \"\"}");
 	}
 }
