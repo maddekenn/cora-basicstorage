@@ -55,11 +55,43 @@ public class RecordStorageOnDiskTest {
 	private String basePath = "/tmp/recordStorageOnDiskTemp/";
 	private DataGroup emptyLinkList = DataCreator.createLinkList();
 
-	private String expectedRecordJsonOneRecordPlace1 = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
-			+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}"
-			+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"}"
-			+ ",{\"name\":\"linkedRecordId\",\"value\":\"cora\"}],\"name\":\"dataDivider\"}]"
-			+ ",\"name\":\"recordInfo\"}" + "],\"name\":\"authority\"}],\"name\":\"recordList\"}";
+	private String expectedRecordJsonOneRecordPlace1 = getExpectedRecordJsonOneRecordPlace1();
+
+	private String getExpectedRecordJsonOneRecordPlace1() {
+		String expectedJson = "{\n";
+		expectedJson += "    \"children\": [{\n";
+		expectedJson += "        \"children\": [{\n";
+		expectedJson += "            \"children\": [\n";
+		expectedJson += "                {\n";
+		expectedJson += "                    \"name\": \"type\",\n";
+		expectedJson += "                    \"value\": \"place\"\n";
+		expectedJson += "                },\n";
+		expectedJson += "                {\n";
+		expectedJson += "                    \"name\": \"id\",\n";
+		expectedJson += "                    \"value\": \"place:0001\"\n";
+		expectedJson += "                },\n";
+		expectedJson += "                {\n";
+		expectedJson += "                    \"children\": [\n";
+		expectedJson += "                        {\n";
+		expectedJson += "                            \"name\": \"linkedRecordType\",\n";
+		expectedJson += "                            \"value\": \"system\"\n";
+		expectedJson += "                        },\n";
+		expectedJson += "                        {\n";
+		expectedJson += "                            \"name\": \"linkedRecordId\",\n";
+		expectedJson += "                            \"value\": \"cora\"\n";
+		expectedJson += "                        }\n";
+		expectedJson += "                    ],\n";
+		expectedJson += "                    \"name\": \"dataDivider\"\n";
+		expectedJson += "                }\n";
+		expectedJson += "            ],\n";
+		expectedJson += "            \"name\": \"recordInfo\"\n";
+		expectedJson += "        }],\n";
+		expectedJson += "        \"name\": \"authority\"\n";
+		expectedJson += "    }],\n";
+		expectedJson += "    \"name\": \"recordList\"\n";
+		expectedJson += "}\n";
+		return expectedJson;
+	}
 
 	private String expectedRecordJsonOneRecordPlace2 = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
 			+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0002\"}"
@@ -67,17 +99,74 @@ public class RecordStorageOnDiskTest {
 			+ ",{\"name\":\"linkedRecordId\",\"value\":\"cora\"}],\"name\":\"dataDivider\"}]"
 			+ ",\"name\":\"recordInfo\"}" + "],\"name\":\"authority\"}],\"name\":\"recordList\"}";
 
-	private String expectedRecordJsonTwoRecords = "{\"children\":[{\"children\":[{\"children\":["
-			+ "{\"name\":\"type\"" + ",\"value\":\"place\"}"
-			+ ",{\"name\":\"id\",\"value\":\"place:0001\"}"
-			+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"}"
-			+ ",{\"name\":\"linkedRecordId\",\"value\":\"cora\"}],\"name\":\"dataDivider\"}]"
-			+ ",\"name\":\"recordInfo\"}" + "],\"name\":\"authority\"},"
-			+ "{\"children\":[{\"children\":[" + "{\"name\":\"type\"" + ",\"value\":\"place\"}"
-			+ ",{\"name\":\"id\",\"value\":\"place:0002\"}"
-			+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"}"
-			+ ",{\"name\":\"linkedRecordId\",\"value\":\"cora\"}],\"name\":\"dataDivider\"}]"
-			+ ",\"name\":\"recordInfo\"}" + "],\"name\":\"authority\"}],\"name\":\"recordList\"}";
+	private String expectedRecordJsonTwoRecords = getExpectedRecordJsonTwoRecords();
+
+	private String getExpectedRecordJsonTwoRecords() {
+		String expectedJson = "{\n";
+		expectedJson += "    \"children\": [\n";
+		expectedJson += "        {\n";
+		expectedJson += "            \"children\": [{\n";
+		expectedJson += "                \"children\": [\n";
+		expectedJson += "                    {\n";
+		expectedJson += "                        \"name\": \"type\",\n";
+		expectedJson += "                        \"value\": \"place\"\n";
+		expectedJson += "                    },\n";
+		expectedJson += "                    {\n";
+		expectedJson += "                        \"name\": \"id\",\n";
+		expectedJson += "                        \"value\": \"place:0001\"\n";
+		expectedJson += "                    },\n";
+		expectedJson += "                    {\n";
+		expectedJson += "                        \"children\": [\n";
+		expectedJson += "                            {\n";
+		expectedJson += "                                \"name\": \"linkedRecordType\",\n";
+		expectedJson += "                                \"value\": \"system\"\n";
+		expectedJson += "                            },\n";
+		expectedJson += "                            {\n";
+		expectedJson += "                                \"name\": \"linkedRecordId\",\n";
+		expectedJson += "                                \"value\": \"cora\"\n";
+		expectedJson += "                            }\n";
+		expectedJson += "                        ],\n";
+		expectedJson += "                        \"name\": \"dataDivider\"\n";
+		expectedJson += "                    }\n";
+		expectedJson += "                ],\n";
+		expectedJson += "                \"name\": \"recordInfo\"\n";
+		expectedJson += "            }],\n";
+		expectedJson += "            \"name\": \"authority\"\n";
+		expectedJson += "        },\n";
+		expectedJson += "        {\n";
+		expectedJson += "            \"children\": [{\n";
+		expectedJson += "                \"children\": [\n";
+		expectedJson += "                    {\n";
+		expectedJson += "                        \"name\": \"type\",\n";
+		expectedJson += "                        \"value\": \"place\"\n";
+		expectedJson += "                    },\n";
+		expectedJson += "                    {\n";
+		expectedJson += "                        \"name\": \"id\",\n";
+		expectedJson += "                        \"value\": \"place:0002\"\n";
+		expectedJson += "                    },\n";
+		expectedJson += "                    {\n";
+		expectedJson += "                        \"children\": [\n";
+		expectedJson += "                            {\n";
+		expectedJson += "                                \"name\": \"linkedRecordType\",\n";
+		expectedJson += "                                \"value\": \"system\"\n";
+		expectedJson += "                            },\n";
+		expectedJson += "                            {\n";
+		expectedJson += "                                \"name\": \"linkedRecordId\",\n";
+		expectedJson += "                                \"value\": \"cora\"\n";
+		expectedJson += "                            }\n";
+		expectedJson += "                        ],\n";
+		expectedJson += "                        \"name\": \"dataDivider\"\n";
+		expectedJson += "                    }\n";
+		expectedJson += "                ],\n";
+		expectedJson += "                \"name\": \"recordInfo\"\n";
+		expectedJson += "            }],\n";
+		expectedJson += "            \"name\": \"authority\"\n";
+		expectedJson += "        }\n";
+		expectedJson += "    ],\n";
+		expectedJson += "    \"name\": \"recordList\"\n";
+		expectedJson += "}\n";
+		return expectedJson;
+	}
 
 	@BeforeMethod
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
@@ -152,7 +241,7 @@ public class RecordStorageOnDiskTest {
 		String line = null;
 		String json = "";
 		while ((line = reader.readLine()) != null) {
-			json += line;
+			json += line + "\n";
 		}
 		reader.close();
 		return json;
@@ -214,22 +303,82 @@ public class RecordStorageOnDiskTest {
 
 		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
 
-		String expectedLinkListJson = "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]" + ",\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"}" + ",{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
-				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
-				+ ",\"name\":\"collectedDataLinks\"}],\"name\":\"place:0001\"}]"
-				+ ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
+		String expectedLinkListJson = "{\n";
+		expectedLinkListJson += "    \"children\": [{\n";
+		expectedLinkListJson += "        \"children\": [{\n";
+		expectedLinkListJson += "            \"children\": [{\n";
+		expectedLinkListJson += "                \"children\": [\n";
+		expectedLinkListJson += "                    {\n";
+		expectedLinkListJson += "                        \"children\": [\n";
+		expectedLinkListJson += "                            {\n";
+		expectedLinkListJson += "                                \"children\": [\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                        \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson += "                                    },\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                        \"value\": \"place:0001\"\n";
+		expectedLinkListJson += "                                    }\n";
+		expectedLinkListJson += "                                ],\n";
+		expectedLinkListJson += "                                \"name\": \"from\"\n";
+		expectedLinkListJson += "                            },\n";
+		expectedLinkListJson += "                            {\n";
+		expectedLinkListJson += "                                \"children\": [\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                        \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                                    },\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                        \"value\": \"toRecordId\"\n";
+		expectedLinkListJson += "                                    }\n";
+		expectedLinkListJson += "                                ],\n";
+		expectedLinkListJson += "                                \"name\": \"to\"\n";
+		expectedLinkListJson += "                            }\n";
+		expectedLinkListJson += "                        ],\n";
+		expectedLinkListJson += "                        \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson += "                    },\n";
+		expectedLinkListJson += "                    {\n";
+		expectedLinkListJson += "                        \"children\": [\n";
+		expectedLinkListJson += "                            {\n";
+		expectedLinkListJson += "                                \"children\": [\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                        \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson += "                                    },\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                        \"value\": \"place:0001\"\n";
+		expectedLinkListJson += "                                    }\n";
+		expectedLinkListJson += "                                ],\n";
+		expectedLinkListJson += "                                \"name\": \"from\"\n";
+		expectedLinkListJson += "                            },\n";
+		expectedLinkListJson += "                            {\n";
+		expectedLinkListJson += "                                \"children\": [\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                        \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                                    },\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                        \"value\": \"toRecordId2\"\n";
+		expectedLinkListJson += "                                    }\n";
+		expectedLinkListJson += "                                ],\n";
+		expectedLinkListJson += "                                \"name\": \"to\"\n";
+		expectedLinkListJson += "                            }\n";
+		expectedLinkListJson += "                        ],\n";
+		expectedLinkListJson += "                        \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson += "                    }\n";
+		expectedLinkListJson += "                ],\n";
+		expectedLinkListJson += "                \"name\": \"collectedDataLinks\"\n";
+		expectedLinkListJson += "            }],\n";
+		expectedLinkListJson += "            \"name\": \"place:0001\"\n";
+		expectedLinkListJson += "        }],\n";
+		expectedLinkListJson += "        \"name\": \"place\"\n";
+		expectedLinkListJson += "    }],\n";
+		expectedLinkListJson += "    \"name\": \"linkLists\"\n";
+		expectedLinkListJson += "}\n";
 		Path path = Paths.get(basePath, LINK_LISTS_FILENAME);
 		assertTrue(Files.exists(path));
 		assertEquals(readJsonFileFromDisk(LINK_LISTS_FILENAME), expectedLinkListJson);
@@ -245,22 +394,82 @@ public class RecordStorageOnDiskTest {
 		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
 		recordStorage.create("organisation", "organisation:0001", dataGroup, emptyLinkList, "cora");
 
-		String expectedLinkListJson = "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]" + ",\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"}" + ",{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
-				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
-				+ ",\"name\":\"collectedDataLinks\"}],\"name\":\"place:0001\"}]"
-				+ ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
+		String expectedLinkListJson = "{\n";
+		expectedLinkListJson += "    \"children\": [{\n";
+		expectedLinkListJson += "        \"children\": [{\n";
+		expectedLinkListJson += "            \"children\": [{\n";
+		expectedLinkListJson += "                \"children\": [\n";
+		expectedLinkListJson += "                    {\n";
+		expectedLinkListJson += "                        \"children\": [\n";
+		expectedLinkListJson += "                            {\n";
+		expectedLinkListJson += "                                \"children\": [\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                        \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson += "                                    },\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                        \"value\": \"place:0001\"\n";
+		expectedLinkListJson += "                                    }\n";
+		expectedLinkListJson += "                                ],\n";
+		expectedLinkListJson += "                                \"name\": \"from\"\n";
+		expectedLinkListJson += "                            },\n";
+		expectedLinkListJson += "                            {\n";
+		expectedLinkListJson += "                                \"children\": [\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                        \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                                    },\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                        \"value\": \"toRecordId\"\n";
+		expectedLinkListJson += "                                    }\n";
+		expectedLinkListJson += "                                ],\n";
+		expectedLinkListJson += "                                \"name\": \"to\"\n";
+		expectedLinkListJson += "                            }\n";
+		expectedLinkListJson += "                        ],\n";
+		expectedLinkListJson += "                        \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson += "                    },\n";
+		expectedLinkListJson += "                    {\n";
+		expectedLinkListJson += "                        \"children\": [\n";
+		expectedLinkListJson += "                            {\n";
+		expectedLinkListJson += "                                \"children\": [\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                        \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson += "                                    },\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                        \"value\": \"place:0001\"\n";
+		expectedLinkListJson += "                                    }\n";
+		expectedLinkListJson += "                                ],\n";
+		expectedLinkListJson += "                                \"name\": \"from\"\n";
+		expectedLinkListJson += "                            },\n";
+		expectedLinkListJson += "                            {\n";
+		expectedLinkListJson += "                                \"children\": [\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                        \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                                    },\n";
+		expectedLinkListJson += "                                    {\n";
+		expectedLinkListJson += "                                        \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                        \"value\": \"toRecordId2\"\n";
+		expectedLinkListJson += "                                    }\n";
+		expectedLinkListJson += "                                ],\n";
+		expectedLinkListJson += "                                \"name\": \"to\"\n";
+		expectedLinkListJson += "                            }\n";
+		expectedLinkListJson += "                        ],\n";
+		expectedLinkListJson += "                        \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson += "                    }\n";
+		expectedLinkListJson += "                ],\n";
+		expectedLinkListJson += "                \"name\": \"collectedDataLinks\"\n";
+		expectedLinkListJson += "            }],\n";
+		expectedLinkListJson += "            \"name\": \"place:0001\"\n";
+		expectedLinkListJson += "        }],\n";
+		expectedLinkListJson += "        \"name\": \"place\"\n";
+		expectedLinkListJson += "    }],\n";
+		expectedLinkListJson += "    \"name\": \"linkLists\"\n";
+		expectedLinkListJson += "}\n";
 		Path path = Paths.get(basePath, LINK_LISTS_FILENAME);
 		assertTrue(Files.exists(path));
 		assertEquals(readJsonFileFromDisk(LINK_LISTS_FILENAME), expectedLinkListJson);
@@ -292,73 +501,386 @@ public class RecordStorageOnDiskTest {
 		recordStorage.create("organisation", "org:0002", dataGroup, linkListWithTwoLinks,
 				"jsClient");
 
-		String expectedLinkListJson = "{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"},"
-				+ "{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}],\"name\":\"to\"}],"
-				+ "\"name\":\"recordToRecordLink\"},{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
-				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}],\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"}],\"name\":\"collectedDataLinks\"}]"
-				+ ",\"name\":\"org:0001\"}],\"name\":\"organisation\"},{\"children\":[{"
-				+ "\"children\":[{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
-				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}],\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"},{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"},"
-				+ "{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}],\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"}],\"name\":\"collectedDataLinks\"}],"
-				+ "\"name\":\"place:0001\"}],\"name\":\"place\"}],\"name\":\"linkLists\"}";
 		Path path = Paths.get(basePath, LINK_LISTS_FILENAME);
 		assertTrue(Files.exists(path));
+		String expectedLinkListJson = "{\n";
+		expectedLinkListJson += "    \"children\": [\n";
+		expectedLinkListJson += "        {\n";
+		expectedLinkListJson += "            \"children\": [{\n";
+		expectedLinkListJson += "                \"children\": [{\n";
+		expectedLinkListJson += "                    \"children\": [\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"children\": [\n";
+		expectedLinkListJson += "                                {\n";
+		expectedLinkListJson += "                                    \"children\": [\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                            \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson += "                                        },\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                            \"value\": \"place:0001\"\n";
+		expectedLinkListJson += "                                        }\n";
+		expectedLinkListJson += "                                    ],\n";
+		expectedLinkListJson += "                                    \"name\": \"from\"\n";
+		expectedLinkListJson += "                                },\n";
+		expectedLinkListJson += "                                {\n";
+		expectedLinkListJson += "                                    \"children\": [\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                            \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                                        },\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                            \"value\": \"toRecordId\"\n";
+		expectedLinkListJson += "                                        }\n";
+		expectedLinkListJson += "                                    ],\n";
+		expectedLinkListJson += "                                    \"name\": \"to\"\n";
+		expectedLinkListJson += "                                }\n";
+		expectedLinkListJson += "                            ],\n";
+		expectedLinkListJson += "                            \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson += "                        },\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"children\": [\n";
+		expectedLinkListJson += "                                {\n";
+		expectedLinkListJson += "                                    \"children\": [\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                            \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson += "                                        },\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                            \"value\": \"place:0001\"\n";
+		expectedLinkListJson += "                                        }\n";
+		expectedLinkListJson += "                                    ],\n";
+		expectedLinkListJson += "                                    \"name\": \"from\"\n";
+		expectedLinkListJson += "                                },\n";
+		expectedLinkListJson += "                                {\n";
+		expectedLinkListJson += "                                    \"children\": [\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                            \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                                        },\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                            \"value\": \"toRecordId2\"\n";
+		expectedLinkListJson += "                                        }\n";
+		expectedLinkListJson += "                                    ],\n";
+		expectedLinkListJson += "                                    \"name\": \"to\"\n";
+		expectedLinkListJson += "                                }\n";
+		expectedLinkListJson += "                            ],\n";
+		expectedLinkListJson += "                            \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson += "                        }\n";
+		expectedLinkListJson += "                    ],\n";
+		expectedLinkListJson += "                    \"name\": \"collectedDataLinks\"\n";
+		expectedLinkListJson += "                }],\n";
+		expectedLinkListJson += "                \"name\": \"org:0001\"\n";
+		expectedLinkListJson += "            }],\n";
+		expectedLinkListJson += "            \"name\": \"organisation\"\n";
+		expectedLinkListJson += "        },\n";
+		expectedLinkListJson += "        {\n";
+		expectedLinkListJson += "            \"children\": [{\n";
+		expectedLinkListJson += "                \"children\": [{\n";
+		expectedLinkListJson += "                    \"children\": [\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"children\": [\n";
+		expectedLinkListJson += "                                {\n";
+		expectedLinkListJson += "                                    \"children\": [\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                            \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson += "                                        },\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                            \"value\": \"place:0001\"\n";
+		expectedLinkListJson += "                                        }\n";
+		expectedLinkListJson += "                                    ],\n";
+		expectedLinkListJson += "                                    \"name\": \"from\"\n";
+		expectedLinkListJson += "                                },\n";
+		expectedLinkListJson += "                                {\n";
+		expectedLinkListJson += "                                    \"children\": [\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                            \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                                        },\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                            \"value\": \"toRecordId\"\n";
+		expectedLinkListJson += "                                        }\n";
+		expectedLinkListJson += "                                    ],\n";
+		expectedLinkListJson += "                                    \"name\": \"to\"\n";
+		expectedLinkListJson += "                                }\n";
+		expectedLinkListJson += "                            ],\n";
+		expectedLinkListJson += "                            \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson += "                        },\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"children\": [\n";
+		expectedLinkListJson += "                                {\n";
+		expectedLinkListJson += "                                    \"children\": [\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                            \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson += "                                        },\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                            \"value\": \"place:0001\"\n";
+		expectedLinkListJson += "                                        }\n";
+		expectedLinkListJson += "                                    ],\n";
+		expectedLinkListJson += "                                    \"name\": \"from\"\n";
+		expectedLinkListJson += "                                },\n";
+		expectedLinkListJson += "                                {\n";
+		expectedLinkListJson += "                                    \"children\": [\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                                            \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                                        },\n";
+		expectedLinkListJson += "                                        {\n";
+		expectedLinkListJson += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                                            \"value\": \"toRecordId2\"\n";
+		expectedLinkListJson += "                                        }\n";
+		expectedLinkListJson += "                                    ],\n";
+		expectedLinkListJson += "                                    \"name\": \"to\"\n";
+		expectedLinkListJson += "                                }\n";
+		expectedLinkListJson += "                            ],\n";
+		expectedLinkListJson += "                            \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson += "                        }\n";
+		expectedLinkListJson += "                    ],\n";
+		expectedLinkListJson += "                    \"name\": \"collectedDataLinks\"\n";
+		expectedLinkListJson += "                }],\n";
+		expectedLinkListJson += "                \"name\": \"place:0001\"\n";
+		expectedLinkListJson += "            }],\n";
+		expectedLinkListJson += "            \"name\": \"place\"\n";
+		expectedLinkListJson += "        }\n";
+		expectedLinkListJson += "    ],\n";
+		expectedLinkListJson += "    \"name\": \"linkLists\"\n";
+		expectedLinkListJson += "}\n";
 		assertEquals(readJsonFileFromDisk(LINK_LISTS_FILENAME), expectedLinkListJson);
 
-		String expectedLinkListJson2 = "{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
-				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}],\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"},{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"},"
-				+ "{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}],\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"}],\"name\":\"collectedDataLinks\"}]"
-				+ ",\"name\":\"org:0002\"}],\"name\":\"organisation\"},{\"children\":["
-				+ "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"},"
-				+ "{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}],\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"},{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
-				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}],\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"}],\"name\":\"collectedDataLinks\"}]"
-				+ ",\"name\":\"place:0002\"},{\"children\":[{\"children\":[{\"children\":["
-				+ "{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
-				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}],\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"},{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"},"
-				+ "{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}],\"name\":\"from\"}"
-				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}],\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"}],\"name\":\"collectedDataLinks\"}]"
-				+ ",\"name\":\"place:0003\"}],\"name\":\"place\"}],\"name\":\"linkLists\"}";
 		Path path2 = Paths.get(basePath, "linkLists_jsClient.json");
 		assertTrue(Files.exists(path2));
+		String expectedLinkListJson2 = "{\n";
+		expectedLinkListJson2 += "    \"children\": [\n";
+		expectedLinkListJson2 += "        {\n";
+		expectedLinkListJson2 += "            \"children\": [{\n";
+		expectedLinkListJson2 += "                \"children\": [{\n";
+		expectedLinkListJson2 += "                    \"children\": [\n";
+		expectedLinkListJson2 += "                        {\n";
+		expectedLinkListJson2 += "                            \"children\": [\n";
+		expectedLinkListJson2 += "                                {\n";
+		expectedLinkListJson2 += "                                    \"children\": [\n";
+		expectedLinkListJson2 += "                                        {\n";
+		expectedLinkListJson2 += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                            \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson2 += "                                        },\n";
+		expectedLinkListJson2 += "                                        {\n";
+		expectedLinkListJson2 += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                            \"value\": \"place:0001\"\n";
+		expectedLinkListJson2 += "                                        }\n";
+		expectedLinkListJson2 += "                                    ],\n";
+		expectedLinkListJson2 += "                                    \"name\": \"from\"\n";
+		expectedLinkListJson2 += "                                },\n";
+		expectedLinkListJson2 += "                                {\n";
+		expectedLinkListJson2 += "                                    \"children\": [\n";
+		expectedLinkListJson2 += "                                        {\n";
+		expectedLinkListJson2 += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                            \"value\": \"toRecordType\"\n";
+		expectedLinkListJson2 += "                                        },\n";
+		expectedLinkListJson2 += "                                        {\n";
+		expectedLinkListJson2 += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                            \"value\": \"toRecordId\"\n";
+		expectedLinkListJson2 += "                                        }\n";
+		expectedLinkListJson2 += "                                    ],\n";
+		expectedLinkListJson2 += "                                    \"name\": \"to\"\n";
+		expectedLinkListJson2 += "                                }\n";
+		expectedLinkListJson2 += "                            ],\n";
+		expectedLinkListJson2 += "                            \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson2 += "                        },\n";
+		expectedLinkListJson2 += "                        {\n";
+		expectedLinkListJson2 += "                            \"children\": [\n";
+		expectedLinkListJson2 += "                                {\n";
+		expectedLinkListJson2 += "                                    \"children\": [\n";
+		expectedLinkListJson2 += "                                        {\n";
+		expectedLinkListJson2 += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                            \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson2 += "                                        },\n";
+		expectedLinkListJson2 += "                                        {\n";
+		expectedLinkListJson2 += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                            \"value\": \"place:0001\"\n";
+		expectedLinkListJson2 += "                                        }\n";
+		expectedLinkListJson2 += "                                    ],\n";
+		expectedLinkListJson2 += "                                    \"name\": \"from\"\n";
+		expectedLinkListJson2 += "                                },\n";
+		expectedLinkListJson2 += "                                {\n";
+		expectedLinkListJson2 += "                                    \"children\": [\n";
+		expectedLinkListJson2 += "                                        {\n";
+		expectedLinkListJson2 += "                                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                            \"value\": \"toRecordType\"\n";
+		expectedLinkListJson2 += "                                        },\n";
+		expectedLinkListJson2 += "                                        {\n";
+		expectedLinkListJson2 += "                                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                            \"value\": \"toRecordId2\"\n";
+		expectedLinkListJson2 += "                                        }\n";
+		expectedLinkListJson2 += "                                    ],\n";
+		expectedLinkListJson2 += "                                    \"name\": \"to\"\n";
+		expectedLinkListJson2 += "                                }\n";
+		expectedLinkListJson2 += "                            ],\n";
+		expectedLinkListJson2 += "                            \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson2 += "                        }\n";
+		expectedLinkListJson2 += "                    ],\n";
+		expectedLinkListJson2 += "                    \"name\": \"collectedDataLinks\"\n";
+		expectedLinkListJson2 += "                }],\n";
+		expectedLinkListJson2 += "                \"name\": \"org:0002\"\n";
+		expectedLinkListJson2 += "            }],\n";
+		expectedLinkListJson2 += "            \"name\": \"organisation\"\n";
+		expectedLinkListJson2 += "        },\n";
+		expectedLinkListJson2 += "        {\n";
+		expectedLinkListJson2 += "            \"children\": [\n";
+		expectedLinkListJson2 += "                {\n";
+		expectedLinkListJson2 += "                    \"children\": [{\n";
+		expectedLinkListJson2 += "                        \"children\": [\n";
+		expectedLinkListJson2 += "                            {\n";
+		expectedLinkListJson2 += "                                \"children\": [\n";
+		expectedLinkListJson2 += "                                    {\n";
+		expectedLinkListJson2 += "                                        \"children\": [\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson2 += "                                            },\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"place:0001\"\n";
+		expectedLinkListJson2 += "                                            }\n";
+		expectedLinkListJson2 += "                                        ],\n";
+		expectedLinkListJson2 += "                                        \"name\": \"from\"\n";
+		expectedLinkListJson2 += "                                    },\n";
+		expectedLinkListJson2 += "                                    {\n";
+		expectedLinkListJson2 += "                                        \"children\": [\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"toRecordType\"\n";
+		expectedLinkListJson2 += "                                            },\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"toRecordId\"\n";
+		expectedLinkListJson2 += "                                            }\n";
+		expectedLinkListJson2 += "                                        ],\n";
+		expectedLinkListJson2 += "                                        \"name\": \"to\"\n";
+		expectedLinkListJson2 += "                                    }\n";
+		expectedLinkListJson2 += "                                ],\n";
+		expectedLinkListJson2 += "                                \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson2 += "                            },\n";
+		expectedLinkListJson2 += "                            {\n";
+		expectedLinkListJson2 += "                                \"children\": [\n";
+		expectedLinkListJson2 += "                                    {\n";
+		expectedLinkListJson2 += "                                        \"children\": [\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson2 += "                                            },\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"place:0001\"\n";
+		expectedLinkListJson2 += "                                            }\n";
+		expectedLinkListJson2 += "                                        ],\n";
+		expectedLinkListJson2 += "                                        \"name\": \"from\"\n";
+		expectedLinkListJson2 += "                                    },\n";
+		expectedLinkListJson2 += "                                    {\n";
+		expectedLinkListJson2 += "                                        \"children\": [\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"toRecordType\"\n";
+		expectedLinkListJson2 += "                                            },\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"toRecordId2\"\n";
+		expectedLinkListJson2 += "                                            }\n";
+		expectedLinkListJson2 += "                                        ],\n";
+		expectedLinkListJson2 += "                                        \"name\": \"to\"\n";
+		expectedLinkListJson2 += "                                    }\n";
+		expectedLinkListJson2 += "                                ],\n";
+		expectedLinkListJson2 += "                                \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson2 += "                            }\n";
+		expectedLinkListJson2 += "                        ],\n";
+		expectedLinkListJson2 += "                        \"name\": \"collectedDataLinks\"\n";
+		expectedLinkListJson2 += "                    }],\n";
+		expectedLinkListJson2 += "                    \"name\": \"place:0002\"\n";
+		expectedLinkListJson2 += "                },\n";
+		expectedLinkListJson2 += "                {\n";
+		expectedLinkListJson2 += "                    \"children\": [{\n";
+		expectedLinkListJson2 += "                        \"children\": [\n";
+		expectedLinkListJson2 += "                            {\n";
+		expectedLinkListJson2 += "                                \"children\": [\n";
+		expectedLinkListJson2 += "                                    {\n";
+		expectedLinkListJson2 += "                                        \"children\": [\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson2 += "                                            },\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"place:0001\"\n";
+		expectedLinkListJson2 += "                                            }\n";
+		expectedLinkListJson2 += "                                        ],\n";
+		expectedLinkListJson2 += "                                        \"name\": \"from\"\n";
+		expectedLinkListJson2 += "                                    },\n";
+		expectedLinkListJson2 += "                                    {\n";
+		expectedLinkListJson2 += "                                        \"children\": [\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"toRecordType\"\n";
+		expectedLinkListJson2 += "                                            },\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"toRecordId\"\n";
+		expectedLinkListJson2 += "                                            }\n";
+		expectedLinkListJson2 += "                                        ],\n";
+		expectedLinkListJson2 += "                                        \"name\": \"to\"\n";
+		expectedLinkListJson2 += "                                    }\n";
+		expectedLinkListJson2 += "                                ],\n";
+		expectedLinkListJson2 += "                                \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson2 += "                            },\n";
+		expectedLinkListJson2 += "                            {\n";
+		expectedLinkListJson2 += "                                \"children\": [\n";
+		expectedLinkListJson2 += "                                    {\n";
+		expectedLinkListJson2 += "                                        \"children\": [\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson2 += "                                            },\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"place:0001\"\n";
+		expectedLinkListJson2 += "                                            }\n";
+		expectedLinkListJson2 += "                                        ],\n";
+		expectedLinkListJson2 += "                                        \"name\": \"from\"\n";
+		expectedLinkListJson2 += "                                    },\n";
+		expectedLinkListJson2 += "                                    {\n";
+		expectedLinkListJson2 += "                                        \"children\": [\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"toRecordType\"\n";
+		expectedLinkListJson2 += "                                            },\n";
+		expectedLinkListJson2 += "                                            {\n";
+		expectedLinkListJson2 += "                                                \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson2 += "                                                \"value\": \"toRecordId2\"\n";
+		expectedLinkListJson2 += "                                            }\n";
+		expectedLinkListJson2 += "                                        ],\n";
+		expectedLinkListJson2 += "                                        \"name\": \"to\"\n";
+		expectedLinkListJson2 += "                                    }\n";
+		expectedLinkListJson2 += "                                ],\n";
+		expectedLinkListJson2 += "                                \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson2 += "                            }\n";
+		expectedLinkListJson2 += "                        ],\n";
+		expectedLinkListJson2 += "                        \"name\": \"collectedDataLinks\"\n";
+		expectedLinkListJson2 += "                    }],\n";
+		expectedLinkListJson2 += "                    \"name\": \"place:0003\"\n";
+		expectedLinkListJson2 += "                }\n";
+		expectedLinkListJson2 += "            ],\n";
+		expectedLinkListJson2 += "            \"name\": \"place\"\n";
+		expectedLinkListJson2 += "        }\n";
+		expectedLinkListJson2 += "    ],\n";
+		expectedLinkListJson2 += "    \"name\": \"linkLists\"\n";
+		expectedLinkListJson2 += "}\n";
 		assertEquals(readJsonFileFromDisk("linkLists_jsClient.json"), expectedLinkListJson2);
 
 		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
@@ -451,14 +973,45 @@ public class RecordStorageOnDiskTest {
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("someNameInData", "someValue"));
 		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
 
-		String json = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
-				+ ",\"value\":\"place\"}" + ",{\"name\":\"id\",\"value\":\"place:0001\"}"
-				+ ",{\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"cora\"}],\"name\":\"dataDivider\"}]"
-				+ ",\"name\":\"recordInfo\"}"
-				+ ",{\"name\":\"someNameInData\",\"value\":\"someValue\"}"
-				+ "],\"name\":\"authority\"}],\"name\":\"recordList\"}";
-		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), json);
+		String expectedJson = "{\n";
+		expectedJson += "    \"children\": [{\n";
+		expectedJson += "        \"children\": [\n";
+		expectedJson += "            {\n";
+		expectedJson += "                \"children\": [\n";
+		expectedJson += "                    {\n";
+		expectedJson += "                        \"name\": \"type\",\n";
+		expectedJson += "                        \"value\": \"place\"\n";
+		expectedJson += "                    },\n";
+		expectedJson += "                    {\n";
+		expectedJson += "                        \"name\": \"id\",\n";
+		expectedJson += "                        \"value\": \"place:0001\"\n";
+		expectedJson += "                    },\n";
+		expectedJson += "                    {\n";
+		expectedJson += "                        \"children\": [\n";
+		expectedJson += "                            {\n";
+		expectedJson += "                                \"name\": \"linkedRecordType\",\n";
+		expectedJson += "                                \"value\": \"system\"\n";
+		expectedJson += "                            },\n";
+		expectedJson += "                            {\n";
+		expectedJson += "                                \"name\": \"linkedRecordId\",\n";
+		expectedJson += "                                \"value\": \"cora\"\n";
+		expectedJson += "                            }\n";
+		expectedJson += "                        ],\n";
+		expectedJson += "                        \"name\": \"dataDivider\"\n";
+		expectedJson += "                    }\n";
+		expectedJson += "                ],\n";
+		expectedJson += "                \"name\": \"recordInfo\"\n";
+		expectedJson += "            },\n";
+		expectedJson += "            {\n";
+		expectedJson += "                \"name\": \"someNameInData\",\n";
+		expectedJson += "                \"value\": \"someValue\"\n";
+		expectedJson += "            }\n";
+		expectedJson += "        ],\n";
+		expectedJson += "        \"name\": \"authority\"\n";
+		expectedJson += "    }],\n";
+		expectedJson += "    \"name\": \"recordList\"\n";
+		expectedJson += "}\n";
+		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedJson);
 	}
 
 	@Test
@@ -523,26 +1076,99 @@ public class RecordStorageOnDiskTest {
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
 		DataGroup linkListPlace = recordStorage.readLinkList("place", "place:0001");
-		String expectedLinkListJson = "{\"children\":[" + "{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]"
-				+ ",\"name\":\"to\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId\"}]" + ",\"name\":\"to\"}]"
-				+ ",\"name\":\"recordToRecordLink\"}" + ",{\"children\":[{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"place:0001\"}]"
-				+ ",\"name\":\"from\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
-				+ ",\"name\":\"to\"},{\"children\":["
-				+ "{\"name\":\"linkedRecordType\",\"value\":\"toRecordType\"}"
-				+ ",{\"name\":\"linkedRecordId\",\"value\":\"toRecordId2\"}]"
-				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
-				+ ",\"name\":\"collectedDataLinks\"}";
+		String expectedLinkListJson = "{\n";
+		expectedLinkListJson += "    \"children\": [\n";
+		expectedLinkListJson += "        {\n";
+		expectedLinkListJson += "            \"children\": [\n";
+		expectedLinkListJson += "                {\n";
+		expectedLinkListJson += "                    \"children\": [\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                            \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson += "                        },\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                            \"value\": \"place:0001\"\n";
+		expectedLinkListJson += "                        }\n";
+		expectedLinkListJson += "                    ],\n";
+		expectedLinkListJson += "                    \"name\": \"from\"\n";
+		expectedLinkListJson += "                },\n";
+		expectedLinkListJson += "                {\n";
+		expectedLinkListJson += "                    \"children\": [\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                            \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                        },\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                            \"value\": \"toRecordId\"\n";
+		expectedLinkListJson += "                        }\n";
+		expectedLinkListJson += "                    ],\n";
+		expectedLinkListJson += "                    \"name\": \"to\"\n";
+		expectedLinkListJson += "                },\n";
+		expectedLinkListJson += "                {\n";
+		expectedLinkListJson += "                    \"children\": [\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                            \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                        },\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                            \"value\": \"toRecordId\"\n";
+		expectedLinkListJson += "                        }\n";
+		expectedLinkListJson += "                    ],\n";
+		expectedLinkListJson += "                    \"name\": \"to\"\n";
+		expectedLinkListJson += "                }\n";
+		expectedLinkListJson += "            ],\n";
+		expectedLinkListJson += "            \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson += "        },\n";
+		expectedLinkListJson += "        {\n";
+		expectedLinkListJson += "            \"children\": [\n";
+		expectedLinkListJson += "                {\n";
+		expectedLinkListJson += "                    \"children\": [\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                            \"value\": \"fromRecordType\"\n";
+		expectedLinkListJson += "                        },\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                            \"value\": \"place:0001\"\n";
+		expectedLinkListJson += "                        }\n";
+		expectedLinkListJson += "                    ],\n";
+		expectedLinkListJson += "                    \"name\": \"from\"\n";
+		expectedLinkListJson += "                },\n";
+		expectedLinkListJson += "                {\n";
+		expectedLinkListJson += "                    \"children\": [\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                            \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                        },\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                            \"value\": \"toRecordId2\"\n";
+		expectedLinkListJson += "                        }\n";
+		expectedLinkListJson += "                    ],\n";
+		expectedLinkListJson += "                    \"name\": \"to\"\n";
+		expectedLinkListJson += "                },\n";
+		expectedLinkListJson += "                {\n";
+		expectedLinkListJson += "                    \"children\": [\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordType\",\n";
+		expectedLinkListJson += "                            \"value\": \"toRecordType\"\n";
+		expectedLinkListJson += "                        },\n";
+		expectedLinkListJson += "                        {\n";
+		expectedLinkListJson += "                            \"name\": \"linkedRecordId\",\n";
+		expectedLinkListJson += "                            \"value\": \"toRecordId2\"\n";
+		expectedLinkListJson += "                        }\n";
+		expectedLinkListJson += "                    ],\n";
+		expectedLinkListJson += "                    \"name\": \"to\"\n";
+		expectedLinkListJson += "                }\n";
+		expectedLinkListJson += "            ],\n";
+		expectedLinkListJson += "            \"name\": \"recordToRecordLink\"\n";
+		expectedLinkListJson += "        }\n";
+		expectedLinkListJson += "    ],\n";
+		expectedLinkListJson += "    \"name\": \"collectedDataLinks\"\n";
+		expectedLinkListJson += "}";
 		assertEquals(convertDataGroupToJsonString(linkListPlace), expectedLinkListJson);
 
 		DataGroup dataGroupTo = createDataGroupWithRecordInfo();
