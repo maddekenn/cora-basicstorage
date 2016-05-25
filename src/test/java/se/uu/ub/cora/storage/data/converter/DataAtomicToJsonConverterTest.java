@@ -1,5 +1,6 @@
 /*
  * Copyright 2015 Uppsala University Library
+ * Copyright 2016 Olov McKie
  *
  * This file is part of Cora.
  *
@@ -34,24 +35,30 @@ public class DataAtomicToJsonConverterTest {
 	public void beforeMethod() {
 		dataAtomic = DataAtomic.withNameInDataAndValue("atomicNameInData", "atomicValue");
 		OrgJsonBuilderFactoryAdapter factory = new OrgJsonBuilderFactoryAdapter();
-		converter = DataAtomicToJsonConverter.usingJsonFactoryForDataAtomic(factory,
-				dataAtomic);
+		converter = DataAtomicToJsonConverter.usingJsonFactoryForDataAtomic(factory, dataAtomic);
 	}
 
 	@Test
 	public void testToJson() {
 		String json = converter.toJson();
 
-		Assert.assertEquals(json, "{\"name\":\"atomicNameInData\",\"value\":\"atomicValue\"}");
+		String expectedJson = "{\n";
+		expectedJson += "    \"name\": \"atomicNameInData\",\n";
+		expectedJson += "    \"value\": \"atomicValue\"\n";
+		expectedJson += "}";
+		Assert.assertEquals(json, expectedJson);
 	}
 
 	@Test
 	public void testToJsonWithRepeatId() {
 		dataAtomic.setRepeatId("2");
 		String json = converter.toJson();
-
-		Assert.assertEquals(json,
-				"{\"repeatId\":\"2\",\"name\":\"atomicNameInData\",\"value\":\"atomicValue\"}");
+		String expectedJson = "{\n";
+		expectedJson += "    \"repeatId\": \"2\",\n";
+		expectedJson += "    \"name\": \"atomicNameInData\",\n";
+		expectedJson += "    \"value\": \"atomicValue\"\n";
+		expectedJson += "}";
+		Assert.assertEquals(json, expectedJson);
 	}
 
 	@Test
@@ -59,18 +66,24 @@ public class DataAtomicToJsonConverterTest {
 		dataAtomic.setRepeatId("");
 		String json = converter.toJson();
 
-		Assert.assertEquals(json, "{\"name\":\"atomicNameInData\",\"value\":\"atomicValue\"}");
+		String expectedJson = "{\n";
+		expectedJson += "    \"name\": \"atomicNameInData\",\n";
+		expectedJson += "    \"value\": \"atomicValue\"\n";
+		expectedJson += "}";
+		Assert.assertEquals(json, expectedJson);
 	}
 
 	@Test
 	public void testToJsonEmptyValue() {
-		DataAtomic dataAtomic = DataAtomic.withNameInDataAndValue("atomicNameInData",
-				"");
+		DataAtomic dataAtomic = DataAtomic.withNameInDataAndValue("atomicNameInData", "");
 		OrgJsonBuilderFactoryAdapter factory = new OrgJsonBuilderFactoryAdapter();
-		converter = DataAtomicToJsonConverter.usingJsonFactoryForDataAtomic(factory,
-				dataAtomic);
+		converter = DataAtomicToJsonConverter.usingJsonFactoryForDataAtomic(factory, dataAtomic);
 		String json = converter.toJson();
 
-		Assert.assertEquals(json, "{\"name\":\"atomicNameInData\",\"value\":\"\"}");
+		String expectedJson = "{\n";
+		expectedJson += "    \"name\": \"atomicNameInData\",\n";
+		expectedJson += "    \"value\": \"\"\n";
+		expectedJson += "}";
+		Assert.assertEquals(json, expectedJson);
 	}
 }

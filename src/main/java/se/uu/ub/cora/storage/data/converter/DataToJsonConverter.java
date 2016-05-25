@@ -1,5 +1,6 @@
 /*
  * Copyright 2015 Uppsala University Library
+ * Copyright 2016 Olov McKie
  *
  * This file is part of Cora.
  *
@@ -23,9 +24,9 @@ import se.uu.ub.cora.json.builder.JsonObjectBuilder;
 
 public abstract class DataToJsonConverter {
 
-	public String toJson(){
+	public String toJson() {
 		JsonObjectBuilder jsonObjectBuilder = toJsonObjectBuilder();
-		return jsonObjectBuilder.toJsonFormattedString();
+		return jsonObjectBuilder.toJsonFormattedPrettyString();
 	}
 
 	abstract JsonObjectBuilder toJsonObjectBuilder();

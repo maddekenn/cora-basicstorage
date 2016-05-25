@@ -1,5 +1,6 @@
 /*
  * Copyright 2015 Uppsala University Library
+ * Copyright 2016 Olov McKie
  *
  * This file is part of Cora.
  *
@@ -46,8 +47,8 @@ public class DataGroupToJsonConverterTest {
 		DataToJsonConverter dataToJsonConverter = dataToJsonConverterFactory
 				.createForDataElement(factory, dataGroup);
 		String json = dataToJsonConverter.toJson();
-
-		assertEquals(json, "{\"name\":\"groupNameInData\"}");
+		String expectedJson = "{\"name\": \"groupNameInData\"}";
+		assertEquals(json, expectedJson);
 	}
 
 	@Test
@@ -57,7 +58,12 @@ public class DataGroupToJsonConverterTest {
 				.createForDataElement(factory, dataGroup);
 		String json = dataToJsonConverter.toJson();
 
-		assertEquals(json, "{\"repeatId\":\"4\",\"name\":\"groupNameInData\"}");
+		String expectedJson = "{\n";
+		expectedJson += "    \"repeatId\": \"4\",\n";
+		expectedJson += "    \"name\": \"groupNameInData\"\n";
+		expectedJson += "}";
+
+		assertEquals(json, expectedJson);
 	}
 
 	@Test
@@ -67,7 +73,8 @@ public class DataGroupToJsonConverterTest {
 				.createForDataElement(factory, dataGroup);
 		String json = dataToJsonConverter.toJson();
 
-		assertEquals(json, "{\"name\":\"groupNameInData\"}");
+		String expectedJson = "{\"name\": \"groupNameInData\"}";
+		assertEquals(json, expectedJson);
 	}
 
 	@Test
@@ -77,9 +84,11 @@ public class DataGroupToJsonConverterTest {
 		DataToJsonConverter dataToJsonConverter = dataToJsonConverterFactory
 				.createForDataElement(factory, dataGroup);
 		String json = dataToJsonConverter.toJson();
-
-		assertEquals(json,
-				"{\"name\":\"groupNameInData\",\"attributes\":{\"attributeNameInData\":\"attributeValue\"}}");
+		String expectedJson = "{\n";
+		expectedJson += "    \"name\": \"groupNameInData\",\n";
+		expectedJson += "    \"attributes\": {\"attributeNameInData\": \"attributeValue\"}\n";
+		expectedJson += "}";
+		assertEquals(json, expectedJson);
 	}
 
 	@Test
@@ -90,47 +99,62 @@ public class DataGroupToJsonConverterTest {
 		DataToJsonConverter dataToJsonConverter = dataToJsonConverterFactory
 				.createForDataElement(factory, dataGroup);
 		String json = dataToJsonConverter.toJson();
-
-		assertEquals(json,
-				"{\"name\":\"groupNameInData\",\"attributes\":{"
-						+ "\"attributeNameInData2\":\"attributeValue2\","
-						+ "\"attributeNameInData\":\"attributeValue\"" + "}}");
+		String expectedJson = "{\n";
+		expectedJson += "    \"name\": \"groupNameInData\",\n";
+		expectedJson += "    \"attributes\": {\n";
+		expectedJson += "        \"attributeNameInData2\": \"attributeValue2\",\n";
+		expectedJson += "        \"attributeNameInData\": \"attributeValue\"\n";
+		expectedJson += "    }\n";
+		expectedJson += "}";
+		assertEquals(json, expectedJson);
 	}
 
 	@Test
 	public void testToJsonGroupWithAtomicChild() {
-		dataGroup
-				.addChild(DataAtomic.withNameInDataAndValue("atomicNameInData", "atomicValue"));
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("atomicNameInData", "atomicValue"));
 
 		DataToJsonConverter dataToJsonConverter = dataToJsonConverterFactory
 				.createForDataElement(factory, dataGroup);
 		String json = dataToJsonConverter.toJson();
-
-		assertEquals(json,
-				"{\"children\":[{\"name\":\"atomicNameInData\",\"value\":\"atomicValue\"}],\"name\":\"groupNameInData\"}");
+		String expectedJson = "{\n";
+		expectedJson += "    \"children\": [{\n";
+		expectedJson += "        \"name\": \"atomicNameInData\",\n";
+		expectedJson += "        \"value\": \"atomicValue\"\n";
+		expectedJson += "    }],\n";
+		expectedJson += "    \"name\": \"groupNameInData\"\n";
+		expectedJson += "}";
+		assertEquals(json, expectedJson);
 	}
 
 	@Test
 	public void testToJsonGroupWithAtomicChildAndGroupChildWithAtomicChild() {
-		dataGroup
-				.addChild(DataAtomic.withNameInDataAndValue("atomicNameInData", "atomicValue"));
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("atomicNameInData", "atomicValue"));
 
 		DataGroup dataGroup2 = DataGroup.withNameInData("groupNameInData2");
 		dataGroup.addChild(dataGroup2);
 
-		dataGroup2.addChild(
-				DataAtomic.withNameInDataAndValue("atomicNameInData2", "atomicValue2"));
+		dataGroup2.addChild(DataAtomic.withNameInDataAndValue("atomicNameInData2", "atomicValue2"));
 
 		DataToJsonConverter dataToJsonConverter = dataToJsonConverterFactory
 				.createForDataElement(factory, dataGroup);
 		String json = dataToJsonConverter.toJson();
 
-		String expectedJson = "{";
-		expectedJson += "\"children\":[";
-		expectedJson += "{\"name\":\"atomicNameInData\",\"value\":\"atomicValue\"},";
-		expectedJson += "{\"children\":[{\"name\":\"atomicNameInData2\",\"value\":\"atomicValue2\"}]";
-		expectedJson += ",\"name\":\"groupNameInData2\"}]";
-		expectedJson += ",\"name\":\"groupNameInData\"}";
+		String expectedJson = "{\n";
+		expectedJson += "    \"children\": [\n";
+		expectedJson += "        {\n";
+		expectedJson += "            \"name\": \"atomicNameInData\",\n";
+		expectedJson += "            \"value\": \"atomicValue\"\n";
+		expectedJson += "        },\n";
+		expectedJson += "        {\n";
+		expectedJson += "            \"children\": [{\n";
+		expectedJson += "                \"name\": \"atomicNameInData2\",\n";
+		expectedJson += "                \"value\": \"atomicValue2\"\n";
+		expectedJson += "            }],\n";
+		expectedJson += "            \"name\": \"groupNameInData2\"\n";
+		expectedJson += "        }\n";
+		expectedJson += "    ],\n";
+		expectedJson += "    \"name\": \"groupNameInData\"\n";
+		expectedJson += "}";
 
 		assertEquals(json, expectedJson);
 	}
@@ -146,32 +170,55 @@ public class DataGroupToJsonConverterTest {
 		recordInfo.addChild(DataAtomic.withNameInDataAndValue("createdBy", "userId"));
 		dataGroup.addChild(recordInfo);
 
-		dataGroup
-				.addChild(DataAtomic.withNameInDataAndValue("atomicNameInData", "atomicValue"));
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("atomicNameInData", "atomicValue"));
 
 		DataGroup dataGroup2 = DataGroup.withNameInData("groupNameInData2");
 		dataGroup2.addAttributeByIdWithValue("g2AttributeNameInData", "g2AttributeValue");
 		dataGroup.addChild(dataGroup2);
 
-		dataGroup2.addChild(
-				DataAtomic.withNameInDataAndValue("atomicNameInData2", "atomicValue2"));
+		dataGroup2.addChild(DataAtomic.withNameInDataAndValue("atomicNameInData2", "atomicValue2"));
 
 		DataToJsonConverter dataToJsonConverter = dataToJsonConverterFactory
 				.createForDataElement(factory, dataGroup);
 		String json = dataToJsonConverter.toJson();
-		String expectedJson = "{\"children\":[";
-		expectedJson += "{\"children\":[";
-		expectedJson += "{\"name\":\"id\",\"value\":\"place:0001\"},";
-		expectedJson += "{\"name\":\"type\",\"value\":\"place\"},";
-		expectedJson += "{\"name\":\"createdBy\",\"value\":\"userId\"}],\"name\":\"recordInfo\"},";
-		expectedJson += "{\"name\":\"atomicNameInData\",\"value\":\"atomicValue\"},";
-		expectedJson += "{\"children\":[{\"name\":\"atomicNameInData2\",\"value\":\"atomicValue2\"}],";
-		expectedJson += "\"name\":\"groupNameInData2\",\"attributes\":{";
-		expectedJson += "\"g2AttributeNameInData\":\"g2AttributeValue\"}}],";
-		expectedJson += "\"name\":\"groupNameInData\",\"attributes\":{";
-		expectedJson += "\"attributeNameInData2\":\"attributeValue2\",";
-		expectedJson += "\"attributeNameInData\":\"attributeValue\"}}";
-
+		String expectedJson = "{\n";
+		expectedJson += "    \"children\": [\n";
+		expectedJson += "        {\n";
+		expectedJson += "            \"children\": [\n";
+		expectedJson += "                {\n";
+		expectedJson += "                    \"name\": \"id\",\n";
+		expectedJson += "                    \"value\": \"place:0001\"\n";
+		expectedJson += "                },\n";
+		expectedJson += "                {\n";
+		expectedJson += "                    \"name\": \"type\",\n";
+		expectedJson += "                    \"value\": \"place\"\n";
+		expectedJson += "                },\n";
+		expectedJson += "                {\n";
+		expectedJson += "                    \"name\": \"createdBy\",\n";
+		expectedJson += "                    \"value\": \"userId\"\n";
+		expectedJson += "                }\n";
+		expectedJson += "            ],\n";
+		expectedJson += "            \"name\": \"recordInfo\"\n";
+		expectedJson += "        },\n";
+		expectedJson += "        {\n";
+		expectedJson += "            \"name\": \"atomicNameInData\",\n";
+		expectedJson += "            \"value\": \"atomicValue\"\n";
+		expectedJson += "        },\n";
+		expectedJson += "        {\n";
+		expectedJson += "            \"children\": [{\n";
+		expectedJson += "                \"name\": \"atomicNameInData2\",\n";
+		expectedJson += "                \"value\": \"atomicValue2\"\n";
+		expectedJson += "            }],\n";
+		expectedJson += "            \"name\": \"groupNameInData2\",\n";
+		expectedJson += "            \"attributes\": {\"g2AttributeNameInData\": \"g2AttributeValue\"}\n";
+		expectedJson += "        }\n";
+		expectedJson += "    ],\n";
+		expectedJson += "    \"name\": \"groupNameInData\",\n";
+		expectedJson += "    \"attributes\": {\n";
+		expectedJson += "        \"attributeNameInData2\": \"attributeValue2\",\n";
+		expectedJson += "        \"attributeNameInData\": \"attributeValue\"\n";
+		expectedJson += "    }\n";
+		expectedJson += "}";
 		assertEquals(json, expectedJson);
 	}
 
