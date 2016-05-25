@@ -21,6 +21,7 @@ package se.uu.ub.cora.storage;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -163,20 +164,12 @@ public class RecordStorageInMemoryTest {
 
 		DataGroup fromOut = recordToRecordLink.getFirstGroupWithNameInData("from");
 
-		// DataRecordLink fromOut = (DataRecordLink) recordToRecordLink
-		// .getFirstChildWithNameInData("from");
 		assertEquals(fromOut.getFirstAtomicValueWithNameInData("linkedRecordType"), fromRecordType);
-		// assertEquals(fromOut.getLinkedRecordType(), fromRecordType);
 		assertEquals(fromOut.getFirstAtomicValueWithNameInData("linkedRecordId"), fromRecordId);
-		// assertEquals(fromOut.getLinkedRecordId(), fromRecordId);
 
 		DataGroup toOut = recordToRecordLink.getFirstGroupWithNameInData("to");
-		// DataRecordLink toOut = (DataRecordLink) recordToRecordLink
-		// .getFirstChildWithNameInData("to");
 		assertEquals(toOut.getFirstAtomicValueWithNameInData("linkedRecordType"), toRecordType);
-		// assertEquals(toOut.getLinkedRecordType(), toRecordType);
 		assertEquals(toOut.getFirstAtomicValueWithNameInData("linkedRecordId"), toRecordId);
-		// assertEquals(toOut.getLinkedRecordId(), toRecordId);
 	}
 
 	private void assertNoGeneratedLinksForRecordTypeAndRecordId(String toRecordType,
@@ -516,6 +509,33 @@ public class RecordStorageInMemoryTest {
 		DataAtomic child = (DataAtomic) dataGroupOut.getChildren().get(1);
 
 		assertEquals(child.getValue(), "childValue");
+	}
+
+	@Test
+	public void testRecordExistForRecordTypeAndRecordId(){
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		recordStorage.create("type", "place:0001", dataGroup, emptyLinkList, dataDivider);
+
+		assertTrue(recordStorage.recordExistsForRecordTypeAndRecordId("type", "place:0001"));
+	}
+
+	@Test
+	public void testRecordNOTExistForRecordTypeAndRecordIdMissingRecordId(){
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		recordStorage.create("type", "place:0001", dataGroup, emptyLinkList, dataDivider);
+
+		assertFalse(recordStorage.recordExistsForRecordTypeAndRecordId("type", "NOTplace:0001"));
+	}
+
+	@Test
+	public void testRecordNOTExistForRecordTypeAndRecordIdMissingRecordType(){
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		recordStorage.create("type", "place:0001", dataGroup, emptyLinkList, dataDivider);
+
+		assertFalse(recordStorage.recordExistsForRecordTypeAndRecordId("NOTtype", "place:0002"));
 	}
 
 }

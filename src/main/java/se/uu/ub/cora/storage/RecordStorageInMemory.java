@@ -82,14 +82,10 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	}
 
 	private void checkNoConflictOnRecordId(String recordType, String recordId) {
-		if (recordWithTypeAndIdAlreadyExists(recordType, recordId)) {
+		if (recordIdExistsForRecordType(recordType, recordId)) {
 			throw new RecordConflictException(
 					"Record with recordId: " + recordId + " already exists");
 		}
-	}
-
-	private boolean recordWithTypeAndIdAlreadyExists(String recordType, String recordId) {
-		return records.get(recordType).containsKey(recordId);
 	}
 
 	private void storeIndependentRecordByRecordTypeAndRecordId(String recordType, String recordId,
@@ -111,7 +107,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 
 	protected void storeLinks(String recordType, String recordId, DataGroup linkList,
 			String dataDivider) {
-		if (linkList.getChildren().size() > 0) {
+		if (!linkList.getChildren().isEmpty()) {
 			DataGroup linkListIndependentFromEntered = createIndependentCopy(linkList);
 			storeLinkList(recordType, recordId, linkListIndependentFromEntered, dataDivider);
 			storeLinksInIncomingLinks(linkListIndependentFromEntered);
@@ -217,11 +213,17 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 
 	@Override
 	public boolean recordsExistForRecordType(String type) {
-		Map<String, DividerGroup> typeRecords = records.get(type);
-		if (null == typeRecords) {
-			return false;
-		}
-		return true;
+		return records.get(type) != null;
+	}
+
+	@Override
+	public boolean recordExistsForRecordTypeAndRecordId(String recordType, String recordId) {
+		return recordsExistForRecordType(recordType) &&
+				recordIdExistsForRecordType(recordType, recordId);
+	}
+
+	private boolean recordIdExistsForRecordType(String recordType, String recordId) {
+		return records.get(recordType).containsKey(recordId);
 	}
 
 	@Override
