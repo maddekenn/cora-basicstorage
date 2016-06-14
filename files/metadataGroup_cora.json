@@ -2000,7 +2000,7 @@
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "abstractTextVar"
+                                    "value": "abstractCollectionVar"
                                 },
                                 {
                                     "name": "repeatMin",
@@ -2323,7 +2323,7 @@
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "abstractTextVar"
+                                    "value": "abstractCollectionVar"
                                 },
                                 {
                                     "name": "repeatMin",
@@ -6543,6 +6543,14 @@
                     "value": "binaryGroup"
                 },
                 {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "ref",
+                        "value": "binaryTypeImageCollectionVar"
+                    }],
+                    "name": "attributeReferences"
+                },
+                {
                     "children": [
                         {
                             "repeatId": "1",
@@ -6600,14 +6608,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "ref",
-                        "value": "binaryTypeImageCollectionVar"
-                    }],
-                    "name": "attributeReferences"
                 }
             ],
             "name": "metadata",
