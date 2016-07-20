@@ -8440,10 +8440,6 @@
         {
             "children": [
                 {
-                    "name": "nameInData",
-                    "value": "metadata"
-                },
-                {
                     "children": [
                         {
                             "name": "id",
@@ -8458,11 +8454,24 @@
                             "value": "userId"
                         },
                         {
-                            "name": "updatedBy",
-                            "value": "userId"
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         }
                     ],
                     "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "metadata"
                 },
                 {
                     "name": "textId",
@@ -8605,6 +8614,7 @@
                 },
                 {
                     "children": [{
+                        "repeatId": "0",
                         "name": "ref",
                         "value": "metadataTypeGroupCollectionVar"
                     }],
