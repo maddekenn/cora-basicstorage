@@ -170,8 +170,12 @@
                     "value": "presentationRecordLinkGroupDefText"
                 },
                 {
-                    "name": "refParentId",
-                    "value": "presentationGroup"
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "ref",
+                        "value": "presentationTypePRecordLinkCollectionVar"
+                    }],
+                    "name": "attributeReferences"
                 },
                 {
                     "children": [
@@ -249,14 +253,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "ref",
-                        "value": "presentationTypePRecordLinkCollectionVar"
-                    }],
-                    "name": "attributeReferences"
                 }
             ],
             "name": "metadata",
@@ -1487,6 +1483,21 @@
                 {
                     "children": [
                         {
+                            "repeatId": "0",
+                            "name": "ref",
+                            "value": "presentationTypeContainerCollectionVar"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "ref",
+                            "value": "repeatThisCollectionVar"
+                        }
+                    ],
+                    "name": "attributeReferences"
+                },
+                {
+                    "children": [
+                        {
                             "repeatId": "1",
                             "children": [
                                 {
@@ -1542,21 +1553,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [
-                        {
-                            "repeatId": "0",
-                            "name": "ref",
-                            "value": "presentationTypeContainerCollectionVar"
-                        },
-                        {
-                            "repeatId": "1",
-                            "name": "ref",
-                            "value": "repeatThisCollectionVar"
-                        }
-                    ],
-                    "name": "attributeReferences"
                 }
             ],
             "name": "metadata",
@@ -3746,6 +3742,21 @@
                 {
                     "children": [
                         {
+                            "repeatId": "0",
+                            "name": "ref",
+                            "value": "presentationTypeContainerCollectionVar"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "ref",
+                            "value": "repeatCollectionVar"
+                        }
+                    ],
+                    "name": "attributeReferences"
+                },
+                {
+                    "children": [
+                        {
                             "repeatId": "1",
                             "children": [
                                 {
@@ -3819,21 +3830,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [
-                        {
-                            "repeatId": "0",
-                            "name": "ref",
-                            "value": "presentationTypeContainerCollectionVar"
-                        },
-                        {
-                            "repeatId": "1",
-                            "name": "ref",
-                            "value": "repeatCollectionVar"
-                        }
-                    ],
-                    "name": "attributeReferences"
                 }
             ],
             "name": "metadata",
@@ -4957,6 +4953,14 @@
                     "value": "presentationGroup"
                 },
                 {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "ref",
+                        "value": "presentationTypePGroupCollectionVar"
+                    }],
+                    "name": "attributeReferences"
+                },
+                {
                     "children": [
                         {
                             "repeatId": "1",
@@ -5014,14 +5018,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "ref",
-                        "value": "presentationTypePGroupCollectionVar"
-                    }],
-                    "name": "attributeReferences"
                 }
             ],
             "name": "metadata",
@@ -6339,10 +6335,6 @@
                 {
                     "name": "defTextId",
                     "value": "presentationVarGroupDefText"
-                },
-                {
-                    "name": "refParentId",
-                    "value": "presentationGroup"
                 },
                 {
                     "children": [{
