@@ -2109,6 +2109,20 @@
                                 }
                             ],
                             "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "thumbnailLargePGroup"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
                         }
                     ],
                     "name": "childReferences"
@@ -2126,6 +2140,14 @@
                             "value": "resourceInfoOutputPGroup"
                         },
                         {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -2137,14 +2159,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -2154,20 +2168,50 @@
                     "value": "resourceInfoGroup"
                 },
                 {
-                    "children": [{
-                        "repeatId": "0",
-                        "children": [
-                            {
-                                "name": "ref",
-                                "value": "masterOutputPGroup"
-                            },
-                            {
-                                "name": "default",
-                                "value": "ref"
-                            }
-                        ],
-                        "name": "childReference"
-                    }],
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "masterOutputPGroup"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "thumbnailOutputPGroup"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "thumbnailLargeOutputPGroup"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
                     "name": "childReferences"
                 }
             ],
@@ -12261,6 +12305,135 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "thumbnailLargeOutputPGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "thumbnailLargeGroup"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "streamIdTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "streamIdTextVarOutputPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "filesizeTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "filesizeTextVarOutputPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "urlTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "urlTextVarOutputPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pGroup"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "metadataTextVariableListPGroup"
                         },
                         {
@@ -12394,6 +12567,14 @@
                             "value": "thumbnailPGroup"
                         },
                         {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -12405,14 +12586,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -12423,6 +12596,20 @@
                 },
                 {
                     "children": [
+                        {
+                            "repeatId": "6",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "thumbnailGroupText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
                         {
                             "repeatId": "0",
                             "children": [
@@ -12848,6 +13035,135 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "thumbnailOutputPGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "thumbnailGroup"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "streamIdTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "streamIdTextVarOutputPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "filesizeTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "filesizeTextVarOutputPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "urlTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "urlTextVarOutputPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pGroup"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "attributeOutputPGroup"
                         },
                         {
@@ -13001,6 +13317,135 @@
                                 {
                                     "name": "ref",
                                     "value": "systemNameTextVarOutputPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pGroup"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "thumbnailLargePGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "thumbnailLargeGroup"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "streamIdTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "streamIdTextVarPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "filesizeTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "filesizeTextVarPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "urlTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "urlTextVarPVar"
                                 },
                                 {
                                     "name": "default",
