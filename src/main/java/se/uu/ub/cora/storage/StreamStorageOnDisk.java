@@ -51,19 +51,24 @@ public final class StreamStorageOnDisk implements StreamStorage {
 	}
 
 	long tryToStoreStream(InputStream stream, Path path) {
-		long size = 0;
-		try (OutputStream outputStream = Files.newOutputStream(path);) {
-			size = storeStream(stream, size, outputStream);
-
+		try {
+			return storeStream(stream, path);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			throw DataStorageException.withMessage("can not write files to disk" + e);
 		}
+	}
+
+	private long storeStream(InputStream stream, Path path) throws IOException {
+		OutputStream outputStream = Files.newOutputStream(path);
+		long size = storeStreamUsingOutputStream(stream, outputStream);
+		outputStream.flush();
+		outputStream.close();
 		return size;
 	}
 
-	long storeStream(InputStream stream, long size, OutputStream outputStream) throws IOException {
+	private long storeStreamUsingOutputStream(InputStream stream, OutputStream outputStream)
+			throws IOException {
+		long size = 0;
 		byte[] bytes = new byte[BUFFER_LENGTH];
 
 		int written = 0;

@@ -97,6 +97,14 @@ public class StreamStorageOnDiskTest {
 		streamStorage.store("someStreamId", "someDataDivider", stream);
 	}
 
+	@Test(expectedExceptions = DataStorageException.class)
+	public void testUploadCreateFileForStreamPathIsEmpty() throws IOException {
+		// removeTempFiles();
+		StreamStorageOnDisk streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
+		InputStream stream = new ByteArrayInputStream("a string".getBytes(StandardCharsets.UTF_8));
+		streamStorage.tryToStoreStream(stream, Paths.get(""));
+	}
+
 	@Test
 	public void testUploadCreateFileForStream() {
 		StreamStorage streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
@@ -106,14 +114,18 @@ public class StreamStorageOnDiskTest {
 		assertEquals(String.valueOf(size), "8");
 	}
 
-	@Test(expectedExceptions = DataStorageException.class)
-	public void testUploadCreateFileForStreamMissingPath() throws IOException {
-		// removeTempFiles();
-		StreamStorageOnDisk streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
+	@Test
+	public void testUploadCreateFileForStreamDirectoriesAlreadyExist() {
+		StreamStorage streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
 		InputStream stream = new ByteArrayInputStream("a string".getBytes(StandardCharsets.UTF_8));
-		long size = streamStorage.tryToStoreStream(stream, Paths.get("brokenPath"));
+		long size = streamStorage.store("someStreamId", "someDataDivider", stream);
 		assertTrue(Files.exists(Paths.get(basePath, "someDataDivider", "someStreamId")));
 		assertEquals(String.valueOf(size), "8");
+
+		InputStream stream2 = new ByteArrayInputStream("a string".getBytes(StandardCharsets.UTF_8));
+		long size2 = streamStorage.store("someStreamId2", "someDataDivider", stream2);
+		assertTrue(Files.exists(Paths.get(basePath, "someDataDivider", "someStreamId2")));
+		assertEquals(String.valueOf(size2), "8");
 	}
 
 	// @Test
