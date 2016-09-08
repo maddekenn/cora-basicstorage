@@ -19,7 +19,6 @@
 
 package se.uu.ub.cora.storage;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -50,8 +49,7 @@ public final class StreamStorageOnDisk implements StreamStorage {
 	}
 
 	private void createBaseDirectory(String basePath) {
-		File dir = new File(basePath);
-		dir.mkdir();
+		tryToCreateStorageDirectory(Paths.get(basePath));
 	}
 
 	@Override

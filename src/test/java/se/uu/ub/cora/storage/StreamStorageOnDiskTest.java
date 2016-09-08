@@ -92,18 +92,13 @@ public class StreamStorageOnDiskTest {
 	@Test(expectedExceptions = DataStorageException.class)
 	public void testInitNoPermissionOnPath() throws IOException {
 		removeTempFiles();
-		StreamStorage streamStorage = StreamStorageOnDisk.usingBasePath("/root");
-		InputStream stream = new ByteArrayInputStream("a string".getBytes(StandardCharsets.UTF_8));
-		streamStorage.store("someStreamId", "someDataDivider", stream);
+		StreamStorageOnDisk.usingBasePath("/root/streamsDOESNOTEXIST");
 	}
 
-	// @Test(expectedExceptions = DataStorageException.class)
 	@Test
 	public void testInitMissingPath() throws IOException {
 		removeTempFiles();
-		StreamStorage streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
-		InputStream stream = new ByteArrayInputStream("a string".getBytes(StandardCharsets.UTF_8));
-		streamStorage.store("someStreamId", "someDataDivider", stream);
+		StreamStorageOnDisk.usingBasePath(basePath);
 	}
 
 	@Test(expectedExceptions = DataStorageException.class)
