@@ -48,7 +48,6 @@ public class RecordStorageOnDiskTest {
 	private static final String PERSON_FILENAME = "person_cora.json";
 	private static final String PLACE_FILENAME = "place_cora.json";
 	private static final String LINK_LISTS_FILENAME = "linkLists_cora.json";
-	private static final String INCOMING_LINKS_FILENAME = "incomingLinks_cora.json";
 	private static final String FROM_RECORD_TYPE = "fromRecordType";
 	private static final String TO_RECORD_ID = "toRecordId";
 	private static final String TO_RECORD_TYPE = "toRecordType";
@@ -273,6 +272,26 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testInitTwoFilesOnDiskTwoSystems() throws IOException {
+		writeFileToDisk(expectedRecordJsonOneRecordPlace1, PLACE_FILENAME);
+		writeFileToDisk(expectedRecordJsonOneRecordPlace2, "place_jsClient.json");
+
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
+		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
+
+		DataGroup dataGroup2 = DataCreator
+				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("authority",
+						"place", "place:0002");
+		DataGroup dataGroupOut2 = recordStorage.read("place", "place:0002");
+		assertJsonEqualDataGroup(dataGroupOut2, dataGroup2);
+	}
+
+	@Test
+	public void testInitTwoFilesOnDiskTwoSystemsUnrelatedDirectory() throws IOException {
+		writeDirectoryToDisk("someUnrelatedDir");
 		writeFileToDisk(expectedRecordJsonOneRecordPlace1, PLACE_FILENAME);
 		writeFileToDisk(expectedRecordJsonOneRecordPlace2, "place_jsClient.json");
 
@@ -926,6 +945,14 @@ public class RecordStorageOnDiskTest {
 			writer.write(json, 0, json.length());
 			writer.flush();
 			writer.close();
+		} catch (IOException e) {
+		}
+	}
+
+	private void writeDirectoryToDisk(String dirName) {
+		Path path = FileSystems.getDefault().getPath(basePath, dirName);
+		try {
+			Files.createDirectory(path);
 		} catch (IOException e) {
 		}
 	}

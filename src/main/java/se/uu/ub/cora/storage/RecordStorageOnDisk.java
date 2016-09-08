@@ -75,10 +75,16 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		Stream<Path> list = Files.list(Paths.get(basePath));
 		Iterator<Path> iterator = list.iterator();
 		while (iterator.hasNext()) {
-			Path p = iterator.next();
-			readFileAndParseFileByPath(p);
+			readFileIfNotDirectory(iterator);
 		}
 		list.close();
+	}
+
+	private void readFileIfNotDirectory(Iterator<Path> iterator) throws IOException {
+		Path path = iterator.next();
+		if (!Files.isDirectory(path)) {
+			readFileAndParseFileByPath(path);
+		}
 	}
 
 	private void readFileAndParseFileByPath(Path path) throws IOException {
