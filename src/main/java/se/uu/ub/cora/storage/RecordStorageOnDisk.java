@@ -187,8 +187,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	@Override
-	public void create(String recordType, String recordId, DataGroup record, DataGroup linkList,
-			String dataDivider) {
+	public synchronized void create(String recordType, String recordId, DataGroup record,
+			DataGroup linkList, String dataDivider) {
 		super.create(recordType, recordId, record, linkList, dataDivider);
 		writeDataToDisk(recordType, dataDivider);
 	}
@@ -371,15 +371,15 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	@Override
-	public void update(String recordType, String recordId, DataGroup record, DataGroup linkList,
-			String dataDivider) {
+	public synchronized void update(String recordType, String recordId, DataGroup record,
+			DataGroup linkList, String dataDivider) {
 		String previousDataDivider = records.get(recordType).get(recordId).dataDivider;
 		super.update(recordType, recordId, record, linkList, dataDivider);
 		writeDataToDisk(recordType, previousDataDivider);
 	}
 
 	@Override
-	public void deleteByTypeAndId(String recordType, String recordId) {
+	public synchronized void deleteByTypeAndId(String recordType, String recordId) {
 		String previousDataDivider = records.get(recordType).get(recordId).dataDivider;
 		super.deleteByTypeAndId(recordType, recordId);
 		writeDataToDisk(recordType, previousDataDivider);
