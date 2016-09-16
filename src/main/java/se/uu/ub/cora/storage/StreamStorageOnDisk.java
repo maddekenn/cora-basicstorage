@@ -1,5 +1,6 @@
 /*
  * Copyright 2016 Uppsala University Library
+ * Copyright 2016 Olov McKie
  *
  * This file is part of Cora.
  *
@@ -108,4 +109,30 @@ public final class StreamStorageOnDisk implements StreamStorage {
 		}
 	}
 
+	@Override
+	public InputStream retrieve(String streamId, String dataDivider) {
+		Path pathByDataDivider = Paths.get(basePath, dataDivider);
+		if (storageDirectoryDoesNotExist(pathByDataDivider)) {
+			throw DataStorageException.withMessage("can not read stream from disk, no such folder");
+		}
+
+		Path path = Paths.get(basePath, dataDivider, streamId);
+		if (storageDirectoryDoesNotExist(path)) {
+			throw DataStorageException.withMessage("can not read stream from disk, no such stream");
+		}
+		return tryToReadStream(path);
+	}
+
+	InputStream tryToReadStream(Path path) {
+		try {
+			return readStream(path);
+		} catch (IOException e) {
+			throw DataStorageException.withMessage("can not write files to disk" + e);
+		}
+	}
+
+	InputStream readStream(Path path) throws IOException {
+		return Files.newInputStream(path);
+
+	}
 }
