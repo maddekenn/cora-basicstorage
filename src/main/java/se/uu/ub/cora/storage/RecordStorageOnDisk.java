@@ -54,13 +54,13 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private static final String JSON_FILE_END = ".json";
 	private String basePath;
 
-	public static RecordStorageOnDisk createRecordStorageOnDiskWithBasePath(String basePath) {
-		return new RecordStorageOnDisk(basePath);
-	}
-
 	protected RecordStorageOnDisk(String basePath) {
 		this.basePath = basePath;
 		tryToReadStoredDataFromDisk();
+	}
+
+	public static RecordStorageOnDisk createRecordStorageOnDiskWithBasePath(String basePath) {
+		return new RecordStorageOnDisk(basePath);
 	}
 
 	private void tryToReadStoredDataFromDisk() {
@@ -107,7 +107,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	private String readJsonFileByPath(Path path) throws IOException {
 		BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset());
-		String line = null;
+		String line;
 		StringBuilder jsonBuilder = new StringBuilder();
 		while ((line = reader.readLine()) != null) {
 			jsonBuilder.append(line);
