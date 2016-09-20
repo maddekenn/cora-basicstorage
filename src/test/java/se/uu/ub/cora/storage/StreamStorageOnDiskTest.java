@@ -44,11 +44,13 @@ import se.uu.ub.cora.spider.stream.storage.StreamStorage;
 public class StreamStorageOnDiskTest {
 	private String basePath = "/tmp/streamStorageOnDiskTemp/";
 	private StreamStorage streamStorage;
+	private InputStream streamToStore;
 
 	@BeforeMethod
 	public void setUpForTests() throws IOException {
 		makeSureBasePathExistsAndIsEmpty();
 		streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
+		streamToStore = createTestInputStreamToStore();
 	}
 
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
@@ -104,9 +106,7 @@ public class StreamStorageOnDiskTest {
 
 	@Test
 	public void testUploadCreatePathForNewDataDivider() {
-		// StreamStorage streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
-		InputStream stream = createTestInputStreamToStore();
-		streamStorage.store("someStreamId", "someDataDivider", stream);
+		streamStorage.store("someStreamId", "someDataDivider", streamToStore);
 		assertTrue(Files.exists(Paths.get(basePath, "someDataDivider")));
 	}
 
@@ -117,25 +117,19 @@ public class StreamStorageOnDiskTest {
 
 	@Test(expectedExceptions = DataStorageException.class)
 	public void testUploadCreateFileForStreamPathIsEmpty() throws IOException {
-		// StreamStorageOnDisk streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
-		InputStream stream = createTestInputStreamToStore();
-		((StreamStorageOnDisk) streamStorage).tryToStoreStream(stream, Paths.get(""));
+		((StreamStorageOnDisk) streamStorage).tryToStoreStream(streamToStore, Paths.get(""));
 	}
 
 	@Test
 	public void testUploadCreateFileForStream() {
-		// StreamStorage streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
-		InputStream stream = createTestInputStreamToStore();
-		long size = streamStorage.store("someStreamId", "someDataDivider", stream);
+		long size = streamStorage.store("someStreamId", "someDataDivider", streamToStore);
 		assertTrue(Files.exists(Paths.get(basePath, "someDataDivider", "someStreamId")));
 		assertEquals(String.valueOf(size), "8");
 	}
 
 	@Test
 	public void testUploadCreateFileForStreamDirectoriesAlreadyExist() {
-		// StreamStorage streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
-		InputStream stream = createTestInputStreamToStore();
-		long size = streamStorage.store("someStreamId", "someDataDivider", stream);
+		long size = streamStorage.store("someStreamId", "someDataDivider", streamToStore);
 		assertTrue(Files.exists(Paths.get(basePath, "someDataDivider", "someStreamId")));
 		assertEquals(String.valueOf(size), "8");
 
@@ -147,8 +141,6 @@ public class StreamStorageOnDiskTest {
 
 	@Test
 	public void testDownload() throws IOException {
-		// StreamStorage streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
-		InputStream streamToStore = createTestInputStreamToStore();
 		streamStorage.store("someStreamId", "someDataDivider", streamToStore);
 
 		InputStream stream = streamStorage.retrieve("someStreamId", "someDataDivider");
@@ -167,21 +159,17 @@ public class StreamStorageOnDiskTest {
 
 	@Test(expectedExceptions = DataStorageException.class)
 	public void testDownloadFolderForDataDividerIsMissing() {
-		// StreamStorageOnDisk streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
 		streamStorage.retrieve("someStreamId", "someDataDivider");
 	}
 
 	@Test(expectedExceptions = DataStorageException.class)
 	public void testDownloadStreamIsMissing() {
-		// StreamStorageOnDisk streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
-		InputStream streamToStore = createTestInputStreamToStore();
 		streamStorage.store("someStreamId", "someDataDivider", streamToStore);
 		streamStorage.retrieve("someStreamIdDOESNOTEXIST", "someDataDivider");
 	}
 
 	@Test(expectedExceptions = DataStorageException.class)
 	public void testDownloadPathForStreamIsBroken() throws IOException {
-		// StreamStorageOnDisk streamStorage = StreamStorageOnDisk.usingBasePath(basePath);
 		((StreamStorageOnDisk) streamStorage).tryToReadStream(Paths.get("/broken/path"));
 	}
 }

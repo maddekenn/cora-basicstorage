@@ -31,18 +31,19 @@ import se.uu.ub.cora.spider.stream.storage.StreamStorage;
 
 public final class StreamStorageOnDisk implements StreamStorage {
 
+	private static final String CAN_NOT_WRITE_FILES_TO_DISK = "can not write files to disk";
 	private static final int BUFFER_LENGTH = 1024;
 	private String basePath;
-
-	public static StreamStorageOnDisk usingBasePath(String basePath) {
-		return new StreamStorageOnDisk(basePath);
-	}
 
 	private StreamStorageOnDisk(String basePath) {
 		this.basePath = basePath;
 		if (basePathDoesNotExist(basePath)) {
 			createBaseDirectory(basePath);
 		}
+	}
+
+	public static StreamStorageOnDisk usingBasePath(String basePath) {
+		return new StreamStorageOnDisk(basePath);
 	}
 
 	private boolean basePathDoesNotExist(String basePath) {
@@ -66,7 +67,7 @@ public final class StreamStorageOnDisk implements StreamStorage {
 		try {
 			return storeStream(stream, path);
 		} catch (IOException e) {
-			throw DataStorageException.withMessage("can not write files to disk" + e);
+			throw DataStorageException.withMessage(CAN_NOT_WRITE_FILES_TO_DISK + e);
 		}
 	}
 
@@ -83,7 +84,7 @@ public final class StreamStorageOnDisk implements StreamStorage {
 		long size = 0;
 		byte[] bytes = new byte[BUFFER_LENGTH];
 
-		int written = 0;
+		int written;
 		while ((written = stream.read(bytes)) != -1) {
 			outputStream.write(bytes, 0, written);
 			size += written;
@@ -105,7 +106,7 @@ public final class StreamStorageOnDisk implements StreamStorage {
 		try {
 			Files.createDirectory(pathByDataDivider);
 		} catch (IOException e) {
-			throw DataStorageException.withMessage("can not write files to disk" + e);
+			throw DataStorageException.withMessage(CAN_NOT_WRITE_FILES_TO_DISK + e);
 		}
 	}
 
@@ -127,7 +128,7 @@ public final class StreamStorageOnDisk implements StreamStorage {
 		try {
 			return readStream(path);
 		} catch (IOException e) {
-			throw DataStorageException.withMessage("can not write files to disk" + e);
+			throw DataStorageException.withMessage(CAN_NOT_WRITE_FILES_TO_DISK + e);
 		}
 	}
 
