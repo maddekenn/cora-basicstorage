@@ -6,15 +6,7 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "dataDividerPLink"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationRecordLink"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
+                            "value": "userSuppliedIdCollectionVarPCollVar"
                         },
                         {
                             "children": [
@@ -28,21 +20,42 @@
                                 }
                             ],
                             "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationCollectionVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
                 },
                 {
-                    "name": "presentationOf",
-                    "value": "dataDividerLink"
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userSuppliedIdCollectionVar"
+                        }
+                    ],
+                    "name": "presentationOf"
                 },
                 {
                     "name": "mode",
                     "value": "input"
+                },
+                {
+                    "name": "emptyTextId",
+                    "value": "initialEmptyValueText"
                 }
             ],
             "name": "presentation",
-            "attributes": {"type": "pRecordLink"}
+            "attributes": {"type": "pCollVar"}
         },
         {
             "children": [
@@ -50,11 +63,11 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "presentationOfGroupOutputPLink"
+                            "value": "defaultPresentationCollectionVarOutputPCollVar"
                         },
                         {
                             "name": "type",
-                            "value": "presentationRecordLink"
+                            "value": "presentationCollectionVar"
                         },
                         {
                             "name": "createdBy",
@@ -77,8 +90,17 @@
                     "name": "recordInfo"
                 },
                 {
-                    "name": "presentationOf",
-                    "value": "presentationOfGroupLink"
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "defaultPresentationCollectionVar"
+                        }
+                    ],
+                    "name": "presentationOf"
                 },
                 {
                     "name": "mode",
@@ -86,7 +108,7 @@
                 }
             ],
             "name": "presentation",
-            "attributes": {"type": "pRecordLink"}
+            "attributes": {"type": "pCollVar"}
         },
         {
             "children": [
@@ -94,11 +116,68 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "dataDividerOutputPLink"
+                            "value": "inputTypeCollectionVarPCollVar"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "type",
-                            "value": "presentationRecordLink"
+                            "value": "presentationCollectionVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "inputTypeCollectionVar"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
+                },
+                {
+                    "name": "emptyTextId",
+                    "value": "initialEmptyValueText"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pCollVar"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "abstractCollectionVarOutputPCollVar"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationCollectionVar"
                         },
                         {
                             "name": "createdBy",
@@ -121,8 +200,17 @@
                     "name": "recordInfo"
                 },
                 {
-                    "name": "presentationOf",
-                    "value": "dataDividerLink"
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "abstractCollectionVar"
+                        }
+                    ],
+                    "name": "presentationOf"
                 },
                 {
                     "name": "mode",
@@ -130,7 +218,7 @@
                 }
             ],
             "name": "presentation",
-            "attributes": {"type": "pRecordLink"}
+            "attributes": {"type": "pCollVar"}
         },
         {
             "children": [
@@ -138,112 +226,7 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "somethingPLink"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationRecordLink"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "name": "presentationOf",
-                    "value": "something"
-                },
-                {
-                    "name": "mode",
-                    "value": "input"
-                }
-            ],
-            "name": "presentation",
-            "attributes": {"type": "pRecordLink"}
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
-                            "value": "testPLink"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationRecordLink"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "name": "presentationOf",
-                    "value": "testLink"
-                },
-                {
-                    "name": "mode",
-                    "value": "output"
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "metadataTextVariable"
-                            },
-                            {
-                                "name": "presentationId",
-                                "value": "metadataTextVariableViewPGroup"
-                            }
-                        ],
-                        "name": "linkedRecordPresentation"
-                    }],
-                    "name": "linkedRecordPresentations"
-                }
-            ],
-            "name": "presentation",
-            "attributes": {"type": "pRecordLink"}
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
-                            "value": "dataDividerCoraPLink"
+                            "value": "userSuppliedIdCollectionVarOutputPCollVar"
                         },
                         {
                             "children": [
@@ -260,7 +243,7 @@
                         },
                         {
                             "name": "type",
-                            "value": "presentationRecordLink"
+                            "value": "presentationCollectionVar"
                         },
                         {
                             "name": "createdBy",
@@ -269,53 +252,18 @@
                     ],
                     "name": "recordInfo"
                 },
-                {
-                    "name": "presentationOf",
-                    "value": "dataDividerCoraLink"
-                },
-                {
-                    "name": "mode",
-                    "value": "input"
-                }
-            ],
-            "name": "presentation",
-            "attributes": {"type": "pRecordLink"}
-        },
-        {
-            "children": [
                 {
                     "children": [
                         {
-                            "name": "id",
-                            "value": "dataDividerCoraOutputPLink"
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
                         },
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationRecordLink"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
+                            "name": "linkedRecordId",
+                            "value": "userSuppliedIdCollectionVar"
                         }
                     ],
-                    "name": "recordInfo"
-                },
-                {
-                    "name": "presentationOf",
-                    "value": "dataDividerCoraLink"
+                    "name": "presentationOf"
                 },
                 {
                     "name": "mode",
@@ -323,7 +271,7 @@
                 }
             ],
             "name": "presentation",
-            "attributes": {"type": "pRecordLink"}
+            "attributes": {"type": "pCollVar"}
         },
         {
             "children": [
@@ -331,7 +279,7 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "presentationOfCollectionVarPLink"
+                            "value": "outputFormatCollectionVarOutputPCollVar"
                         },
                         {
                             "children": [
@@ -348,7 +296,7 @@
                         },
                         {
                             "name": "type",
-                            "value": "presentationRecordLink"
+                            "value": "presentationCollectionVar"
                         },
                         {
                             "name": "createdBy",
@@ -357,97 +305,18 @@
                     ],
                     "name": "recordInfo"
                 },
-                {
-                    "name": "presentationOf",
-                    "value": "presentationOfCollectionVarLink"
-                },
-                {
-                    "name": "mode",
-                    "value": "input"
-                }
-            ],
-            "name": "presentation",
-            "attributes": {"type": "pRecordLink"}
-        },
-        {
-            "children": [
                 {
                     "children": [
                         {
-                            "name": "id",
-                            "value": "presentationOfGroupPLink"
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
                         },
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationRecordLink"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
+                            "name": "linkedRecordId",
+                            "value": "outputFormatCollectionVar"
                         }
                     ],
-                    "name": "recordInfo"
-                },
-                {
-                    "name": "presentationOf",
-                    "value": "presentationOfGroupLink"
-                },
-                {
-                    "name": "mode",
-                    "value": "input"
-                }
-            ],
-            "name": "presentation",
-            "attributes": {"type": "pRecordLink"}
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
-                            "value": "presentationOfCollectionVarOutputPLink"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationRecordLink"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "name": "presentationOf",
-                    "value": "presentationOfCollectionVarLink"
+                    "name": "presentationOf"
                 },
                 {
                     "name": "mode",
@@ -455,7 +324,333 @@
                 }
             ],
             "name": "presentation",
-            "attributes": {"type": "pRecordLink"}
+            "attributes": {"type": "pCollVar"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "defaultPresentationCollectionVarPCollVar"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationCollectionVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "defaultPresentationCollectionVar"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
+                },
+                {
+                    "name": "emptyTextId",
+                    "value": "initialEmptyValueText"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pCollVar"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "abstractCollectionVarPCollVar"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationCollectionVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "abstractCollectionVar"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pCollVar"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "modeCollectionVarPCollVar"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationCollectionVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "modeCollectionVar"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pCollVar"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "inputTypeCollectionVarOutputPCollVar"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationCollectionVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "inputTypeCollectionVar"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "output"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pCollVar"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "modeCollectionVarOutputPCollVar"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationCollectionVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "modeCollectionVar"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "output"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pCollVar"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "outputFormatCollectionVarPCollVar"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationCollectionVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "outputFormatCollectionVar"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
+                },
+                {
+                    "name": "emptyTextId",
+                    "value": "initialEmptyValueText"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pCollVar"}
         }
     ],
     "name": "recordList"
