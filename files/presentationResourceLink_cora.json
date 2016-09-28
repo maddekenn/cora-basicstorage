@@ -6,7 +6,7 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "masterResLink"
+                            "value": "masterOutputPResLink"
                         },
                         {
                             "children": [
@@ -23,7 +23,7 @@
                         },
                         {
                             "name": "type",
-                            "value": "metadataResourceLink"
+                            "value": "presentationResourceLink"
                         },
                         {
                             "name": "createdBy",
@@ -33,20 +33,16 @@
                     "name": "recordInfo"
                 },
                 {
-                    "name": "nameInData",
-                    "value": "master"
+                    "name": "presentationOf",
+                    "value": "masterResLink"
                 },
                 {
-                    "name": "textId",
-                    "value": "masterResLinkText"
-                },
-                {
-                    "name": "defTextId",
-                    "value": "masterResLinkDefText"
+                    "name": "mode",
+                    "value": "output"
                 }
             ],
-            "name": "metadata",
-            "attributes": {"type": "resourceLink"}
+            "name": "presentation",
+            "attributes": {"type": "pResourceLink"}
         },
         {
             "children": [
@@ -54,15 +50,7 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "master"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataResourceLink"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
+                            "value": "masterPResLink"
                         },
                         {
                             "children": [
@@ -76,25 +64,29 @@
                                 }
                             ],
                             "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationResourceLink"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
                 },
                 {
-                    "name": "nameInData",
-                    "value": "master"
+                    "name": "presentationOf",
+                    "value": "masterResLink"
                 },
                 {
-                    "name": "textId",
-                    "value": "masterText"
-                },
-                {
-                    "name": "defTextId",
-                    "value": "masterDefText"
+                    "name": "mode",
+                    "value": "input"
                 }
             ],
-            "name": "metadata",
-            "attributes": {"type": "resourceLink"}
+            "name": "presentation",
+            "attributes": {"type": "pResourceLink"}
         }
     ],
     "name": "recordList"
