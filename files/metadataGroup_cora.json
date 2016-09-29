@@ -918,6 +918,14 @@
                             "value": "presentationResourceLinkGroup"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -929,14 +937,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -954,13 +954,21 @@
                     "value": "presentationResourceLinkGroupDefText"
                 },
                 {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "ref",
+                        "value": "presentationTypePResourceLinkCollectionVar"
+                    }],
+                    "name": "attributeReferences"
+                },
+                {
                     "children": [
                         {
                             "repeatId": "0",
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "recordInfoPRecordLinkGroup"
+                                    "value": "recordInfoPResourceLinkGroup"
                                 },
                                 {
                                     "name": "repeatMin",
@@ -978,7 +986,7 @@
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "presentationOfTextVar"
+                                    "value": "presentationOfResourceLinkLink"
                                 },
                                 {
                                     "name": "repeatMin",
@@ -996,7 +1004,7 @@
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "modeCollectionVar"
+                                    "value": "outputFormatCollectionVar"
                                 },
                                 {
                                     "name": "repeatMin",
@@ -1011,14 +1019,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "ref",
-                        "value": "presentationTypePResourceLinkCollectionVar"
-                    }],
-                    "name": "attributeReferences"
                 }
             ],
             "name": "metadata",
@@ -2866,6 +2866,14 @@
                             "value": "presentationResourceLinkNewGroup"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -2877,14 +2885,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -2900,6 +2900,18 @@
                 {
                     "name": "defTextId",
                     "value": "presentationResourceLinkNewGroupDefText"
+                },
+                {
+                    "name": "refParentId",
+                    "value": "presentationResourceLinkGroup"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "ref",
+                        "value": "presentationTypePResourceLinkCollectionVar"
+                    }],
+                    "name": "attributeReferences"
                 },
                 {
                     "children": [
@@ -2926,7 +2938,7 @@
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "presentationOfTextVar"
+                                    "value": "presentationOfResourceLinkLink"
                                 },
                                 {
                                     "name": "repeatMin",
@@ -2944,7 +2956,7 @@
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "modeCollectionVar"
+                                    "value": "outputFormatCollectionVar"
                                 },
                                 {
                                     "name": "repeatMin",
@@ -2959,18 +2971,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "name": "refParentId",
-                    "value": "presentationResourceLinkGroup"
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "ref",
-                        "value": "presentationTypePResourceLinkCollectionVar"
-                    }],
-                    "name": "attributeReferences"
                 }
             ],
             "name": "metadata",
@@ -10062,7 +10062,7 @@
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "masterGroup"
+                                    "value": "masterResLink"
                                 },
                                 {
                                     "name": "repeatMin",
@@ -10727,6 +10727,131 @@
                         ],
                         "name": "childReference"
                     }],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "recordInfoPResourceLinkGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "recordInfo"
+                },
+                {
+                    "name": "textId",
+                    "value": "recordInfoText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "recordInfoDefText"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "idPResourceLinkTextVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "typeTextVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "createdByTextVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "dataDividerLink"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
                     "name": "childReferences"
                 }
             ],

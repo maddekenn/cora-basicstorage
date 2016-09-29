@@ -56,6 +56,8 @@ public class TestDataRecordInMemoryStorage {
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 		recordsInMemory.create("metadataRecordRelation", "dummyRecordRelation", dummy,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
+		recordsInMemory.create("metadataResourceLink", "dummyResourceLink", dummy,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 		return recordsInMemory;
 	}
 
