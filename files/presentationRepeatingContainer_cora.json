@@ -1,0 +1,63 @@
+{
+    "children": [{
+        "children": [
+            {
+                "children": [
+                    {
+                        "name": "id",
+                        "value": "masterImageOutputRContainer"
+                    },
+                    {
+                        "name": "type",
+                        "value": "presentationRepeatingContainer"
+                    },
+                    {
+                        "name": "createdBy",
+                        "value": "userId"
+                    },
+                    {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "system"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "cora"
+                            }
+                        ],
+                        "name": "dataDivider"
+                    }
+                ],
+                "name": "recordInfo"
+            },
+            {
+                "name": "presentationOf",
+                "value": "bookCoverLink"
+            },
+            {
+                "children": [{
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "name": "ref",
+                            "value": "bookCoverOutputPLink"
+                        },
+                        {
+                            "name": "default",
+                            "value": "ref"
+                        }
+                    ],
+                    "name": "childReference"
+                }],
+                "name": "childReferences"
+            }
+        ],
+        "name": "presentation",
+        "attributes": {
+            "repeat": "this",
+            "type": "container"
+        }
+    }],
+    "name": "recordList"
+}
