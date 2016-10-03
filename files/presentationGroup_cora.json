@@ -3156,36 +3156,24 @@
                     "name": "presentationOf"
                 },
                 {
-                    "children": [
-                        {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "masterOutputPResLink"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "masterFilesizePResLink"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        }
-                    ],
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "ref",
+                                "value": "masterFilesizePResLink"
+                            },
+                            {
+                                "name": "default",
+                                "value": "refMinimized"
+                            },
+                            {
+                                "name": "refMinimized",
+                                "value": "masterOutputPResLink"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
                     "name": "childReferences"
                 }
             ],
