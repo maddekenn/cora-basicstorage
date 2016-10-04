@@ -6,11 +6,11 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "masterOutputPResLink"
+                            "value": "bookTitleTextVarPVar"
                         },
                         {
                             "name": "type",
-                            "value": "presentationResourceLink"
+                            "value": "presentationVar"
                         },
                         {
                             "name": "createdBy",
@@ -24,7 +24,7 @@
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "cora"
+                                    "value": "systemOne"
                                 }
                             ],
                             "name": "dataDivider"
@@ -36,22 +36,26 @@
                     "children": [
                         {
                             "name": "linkedRecordType",
-                            "value": "metadataResourceLink"
+                            "value": "metadataTextVariable"
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "masterResLink"
+                            "value": "bookTitleTextVar"
                         }
                     ],
                     "name": "presentationOf"
                 },
                 {
-                    "name": "outputFormat",
-                    "value": "image"
+                    "name": "mode",
+                    "value": "input"
+                },
+                {
+                    "name": "inputType",
+                    "value": "input"
                 }
             ],
             "name": "presentation",
-            "attributes": {"type": "pResourceLink"}
+            "attributes": {"type": "pVar"}
         },
         {
             "children": [
@@ -59,15 +63,7 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "masterFilesizePResLink"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationResourceLink"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
+                            "value": "lastNameTextVarPVar"
                         },
                         {
                             "children": [
@@ -77,10 +73,18 @@
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "cora"
+                                    "value": "systemOne"
                                 }
                             ],
                             "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -89,39 +93,26 @@
                     "children": [
                         {
                             "name": "linkedRecordType",
-                            "value": "metadataResourceLink"
+                            "value": "metadataTextVariable"
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "masterResLink"
+                            "value": "lastNameTextVar"
                         }
                     ],
                     "name": "presentationOf"
                 },
                 {
-                    "children": [{
-                        "repeatId": "0",
-                        "children": [
-                            {
-                                "name": "ref",
-                                "value": "filesizeTextVarOutputPVar"
-                            },
-                            {
-                                "name": "default",
-                                "value": "ref"
-                            }
-                        ],
-                        "name": "childReference"
-                    }],
-                    "name": "childReferences"
+                    "name": "mode",
+                    "value": "input"
                 },
                 {
-                    "name": "outputFormat",
-                    "value": "image"
+                    "name": "inputType",
+                    "value": "input"
                 }
             ],
             "name": "presentation",
-            "attributes": {"type": "pResourceLink"}
+            "attributes": {"type": "pVar"}
         },
         {
             "children": [
@@ -129,11 +120,11 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "masterPResLink"
+                            "value": "firstNameTextVarOutputPVar"
                         },
                         {
                             "name": "type",
-                            "value": "presentationResourceLink"
+                            "value": "presentationVar"
                         },
                         {
                             "name": "createdBy",
@@ -147,7 +138,7 @@
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "cora"
+                                    "value": "systemOne"
                                 }
                             ],
                             "name": "dataDivider"
@@ -159,22 +150,26 @@
                     "children": [
                         {
                             "name": "linkedRecordType",
-                            "value": "metadataResourceLink"
+                            "value": "metadataTextVariable"
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "masterResLink"
+                            "value": "firstNameTextVar"
                         }
                     ],
                     "name": "presentationOf"
                 },
                 {
-                    "name": "outputFormat",
-                    "value": "image"
+                    "name": "mode",
+                    "value": "output"
+                },
+                {
+                    "name": "inputType",
+                    "value": "input"
                 }
             ],
             "name": "presentation",
-            "attributes": {"type": "pResourceLink"}
+            "attributes": {"type": "pVar"}
         },
         {
             "children": [
@@ -182,11 +177,11 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "masterInfoPResLink"
+                            "value": "lastNameTextVarOutputPVar"
                         },
                         {
                             "name": "type",
-                            "value": "presentationResourceLink"
+                            "value": "presentationVar"
                         },
                         {
                             "name": "createdBy",
@@ -200,7 +195,7 @@
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "cora"
+                                    "value": "systemOne"
                                 }
                             ],
                             "name": "dataDivider"
@@ -212,139 +207,140 @@
                     "children": [
                         {
                             "name": "linkedRecordType",
-                            "value": "metadataResourceLink"
+                            "value": "metadataTextVariable"
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "masterResLink"
+                            "value": "lastNameTextVar"
                         }
                     ],
                     "name": "presentationOf"
                 },
                 {
-                    "name": "outputFormat",
-                    "value": "download"
+                    "name": "mode",
+                    "value": "output"
+                },
+                {
+                    "name": "inputType",
+                    "value": "input"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pVar"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "firstNameTextVarPVar"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
                 },
                 {
                     "children": [
                         {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "streamIdTextVarText"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "refMinimized"
-                                }
-                            ],
-                            "name": "childReference"
+                            "name": "linkedRecordType",
+                            "value": "metadataTextVariable"
                         },
                         {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "streamIdTextVarOutputPVar"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "2",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "filenameTextVarText"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "3",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "filenameTextVarOutputPVar"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "4",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "filesizeTextVarText"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "5",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "filesizeTextVarOutputPVar"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "6",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "mimeTypeTextVarText"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "7",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "mimeTypeTextVarOutputPVar"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
+                            "name": "linkedRecordId",
+                            "value": "firstNameTextVar"
                         }
                     ],
-                    "name": "childReferences"
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
+                },
+                {
+                    "name": "inputType",
+                    "value": "input"
                 }
             ],
             "name": "presentation",
-            "attributes": {"type": "pResourceLink"}
+            "attributes": {"type": "pVar"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "bookTitleTextVarOutputPVar"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationVar"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataTextVariable"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookTitleTextVar"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "output"
+                },
+                {
+                    "name": "inputType",
+                    "value": "input"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pVar"}
         }
     ],
     "name": "recordList"

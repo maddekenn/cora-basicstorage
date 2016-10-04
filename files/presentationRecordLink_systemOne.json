@@ -1,0 +1,215 @@
+{
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "personLinkPLink"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRecordLink"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "personLink"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pRecordLink"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "personLinkOutputPLink"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRecordLink"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "personLink"
+                },
+                {
+                    "name": "mode",
+                    "value": "output"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "person"
+                            },
+                            {
+                                "name": "presentationId",
+                                "value": "personGroupWhenLinkedOutputPGroup"
+                            }
+                        ],
+                        "name": "linkedRecordPresentation"
+                    }],
+                    "name": "linkedRecordPresentations"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pRecordLink"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "bookCoverPLink"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRecordLink"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "bookCoverLink"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pRecordLink"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "bookCoverOutputPLink"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRecordLink"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "bookCoverLink"
+                },
+                {
+                    "name": "mode",
+                    "value": "output"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "image"
+                            },
+                            {
+                                "name": "presentationId",
+                                "value": "imageGroupWhenLinkedOutputPGroup"
+                            }
+                        ],
+                        "name": "linkedRecordPresentation"
+                    }],
+                    "name": "linkedRecordPresentations"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pRecordLink"}
+        }
+    ],
+    "name": "recordList"
+}
