@@ -9,6 +9,14 @@
                             "value": "binaryTypeCollectionVar"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -20,14 +28,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataCollectionVariable"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -45,19 +45,19 @@
                     "value": "binaryTypeCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "binaryTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "binaryTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
-                ],
+            ],
             "name": "metadata",
             "attributes": {"type": "collectionVariable"}
         },
@@ -106,17 +106,17 @@
                     "value": "repeatThisCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "repeatCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "repeatCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -175,17 +175,17 @@
                     "value": "systemLanguageSvCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "systemLanguagesCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "systemLanguagesCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -194,75 +194,6 @@
                 {
                     "name": "finalValue",
                     "value": "sv"
-                }
-            ],
-            "name": "metadata",
-            "attributes": {"type": "collectionVariable"}
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
-                            "value": "metadataTypePGroupCollectionVar"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataCollectionVariable"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "name": "nameInData",
-                    "value": "type"
-                },
-                {
-                    "name": "textId",
-                    "value": "metadataTypePGroupCollectionVarTextId"
-                },
-                {
-                    "name": "defTextId",
-                    "value": "metadataTypePGroupCollectionVarDefTextId"
-                },
-                {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "metadataTypeCollection"
-                    }
-                  ]
-                },
-                {
-                    "name": "refParentId",
-                    "value": "metadataTypeCollectionVar"
-                },
-                {
-                    "name": "finalValue",
-                    "value": "pGroup"
                 }
             ],
             "name": "metadata",
@@ -313,17 +244,17 @@
                     "value": "defaultPresentationCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "defaultPresentationCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "defaultPresentationCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -374,17 +305,17 @@
                     "value": "presentationTypePRecordLinkCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "presentationTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "presentationTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -443,17 +374,17 @@
                     "value": "metadataTypeItemCollectionCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "metadataTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -476,6 +407,14 @@
                             "value": "metadataTypeRecordRelationCollectionVar"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -487,14 +426,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataCollectionVariable"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -512,17 +443,17 @@
                     "value": "metadataTypeRecordRelationCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "metadataTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -581,17 +512,17 @@
                     "value": "repeatChildrenCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "repeatCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "repeatCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -650,17 +581,17 @@
                     "value": "presentationTypeCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "presentationTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "presentationTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -675,6 +606,14 @@
                             "value": "showAsTextAreaCollectionVar"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -686,14 +625,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataCollectionVariable"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -711,17 +642,17 @@
                     "value": "showAsTextAreaCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "trueFalseCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "trueFalseCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -736,6 +667,14 @@
                             "value": "userSuppliedIdCollectionVar"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -747,14 +686,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataCollectionVariable"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -772,17 +703,17 @@
                     "value": "userSuppliedIdCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "trueFalseCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "trueFalseCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -797,6 +728,14 @@
                             "value": "binaryTypeGenericBinaryCollectionVar"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -808,14 +747,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataCollectionVariable"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -833,17 +764,17 @@
                     "value": "binaryTypeGenericBinaryCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "binaryTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "binaryTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -902,17 +833,17 @@
                     "value": "textPartTypeDefaultCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "textPartTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "textPartTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -971,17 +902,17 @@
                     "value": "systemLanguagesCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "systemLanguagesCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "systemLanguagesCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -1032,17 +963,17 @@
                     "value": "textPartTypeAlternativeCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "textPartTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "textPartTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -1065,6 +996,14 @@
                             "value": "inputTypeCollectionVar"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -1076,14 +1015,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataCollectionVariable"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -1101,17 +1032,17 @@
                     "value": "inputTypeCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "inputTypeItemCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "inputTypeItemCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -1162,17 +1093,17 @@
                     "value": "repeatCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "repeatCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "repeatCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -1223,17 +1154,17 @@
                     "value": "metadataTypeRecordLinkCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "metadataTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -1292,17 +1223,17 @@
                     "value": "recordTypeTypeCollectionVarDeffTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "metadataTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -1317,6 +1248,14 @@
                             "value": "metadataTypeResourceLinkCollectionVar"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -1328,14 +1267,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataCollectionVariable"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -1353,17 +1284,17 @@
                     "value": "metadataTypeResourceLinkCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "metadataTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -1386,6 +1317,14 @@
                             "value": "abstractCollectionVar"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -1397,14 +1336,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataCollectionVariable"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -1422,17 +1353,17 @@
                     "value": "abstractCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "trueFalseCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "trueFalseCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -1483,17 +1414,17 @@
                     "value": "presentationTypePVarCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "presentationTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "presentationTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -1552,17 +1483,17 @@
                     "value": "metadataTypeGroupCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "metadataTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -1621,17 +1552,17 @@
                     "value": "textPartTypeCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "textPartTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "textPartTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -1682,17 +1613,17 @@
                     "value": "presentationTypePGroupCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "presentationTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "presentationTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -1751,17 +1682,17 @@
                     "value": "binaryTypeSoundCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "binaryTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "binaryTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -1820,17 +1751,17 @@
                     "value": "metadataTypeCollectionItemCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "metadataTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -1889,17 +1820,17 @@
                     "value": "modeCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "modeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "modeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -1950,17 +1881,17 @@
                     "value": "metadataTypeTextCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "metadataTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -2019,17 +1950,17 @@
                     "value": "presentationTypeContainerCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "presentationTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "presentationTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -2088,17 +2019,17 @@
                     "value": "systemLanguageEnCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "systemLanguagesCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "systemLanguagesCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -2157,17 +2088,17 @@
                     "value": "outputFormatCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "outputFormatCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "outputFormatCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
@@ -2218,17 +2149,17 @@
                     "value": "binaryTypeImageCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "binaryTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "binaryTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -2287,17 +2218,17 @@
                     "value": "presentationTypePCollVarCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "presentationTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "presentationTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -2320,6 +2251,14 @@
                             "value": "presentationTypePResourceLinkCollectionVar"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataCollectionVariable"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -2331,14 +2270,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataCollectionVariable"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "userId"
                         }
                     ],
                     "name": "recordInfo"
@@ -2356,17 +2287,17 @@
                     "value": "presentationTypePResourceLinkCollectionVarDefText"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "presentationTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "presentationTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
@@ -2425,17 +2356,17 @@
                     "value": "metadataTypeCollectionVarCollectionVarDefTextId"
                 },
                 {
-                  "name": "refCollection",
-                  "children": [
-                    {
-                      "name": "linkedRecordType",
-                      "value": "metadataItemCollection"
-                    },
-                    {
-                      "name": "linkedRecordId",
-                      "value": "metadataTypeCollection"
-                    }
-                  ]
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataTypeCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 },
                 {
                     "name": "refParentId",
