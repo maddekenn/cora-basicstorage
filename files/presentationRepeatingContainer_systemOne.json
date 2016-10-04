@@ -1,0 +1,141 @@
+{
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "releatedPersonsGroupOutputRContainer"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "releatedPersonsGroup"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "releatedPersonsGroupText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "relatedPersonsGroupOutputPGroup"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "bookCoverLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "bookCoverLink"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "ref",
+                                "value": "bookCoverOutputPLink"
+                            },
+                            {
+                                "name": "default",
+                                "value": "ref"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        }
+    ],
+    "name": "recordList"
+}
