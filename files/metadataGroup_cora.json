@@ -728,6 +728,95 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "loginGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "userId"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "login"
+                },
+                {
+                    "name": "textId",
+                    "value": "loginGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "loginGroupDefText"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "recordInfoGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "loginNameTextVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "metadataCollectionVariableNewGroup"
                         },
                         {
