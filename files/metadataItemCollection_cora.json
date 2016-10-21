@@ -298,7 +298,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "modeCollectionTextId"
+                            "value": "modeCollectionText"
                         }
                     ],
                     "name": "textId"
@@ -311,7 +311,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "modeCollectionDefTextId"
+                            "value": "modeCollectionDefText"
                         }
                     ],
                     "name": "defTextId"
@@ -510,7 +510,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "presentationTypeCollectionTextId"
+                            "value": "presentationTypeCollectionText"
                         }
                     ],
                     "name": "textId"
@@ -523,7 +523,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "presentationTypeCollectionDefTextId"
+                            "value": "presentationTypeCollectionDefText"
                         }
                     ],
                     "name": "defTextId"
@@ -764,7 +764,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "repeatCollectionTextId"
+                            "value": "repeatCollectionText"
                         }
                     ],
                     "name": "textId"
@@ -777,7 +777,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "repeatCollectionDefTextId"
+                            "value": "repeatCollectionDefText"
                         }
                     ],
                     "name": "defTextId"
@@ -863,7 +863,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "defaultPresentationCollectionTextId"
+                            "value": "defaultPresentationCollectionText"
                         }
                     ],
                     "name": "textId"
@@ -876,7 +876,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "defaultPresentationCollectionDefTextId"
+                            "value": "defaultPresentationCollectionDefText"
                         }
                     ],
                     "name": "defTextId"
@@ -962,7 +962,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "recordTypeTypeCollectionTextId"
+                            "value": "recordTypeTypeCollectionText"
                         }
                     ],
                     "name": "textId"
@@ -975,7 +975,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "recordTypeTypeCollectionDeffTextId"
+                            "value": "recordTypeTypeCollectionDeffText"
                         }
                     ],
                     "name": "defTextId"
@@ -1206,105 +1206,6 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "seasonItemCollection"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataItemCollection"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "name": "nameInData",
-                    "value": "seasonItemCollection"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "textSystemOne"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "seasonItemCollectionText"
-                        }
-                    ],
-                    "name": "textId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "textSystemOne"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "seasonItemCollectionDefText"
-                        }
-                    ],
-                    "name": "defTextId"
-                },
-                {
-                    "children": [
-                        {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "metadataCollectionItem"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "sommarItem"
-                                }
-                            ],
-                            "name": "ref"
-                        },
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "metadataCollectionItem"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "vinterItem"
-                                }
-                            ],
-                            "name": "ref"
-                        }
-                    ],
-                    "name": "collectionItemReferences"
-                }
-            ],
-            "name": "metadata",
-            "attributes": {"type": "itemCollection"}
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
                             "value": "textPartTypeCollection"
                         },
                         {
@@ -1343,7 +1244,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "textPartTypeCollectionTextId"
+                            "value": "textPartTypeCollectionText"
                         }
                     ],
                     "name": "textId"
@@ -1356,7 +1257,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "textPartTypeCollectionDefTextId"
+                            "value": "textPartTypeCollectionDefText"
                         }
                     ],
                     "name": "defTextId"
@@ -1407,6 +1308,14 @@
                             "value": "inputTypeItemCollection"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -1418,14 +1327,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataItemCollection"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
                         }
                     ],
                     "name": "recordInfo"
