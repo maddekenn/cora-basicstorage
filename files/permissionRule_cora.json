@@ -1,0 +1,92 @@
+{
+    "children": [{
+        "children": [
+            {
+                "children": [
+                    {
+                        "name": "id",
+                        "value": "fghdhsdj"
+                    },
+                    {
+                        "name": "type",
+                        "value": "permissionRule"
+                    },
+                    {
+                        "name": "createdBy",
+                        "value": "12345"
+                    },
+                    {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "system"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "cora"
+                            }
+                        ],
+                        "name": "dataDivider"
+                    }
+                ],
+                "name": "recordInfo"
+            },
+            {
+                "children": [
+                    {
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system.create"
+                    },
+                    {
+                        "repeatId": "1",
+                        "name": "permissionRulePartValue",
+                        "value": "system.update"
+                    }
+                ],
+                "name": "permissionRulePart",
+                "attributes": {"type": "action"}
+            },
+            {
+                "children": [
+                    {
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system.book"
+                    },
+                    {
+                        "repeatId": "1",
+                        "name": "permissionRulePartValue",
+                        "value": "system.person"
+                    }
+                ],
+                "name": "permissionRulePart",
+                "attributes": {"type": "recordType"}
+            },
+            {
+                "children": [{
+                    "repeatId": "0",
+                    "name": "permissionRulePartValue",
+                    "value": "system."
+                }],
+                "name": "permissionRulePart",
+                "attributes": {"type": "delete"}
+            },
+            {
+                "children": [{
+                    "repeatId": "0",
+                    "name": "permissionRulePartValue",
+                    "value": "system."
+                }],
+                "name": "permissionRulePart",
+                "attributes": {"type": "publish"}
+            },
+            {
+                "name": "activeStatus",
+                "value": "active"
+            }
+        ],
+        "name": "permissionRule"
+    }],
+    "name": "recordList"
+}
