@@ -1339,7 +1339,7 @@
                 },
                 {
                     "name": "refParentId",
-                    "value": "text"
+                    "value": "textGroup"
                 },
                 {
                     "children": [
@@ -5722,69 +5722,15 @@
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "permissionRulePartActionGroup"
+                                    "value": "permissionRulePartGroup"
                                 },
                                 {
                                     "name": "repeatMin",
-                                    "value": "1"
+                                    "value": "4"
                                 },
                                 {
                                     "name": "repeatMax",
-                                    "value": "1"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartRecordTypeGroup"
-                                },
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "2",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartDeleteGroup"
-                                },
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "3",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartPublishGroup"
-                                },
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
+                                    "value": "4"
                                 }
                             ],
                             "name": "childReference"
@@ -9108,6 +9054,171 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "defaultPermissionRuleGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "permissionRule"
+                },
+                {
+                    "name": "textId",
+                    "value": "defaultPermissionRuleGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "defaultPermissionRuleGroupDefText"
+                },
+                {
+                    "name": "refParentId",
+                    "value": "permissionRuleGroup"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "6",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "recordInfoGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "permissionRulePartActionGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "permissionRulePartRecordTypeGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "permissionRulePartDeleteGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "permissionRulePartPublishGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "activeStatusCollectionVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "systemNewGroup"
                         },
                         {
@@ -11898,6 +12009,10 @@
                 {
                     "name": "defTextId",
                     "value": "permissionRuleNewGroupDefText"
+                },
+                {
+                    "name": "refParentId",
+                    "value": "defaultPermissionRuleGroup"
                 },
                 {
                     "children": [

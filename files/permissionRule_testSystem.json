@@ -1,0 +1,78 @@
+{
+    "children": [{
+        "children": [
+            {
+                "children": [
+                    {
+                        "name": "id",
+                        "value": "test"
+                    },
+                    {
+                        "name": "type",
+                        "value": "permissionRule"
+                    },
+                    {
+                        "name": "createdBy",
+                        "value": "12345"
+                    },
+                    {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "system"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "testSystem"
+                            }
+                        ],
+                        "name": "dataDivider"
+                    }
+                ],
+                "name": "recordInfo"
+            },
+            {
+                "children": [{
+                    "repeatId": "0",
+                    "name": "permissionRulePartValue",
+                    "value": "system.a"
+                }],
+                "name": "permissionRulePart",
+                "attributes": {"type": "action"}
+            },
+            {
+                "children": [{
+                    "repeatId": "0",
+                    "name": "permissionRulePartValue",
+                    "value": "system.b"
+                }],
+                "name": "permissionRulePart",
+                "attributes": {"type": "recordType"}
+            },
+            {
+                "children": [{
+                    "repeatId": "0",
+                    "name": "permissionRulePartValue",
+                    "value": "system.c"
+                }],
+                "name": "permissionRulePart",
+                "attributes": {"type": "delete"}
+            },
+            {
+                "children": [{
+                    "repeatId": "0",
+                    "name": "permissionRulePartValue",
+                    "value": "system.d"
+                }],
+                "name": "permissionRulePart",
+                "attributes": {"type": "publish"}
+            },
+            {
+                "name": "activeStatus",
+                "value": "active"
+            }
+        ],
+        "name": "permissionRule"
+    }],
+    "name": "recordList"
+}
