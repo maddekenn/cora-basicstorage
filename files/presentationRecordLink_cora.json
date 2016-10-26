@@ -483,6 +483,76 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "permissionRuleOutputPLink"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRecordLink"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataRecordLink"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionRuleLink"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "output"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "permissionRule"
+                            },
+                            {
+                                "name": "presentationId",
+                                "value": "permissionRuleViewPGroup"
+                            }
+                        ],
+                        "name": "linkedRecordPresentation"
+                    }],
+                    "name": "linkedRecordPresentations"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pRecordLink"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "presentationOfTextVarPLink"
                         },
                         {
@@ -518,6 +588,59 @@
                         {
                             "name": "linkedRecordId",
                             "value": "presentationOfTextVarLink"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pRecordLink"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "permissionRulePLink"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRecordLink"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataRecordLink"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionRuleLink"
                         }
                     ],
                     "name": "presentationOf"
