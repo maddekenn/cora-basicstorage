@@ -20673,6 +20673,54 @@
                                             },
                                             {
                                                 "name": "linkedRepeatId",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "name": "nameInData",
+                                                        "value": "permissionRuleLink"
+                                                    },
+                                                    {
+                                                        "name": "repeatId",
+                                                        "value": "1"
+                                                    }
+                                                ],
+                                                "name": "linkedPath"
+                                            }
+                                        ],
+                                        "name": "from"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "permissionRule"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "metadataAdmin"
+                                            }
+                                        ],
+                                        "name": "to"
+                                    }
+                                ],
+                                "name": "recordToRecordLink"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "permissionRole"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "guest"
+                                            },
+                                            {
+                                                "name": "linkedRepeatId",
                                                 "value": "0"
                                             },
                                             {
@@ -30952,59 +31000,114 @@
             "name": "singleTrainingProgramRecordType"
         },
         {
-            "children": [{
-                "children": [{
+            "children": [
+                {
                     "children": [{
-                        "children": [
-                            {
-                                "children": [
-                                    {
-                                        "name": "linkedRecordType",
-                                        "value": "permissionRule"
-                                    },
-                                    {
-                                        "name": "linkedRecordId",
-                                        "value": "fghdhsdj"
-                                    },
-                                    {
-                                        "children": [
-                                            {
-                                                "name": "nameInData",
-                                                "value": "recordInfo"
-                                            },
-                                            {
-                                                "children": [{
+                        "children": [{
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "permissionRule"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "fghdhsdj"
+                                        },
+                                        {
+                                            "children": [
+                                                {
                                                     "name": "nameInData",
-                                                    "value": "dataDivider"
-                                                }],
-                                                "name": "linkedPath"
-                                            }
-                                        ],
-                                        "name": "linkedPath"
-                                    }
-                                ],
-                                "name": "from"
-                            },
-                            {
-                                "children": [
-                                    {
-                                        "name": "linkedRecordType",
-                                        "value": "system"
-                                    },
-                                    {
-                                        "name": "linkedRecordId",
-                                        "value": "cora"
-                                    }
-                                ],
-                                "name": "to"
-                            }
-                        ],
-                        "name": "recordToRecordLink"
+                                                    "value": "recordInfo"
+                                                },
+                                                {
+                                                    "children": [{
+                                                        "name": "nameInData",
+                                                        "value": "dataDivider"
+                                                    }],
+                                                    "name": "linkedPath"
+                                                }
+                                            ],
+                                            "name": "linkedPath"
+                                        }
+                                    ],
+                                    "name": "from"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "cora"
+                                        }
+                                    ],
+                                    "name": "to"
+                                }
+                            ],
+                            "name": "recordToRecordLink"
+                        }],
+                        "name": "collectedDataLinks"
                     }],
-                    "name": "collectedDataLinks"
-                }],
-                "name": "fghdhsdj"
-            }],
+                    "name": "fghdhsdj"
+                },
+                {
+                    "children": [{
+                        "children": [{
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "permissionRule"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "metadataAdmin"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "name": "nameInData",
+                                                    "value": "recordInfo"
+                                                },
+                                                {
+                                                    "children": [{
+                                                        "name": "nameInData",
+                                                        "value": "dataDivider"
+                                                    }],
+                                                    "name": "linkedPath"
+                                                }
+                                            ],
+                                            "name": "linkedPath"
+                                        }
+                                    ],
+                                    "name": "from"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "cora"
+                                        }
+                                    ],
+                                    "name": "to"
+                                }
+                            ],
+                            "name": "recordToRecordLink"
+                        }],
+                        "name": "collectedDataLinks"
+                    }],
+                    "name": "metadataAdmin"
+                }
+            ],
             "name": "permissionRule"
         },
         {
