@@ -32,38 +32,81 @@
                 "name": "recordInfo"
             },
             {
-                "children": [{
-                    "repeatId": "0",
-                    "name": "permissionRulePartValue",
-                    "value": "system.a"
-                }],
+                "children": [
+                    {
+                        "repeatId": "2",
+                        "name": "permissionRulePartValue",
+                        "value": "system.create"
+                    },
+                    {
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system.read"
+                    },
+                    {
+                        "repeatId": "1",
+                        "name": "permissionRulePartValue",
+                        "value": "system.update"
+                    }
+                ],
                 "name": "permissionRulePart",
                 "attributes": {"type": "action"}
             },
             {
-                "children": [{
-                    "repeatId": "0",
-                    "name": "permissionRulePartValue",
-                    "value": "system.b"
-                }],
+                "children": [
+                    {
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system.person"
+                    },
+                    {
+                        "repeatId": "1",
+                        "name": "permissionRulePartValue",
+                        "value": "system.place"
+                    },
+                    {
+                        "repeatId": "2",
+                        "name": "permissionRulePartValue",
+                        "value": "system.permissionRule"
+                    },
+                    {
+                        "repeatId": "3",
+                        "name": "permissionRulePartValue",
+                        "value": "system."
+                    }
+                ],
                 "name": "permissionRulePart",
                 "attributes": {"type": "recordType"}
             },
             {
-                "children": [{
-                    "repeatId": "0",
-                    "name": "permissionRulePartValue",
-                    "value": "system.c"
-                }],
+                "children": [
+                    {
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system.existing"
+                    },
+                    {
+                        "repeatId": "1",
+                        "name": "permissionRulePartValue",
+                        "value": "system.deleted"
+                    }
+                ],
                 "name": "permissionRulePart",
                 "attributes": {"type": "delete"}
             },
             {
-                "children": [{
-                    "repeatId": "0",
-                    "name": "permissionRulePartValue",
-                    "value": "system.d"
-                }],
+                "children": [
+                    {
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system.published"
+                    },
+                    {
+                        "repeatId": "1",
+                        "name": "permissionRulePartValue",
+                        "value": "system.notpublished"
+                    }
+                ],
                 "name": "permissionRulePart",
                 "attributes": {"type": "publish"}
             },
