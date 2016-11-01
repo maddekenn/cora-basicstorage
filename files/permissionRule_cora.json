@@ -6,7 +6,94 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "fghdhsdj"
+                            "value": "systemConfigurator"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "permissionRule"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system."
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "action"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.login"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.loginWebRedirect"
+                        },
+                        {
+                            "repeatId": "2",
+                            "name": "permissionRulePartValue",
+                            "value": "system.loginToken"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "recordType"}
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system."
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "delete"}
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system."
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "publish"}
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "permissionRule"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "binaryUser"
                         },
                         {
                             "name": "type",
@@ -37,12 +124,12 @@
                         {
                             "repeatId": "0",
                             "name": "permissionRulePartValue",
-                            "value": "system.create"
+                            "value": "system.read"
                         },
                         {
                             "repeatId": "1",
                             "name": "permissionRulePartValue",
-                            "value": "system.update"
+                            "value": "system.download"
                         }
                     ],
                     "name": "permissionRulePart",
@@ -53,12 +140,12 @@
                         {
                             "repeatId": "0",
                             "name": "permissionRulePartValue",
-                            "value": "system.book"
+                            "value": "system.image"
                         },
                         {
                             "repeatId": "1",
                             "name": "permissionRulePartValue",
-                            "value": "system.person"
+                            "value": "system.sound"
                         }
                     ],
                     "name": "permissionRulePart",
@@ -246,16 +333,6 @@
                             "repeatId": "22",
                             "name": "permissionRulePartValue",
                             "value": "system.binary"
-                        },
-                        {
-                            "repeatId": "23",
-                            "name": "permissionRulePartValue",
-                            "value": "system.sound"
-                        },
-                        {
-                            "repeatId": "24",
-                            "name": "permissionRulePartValue",
-                            "value": "system.image"
                         },
                         {
                             "repeatId": "25",
