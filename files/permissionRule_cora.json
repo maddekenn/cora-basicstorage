@@ -1,0 +1,640 @@
+{
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "systemConfigurator"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "permissionRule"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system."
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "action"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.login"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.loginWebRedirect"
+                        },
+                        {
+                            "repeatId": "2",
+                            "name": "permissionRulePartValue",
+                            "value": "system.loginToken"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "recordType"}
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system."
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "delete"}
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system."
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "publish"}
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "permissionRule"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "binaryUser"
+                        },
+                        {
+                            "name": "type",
+                            "value": "permissionRule"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.read"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.download"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "action"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.image"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.sound"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "recordType"}
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system."
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "delete"}
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system."
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "publish"}
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "permissionRule"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "metadataUser"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "permissionRule"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "2",
+                            "name": "permissionRulePartValue",
+                            "value": "system.read"
+                        },
+                        {
+                            "repeatId": "3",
+                            "name": "permissionRulePartValue",
+                            "value": "system.list"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "action"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "9",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadata"
+                        },
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataGroup"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataResourceLink"
+                        },
+                        {
+                            "repeatId": "2",
+                            "name": "permissionRulePartValue",
+                            "value": "system.RecordLink"
+                        },
+                        {
+                            "repeatId": "3",
+                            "name": "permissionRulePartValue",
+                            "value": "system.RecordRelation"
+                        },
+                        {
+                            "repeatId": "4",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataCollectionItem"
+                        },
+                        {
+                            "repeatId": "5",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataTextVariable"
+                        },
+                        {
+                            "repeatId": "6",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataCollectionVariable"
+                        },
+                        {
+                            "repeatId": "7",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataItemCollection"
+                        },
+                        {
+                            "repeatId": "8",
+                            "name": "permissionRulePartValue",
+                            "value": "system.login"
+                        },
+                        {
+                            "repeatId": "10",
+                            "name": "permissionRulePartValue",
+                            "value": "system.loginWebRedirect"
+                        },
+                        {
+                            "repeatId": "11",
+                            "name": "permissionRulePartValue",
+                            "value": "system.loginToken"
+                        },
+                        {
+                            "repeatId": "12",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentation"
+                        },
+                        {
+                            "repeatId": "13",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationVar"
+                        },
+                        {
+                            "repeatId": "14",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationSurroundingContainer"
+                        },
+                        {
+                            "repeatId": "15",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationRecordLink"
+                        },
+                        {
+                            "repeatId": "16",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationCollectionVar"
+                        },
+                        {
+                            "repeatId": "17",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationResourceLink"
+                        },
+                        {
+                            "repeatId": "18",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationRepeatingContainer"
+                        },
+                        {
+                            "repeatId": "19",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationGroup"
+                        },
+                        {
+                            "repeatId": "20",
+                            "name": "permissionRulePartValue",
+                            "value": "system.text"
+                        },
+                        {
+                            "repeatId": "21",
+                            "name": "permissionRulePartValue",
+                            "value": "system.textSystemOne"
+                        },
+                        {
+                            "repeatId": "22",
+                            "name": "permissionRulePartValue",
+                            "value": "system.binary"
+                        },
+                        {
+                            "repeatId": "25",
+                            "name": "permissionRulePartValue",
+                            "value": "system.genericBinary"
+                        },
+                        {
+                            "repeatId": "27",
+                            "name": "permissionRulePartValue",
+                            "value": "system.permissionRole"
+                        },
+                        {
+                            "repeatId": "28",
+                            "name": "permissionRulePartValue",
+                            "value": "system.recordType"
+                        },
+                        {
+                            "repeatId": "29",
+                            "name": "permissionRulePartValue",
+                            "value": "system.permissionRule"
+                        },
+                        {
+                            "repeatId": "30",
+                            "name": "permissionRulePartValue",
+                            "value": "system.system"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "recordType"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.existing"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.deleted"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "delete"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.published"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.notpublished"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "publish"}
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "permissionRule"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "metadataAdmin"
+                        },
+                        {
+                            "name": "type",
+                            "value": "permissionRule"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [{
+                        "repeatId": "2",
+                        "name": "permissionRulePartValue",
+                        "value": "system."
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "action"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "9",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadata"
+                        },
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataGroup"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataResourceLink"
+                        },
+                        {
+                            "repeatId": "2",
+                            "name": "permissionRulePartValue",
+                            "value": "system.RecordLink"
+                        },
+                        {
+                            "repeatId": "3",
+                            "name": "permissionRulePartValue",
+                            "value": "system.RecordRelation"
+                        },
+                        {
+                            "repeatId": "4",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataCollectionItem"
+                        },
+                        {
+                            "repeatId": "5",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataTextVariable"
+                        },
+                        {
+                            "repeatId": "6",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataCollectionVariable"
+                        },
+                        {
+                            "repeatId": "7",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataItemCollection"
+                        },
+                        {
+                            "repeatId": "8",
+                            "name": "permissionRulePartValue",
+                            "value": "system.login"
+                        },
+                        {
+                            "repeatId": "10",
+                            "name": "permissionRulePartValue",
+                            "value": "system.loginWebRedirect"
+                        },
+                        {
+                            "repeatId": "11",
+                            "name": "permissionRulePartValue",
+                            "value": "system.loginToken"
+                        },
+                        {
+                            "repeatId": "12",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentation"
+                        },
+                        {
+                            "repeatId": "13",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationVar"
+                        },
+                        {
+                            "repeatId": "14",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationSurroundingContainer"
+                        },
+                        {
+                            "repeatId": "15",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationRecordLink"
+                        },
+                        {
+                            "repeatId": "16",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationCollectionVar"
+                        },
+                        {
+                            "repeatId": "17",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationResourceLink"
+                        },
+                        {
+                            "repeatId": "18",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationRepeatingContainer"
+                        },
+                        {
+                            "repeatId": "19",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationGroup"
+                        },
+                        {
+                            "repeatId": "20",
+                            "name": "permissionRulePartValue",
+                            "value": "system.text"
+                        },
+                        {
+                            "repeatId": "21",
+                            "name": "permissionRulePartValue",
+                            "value": "system.textSystemOne"
+                        },
+                        {
+                            "repeatId": "22",
+                            "name": "permissionRulePartValue",
+                            "value": "system.binary"
+                        },
+                        {
+                            "repeatId": "25",
+                            "name": "permissionRulePartValue",
+                            "value": "system.genericBinary"
+                        },
+                        {
+                            "repeatId": "27",
+                            "name": "permissionRulePartValue",
+                            "value": "system.permissionRole"
+                        },
+                        {
+                            "repeatId": "28",
+                            "name": "permissionRulePartValue",
+                            "value": "system.recordType"
+                        },
+                        {
+                            "repeatId": "29",
+                            "name": "permissionRulePartValue",
+                            "value": "system.permissionRule"
+                        },
+                        {
+                            "repeatId": "30",
+                            "name": "permissionRulePartValue",
+                            "value": "system.system"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "recordType"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.existing"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.deleted"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "delete"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.published"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.notpublished"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "publish"}
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "permissionRule"
+        }
+    ],
+    "name": "recordList"
+}
