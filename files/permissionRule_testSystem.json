@@ -5,15 +5,7 @@
                 "children": [
                     {
                         "name": "id",
-                        "value": "test"
-                    },
-                    {
-                        "name": "type",
-                        "value": "permissionRule"
-                    },
-                    {
-                        "name": "createdBy",
-                        "value": "12345"
+                        "value": "fitnesse"
                     },
                     {
                         "children": [
@@ -27,86 +19,51 @@
                             }
                         ],
                         "name": "dataDivider"
+                    },
+                    {
+                        "name": "type",
+                        "value": "permissionRule"
+                    },
+                    {
+                        "name": "createdBy",
+                        "value": "12345"
                     }
                 ],
                 "name": "recordInfo"
             },
             {
-                "children": [
-                    {
-                        "repeatId": "2",
-                        "name": "permissionRulePartValue",
-                        "value": "system.create"
-                    },
-                    {
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.read"
-                    },
-                    {
-                        "repeatId": "3",
-                        "name": "permissionRulePartValue",
-                        "value": "system.list"
-                    },
-                    {
-                        "repeatId": "4",
-                        "name": "permissionRulePartValue",
-                        "value": "system.update"
-                    }
-                ],
+                "children": [{
+                    "repeatId": "0",
+                    "name": "permissionRulePartValue",
+                    "value": "system."
+                }],
                 "name": "permissionRulePart",
                 "attributes": {"type": "action"}
             },
             {
-                "children": [
-                    {
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.person"
-                    },
-                    {
-                        "repeatId": "1",
-                        "name": "permissionRulePartValue",
-                        "value": "system.place"
-                    },
-                    {
-                        "repeatId": "2",
-                        "name": "permissionRulePartValue",
-                        "value": "system.book"
-                    }
-                ],
+                "children": [{
+                    "repeatId": "0",
+                    "name": "permissionRulePartValue",
+                    "value": "system."
+                }],
                 "name": "permissionRulePart",
                 "attributes": {"type": "recordType"}
             },
             {
-                "children": [
-                    {
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.existing"
-                    },
-                    {
-                        "repeatId": "1",
-                        "name": "permissionRulePartValue",
-                        "value": "system.deleted"
-                    }
-                ],
+                "children": [{
+                    "repeatId": "0",
+                    "name": "permissionRulePartValue",
+                    "value": "system."
+                }],
                 "name": "permissionRulePart",
                 "attributes": {"type": "delete"}
             },
             {
-                "children": [
-                    {
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.published"
-                    },
-                    {
-                        "repeatId": "1",
-                        "name": "permissionRulePartValue",
-                        "value": "system.notpublished"
-                    }
-                ],
+                "children": [{
+                    "repeatId": "0",
+                    "name": "permissionRulePartValue",
+                    "value": "system."
+                }],
                 "name": "permissionRulePart",
                 "attributes": {"type": "publish"}
             },
