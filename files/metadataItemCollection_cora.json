@@ -260,105 +260,6 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "modeCollection"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataItemCollection"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "name": "nameInData",
-                    "value": "modeCollection"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "textSystemOne"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "modeCollectionText"
-                        }
-                    ],
-                    "name": "textId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "textSystemOne"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "modeCollectionDefText"
-                        }
-                    ],
-                    "name": "defTextId"
-                },
-                {
-                    "children": [
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "metadataCollectionItem"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "inputItem"
-                                }
-                            ],
-                            "name": "ref"
-                        },
-                        {
-                            "repeatId": "2",
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "metadataCollectionItem"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "outputItem"
-                                }
-                            ],
-                            "name": "ref"
-                        }
-                    ],
-                    "name": "collectionItemReferences"
-                }
-            ],
-            "name": "metadata",
-            "attributes": {"type": "itemCollection"}
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
                             "value": "permissionRulePartTypeItemCollection"
                         },
                         {
@@ -483,6 +384,105 @@
                                 {
                                     "name": "linkedRecordId",
                                     "value": "permissionRulePartTypeOrganisationItem"
+                                }
+                            ],
+                            "name": "ref"
+                        }
+                    ],
+                    "name": "collectionItemReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "itemCollection"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "modeCollection"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "modeCollection"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "textSystemOne"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "modeCollectionText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "textSystemOne"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "modeCollectionDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "inputItem"
+                                }
+                            ],
+                            "name": "ref"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "outputItem"
                                 }
                             ],
                             "name": "ref"
@@ -751,6 +751,20 @@
                                 {
                                     "name": "linkedRecordId",
                                     "value": "pResourceLinkItem"
+                                }
+                            ],
+                            "name": "ref"
+                        },
+                        {
+                            "repeatId": "7",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "pRecordRelationItem"
                                 }
                             ],
                             "name": "ref"
