@@ -404,6 +404,88 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "userRoleRulePartOutputPGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userRoleRulePartGroup"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "permissionRulePartUserIdOutputPGroup"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "permissionRulePartOrganisationOutputPGroup"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pGroup"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "genericBinaryFormNewPGroup"
                         },
                         {
@@ -8096,6 +8178,72 @@
                             {
                                 "name": "ref",
                                 "value": "recordInfoMenuPGroup"
+                            },
+                            {
+                                "name": "default",
+                                "value": "ref"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pGroup"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "permissionRulePartOrganisationOutputPGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionRulePartOrganisationGroup"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "ref",
+                                "value": "permissionRulePartValueOutputPVar"
                             },
                             {
                                 "name": "default",
@@ -18730,6 +18878,72 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "permissionRulePartUserIdOutputPGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionRulePartUserIdGroup"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "ref",
+                                "value": "permissionRulePartValueOutputPVar"
+                            },
+                            {
+                                "name": "default",
+                                "value": "ref"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pGroup"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "linkedPathPGroup"
                         },
                         {
@@ -19164,20 +19378,120 @@
                     "name": "presentationOf"
                 },
                 {
-                    "children": [{
-                        "repeatId": "0",
-                        "children": [
-                            {
-                                "name": "ref",
-                                "value": "recordInfoOutputPGroup"
-                            },
-                            {
-                                "name": "default",
-                                "value": "ref"
-                            }
-                        ],
-                        "name": "childReference"
-                    }],
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "recordInfoOutputPGroup"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userIdTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userIdTextVarOutputPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userFirstnameTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userFirstnameTextVarOutputPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userLastnameTextVarText"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "6",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userLastnameTextVarOutputPVar"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "7",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userRoleOutputPRelation"
+                                },
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
                     "name": "childReferences"
                 }
             ],
