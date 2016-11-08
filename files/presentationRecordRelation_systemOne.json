@@ -1,0 +1,78 @@
+{
+    "children": [{
+        "children": [
+            {
+                "children": [
+                    {
+                        "name": "id",
+                        "value": "systemOneUserRolePRelation"
+                    },
+                    {
+                        "name": "type",
+                        "value": "presentationRecordRelation"
+                    },
+                    {
+                        "name": "createdBy",
+                        "value": "12345"
+                    },
+                    {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "system"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "systemOne"
+                            }
+                        ],
+                        "name": "dataDivider"
+                    }
+                ],
+                "name": "recordInfo"
+            },
+            {
+                "children": [
+                    {
+                        "name": "linkedRecordType",
+                        "value": "metadataRecordRelation"
+                    },
+                    {
+                        "name": "linkedRecordId",
+                        "value": "systemOneUserRoleRecordRelation"
+                    }
+                ],
+                "name": "presentationOf"
+            },
+            {
+                "children": [
+                    {
+                        "name": "linkedRecordType",
+                        "value": "presentationRecordLink"
+                    },
+                    {
+                        "name": "linkedRecordId",
+                        "value": "userRolePLink"
+                    }
+                ],
+                "name": "linkedPresentationRecordLink"
+            },
+            {
+                "children": [
+                    {
+                        "name": "linkedRecordType",
+                        "value": "presentationGroup"
+                    },
+                    {
+                        "name": "linkedRecordId",
+                        "value": "systemOneUserRoleRulePartPGroup"
+                    }
+                ],
+                "name": "linkedPresentationGroup"
+            }
+        ],
+        "name": "presentationRecordRelationGroup",
+        "attributes": {"type": "pRecordRelation"}
+    }],
+    "name": "recordList"
+}
