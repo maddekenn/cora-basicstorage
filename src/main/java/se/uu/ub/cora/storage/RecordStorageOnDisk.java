@@ -22,7 +22,7 @@ package se.uu.ub.cora.storage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -106,7 +106,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private String readJsonFileByPath(Path path) throws IOException {
-		BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset());
+		BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
 		String line;
 		StringBuilder jsonBuilder = new StringBuilder();
 		while ((line = reader.readLine()) != null) {
@@ -269,7 +269,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		if (Files.exists(path)) {
 			Files.delete(path);
 		}
-		writer = Files.newBufferedWriter(path, Charset.defaultCharset(), StandardOpenOption.CREATE);
+		writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
 		writer.write(json, 0, json.length());
 		writer.flush();
 		writer.close();

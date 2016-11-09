@@ -26,7 +26,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -236,7 +236,7 @@ public class RecordStorageOnDiskTest {
 
 	private String readJsonFileFromDisk(String fileName) throws IOException {
 		Path path = Paths.get(basePath, fileName);
-		BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset());
+		BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
 		String line = null;
 		String json = "";
 		while ((line = reader.readLine()) != null) {
@@ -940,7 +940,7 @@ public class RecordStorageOnDiskTest {
 		Path path = FileSystems.getDefault().getPath(basePath, fileName);
 		BufferedWriter writer;
 		try {
-			writer = Files.newBufferedWriter(path, Charset.defaultCharset(),
+			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
 					StandardOpenOption.CREATE);
 			writer.write(json, 0, json.length());
 			writer.flush();
