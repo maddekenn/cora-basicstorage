@@ -6,11 +6,11 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "book:2612449737222"
+                            "value": "systemOneUserRolePRelation"
                         },
                         {
                             "name": "type",
-                            "value": "book"
+                            "value": "presentationRecordRelation"
                         },
                         {
                             "name": "createdBy",
@@ -24,7 +24,7 @@
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "testSystem"
+                                    "value": "systemOne"
                                 }
                             ],
                             "name": "dataDivider"
@@ -33,25 +33,47 @@
                     "name": "recordInfo"
                 },
                 {
-                    "name": "bookTitle",
-                    "value": "Standards as a way of life"
-                },
-                {
-                    "repeatId": "2",
                     "children": [
                         {
                             "name": "linkedRecordType",
-                            "value": "image"
+                            "value": "metadataRecordRelation"
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "image:2444921469942"
+                            "value": "systemOneUserRoleRecordRelation"
                         }
                     ],
-                    "name": "bookCover"
+                    "name": "presentationOf"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationRecordLink"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userRolePLink"
+                        }
+                    ],
+                    "name": "linkedPresentationRecordLink"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "systemOneUserRoleRulePartPGroup"
+                        }
+                    ],
+                    "name": "linkedPresentationGroup"
                 }
             ],
-            "name": "book"
+            "name": "presentationRecordRelationGroup",
+            "attributes": {"type": "pRecordRelation"}
         },
         {
             "children": [
@@ -59,15 +81,7 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "book:27319258226826"
-                        },
-                        {
-                            "name": "type",
-                            "value": "book"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
+                            "value": "systemOneUserRoleOutputPRelation"
                         },
                         {
                             "children": [
@@ -77,115 +91,64 @@
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "testSystem"
+                                    "value": "systemOne"
                                 }
                             ],
                             "name": "dataDivider"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "name": "bookTitle",
-                    "value": "En kul bok COPY"
-                },
-                {
-                    "repeatId": "0",
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "image"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "image:2444894644250"
-                        }
-                    ],
-                    "name": "bookCover"
-                },
-                {
-                    "repeatId": "1",
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "image"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "image:2444927762108"
-                        }
-                    ],
-                    "name": "bookCover"
-                }
-            ],
-            "name": "book"
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
-                            "value": "book:2439288093775"
                         },
                         {
                             "name": "type",
-                            "value": "book"
+                            "value": "presentationRecordRelation"
                         },
                         {
                             "name": "createdBy",
                             "value": "12345"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "testSystem"
-                                }
-                            ],
-                            "name": "dataDivider"
                         }
                     ],
                     "name": "recordInfo"
                 },
                 {
-                    "name": "bookTitle",
-                    "value": "En kul bok"
-                },
-                {
-                    "repeatId": "0",
                     "children": [
                         {
                             "name": "linkedRecordType",
-                            "value": "image"
+                            "value": "metadataRecordRelation"
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "image:2444894644250"
+                            "value": "systemOneUserRoleRecordRelation"
                         }
                     ],
-                    "name": "bookCover"
+                    "name": "presentationOf"
                 },
                 {
-                    "repeatId": "1",
                     "children": [
                         {
                             "name": "linkedRecordType",
-                            "value": "image"
+                            "value": "presentationRecordLink"
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "image:2444927762108"
+                            "value": "userRoleOutputPLink"
                         }
                     ],
-                    "name": "bookCover"
+                    "name": "linkedPresentationRecordLink"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "systemOneUserRoleRulePartOutputPGroup"
+                        }
+                    ],
+                    "name": "linkedPresentationGroup"
                 }
             ],
-            "name": "book"
+            "name": "presentationRecordRelationNewGroup",
+            "attributes": {"type": "pRecordRelation"}
         }
     ],
     "name": "recordList"
