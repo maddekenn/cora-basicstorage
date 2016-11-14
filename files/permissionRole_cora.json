@@ -199,6 +199,14 @@
                             "value": "user"
                         },
                         {
+                            "name": "type",
+                            "value": "permissionRole"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -210,14 +218,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "permissionRole"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
                         }
                     ],
                     "name": "recordInfo"
@@ -251,20 +251,6 @@
                     "name": "permissionRuleLink"
                 },
                 {
-                    "repeatId": "3",
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "permissionRule"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "systemConfigurator"
-                        }
-                    ],
-                    "name": "permissionRuleLink"
-                },
-                {
                     "repeatId": "0",
                     "children": [
                         {
@@ -281,6 +267,73 @@
                 {
                     "name": "activeStatus",
                     "value": "active"
+                }
+            ],
+            "name": "permissionRole"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "metadataAdmin"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "permissionRole"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "permissionRule"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataAdmin"
+                        }
+                    ],
+                    "name": "permissionRuleLink"
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                },
+                {
+                    "repeatId": "1",
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "permissionRule"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "textAdmin"
+                        }
+                    ],
+                    "name": "permissionRuleLink"
                 }
             ],
             "name": "permissionRole"

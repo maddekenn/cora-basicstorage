@@ -112,6 +112,59 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "userRoleMinimizedOutputPLink"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRecordLink"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataRecordLink"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userRoleLink"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "output"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pRecordLink"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "presentationOfGroupOutputPLink"
                         },
                         {
@@ -1616,6 +1669,14 @@
                             "value": "userRoleOutputPLink"
                         },
                         {
+                            "name": "type",
+                            "value": "presentationRecordLink"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -1627,14 +1688,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationRecordLink"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
                         }
                     ],
                     "name": "recordInfo"
@@ -1655,6 +1708,23 @@
                 {
                     "name": "mode",
                     "value": "output"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "permissionRole"
+                            },
+                            {
+                                "name": "presentationId",
+                                "value": "permissionRoleWhenLinkedOutputPGroup"
+                            }
+                        ],
+                        "name": "linkedRecordPresentation"
+                    }],
+                    "name": "linkedRecordPresentations"
                 }
             ],
             "name": "presentation",
@@ -1701,6 +1771,59 @@
                         {
                             "name": "linkedRecordId",
                             "value": "presentationOfRecordRelationLink"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "name": "mode",
+                    "value": "output"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pRecordLink"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "permissionRuleMinimizedOutputPLink"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRecordLink"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataRecordLink"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionRuleLink"
                         }
                     ],
                     "name": "presentationOf"

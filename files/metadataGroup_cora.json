@@ -4927,6 +4927,95 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "userRoleRelationGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "userRole"
+                },
+                {
+                    "name": "textId",
+                    "value": "userRoleRelationGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "userRoleRelationGroupDefText"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userRoleLink"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userRoleRulePartGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "collectionItemReferencesGroup"
                         },
                         {
@@ -9180,11 +9269,11 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "1",
+                            "repeatId": "3",
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "userRoleRecordRelation"
+                                    "value": "userRoleRelationGroup"
                                 },
                                 {
                                     "name": "repeatMin",
@@ -9193,6 +9282,24 @@
                                 {
                                     "name": "repeatMax",
                                     "value": "X"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "activeStatusCollectionVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
                                 }
                             ],
                             "name": "childReference"

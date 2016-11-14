@@ -1,50 +1,284 @@
 {
-    "children": [{
-        "children": [
-            {
-                "children": [
-                    {
-                        "name": "id",
-                        "value": "madde123"
-                    },
-                    {
-                        "name": "type",
-                        "value": "systemOneUser"
-                    },
-                    {
-                        "name": "createdBy",
-                        "value": "12345"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "cora"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    }
-                ],
-                "name": "recordInfo"
-            },
-            {
-                "name": "userId",
-                "value": "madde123"
-            },
-            {
-                "name": "userFirstname",
-                "value": "Madde"
-            },
-            {
-                "name": "userLastname",
-                "value": "Kn"
-            }
-        ],
-        "name": "systemOneUserGroup"
-    }],
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "madde123"
+                        },
+                        {
+                            "name": "type",
+                            "value": "systemOneUser"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "userId",
+                    "value": "madde123"
+                },
+                {
+                    "name": "userFirstname",
+                    "value": "Madde"
+                },
+                {
+                    "name": "userLastname",
+                    "value": "Kn"
+                },
+                {
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "guest"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "userId"}
+                                },
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "organisation"}
+                                }
+                            ],
+                            "name": "userRoleRulePart"
+                        }
+                    ],
+                    "name": "userRole"
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "user"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "guest"
+                        },
+                        {
+                            "name": "type",
+                            "value": "systemOneUser"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "userId",
+                    "value": "guest123@system.cora.uu.se"
+                },
+                {
+                    "name": "userFirstname",
+                    "value": "Guest"
+                },
+                {
+                    "name": "userLastname",
+                    "value": "Guestsson"
+                },
+                {
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "guest"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "userId"}
+                                },
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "organisation"}
+                                }
+                            ],
+                            "name": "userRoleRulePart"
+                        }
+                    ],
+                    "name": "userRole"
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "user"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "user"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "systemOneUser"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "userId",
+                    "value": "user@system.cora.uu.se"
+                },
+                {
+                    "name": "userFirstname",
+                    "value": "Us"
+                },
+                {
+                    "name": "userLastname",
+                    "value": "Er"
+                },
+                {
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "user"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "userId"}
+                                },
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "organisation"}
+                                }
+                            ],
+                            "name": "userRoleRulePart"
+                        }
+                    ],
+                    "name": "userRole"
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "user"
+        }
+    ],
     "name": "recordList"
 }
