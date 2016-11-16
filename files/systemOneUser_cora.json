@@ -99,6 +99,99 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "systemOneUser"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "guest"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "userId",
+                    "value": "guest123@system.cora.uu.se"
+                },
+                {
+                    "name": "userFirstname",
+                    "value": "Guest"
+                },
+                {
+                    "name": "userLastname",
+                    "value": "Guestsson"
+                },
+                {
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "guest"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "userId"}
+                                },
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "organisation"}
+                                }
+                            ],
+                            "name": "userRoleRulePart"
+                        }
+                    ],
+                    "name": "userRole"
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "systemOneUserNewGroup"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "guest"
                         },
                         {

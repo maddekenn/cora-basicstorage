@@ -1,138 +1,368 @@
 {
-    "children": [{
-        "children": [
-            {
-                "children": [
-                    {
-                        "name": "id",
-                        "value": "fitnesse"
-                    },
-                    {
-                        "name": "type",
-                        "value": "systemOneUser"
-                    },
-                    {
-                        "name": "createdBy",
-                        "value": "12345"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "systemOne"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    }
-                ],
-                "name": "recordInfo"
-            },
-            {
-                "name": "userId",
-                "value": "fitnesse123@system.cora.uu.se"
-            },
-            {
-                "name": "userFirstname",
-                "value": "Fit"
-            },
-            {
-                "name": "userLastname",
-                "value": "Nesse"
-            },
-            {
-                "repeatId": "0",
-                "children": [
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "fitnesse"
-                            }
-                        ],
-                        "name": "userRole"
-                    },
-                    {
-                        "children": [
-                            {
-                                "children": [{
-                                    "repeatId": "0",
-                                    "name": "permissionRulePartValue",
-                                    "value": "system."
-                                }],
-                                "name": "permissionRulePart",
-                                "attributes": {"type": "userId"}
-                            },
-                            {
-                                "children": [{
-                                    "repeatId": "0",
-                                    "name": "permissionRulePartValue",
-                                    "value": "system."
-                                }],
-                                "name": "permissionRulePart",
-                                "attributes": {"type": "organisation"}
-                            }
-                        ],
-                        "name": "userRoleRulePart"
-                    }
-                ],
-                "name": "userRole"
-            },
-            {
-                "repeatId": "1",
-                "children": [
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "metadataAdmin"
-                            }
-                        ],
-                        "name": "userRole"
-                    },
-                    {
-                        "children": [
-                            {
-                                "children": [{
-                                    "repeatId": "0",
-                                    "name": "permissionRulePartValue",
-                                    "value": "system."
-                                }],
-                                "name": "permissionRulePart",
-                                "attributes": {"type": "userId"}
-                            },
-                            {
-                                "children": [{
-                                    "repeatId": "0",
-                                    "name": "permissionRulePartValue",
-                                    "value": "system."
-                                }],
-                                "name": "permissionRulePart",
-                                "attributes": {"type": "organisation"}
-                            }
-                        ],
-                        "name": "userRoleRulePart"
-                    }
-                ],
-                "name": "userRole"
-            },
-            {
-                "name": "activeStatus",
-                "value": "active"
-            }
-        ],
-        "name": "user"
-    }],
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "systemOneUser"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "userId",
+                    "value": "fitnesseAdmin@system.cora.uu.se"
+                },
+                {
+                    "name": "userFirstname",
+                    "value": "Fitnesse"
+                },
+                {
+                    "name": "userLastname",
+                    "value": "Admin"
+                },
+                {
+                    "repeatId": "1",
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "everything"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "userId"}
+                                },
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "organisation"}
+                                }
+                            ],
+                            "name": "userRoleRulePart"
+                        }
+                    ],
+                    "name": "userRole"
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "systemOneUserNewGroup"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "121212"
+                        },
+                        {
+                            "name": "type",
+                            "value": "systemOneUser"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "userId",
+                    "value": "fitnesseUser@system.cora.uu.se"
+                },
+                {
+                    "name": "userFirstname",
+                    "value": "Fitnesse"
+                },
+                {
+                    "name": "userLastname",
+                    "value": "User"
+                },
+                {
+                    "repeatId": "1",
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "fitnesseTextAdmin"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "userId"}
+                                },
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "organisation"}
+                                }
+                            ],
+                            "name": "userRoleRulePart"
+                        }
+                    ],
+                    "name": "userRole"
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                },
+                {
+                    "repeatId": "2",
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "nothing"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system.DISABLED"
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "userId"}
+                                },
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system.DISABLED"
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "organisation"}
+                                }
+                            ],
+                            "name": "userRoleRulePart"
+                        }
+                    ],
+                    "name": "userRole"
+                }
+            ],
+            "name": "user"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "fitnesse"
+                        },
+                        {
+                            "name": "type",
+                            "value": "systemOneUser"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "userId",
+                    "value": "fitnesse123@system.cora.uu.se"
+                },
+                {
+                    "name": "userFirstname",
+                    "value": "Fit"
+                },
+                {
+                    "name": "userLastname",
+                    "value": "Nesse"
+                },
+                {
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "fitnesse"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "userId"}
+                                },
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "organisation"}
+                                }
+                            ],
+                            "name": "userRoleRulePart"
+                        }
+                    ],
+                    "name": "userRole"
+                },
+                {
+                    "repeatId": "1",
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "metadataAdmin"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "userId"}
+                                },
+                                {
+                                    "children": [{
+                                        "repeatId": "0",
+                                        "name": "permissionRulePartValue",
+                                        "value": "system."
+                                    }],
+                                    "name": "permissionRulePart",
+                                    "attributes": {"type": "organisation"}
+                                }
+                            ],
+                            "name": "userRoleRulePart"
+                        }
+                    ],
+                    "name": "userRole"
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "user"
+        }
+    ],
     "name": "recordList"
 }
