@@ -1888,44 +1888,24 @@
                     "value": "userRoleRulePartGroupDefText"
                 },
                 {
-                    "children": [
-                        {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartUserIdGroup"
-                                },
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartOrganisationGroup"
-                                },
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                }
-                            ],
-                            "name": "childReference"
-                        }
-                    ],
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "ref",
+                                "value": "permissionRulePartGroup"
+                            },
+                            {
+                                "name": "repeatMin",
+                                "value": "0"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
                     "name": "childReferences"
                 }
             ],
@@ -4212,6 +4192,171 @@
                         "value": "loginTypeTokenCollectionVar"
                     }],
                     "name": "attributeReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "userNewGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "user"
+                },
+                {
+                    "name": "textId",
+                    "value": "userNewGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "userNewGroupDefText"
+                },
+                {
+                    "name": "refParentId",
+                    "value": "userGroup"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "recordInfoNewGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userIdTextVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userFirstnameTextVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "6",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userLastnameTextVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userRoleRelationGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "X"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "activeStatusCollectionVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
                 }
             ],
             "name": "metadata",
@@ -9269,6 +9414,60 @@
                             "name": "childReference"
                         },
                         {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userIdTextVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userFirstnameTextVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "6",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "userLastnameTextVar"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
                             "repeatId": "3",
                             "children": [
                                 {
@@ -14310,6 +14509,14 @@
                             "value": "systemOneUserRoleRulePartGroup"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -14321,14 +14528,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
                         }
                     ],
                     "name": "recordInfo"
@@ -14344,6 +14543,10 @@
                 {
                     "name": "defTextId",
                     "value": "systemOneUserRoleRulePartGroupDefText"
+                },
+                {
+                    "name": "refParentId",
+                    "value": "userRoleRulePartGroup"
                 },
                 {
                     "children": [
@@ -14385,10 +14588,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "name": "refParentId",
-                    "value": "userRoleRulePartGroup"
                 }
             ],
             "name": "metadata",
