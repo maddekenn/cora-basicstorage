@@ -565,117 +565,6 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "userNewGroup"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "systemOne"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "name": "nameInData",
-                    "value": "user"
-                },
-                {
-                    "name": "textId",
-                    "value": "userNewGroupText"
-                },
-                {
-                    "name": "defTextId",
-                    "value": "userNewGroupDefText"
-                },
-                {
-                    "name": "refParentId",
-                    "value": "userGroup"
-                },
-                {
-                    "children": [
-                        {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "recordInfoNewGroup"
-                                },
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "3",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "userRoleRelationGroup"
-                                },
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "X"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "2",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "activeStatusCollectionVar"
-                                },
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                }
-                            ],
-                            "name": "childReference"
-                        }
-                    ],
-                    "name": "childReferences"
-                }
-            ],
-            "name": "metadata",
-            "attributes": {"type": "group"}
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
                             "value": "personGroup"
                         },
                         {
@@ -1098,6 +987,14 @@
                             "value": "systemOneUserRoleRelationGroup"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -1109,14 +1006,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
                         }
                     ],
                     "name": "recordInfo"
@@ -1132,6 +1021,10 @@
                 {
                     "name": "defTextId",
                     "value": "systemOneUserRoleRelationGroupDefText"
+                },
+                {
+                    "name": "refParentId",
+                    "value": "userRoleRelationGroup"
                 },
                 {
                     "children": [
@@ -1158,7 +1051,7 @@
                             "children": [
                                 {
                                     "name": "ref",
-                                    "value": "userRoleRulePartGroup"
+                                    "value": "systemOneUserRoleRulePartGroup"
                                 },
                                 {
                                     "name": "repeatMin",
@@ -1173,10 +1066,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "name": "refParentId",
-                    "value": "userRoleRelationGroup"
                 }
             ],
             "name": "metadata",
