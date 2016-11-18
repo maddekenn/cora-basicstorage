@@ -171,6 +171,14 @@
                             "value": "userRoleRulePartOutputPGroup"
                         },
                         {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -182,14 +190,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
                         }
                     ],
                     "name": "recordInfo"
@@ -208,36 +208,20 @@
                     "name": "presentationOf"
                 },
                 {
-                    "children": [
-                        {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartUserIdOutputPGroup"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartOrganisationOutputPGroup"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        }
-                    ],
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "ref",
+                                "value": "permissionRulePartOrganisationOutputPGroup"
+                            },
+                            {
+                                "name": "default",
+                                "value": "ref"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
                     "name": "childReferences"
                 }
             ],
@@ -7494,88 +7478,6 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "permissionRulePartUserIdPGroup"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "permissionRulePartUserIdGroup"
-                        }
-                    ],
-                    "name": "presentationOf"
-                },
-                {
-                    "children": [
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartUserIdGroupText"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartValuePVar"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        }
-                    ],
-                    "name": "childReferences"
-                }
-            ],
-            "name": "presentation",
-            "attributes": {"type": "pGroup"}
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
                             "value": "recordInfoOutputPGroup"
                         },
                         {
@@ -13781,6 +13683,14 @@
                             "value": "userRoleRulePartPGroup"
                         },
                         {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -13792,14 +13702,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
                         }
                     ],
                     "name": "recordInfo"
@@ -13818,36 +13720,20 @@
                     "name": "presentationOf"
                 },
                 {
-                    "children": [
-                        {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartUserIdPGroup"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartOrganisationPGroup"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        }
-                    ],
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "ref",
+                                "value": "permissionRulePartOrganisationPGroup"
+                            },
+                            {
+                                "name": "default",
+                                "value": "ref"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
                     "name": "childReferences"
                 }
             ],
@@ -17985,88 +17871,6 @@
                                 {
                                     "name": "ref",
                                     "value": "loginNameOutputPVar"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        }
-                    ],
-                    "name": "childReferences"
-                }
-            ],
-            "name": "presentation",
-            "attributes": {"type": "pGroup"}
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
-                            "value": "permissionRulePartUserIdOutputPGroup"
-                        },
-                        {
-                            "name": "type",
-                            "value": "presentationGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "permissionRulePartUserIdGroup"
-                        }
-                    ],
-                    "name": "presentationOf"
-                },
-                {
-                    "children": [
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartUserIdGroupText"
-                                },
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "ref",
-                                    "value": "permissionRulePartValueOutputPVar"
                                 },
                                 {
                                     "name": "default",

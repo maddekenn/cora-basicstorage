@@ -1181,6 +1181,79 @@
             ],
             "name": "metadata",
             "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "systemOneUserRoleRulePartGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "userRoleRulePart"
+                },
+                {
+                    "name": "textId",
+                    "value": "systemOneUserRoleRulePartGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "systemOneUserRoleRulePartGroupDefText"
+                },
+                {
+                    "name": "refParentId",
+                    "value": "userRoleRulePartGroup"
+                },
+                {
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "ref",
+                                "value": "permissionRulePartOrganisationGroup"
+                            },
+                            {
+                                "name": "repeatMin",
+                                "value": "1"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
         }
     ],
     "name": "recordList"
