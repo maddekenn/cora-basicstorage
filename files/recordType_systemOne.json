@@ -77,10 +77,6 @@
                     "value": "false"
                 },
                 {
-                    "name": "permissionKey",
-                    "value": "RECORDTYPE"
-                },
-                {
                     "name": "selfPresentationViewId",
                     "value": "bookViewSelfPGroup"
                 },
@@ -98,14 +94,30 @@
         {
             "children": [
                 {
+                    "name": "metadataId",
+                    "value": "systemOneUserGroup"
+                },
+                {
                     "name": "abstract",
                     "value": "false"
+                },
+                {
+                    "name": "parentId",
+                    "value": "user"
                 },
                 {
                     "children": [
                         {
                             "name": "id",
                             "value": "systemOneUser"
+                        },
+                        {
+                            "name": "type",
+                            "value": "recordType"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
                         },
                         {
                             "children": [
@@ -119,37 +131,9 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "recordType"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
                         }
                     ],
                     "name": "recordInfo"
-                },
-                {
-                    "name": "userSuppliedId",
-                    "value": "true"
-                },
-                {
-                    "name": "parentId",
-                    "value": "user"
-                },
-                {
-                    "name": "metadataId",
-                    "value": "systemOneUserGroup"
-                },
-                {
-                    "name": "newMetadataId",
-                    "value": "systemOneUserNewGroup"
-                },
-                {
-                    "name": "searchMetadataId",
-                    "value": "systemOneUserSearchGroup"
                 },
                 {
                     "name": "presentationViewId",
@@ -158,6 +142,10 @@
                 {
                     "name": "presentationFormId",
                     "value": "systemOneUserFormPGroup"
+                },
+                {
+                    "name": "newMetadataId",
+                    "value": "systemOneUserNewGroup"
                 },
                 {
                     "name": "newPresentationFormId",
@@ -172,12 +160,20 @@
                     "value": "systemOneUserListPGroup"
                 },
                 {
-                    "name": "selfPresentationViewId",
-                    "value": "systemOneUserViewSelfPGroup"
+                    "name": "searchMetadataId",
+                    "value": "systemOneUserSearchGroup"
                 },
                 {
                     "name": "searchPresentationFormId",
                     "value": "systemOneUserFormSearchPGroup"
+                },
+                {
+                    "name": "userSuppliedId",
+                    "value": "true"
+                },
+                {
+                    "name": "selfPresentationViewId",
+                    "value": "systemOneUserViewSelfPGroup"
                 },
                 {
                     "name": "textId",
@@ -186,10 +182,6 @@
                 {
                     "name": "defTextId",
                     "value": "systemOneUserDefText"
-                },
-                {
-                    "name": "permissionKey",
-                    "value": "RECORDTYPE_SYSTEMONEUSER"
                 }
             ],
             "name": "recordType"
@@ -269,10 +261,6 @@
                 {
                     "name": "userSuppliedId",
                     "value": "true"
-                },
-                {
-                    "name": "permissionKey",
-                    "value": "RECORDTYPE_PERSON"
                 },
                 {
                     "name": "selfPresentationViewId",
