@@ -10275,6 +10275,14 @@
                     "value": "metadataRecordLinkGroupDefText"
                 },
                 {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "ref",
+                        "value": "metadataTypeRecordLinkCollectionVar"
+                    }],
+                    "name": "attributeReferences"
+                },
+                {
                     "children": [
                         {
                             "repeatId": "1",
@@ -10340,6 +10348,24 @@
                                 {
                                     "name": "repeatMin",
                                     "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "9",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "attributeReferencesGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
                                 },
                                 {
                                     "name": "repeatMax",
@@ -10422,14 +10448,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "ref",
-                        "value": "metadataTypeRecordLinkCollectionVar"
-                    }],
-                    "name": "attributeReferences"
                 }
             ],
             "name": "metadata",
@@ -11941,6 +11959,24 @@
                                 {
                                     "name": "repeatMin",
                                     "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "9",
+                            "children": [
+                                {
+                                    "name": "ref",
+                                    "value": "attributeReferencesGroup"
+                                },
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
                                 },
                                 {
                                     "name": "repeatMax",
