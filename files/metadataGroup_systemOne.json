@@ -54,16 +54,26 @@
                             "repeatId": "0",
                             "children": [
                                 {
-                                    "name": "ref",
-                                    "value": "recordInfoGroup"
-                                },
-                                {
                                     "name": "repeatMin",
                                     "value": "1"
                                 },
                                 {
                                     "name": "repeatMax",
                                     "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "recordInfoGroup"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "group"}
                                 }
                             ],
                             "name": "childReference"
@@ -72,16 +82,26 @@
                             "repeatId": "1",
                             "children": [
                                 {
-                                    "name": "ref",
-                                    "value": "userIdTextVar"
-                                },
-                                {
                                     "name": "repeatMin",
                                     "value": "1"
                                 },
                                 {
                                     "name": "repeatMax",
                                     "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataTextVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "userIdTextVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "textVariable"}
                                 }
                             ],
                             "name": "childReference"
@@ -90,16 +110,26 @@
                             "repeatId": "2",
                             "children": [
                                 {
-                                    "name": "ref",
-                                    "value": "userFirstnameTextVar"
-                                },
-                                {
                                     "name": "repeatMin",
                                     "value": "1"
                                 },
                                 {
                                     "name": "repeatMax",
                                     "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataTextVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "userFirstnameTextVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "textVariable"}
                                 }
                             ],
                             "name": "childReference"
@@ -108,16 +138,26 @@
                             "repeatId": "3",
                             "children": [
                                 {
-                                    "name": "ref",
-                                    "value": "userLastnameTextVar"
-                                },
-                                {
                                     "name": "repeatMin",
                                     "value": "1"
                                 },
                                 {
                                     "name": "repeatMax",
                                     "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataTextVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "userLastnameTextVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "textVariable"}
                                 }
                             ],
                             "name": "childReference"
@@ -126,16 +166,26 @@
                             "repeatId": "6",
                             "children": [
                                 {
-                                    "name": "ref",
-                                    "value": "systemOneUserRoleRelationGroup"
-                                },
-                                {
                                     "name": "repeatMin",
                                     "value": "1"
                                 },
                                 {
                                     "name": "repeatMax",
                                     "value": "X"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "systemOneUserRoleRelationGroup"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "group"}
                                 }
                             ],
                             "name": "childReference"
@@ -144,16 +194,26 @@
                             "repeatId": "5",
                             "children": [
                                 {
-                                    "name": "ref",
-                                    "value": "activeStatusCollectionVar"
-                                },
-                                {
                                     "name": "repeatMin",
                                     "value": "1"
                                 },
                                 {
                                     "name": "repeatMax",
                                     "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataCollectionVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "activeStatusCollectionVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "collectionVariable"}
                                 }
                             ],
                             "name": "childReference"
