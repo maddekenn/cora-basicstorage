@@ -474,6 +474,45 @@ public class RecordStorageInMemoryTest {
 		assertNoOfLinksPointingToRecord(TO_RECORD_TYPE, TO_RECORD_ID, 1);
 	}
 
+	@Test
+	public void testLinksFromSameRecordToSameRecordThanRemovingOne() {
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup linkList = createLinkListWithThreeLinksTwoOfThemFromSameRecord(FROM_RECORD_ID);
+
+		recordStorage.create(FROM_RECORD_TYPE, FROM_RECORD_ID, dataGroup, linkList, dataDivider);
+		assertNoOfLinksPointingToRecord(TO_RECORD_TYPE, TO_RECORD_ID, 3);
+		// update
+		linkList = createLinkListWithTwoLinksFromDifferentRecords(FROM_RECORD_ID);
+		recordStorage.update(FROM_RECORD_TYPE, FROM_RECORD_ID, dataGroup, linkList,
+				dataDivider);
+		assertNoOfLinksPointingToRecord(TO_RECORD_TYPE, TO_RECORD_ID, 1);
+	}
+
+	private DataGroup createLinkListWithThreeLinksTwoOfThemFromSameRecord(String fromRecordId) {
+		DataGroup linkList = DataCreator.createLinkList();
+
+		linkList.addChild(DataCreator.createRecordToRecordLink(FROM_RECORD_TYPE, fromRecordId,
+				TO_RECORD_TYPE, TO_RECORD_ID));
+
+		linkList.addChild(DataCreator.createRecordToRecordLink(FROM_RECORD_TYPE, fromRecordId,
+				TO_RECORD_TYPE, TO_RECORD_ID));
+		linkList.addChild(DataCreator.createRecordToRecordLink("someOtherRecordType", fromRecordId,
+				TO_RECORD_TYPE, TO_RECORD_ID));
+
+		return linkList;
+	}
+
+	private DataGroup createLinkListWithTwoLinksFromDifferentRecords(String fromRecordId) {
+		DataGroup linkList = DataCreator.createLinkList();
+
+		linkList.addChild(DataCreator.createRecordToRecordLink(FROM_RECORD_TYPE, fromRecordId,
+				TO_RECORD_TYPE, TO_RECORD_ID));
+
+		linkList.addChild(DataCreator.createRecordToRecordLink(FROM_RECORD_TYPE, fromRecordId,
+				TO_RECORD_TYPE, "toRecordId2"));
+		return linkList;
+	}
+
 	private void assertNoOfLinksPointingToRecord(String toRecordType, String toRecordId,
 			int expectedNoOfLinksPointingToRecord) {
 		Collection<DataGroup> generatedLinksPointToRecord = recordStorage

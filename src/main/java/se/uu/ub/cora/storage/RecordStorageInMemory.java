@@ -257,7 +257,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	@Override
 	public void deleteByTypeAndId(String recordType, String recordId) {
 		checkRecordExists(recordType, recordId);
-		removeIncomingLinks(recordType, recordId);
+		removeOldLinksStoredAsIncomingLinks(recordType, recordId);
 		removeFromLinkList(recordType, recordId);
 		records.get(recordType).remove(recordId);
 		if (records.get(recordType).isEmpty()) {
@@ -329,19 +329,19 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	public void update(String recordType, String recordId, DataGroup record, DataGroup linkList,
 			String dataDivider) {
 		checkRecordExists(recordType, recordId);
-		removeIncomingLinks(recordType, recordId);
+		removeOldLinksStoredAsIncomingLinks(recordType, recordId);
 		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record, dataDivider);
 		storeLinks(recordType, recordId, linkList, dataDivider);
 	}
 
-	private void removeIncomingLinks(String recordType, String recordId) {
+	private void removeOldLinksStoredAsIncomingLinks(String recordType, String recordId) {
 		DataGroup oldLinkList = readLinkList(recordType, recordId);
 		for (DataElement linkElement : oldLinkList.getChildren()) {
-			removeIncomingLink(linkElement);
+			removeOldLinkStoredAsIncomingLink(linkElement);
 		}
 	}
 
-	private void removeIncomingLink(DataElement linkElement) {
+	private void removeOldLinkStoredAsIncomingLink(DataElement linkElement) {
 		DataGroup link = (DataGroup) linkElement;
 		DataGroup recordLinkTo = link.getFirstGroupWithNameInData("to");
 		if (incomingLinksContainsToType(recordLinkTo)) {
@@ -371,10 +371,12 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		String fromType = extractLinkedRecordTypeValue(from);
 		String fromId = extractLinkedRecordIdValue(from);
 
-		linksForToPart.get(fromType).remove(fromId);
+		if(linksForToPart.containsKey(fromType)) {
+			linksForToPart.get(fromType).remove(fromId);
 
-		if (linksForToPart.get(fromType).isEmpty()) {
-			linksForToPart.remove(fromType);
+			if (linksForToPart.get(fromType).isEmpty()) {
+				linksForToPart.remove(fromType);
+			}
 		}
 	}
 
