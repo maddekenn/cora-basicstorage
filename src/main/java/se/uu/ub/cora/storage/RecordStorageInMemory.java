@@ -218,8 +218,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 
 	@Override
 	public boolean recordExistsForRecordTypeAndRecordId(String recordType, String recordId) {
-		return recordsExistForRecordType(recordType) &&
-				recordIdExistsForRecordType(recordType, recordId);
+		return recordsExistForRecordType(recordType)
+				&& recordIdExistsForRecordType(recordType, recordId);
 	}
 
 	private boolean recordIdExistsForRecordType(String recordType, String recordId) {
@@ -343,25 +343,30 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 
 	private void removeOldLinkStoredAsIncomingLink(DataElement linkElement) {
 		DataGroup link = (DataGroup) linkElement;
-		DataGroup recordLinkTo = link.getFirstGroupWithNameInData("to");
-		if (incomingLinksContainsToType(recordLinkTo)) {
-			Map<String, Map<String, List<DataGroup>>> toPartOfIncomingLinks = extractToPartOfIncomingLinks(
-					recordLinkTo);
+		DataGroup toPartOfLink = link.getFirstGroupWithNameInData("to");
+		String toType = extractLinkedRecordTypeValue(toPartOfLink);
+		String toId = extractLinkedRecordIdValue(toPartOfLink);
+
+		if (incomingLinksContainsToTypeAndToId(toType, toId)) {
+			Map<String, Map<String, List<DataGroup>>> toPartOfIncomingLinks = getFromPartOfIncomingLinksForToTypeAndToId(
+					toType, toId);
 
 			removeLinkAndFromHolderFromIncomingLinks(link, toPartOfIncomingLinks);
 
-			removeToHolderFromIncomingLinks(recordLinkTo, toPartOfIncomingLinks);
+			removeToHolderFromIncomingLinks(toType, toId, toPartOfIncomingLinks);
 		}
 	}
 
-	private boolean incomingLinksContainsToType(DataGroup to) {
-		String toType = extractLinkedRecordTypeValue(to);
-		return incomingLinks.containsKey(toType);
+	private boolean incomingLinksContainsToTypeAndToId(String toType, String toId) {
+		if (!incomingLinks.containsKey(toType)) {
+			return false;
+		}
+
+		return incomingLinks.get(toType).containsKey(toId);
 	}
 
-	private Map<String, Map<String, List<DataGroup>>> extractToPartOfIncomingLinks(DataGroup to) {
-		String toType = extractLinkedRecordTypeValue(to);
-		String toId = extractLinkedRecordIdValue(to);
+	private Map<String, Map<String, List<DataGroup>>> getFromPartOfIncomingLinksForToTypeAndToId(
+			String toType, String toId) {
 		return incomingLinks.get(toType).get(toId);
 	}
 
@@ -371,7 +376,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		String fromType = extractLinkedRecordTypeValue(from);
 		String fromId = extractLinkedRecordIdValue(from);
 
-		if(linksForToPart.containsKey(fromType)) {
+		if (linksForToPart.containsKey(fromType)) {
 			linksForToPart.get(fromType).remove(fromId);
 
 			if (linksForToPart.get(fromType).isEmpty()) {
@@ -380,10 +385,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		}
 	}
 
-	private void removeToHolderFromIncomingLinks(DataGroup to,
+	private void removeToHolderFromIncomingLinks(String toType, String toId,
 			Map<String, Map<String, List<DataGroup>>> toPartOfIncomingLinks) {
-		String toType = extractLinkedRecordTypeValue(to);
-		String toId = extractLinkedRecordIdValue(to);
 		if (toPartOfIncomingLinks.isEmpty()) {
 			incomingLinks.get(toType).remove(toId);
 		}
