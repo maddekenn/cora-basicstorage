@@ -9,6 +9,14 @@
                             "value": "131313"
                         },
                         {
+                            "name": "type",
+                            "value": "systemOneUser"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -20,14 +28,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "systemOneUser"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
                         }
                     ],
                     "name": "recordInfo"
@@ -61,26 +61,15 @@
                             "name": "userRole"
                         },
                         {
-                            "children": [
-                                {
-                                    "children": [{
-                                        "repeatId": "0",
-                                        "name": "permissionRulePartValue",
-                                        "value": "system."
-                                    }],
-                                    "name": "permissionRulePart",
-                                    "attributes": {"type": "userId"}
-                                },
-                                {
-                                    "children": [{
-                                        "repeatId": "0",
-                                        "name": "permissionRulePartValue",
-                                        "value": "system."
-                                    }],
-                                    "name": "permissionRulePart",
-                                    "attributes": {"type": "organisation"}
-                                }
-                            ],
+                            "children": [{
+                                "children": [{
+                                    "repeatId": "0",
+                                    "name": "permissionRulePartValue",
+                                    "value": "system."
+                                }],
+                                "name": "permissionRulePart",
+                                "attributes": {"type": "organisation"}
+                            }],
                             "name": "userRoleRulePart"
                         }
                     ],
@@ -91,7 +80,7 @@
                     "value": "active"
                 }
             ],
-            "name": "systemOneUserNewGroup"
+            "name": "user"
         },
         {
             "children": [
@@ -154,26 +143,15 @@
                             "name": "userRole"
                         },
                         {
-                            "children": [
-                                {
-                                    "children": [{
-                                        "repeatId": "0",
-                                        "name": "permissionRulePartValue",
-                                        "value": "system."
-                                    }],
-                                    "name": "permissionRulePart",
-                                    "attributes": {"type": "userId"}
-                                },
-                                {
-                                    "children": [{
-                                        "repeatId": "0",
-                                        "name": "permissionRulePartValue",
-                                        "value": "system."
-                                    }],
-                                    "name": "permissionRulePart",
-                                    "attributes": {"type": "organisation"}
-                                }
-                            ],
+                            "children": [{
+                                "children": [{
+                                    "repeatId": "0",
+                                    "name": "permissionRulePartValue",
+                                    "value": "system."
+                                }],
+                                "name": "permissionRulePart",
+                                "attributes": {"type": "organisation"}
+                            }],
                             "name": "userRoleRulePart"
                         }
                     ],
@@ -196,26 +174,15 @@
                             "name": "userRole"
                         },
                         {
-                            "children": [
-                                {
-                                    "children": [{
-                                        "repeatId": "0",
-                                        "name": "permissionRulePartValue",
-                                        "value": "system.DISABLED"
-                                    }],
-                                    "name": "permissionRulePart",
-                                    "attributes": {"type": "userId"}
-                                },
-                                {
-                                    "children": [{
-                                        "repeatId": "0",
-                                        "name": "permissionRulePartValue",
-                                        "value": "system.DISABLED"
-                                    }],
-                                    "name": "permissionRulePart",
-                                    "attributes": {"type": "organisation"}
-                                }
-                            ],
+                            "children": [{
+                                "children": [{
+                                    "repeatId": "0",
+                                    "name": "permissionRulePartValue",
+                                    "value": "system.DISABLED"
+                                }],
+                                "name": "permissionRulePart",
+                                "attributes": {"type": "organisation"}
+                            }],
                             "name": "userRoleRulePart"
                         }
                     ],
@@ -226,7 +193,7 @@
                     "value": "active"
                 }
             ],
-            "name": "systemOneUserGroup"
+            "name": "user"
         },
         {
             "children": [
@@ -289,26 +256,15 @@
                             "name": "userRole"
                         },
                         {
-                            "children": [
-                                {
-                                    "children": [{
-                                        "repeatId": "0",
-                                        "name": "permissionRulePartValue",
-                                        "value": "system."
-                                    }],
-                                    "name": "permissionRulePart",
-                                    "attributes": {"type": "userId"}
-                                },
-                                {
-                                    "children": [{
-                                        "repeatId": "0",
-                                        "name": "permissionRulePartValue",
-                                        "value": "system."
-                                    }],
-                                    "name": "permissionRulePart",
-                                    "attributes": {"type": "organisation"}
-                                }
-                            ],
+                            "children": [{
+                                "children": [{
+                                    "repeatId": "0",
+                                    "name": "permissionRulePartValue",
+                                    "value": "system."
+                                }],
+                                "name": "permissionRulePart",
+                                "attributes": {"type": "organisation"}
+                            }],
                             "name": "userRoleRulePart"
                         }
                     ],
@@ -331,26 +287,15 @@
                             "name": "userRole"
                         },
                         {
-                            "children": [
-                                {
-                                    "children": [{
-                                        "repeatId": "0",
-                                        "name": "permissionRulePartValue",
-                                        "value": "system."
-                                    }],
-                                    "name": "permissionRulePart",
-                                    "attributes": {"type": "userId"}
-                                },
-                                {
-                                    "children": [{
-                                        "repeatId": "0",
-                                        "name": "permissionRulePartValue",
-                                        "value": "system."
-                                    }],
-                                    "name": "permissionRulePart",
-                                    "attributes": {"type": "organisation"}
-                                }
-                            ],
+                            "children": [{
+                                "children": [{
+                                    "repeatId": "0",
+                                    "name": "permissionRulePartValue",
+                                    "value": "system."
+                                }],
+                                "name": "permissionRulePart",
+                                "attributes": {"type": "organisation"}
+                            }],
                             "name": "userRoleRulePart"
                         }
                     ],
