@@ -1,73 +1,3147 @@
 {
-    "children": [{
-        "children": [
-            {
-                "children": [
-                    {
-                        "name": "id",
-                        "value": "masterImageOutputRContainer"
-                    },
-                    {
-                        "name": "type",
-                        "value": "presentationRepeatingContainer"
-                    },
-                    {
-                        "name": "createdBy",
-                        "value": "12345"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "cora"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    }
-                ],
-                "name": "recordInfo"
-            },
-            {
-                "name": "presentationOf",
-                "value": "bookCoverLink"
-            },
-            {
-                "children": [{
-                    "repeatId": "0",
+    "children": [
+        {
+            "children": [
+                {
                     "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationSurroundingContainerLinkOutputRContainer"
+                        },
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "bookCoverOutputPLink"
+                                    "name": "linkedRecordType",
+                                    "value": "system"
                                 },
                                 {
-                                    "name": "linkedRecordType",
-                                    "value": "presentationRecordLink"
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
                                 }
                             ],
-                            "name": "ref",
-                            "attributes": {"type": "pRecordLink"}
+                            "name": "dataDivider"
                         },
                         {
-                            "name": "default",
-                            "value": "ref"
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
                         }
                     ],
-                    "name": "childReference"
-                }],
-                "name": "childReferences"
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationSurroundingContainerLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationSurroundingContainerLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationSurroundingContainerOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
             }
-        ],
-        "name": "presentation",
-        "attributes": {
-            "repeat": "this",
-            "type": "container"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationResourceLinkLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationResourceLinkLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationResourceLinkLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationResourceLinkOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationSurroundingContainerLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationSurroundingContainerLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationSurroundingContainerLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationSurroundingContainerPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationTextLinkOutputRContainer"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationTextLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationTextLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationTextOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationResourceLinkLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationResourceLinkLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationResourceLinkLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationResourceLinkPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationGroupLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationGroupLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationGroupLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationGroupPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationSurroundingContainerLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationSurroundingContainerLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationSurroundingContainerLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationSurroundingContainerOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationRepeatingContainerLinkRContainer"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationRepeatingContainerLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationRepeatingContainerLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationRepeatingContainerPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationGroupLinkRContainer"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationGroupLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationGroupLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationGroupPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationCollectionVariableLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationCollectionVariableLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationCollectionVariableLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationCollectionVariableOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationResourceLinkLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationResourceLinkLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationResourceLinkLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationResourceLinkPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationCollectionVariableLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationCollectionVariableLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationCollectionVariableLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationCollectionVariableOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationRepeatingContainerLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationRepeatingContainerLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationRepeatingContainerLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationRepeatingContainerPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationGroupLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationGroupLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationGroupLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationGroupOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationGroupLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationGroupLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationGroupLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationGroupOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "masterImageOutputRContainer"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "bookCoverLink"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "bookCoverOutputPLink"
+                                    },
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "presentationRecordLink"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "pRecordLink"}
+                            },
+                            {
+                                "name": "default",
+                                "value": "ref"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationTextLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationTextLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationTextLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationTextOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationRecordLinkLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationRecordLinkLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationRecordLinkLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationRecordLinkPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationRecordLinkLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationRecordLinkLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationRecordLinkLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationRecordLinkOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationResourceLinkLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationResourceLinkLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationResourceLinkLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationResourceLinkOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationCollectionVariableLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationCollectionVariableLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationCollectionVariableLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationCollectionVariablePLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationTextLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationTextLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationTextLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationTextPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationSurroundingContainerLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationSurroundingContainerLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationSurroundingContainerLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationSurroundingContainerPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationTextVariableLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationTextVariableLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationTextVariableLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationTextVariableOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationRepeatingContainerLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationRepeatingContainerLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationRepeatingContainerLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationRepeatingContainerOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationTextVariableLinkRContainer"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationTextVariableLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationTextVariablePLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationTextVariablePLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationRecordLinkLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationRecordLinkLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationRecordLinkLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationRecordLinkPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationTextVariableLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationTextVariableLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationTextVariablePLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationTextVariableOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationRepeatingContainerLinkOutputRContainer"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationRepeatingContainerLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationRepeatingContainerLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationRepeatingContainerOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationTextVariableLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationTextVariableLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationTextVariablePLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationTextVariablePLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationTextLinkRContainer"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationTextLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationTextLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationTextPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refPresentationRecordLinkLinkOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refPresentationRecordLinkLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationRecordLinkLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refPresentationRecordLinkOutputPLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "refMinPresentationCollectionVariableLinkRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationRepeatingContainer"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "presentationOf",
+                    "value": "refMinPresentationCollectionVariableLink"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationCollectionVariableLinkText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "default",
+                                    "value": "ref"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "refMinPresentationCollectionVariablePLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
         }
-    }],
+    ],
     "name": "recordList"
 }
