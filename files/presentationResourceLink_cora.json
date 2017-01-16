@@ -102,10 +102,20 @@
                     "children": [{
                         "repeatId": "0",
                         "children": [
-                            {
-                                "name": "ref",
-                                "value": "filesizeTextVarOutputPVar"
-                            },
+                           {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "filesizeTextVarOutputPVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pVar"}
+                                },
                             {
                                 "name": "default",
                                 "value": "ref"
@@ -231,12 +241,22 @@
                             "repeatId": "1",
                             "children": [
                                 {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "streamIdTextVarText"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        }
+                                    ],
                                     "name": "ref",
-                                    "value": "streamIdTextVarText"
+                                    "attributes": {"type": "text"}
                                 },
                                 {
                                     "name": "default",
-                                    "value": "refMinimized"
+                                    "value": "ref"
                                 }
                             ],
                             "name": "childReference"
@@ -245,8 +265,18 @@
                             "repeatId": "0",
                             "children": [
                                 {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "streamIdTextVarOutputPVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationVar"
+                                        }
+                                    ],
                                     "name": "ref",
-                                    "value": "streamIdTextVarOutputPVar"
+                                    "attributes": {"type": "pVar"}
                                 },
                                 {
                                     "name": "default",
@@ -259,8 +289,18 @@
                             "repeatId": "2",
                             "children": [
                                 {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "filenameTextVarText"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        }
+                                    ],
                                     "name": "ref",
-                                    "value": "filenameTextVarText"
+                                    "attributes": {"type": "text"}
                                 },
                                 {
                                     "name": "default",
@@ -273,8 +313,18 @@
                             "repeatId": "3",
                             "children": [
                                 {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "filenameTextVarOutputPVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationVar"
+                                        }
+                                    ],
                                     "name": "ref",
-                                    "value": "filenameTextVarOutputPVar"
+                                    "attributes": {"type": "pVar"}
                                 },
                                 {
                                     "name": "default",
@@ -286,9 +336,19 @@
                         {
                             "repeatId": "4",
                             "children": [
-                                {
+                               {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "filesizeTextVarText"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        }
+                                    ],
                                     "name": "ref",
-                                    "value": "filesizeTextVarText"
+                                    "attributes": {"type": "text"}
                                 },
                                 {
                                     "name": "default",
@@ -301,8 +361,18 @@
                             "repeatId": "5",
                             "children": [
                                 {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "filesizeTextVarOutputPVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationVar"
+                                        }
+                                    ],
                                     "name": "ref",
-                                    "value": "filesizeTextVarOutputPVar"
+                                    "attributes": {"type": "pVar"}
                                 },
                                 {
                                     "name": "default",
@@ -314,9 +384,19 @@
                         {
                             "repeatId": "6",
                             "children": [
-                                {
+                               {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "mimeTypeTextVarText"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        }
+                                    ],
                                     "name": "ref",
-                                    "value": "mimeTypeTextVarText"
+                                    "attributes": {"type": "text"}
                                 },
                                 {
                                     "name": "default",
@@ -329,8 +409,18 @@
                             "repeatId": "7",
                             "children": [
                                 {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "mimeTypeTextVarOutputPVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationVar"
+                                        }
+                                    ],
                                     "name": "ref",
-                                    "value": "mimeTypeTextVarOutputPVar"
+                                    "attributes": {"type": "pVar"}
                                 },
                                 {
                                     "name": "default",
