@@ -1395,6 +1395,84 @@
                                     }
                                 ],
                                 "name": "recordToRecordLink"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "metadataGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "systemOneUserGroup"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "name": "nameInData",
+                                                        "value": "childReferences"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "name": "nameInData",
+                                                                "value": "childReference"
+                                                            },
+                                                            {
+                                                                "name": "repeatId",
+                                                                "value": "7"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "name": "nameInData",
+                                                                        "value": "ref"
+                                                                    },
+                                                                    {
+                                                                        "children": [{
+                                                                            "children": [
+                                                                                {
+                                                                                    "name": "attributeName",
+                                                                                    "value": "type"
+                                                                                },
+                                                                                {
+                                                                                    "name": "attributeValue",
+                                                                                    "value": "group"
+                                                                                }
+                                                                            ],
+                                                                            "name": "attribute"
+                                                                        }],
+                                                                        "name": "attributes"
+                                                                    }
+                                                                ],
+                                                                "name": "linkedPath"
+                                                            }
+                                                        ],
+                                                        "name": "linkedPath"
+                                                    }
+                                                ],
+                                                "name": "linkedPath"
+                                            }
+                                        ],
+                                        "name": "from"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "metadataGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "userAppTokenGroup"
+                                            }
+                                        ],
+                                        "name": "to"
+                                    }
+                                ],
+                                "name": "recordToRecordLink"
                             }
                         ],
                         "name": "collectedDataLinks"
@@ -3435,6 +3513,84 @@
                                             {
                                                 "name": "linkedRecordId",
                                                 "value": "activeStatusCollectionVar"
+                                            }
+                                        ],
+                                        "name": "to"
+                                    }
+                                ],
+                                "name": "recordToRecordLink"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "metadataGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "systemOneUserNewGroup"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "name": "nameInData",
+                                                        "value": "childReferences"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "name": "nameInData",
+                                                                "value": "childReference"
+                                                            },
+                                                            {
+                                                                "name": "repeatId",
+                                                                "value": "7"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "name": "nameInData",
+                                                                        "value": "ref"
+                                                                    },
+                                                                    {
+                                                                        "children": [{
+                                                                            "children": [
+                                                                                {
+                                                                                    "name": "attributeName",
+                                                                                    "value": "type"
+                                                                                },
+                                                                                {
+                                                                                    "name": "attributeValue",
+                                                                                    "value": "group"
+                                                                                }
+                                                                            ],
+                                                                            "name": "attribute"
+                                                                        }],
+                                                                        "name": "attributes"
+                                                                    }
+                                                                ],
+                                                                "name": "linkedPath"
+                                                            }
+                                                        ],
+                                                        "name": "linkedPath"
+                                                    }
+                                                ],
+                                                "name": "linkedPath"
+                                            }
+                                        ],
+                                        "name": "from"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "metadataGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "userAppTokenGroup"
                                             }
                                         ],
                                         "name": "to"
@@ -7496,59 +7652,6 @@
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "authorItem"
-                                        },
-                                        {
-                                            "children": [
-                                                {
-                                                    "name": "nameInData",
-                                                    "value": "recordInfo"
-                                                },
-                                                {
-                                                    "children": [{
-                                                        "name": "nameInData",
-                                                        "value": "dataDivider"
-                                                    }],
-                                                    "name": "linkedPath"
-                                                }
-                                            ],
-                                            "name": "linkedPath"
-                                        }
-                                    ],
-                                    "name": "from"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "system"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "systemOne"
-                                        }
-                                    ],
-                                    "name": "to"
-                                }
-                            ],
-                            "name": "recordToRecordLink"
-                        }],
-                        "name": "collectedDataLinks"
-                    }],
-                    "name": "authorItem"
-                },
-                {
-                    "children": [{
-                        "children": [{
-                            "children": [
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataCollectionItem"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
                                             "value": "illustratorItem"
                                         },
                                         {
@@ -7589,6 +7692,59 @@
                         "name": "collectedDataLinks"
                     }],
                     "name": "illustratorItem"
+                },
+                {
+                    "children": [{
+                        "children": [{
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataCollectionItem"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "authorItem"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "name": "nameInData",
+                                                    "value": "recordInfo"
+                                                },
+                                                {
+                                                    "children": [{
+                                                        "name": "nameInData",
+                                                        "value": "dataDivider"
+                                                    }],
+                                                    "name": "linkedPath"
+                                                }
+                                            ],
+                                            "name": "linkedPath"
+                                        }
+                                    ],
+                                    "name": "from"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "systemOne"
+                                        }
+                                    ],
+                                    "name": "to"
+                                }
+                            ],
+                            "name": "recordToRecordLink"
+                        }],
+                        "name": "collectedDataLinks"
+                    }],
+                    "name": "authorItem"
                 }
             ],
             "name": "metadataCollectionItem"
@@ -10667,6 +10823,162 @@
                                     }
                                 ],
                                 "name": "recordToRecordLink"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "systemOneUserFormPGroup"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "name": "nameInData",
+                                                        "value": "childReferences"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "name": "nameInData",
+                                                                "value": "childReference"
+                                                            },
+                                                            {
+                                                                "name": "repeatId",
+                                                                "value": "13"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "name": "nameInData",
+                                                                        "value": "ref"
+                                                                    },
+                                                                    {
+                                                                        "children": [{
+                                                                            "children": [
+                                                                                {
+                                                                                    "name": "attributeName",
+                                                                                    "value": "type"
+                                                                                },
+                                                                                {
+                                                                                    "name": "attributeValue",
+                                                                                    "value": "text"
+                                                                                }
+                                                                            ],
+                                                                            "name": "attribute"
+                                                                        }],
+                                                                        "name": "attributes"
+                                                                    }
+                                                                ],
+                                                                "name": "linkedPath"
+                                                            }
+                                                        ],
+                                                        "name": "linkedPath"
+                                                    }
+                                                ],
+                                                "name": "linkedPath"
+                                            }
+                                        ],
+                                        "name": "from"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "coraText"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "appTokenHeadlineText"
+                                            }
+                                        ],
+                                        "name": "to"
+                                    }
+                                ],
+                                "name": "recordToRecordLink"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "systemOneUserFormPGroup"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "name": "nameInData",
+                                                        "value": "childReferences"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "name": "nameInData",
+                                                                "value": "childReference"
+                                                            },
+                                                            {
+                                                                "name": "repeatId",
+                                                                "value": "12"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "name": "nameInData",
+                                                                        "value": "ref"
+                                                                    },
+                                                                    {
+                                                                        "children": [{
+                                                                            "children": [
+                                                                                {
+                                                                                    "name": "attributeName",
+                                                                                    "value": "type"
+                                                                                },
+                                                                                {
+                                                                                    "name": "attributeValue",
+                                                                                    "value": "pGroup"
+                                                                                }
+                                                                            ],
+                                                                            "name": "attribute"
+                                                                        }],
+                                                                        "name": "attributes"
+                                                                    }
+                                                                ],
+                                                                "name": "linkedPath"
+                                                            }
+                                                        ],
+                                                        "name": "linkedPath"
+                                                    }
+                                                ],
+                                                "name": "linkedPath"
+                                            }
+                                        ],
+                                        "name": "from"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "userAppTokenPGroup"
+                                            }
+                                        ],
+                                        "name": "to"
+                                    }
+                                ],
+                                "name": "recordToRecordLink"
                             }
                         ],
                         "name": "collectedDataLinks"
@@ -12764,6 +13076,162 @@
                                             {
                                                 "name": "linkedRecordId",
                                                 "value": "activeStatusPCollVar"
+                                            }
+                                        ],
+                                        "name": "to"
+                                    }
+                                ],
+                                "name": "recordToRecordLink"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "systemOneUserFormNewPGroup"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "name": "nameInData",
+                                                        "value": "childReferences"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "name": "nameInData",
+                                                                "value": "childReference"
+                                                            },
+                                                            {
+                                                                "name": "repeatId",
+                                                                "value": "13"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "name": "nameInData",
+                                                                        "value": "ref"
+                                                                    },
+                                                                    {
+                                                                        "children": [{
+                                                                            "children": [
+                                                                                {
+                                                                                    "name": "attributeName",
+                                                                                    "value": "type"
+                                                                                },
+                                                                                {
+                                                                                    "name": "attributeValue",
+                                                                                    "value": "text"
+                                                                                }
+                                                                            ],
+                                                                            "name": "attribute"
+                                                                        }],
+                                                                        "name": "attributes"
+                                                                    }
+                                                                ],
+                                                                "name": "linkedPath"
+                                                            }
+                                                        ],
+                                                        "name": "linkedPath"
+                                                    }
+                                                ],
+                                                "name": "linkedPath"
+                                            }
+                                        ],
+                                        "name": "from"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "coraText"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "appTokenHeadlineText"
+                                            }
+                                        ],
+                                        "name": "to"
+                                    }
+                                ],
+                                "name": "recordToRecordLink"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "systemOneUserFormNewPGroup"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "name": "nameInData",
+                                                        "value": "childReferences"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "name": "nameInData",
+                                                                "value": "childReference"
+                                                            },
+                                                            {
+                                                                "name": "repeatId",
+                                                                "value": "12"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "name": "nameInData",
+                                                                        "value": "ref"
+                                                                    },
+                                                                    {
+                                                                        "children": [{
+                                                                            "children": [
+                                                                                {
+                                                                                    "name": "attributeName",
+                                                                                    "value": "type"
+                                                                                },
+                                                                                {
+                                                                                    "name": "attributeValue",
+                                                                                    "value": "pGroup"
+                                                                                }
+                                                                            ],
+                                                                            "name": "attribute"
+                                                                        }],
+                                                                        "name": "attributes"
+                                                                    }
+                                                                ],
+                                                                "name": "linkedPath"
+                                                            }
+                                                        ],
+                                                        "name": "linkedPath"
+                                                    }
+                                                ],
+                                                "name": "linkedPath"
+                                            }
+                                        ],
+                                        "name": "from"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "userAppTokenPGroup"
                                             }
                                         ],
                                         "name": "to"
@@ -16907,6 +17375,162 @@
                                             {
                                                 "name": "linkedRecordId",
                                                 "value": "activeStatusOutputPCollVar"
+                                            }
+                                        ],
+                                        "name": "to"
+                                    }
+                                ],
+                                "name": "recordToRecordLink"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "systemOneUserViewPGroup"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "name": "nameInData",
+                                                        "value": "childReferences"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "name": "nameInData",
+                                                                "value": "childReference"
+                                                            },
+                                                            {
+                                                                "name": "repeatId",
+                                                                "value": "13"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "name": "nameInData",
+                                                                        "value": "ref"
+                                                                    },
+                                                                    {
+                                                                        "children": [{
+                                                                            "children": [
+                                                                                {
+                                                                                    "name": "attributeName",
+                                                                                    "value": "type"
+                                                                                },
+                                                                                {
+                                                                                    "name": "attributeValue",
+                                                                                    "value": "text"
+                                                                                }
+                                                                            ],
+                                                                            "name": "attribute"
+                                                                        }],
+                                                                        "name": "attributes"
+                                                                    }
+                                                                ],
+                                                                "name": "linkedPath"
+                                                            }
+                                                        ],
+                                                        "name": "linkedPath"
+                                                    }
+                                                ],
+                                                "name": "linkedPath"
+                                            }
+                                        ],
+                                        "name": "from"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "coraText"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "appTokenHeadlineText"
+                                            }
+                                        ],
+                                        "name": "to"
+                                    }
+                                ],
+                                "name": "recordToRecordLink"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "systemOneUserViewPGroup"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "name": "nameInData",
+                                                        "value": "childReferences"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "name": "nameInData",
+                                                                "value": "childReference"
+                                                            },
+                                                            {
+                                                                "name": "repeatId",
+                                                                "value": "12"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "name": "nameInData",
+                                                                        "value": "ref"
+                                                                    },
+                                                                    {
+                                                                        "children": [{
+                                                                            "children": [
+                                                                                {
+                                                                                    "name": "attributeName",
+                                                                                    "value": "type"
+                                                                                },
+                                                                                {
+                                                                                    "name": "attributeValue",
+                                                                                    "value": "pGroup"
+                                                                                }
+                                                                            ],
+                                                                            "name": "attribute"
+                                                                        }],
+                                                                        "name": "attributes"
+                                                                    }
+                                                                ],
+                                                                "name": "linkedPath"
+                                                            }
+                                                        ],
+                                                        "name": "linkedPath"
+                                                    }
+                                                ],
+                                                "name": "linkedPath"
+                                            }
+                                        ],
+                                        "name": "from"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "userAppTokenOutputPGroup"
                                             }
                                         ],
                                         "name": "to"
