@@ -18741,7 +18741,272 @@
             ],
             "name": "metadata",
             "attributes": {"type": "group"}
+        },
+        {
+  "name": "metadata",
+  "children": [
+    {
+      "name": "recordInfo",
+      "children": [
+        {
+          "name": "id",
+          "value": "metadataGroup"
+        },
+        {
+          "name": "type",
+          "value": "metadataGroup"
+        },
+        {
+          "name": "createdBy",
+          "value": "131313"
+        },
+        {
+          "name": "dataDivider",
+          "children": [
+            {
+              "name": "linkedRecordType",
+              "value": "system"
+            },
+            {
+              "name": "linkedRecordId",
+              "value": "cora"
+            }
+          ]
         }
+      ]
+    },
+    {
+      "name": "nameInData",
+      "value": "metadata"
+    },
+    {
+      "name": "textId",
+      "value": "metadataGroupText"
+    },
+    {
+      "name": "defTextId",
+      "value": "metadataGroupDefText"
+    },
+    {
+      "name": "childReferences",
+      "children": [
+        {
+          "name": "childReference",
+          "children": [
+            {
+              "name": "repeatMin",
+              "value": "1"
+            },
+            {
+              "name": "repeatMax",
+              "value": "1"
+            },
+            {
+              "name": "ref",
+              "children": [
+                {
+                  "name": "linkedRecordType",
+                  "value": "metadataGroup"
+                },
+                {
+                  "name": "linkedRecordId",
+                  "value": "recordInfoGroup"
+                }
+              ],
+              "attributes": {
+                "type": "group"
+              }
+            }
+          ],
+          "repeatId": "1"
+        },
+        {
+          "name": "childReference",
+          "children": [
+            {
+              "name": "repeatMin",
+              "value": "1"
+            },
+            {
+              "name": "repeatMax",
+              "value": "1"
+            },
+            {
+              "name": "ref",
+              "children": [
+                {
+                  "name": "linkedRecordType",
+                  "value": "metadataTextVariable"
+                },
+                {
+                  "name": "linkedRecordId",
+                  "value": "nameInDataTextVar"
+                }
+              ],
+              "attributes": {
+                "type": "textVariable"
+              }
+            }
+          ],
+          "repeatId": "2"
+        },
+        {
+          "name": "childReference",
+          "children": [
+            {
+              "name": "repeatMin",
+              "value": "1"
+            },
+            {
+              "name": "repeatMax",
+              "value": "1"
+            },
+            {
+              "name": "ref",
+              "children": [
+                {
+                  "name": "linkedRecordType",
+                  "value": "metadataTextVariable"
+                },
+                {
+                  "name": "linkedRecordId",
+                  "value": "textIdTextVar"
+                }
+              ],
+              "attributes": {
+                "type": "textVariable"
+              }
+            }
+          ],
+          "repeatId": "3"
+        },
+        {
+          "name": "childReference",
+          "children": [
+            {
+              "name": "repeatMin",
+              "value": "1"
+            },
+            {
+              "name": "repeatMax",
+              "value": "1"
+            },
+            {
+              "name": "ref",
+              "children": [
+                {
+                  "name": "linkedRecordType",
+                  "value": "metadataTextVariable"
+                },
+                {
+                  "name": "linkedRecordId",
+                  "value": "defTextIdTextVar"
+                }
+              ],
+              "attributes": {
+                "type": "textVariable"
+              }
+            }
+          ],
+          "repeatId": "4"
+        },
+        {
+          "name": "childReference",
+          "children": [
+            {
+              "name": "repeatMin",
+              "value": "0"
+            },
+            {
+              "name": "repeatMax",
+              "value": "1"
+            },
+            {
+              "name": "ref",
+              "children": [
+                {
+                  "name": "linkedRecordType",
+                  "value": "metadataTextVariable"
+                },
+                {
+                  "name": "linkedRecordId",
+                  "value": "refParentIdTextVar"
+                }
+              ],
+              "attributes": {
+                "type": "textVariable"
+              }
+            }
+          ],
+          "repeatId": "5"
+        },
+        {
+          "name": "childReference",
+          "children": [
+            {
+              "name": "repeatMin",
+              "value": "0"
+            },
+            {
+              "name": "repeatMax",
+              "value": "1"
+            },
+            {
+              "name": "ref",
+              "children": [
+                {
+                  "name": "linkedRecordType",
+                  "value": "metadataGroup"
+                },
+                {
+                  "name": "linkedRecordId",
+                  "value": "attributeReferencesGroup"
+                }
+              ],
+              "attributes": {
+                "type": "group"
+              }
+            }
+          ],
+          "repeatId": "6"
+        },
+        {
+          "name": "childReference",
+          "children": [
+            {
+              "name": "repeatMin",
+              "value": "1"
+            },
+            {
+              "name": "repeatMax",
+              "value": "1"
+            },
+            {
+              "name": "ref",
+              "children": [
+                {
+                  "name": "linkedRecordType",
+                  "value": "metadataGroup"
+                },
+                {
+                  "name": "linkedRecordId",
+                  "value": "childReferencesGroup"
+                }
+              ],
+              "attributes": {
+                "type": "group"
+              }
+            }
+          ],
+          "repeatId": "7"
+        }
+      ]
+    }
+  ],
+  "attributes": {
+    "type": "group"
+  }
+}
     ],
     "name": "recordList"
 }
