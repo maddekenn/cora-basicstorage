@@ -93,36 +93,45 @@ public class AppTokenStorageTest {
 
 	@Test
 	public void testGetAppTokenForUser() {
-		List<String> apptokensForUser = appTokenStorage.getApptokensForUser("dummy1");
+		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("dummy1");
 		assertNotNull(apptokensForUser);
 		assertEquals(apptokensForUser.get(0), "someSecretString");
 	}
 
 	@Test
 	public void testGetAppTokenForUser2() {
-		List<String> apptokensForUser = appTokenStorage.getApptokensForUser("dummy2");
+		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("dummy2");
 		assertNotNull(apptokensForUser);
 		assertEquals(apptokensForUser.get(0), "someOtherSecretString");
 	}
 
 	@Test
 	public void testGetAppTokenForNonExistingUser() {
-		List<String> apptokensForUser = appTokenStorage.getApptokensForUser("nonExistingUser");
+		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("nonExistingUser");
 		assertNotNull(apptokensForUser);
 		assertEquals(apptokensForUser.size(), 0);
 	}
 
 	@Test
 	public void testGetAppTokenForInactiveUser() {
-		List<String> apptokensForUser = appTokenStorage.getApptokensForUser("inactiveUser");
+		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("inactiveUser");
 		assertNotNull(apptokensForUser);
 		assertEquals(apptokensForUser.size(), 0);
 	}
 
 	@Test
 	public void testGetAppTokenForUserNoAppToken() {
-		List<String> apptokensForUser = appTokenStorage.getApptokensForUser("noAppTokenUser");
+		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("noAppTokenUser");
 		assertNotNull(apptokensForUser);
 		assertEquals(apptokensForUser.size(), 0);
 	}
+
+	@Test
+	public void testGetAppTokenForUserNoAppTokenRepopulatesOnceFromDisk() {
+		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("noAppTokenUser");
+		assertNotNull(apptokensForUser);
+		assertEquals(apptokensForUser.size(), 0);
+		assertEquals(appTokenStorage.getNoOfReadsFromDisk(), 2);
+	}
+
 }

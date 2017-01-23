@@ -34,20 +34,42 @@ public class AppTokenStorageImp implements AppTokenStorage {
 	private static final String PARENT_ID = "parentId";
 	RecordStorageInMemoryReadFromDisk recordStorage;
 	private List<String> userRecordTypeNames = new ArrayList<>();
+	private final String basePath;
+	private int noOfReadsFromDisk = 0;
 
 	public AppTokenStorageImp(Map<String, String> initInfo) {
 		if (!initInfo.containsKey("storageOnDiskBasePath")) {
 			throw new RuntimeException("initInfo must contain storageOnDiskBasePath");
 		}
+		basePath = initInfo.get("storageOnDiskBasePath");
+		populateFromStorage();
+	}
+
+	private void populateFromStorage() {
+		noOfReadsFromDisk++;
 		recordStorage = RecordStorageInMemoryReadFromDisk
-				.createRecordStorageOnDiskWithBasePath(initInfo.get("storageOnDiskBasePath"));
+				.createRecordStorageOnDiskWithBasePath(basePath);
 		populateUserRecordTypeNameList();
 	}
 
 	@Override
-	public List<String> getApptokensForUser(String userId) {
+	public List<String> getAppTokensForUserId(String userId) {
+		List<String> appTokensForUser = findUserAndGetAppTokens(userId);
+
+		if (appTokensForUser.isEmpty()) {
+			return repopulateDataFromStorageAndGetApptokensForUser(userId);
+		}
+		return appTokensForUser;
+	}
+
+	private List<String> findUserAndGetAppTokens(String userId) {
 		DataGroup user = findUser(userId);
 		return getAppTokensForUser(user);
+	}
+
+	private List<String> repopulateDataFromStorageAndGetApptokensForUser(String userId) {
+		populateFromStorage();
+		return findUserAndGetAppTokens(userId);
 	}
 
 	private DataGroup findUser(String userId) {
@@ -132,6 +154,10 @@ public class AppTokenStorageImp implements AppTokenStorage {
 
 	private boolean userRecordTypeIsParentToRecord(DataGroup recordTypePossibleChild) {
 		return "user".equals(recordTypePossibleChild.getFirstAtomicValueWithNameInData(PARENT_ID));
+	}
+
+	public int getNoOfReadsFromDisk() {
+		return noOfReadsFromDisk;
 	}
 
 }
