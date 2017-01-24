@@ -16242,7 +16242,7 @@
                             "children": [
                                 {
                                     "name": "repeatMin",
-                                    "value": "1"
+                                    "value": "0"
                                 },
                                 {
                                     "name": "repeatMax",
@@ -16257,6 +16257,34 @@
                                         {
                                             "name": "linkedRecordId",
                                             "value": "tokenTextVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "textVariable"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataTextVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "noteTextVar"
                                         }
                                     ],
                                     "name": "ref",
@@ -17380,6 +17408,14 @@
                             "value": "appTokenGroup"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -17391,14 +17427,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "131313"
                         }
                     ],
                     "name": "recordInfo"
@@ -17465,6 +17493,34 @@
                                         {
                                             "name": "linkedRecordId",
                                             "value": "tokenTextVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "textVariable"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataTextVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "noteTextVar"
                                         }
                                     ],
                                     "name": "ref",
