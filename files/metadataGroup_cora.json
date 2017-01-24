@@ -3499,6 +3499,85 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "loginNewGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "login"
+                },
+                {
+                    "name": "textId",
+                    "value": "loginNewGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "loginNewGroupDefText"
+                },
+                {
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "repeatMin",
+                                "value": "1"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "metadataGroup"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "recordInfoNewGroup"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "group"}
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "presentationVarNewGroup"
                         },
                         {
@@ -6000,6 +6079,85 @@
                             "name": "childReference"
                         }
                     ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "presentationNewGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "presentation"
+                },
+                {
+                    "name": "textId",
+                    "value": "presentationNewGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "presentationNewGroupDefText"
+                },
+                {
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "repeatMin",
+                                "value": "1"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "metadataGroup"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "recordInfoNewGroup"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "group"}
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
                     "name": "childReferences"
                 }
             ],
@@ -10387,7 +10545,7 @@
                 {
                     "children": [
                         {
-                            "repeatId": "1",
+                            "repeatId": "18",
                             "children": [
                                 {
                                     "name": "repeatMin",
@@ -10401,15 +10559,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "metadataIdTextVar"
+                                            "value": "metadataIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10443,7 +10601,7 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "3",
+                            "repeatId": "19",
                             "children": [
                                 {
                                     "name": "repeatMin",
@@ -10457,15 +10615,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "parentIdTextVar"
+                                            "value": "recordTypeParentIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10513,15 +10671,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "presentationViewIdTextVar"
+                                            "value": "presentationViewIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10541,15 +10699,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "presentationFormIdTextVar"
+                                            "value": "presentationFormIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10569,15 +10727,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "newMetadataIdTextVar"
+                                            "value": "newMetadataIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10597,15 +10755,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "newPresentationFormIdTextVar"
+                                            "value": "newPresentationFormIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10625,15 +10783,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "menuPresentationViewIdTextVar"
+                                            "value": "menuPresentationViewIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10653,15 +10811,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "listPresentationViewIdTextVar"
+                                            "value": "listPresentationViewIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10793,15 +10951,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "textIdTextVar"
+                                            "value": "textIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10821,15 +10979,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "defTextIdTextVar"
+                                            "value": "defTextIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10902,15 +11060,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "metadataIdTextVar"
+                                            "value": "metadataIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -10958,15 +11116,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "parentIdTextVar"
+                                            "value": "recordTypeParentIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -11014,15 +11172,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "presentationViewIdTextVar"
+                                            "value": "presentationViewIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -11042,15 +11200,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "presentationFormIdTextVar"
+                                            "value": "presentationFormIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -11070,15 +11228,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "newMetadataIdTextVar"
+                                            "value": "newMetadataIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -11098,15 +11256,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "newPresentationFormIdTextVar"
+                                            "value": "newPresentationFormIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -11126,15 +11284,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "menuPresentationViewIdTextVar"
+                                            "value": "menuPresentationViewIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -11154,15 +11312,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "listPresentationViewIdTextVar"
+                                            "value": "listPresentationViewIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -11294,15 +11452,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "textIdTextVar"
+                                            "value": "textIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -11322,15 +11480,15 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataRecordLink"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "defTextIdTextVar"
+                                            "value": "defTextIdLink"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "textVariable"}
+                                    "attributes": {"type": "recordLink"}
                                 }
                             ],
                             "name": "childReference"
@@ -12285,6 +12443,85 @@
                             "name": "childReference"
                         }
                     ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "binaryNewGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "binary"
+                },
+                {
+                    "name": "textId",
+                    "value": "binaryNewGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "binaryNewGroupDefText"
+                },
+                {
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "repeatMin",
+                                "value": "1"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "metadataGroup"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "recordInfoNewGroup"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "group"}
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
                     "name": "childReferences"
                 }
             ],
@@ -13580,6 +13817,85 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "metadataNewGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "metadata"
+                },
+                {
+                    "name": "textId",
+                    "value": "metadataNewGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "metadataNewGroupDefText"
+                },
+                {
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "repeatMin",
+                                "value": "1"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "metadataGroup"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "recordInfoNewGroup"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "group"}
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "metadataRecordLinkGroup"
                         },
                         {
@@ -14463,6 +14779,85 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "textNewGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "text"
+                },
+                {
+                    "name": "textId",
+                    "value": "textNewGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "textNewGroupDefText"
+                },
+                {
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "repeatMin",
+                                "value": "1"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "metadataGroup"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "recordInfoNewGroup"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "group"}
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "metadataCollectionItemNewGroup"
                         },
                         {
@@ -14801,6 +15196,85 @@
                             "name": "childReference"
                         }
                     ],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "131313"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "metadata"
+                },
+                {
+                    "name": "textId",
+                    "value": "metadataGroupText"
+                },
+                {
+                    "name": "defTextId",
+                    "value": "metadataGroupDefText"
+                },
+                {
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "repeatMin",
+                                "value": "1"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "metadataGroup"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "recordInfoGroup"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "group"}
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
                     "name": "childReferences"
                 }
             ],
