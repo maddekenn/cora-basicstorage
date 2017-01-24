@@ -25,8 +25,9 @@
 	<name>Basic storage</name>
 
 	<properties>
+		<bookkeeper.version>0.10-SNAPSHOT</bookkeeper.version>
 		<spider.version>0.12-SNAPSHOT</spider.version>
-		<apptokenverifier.version>0.1-SNAPSHOT</apptokenverifier.version>
+		<apptokenstorage.version>0.1-SNAPSHOT</apptokenstorage.version>
 		<json.version>0.3-SNAPSHOT</json.version>
 	</properties>
 
@@ -65,13 +66,19 @@
 	<dependencies>
 		<dependency>
 			<groupId>se.uu.ub.cora</groupId>
+			<artifactId>bookkeeper</artifactId>
+			<version>${bookkeeper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>se.uu.ub.cora</groupId>
 			<artifactId>spider</artifactId>
 			<version>${spider.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>se.uu.ub.cora</groupId>
-			<artifactId>apptokenverifier</artifactId>
-			<version>${apptokenverifier.version}</version>
+			<artifactId>apptokenstorage</artifactId>
+			<version>${apptokenstorage.version}</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>se.uu.ub.cora</groupId>
@@ -95,5 +102,27 @@
 				</includes>
 			</resource>
 		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<artifactSet>
+								<excludes>
+									<exclude>org.glassfish*</exclude>
+								</excludes>
+							</artifactSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 </project>
