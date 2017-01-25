@@ -153,7 +153,8 @@ public class AppTokenStorageImp implements AppTokenStorage {
 	}
 
 	private boolean userRecordTypeIsParentToRecord(DataGroup recordTypePossibleChild) {
-		return "user".equals(recordTypePossibleChild.getFirstAtomicValueWithNameInData(PARENT_ID));
+		DataGroup parent = recordTypePossibleChild.getFirstGroupWithNameInData(PARENT_ID);
+		return "user".equals(parent.getFirstAtomicValueWithNameInData("linkedRecordId"));
 	}
 
 	public int getNoOfReadsFromDisk() {

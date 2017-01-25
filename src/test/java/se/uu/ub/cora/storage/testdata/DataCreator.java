@@ -24,7 +24,6 @@ import se.uu.ub.cora.bookkeeper.data.DataGroup;
 
 public final class DataCreator {
 	private static final String SELF_PRESENTATION_VIEW_ID = "selfPresentationViewId";
-	private static final String PERMISSION_KEY = "permissionKey";
 	private static final String USER_SUPPLIED_ID = "userSuppliedId";
 	private static final String SEARCH_PRESENTATION_FORM_ID = "searchPresentationFormId";
 	private static final String SEARCH_METADATA_ID = "searchMetadataId";
@@ -49,30 +48,43 @@ public final class DataCreator {
 		DataGroup dataGroup = DataGroup.withNameInData(RECORD_TYPE);
 		dataGroup.addChild(createRecordInfoWithRecordTypeAndRecordId(RECORD_TYPE, id));
 
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue(METADATA_ID, id));
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue(PRESENTATION_VIEW_ID,
-				"pg" + idWithCapitalFirst + "View"));
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue(PRESENTATION_FORM_ID,
-				"pg" + idWithCapitalFirst + "Form"));
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue(NEW_METADATA_ID, id + "New"));
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue(NEW_PRESENTATION_FORM_ID,
-				"pg" + idWithCapitalFirst + "FormNew"));
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue(LIST_PRESENTATION_VIEW_ID,
-				"pg" + idWithCapitalFirst + "List"));
+		dataGroup.addChild(
+				createChildWithNamInDataLinkedTypeLinkedId(METADATA_ID, "metadataGroup", id));
+
+		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(PRESENTATION_VIEW_ID,
+				"presentationGroup", "pg" + idWithCapitalFirst + "View"));
+
+		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(PRESENTATION_FORM_ID,
+				"presentationGroup", "pg" + idWithCapitalFirst + "Form"));
+		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(NEW_METADATA_ID,
+				"metadataGroup", id + "New"));
+
+		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(NEW_PRESENTATION_FORM_ID,
+				"presentationGroup", "pg" + idWithCapitalFirst + "FormNew"));
+		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(LIST_PRESENTATION_VIEW_ID,
+				"presentationGroup", "pg" + idWithCapitalFirst + "List"));
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue(SEARCH_METADATA_ID, id + "Search"));
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue(SEARCH_PRESENTATION_FORM_ID,
 				"pg" + idWithCapitalFirst + "SearchForm"));
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue(USER_SUPPLIED_ID, userSuppliedId));
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue(PERMISSION_KEY,
-				"RECORDTYPE_" + id.toUpperCase()));
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue(SELF_PRESENTATION_VIEW_ID,
 				"pg" + idWithCapitalFirst + "Self"));
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("abstract", abstractValue));
 		if (null != parentId) {
-			dataGroup.addChild(DataAtomic.withNameInDataAndValue("parentId", parentId));
+			dataGroup.addChild(
+					createChildWithNamInDataLinkedTypeLinkedId("parentId", "recordType", parentId));
 		}
 		return dataGroup;
+	}
+
+	private static DataGroup createChildWithNamInDataLinkedTypeLinkedId(String nameInData,
+			String linkedRecordType, String id) {
+		DataGroup metadataId = DataGroup.withNameInData(nameInData);
+		metadataId
+				.addChild(DataAtomic.withNameInDataAndValue("linkedRecordType", linkedRecordType));
+		metadataId.addChild(DataAtomic.withNameInDataAndValue("linkedRecordId", id));
+		return metadataId;
 	}
 
 	public static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndParentId(String id,
