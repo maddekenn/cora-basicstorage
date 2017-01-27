@@ -25,6 +25,7 @@
 	<name>Basic storage</name>
 
 	<properties>
+		<userpicker.version>0.1-SNAPSHOT</userpicker.version>
 		<bookkeeper.version>0.10-SNAPSHOT</bookkeeper.version>
 		<spider.version>0.12-SNAPSHOT</spider.version>
 		<apptokenstorage.version>0.1-SNAPSHOT</apptokenstorage.version>
@@ -64,6 +65,12 @@
 	</repositories>
 
 	<dependencies>
+		<dependency>
+			<groupId>se.uu.ub.cora</groupId>
+			<artifactId>userpicker</artifactId>
+			<version>${userpicker.version}</version>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>se.uu.ub.cora</groupId>
 			<artifactId>bookkeeper</artifactId>
