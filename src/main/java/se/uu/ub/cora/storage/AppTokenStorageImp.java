@@ -53,23 +53,29 @@ public class AppTokenStorageImp implements AppTokenStorage {
 	}
 
 	@Override
-	public List<String> getAppTokensForUserId(String userId) {
-		List<String> appTokensForUser = findUserAndGetAppTokens(userId);
-
-		if (appTokensForUser.isEmpty()) {
-			return repopulateDataFromStorageAndGetApptokensForUser(userId);
+	public boolean userIdHasAppToken(String userId, String appToken) {
+		if (populatedDataUserIdHasAppToken(userId, appToken)) {
+			return true;
 		}
-		return appTokensForUser;
+		populateFromStorage();
+		return populatedDataUserIdHasAppToken(userId, appToken);
+	}
+
+	private boolean populatedDataUserIdHasAppToken(String userId, String appToken) {
+		List<String> appTokensForUser = findUserAndGetAppTokens(userId);
+		if (apptokenNotFoundInList(appToken, appTokensForUser)) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean apptokenNotFoundInList(String appToken, List<String> tokenList) {
+		return !tokenList.stream().anyMatch(token -> token.equals(appToken));
 	}
 
 	private List<String> findUserAndGetAppTokens(String userId) {
 		DataGroup user = findUser(userId);
 		return getAppTokensForUser(user);
-	}
-
-	private List<String> repopulateDataFromStorageAndGetApptokensForUser(String userId) {
-		populateFromStorage();
-		return findUserAndGetAppTokens(userId);
 	}
 
 	private DataGroup findUser(String userId) {
