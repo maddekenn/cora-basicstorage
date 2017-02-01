@@ -42,22 +42,25 @@
                             "repeatId": "0",
                             "children": [
                                 {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "releatedPersonsGroupText"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "coraText"
-                                        }
-                                    ],
-                                    "name": "ref",
-                                    "attributes": {"type": "text"}
-                                },
-                                {
                                     "name": "default",
                                     "value": "ref"
+                                },
+                                {
+                                    "children": [{
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "releatedPersonsGroupText"
+                                            },
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "coraText"
+                                            }
+                                        ],
+                                        "name": "ref",
+                                        "attributes": {"type": "text"}
+                                    }],
+                                    "name": "refGroup"
                                 }
                             ],
                             "name": "childReference"
@@ -66,22 +69,25 @@
                             "repeatId": "1",
                             "children": [
                                 {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "relatedPersonsGroupOutputPGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "presentationGroup"
-                                        }
-                                    ],
-                                    "name": "ref",
-                                    "attributes": {"type": "pGroup"}
-                                },
-                                {
                                     "name": "default",
                                     "value": "ref"
+                                },
+                                {
+                                    "children": [{
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "relatedPersonsGroupOutputPGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            }
+                                        ],
+                                        "name": "ref",
+                                        "attributes": {"type": "pGroup"}
+                                    }],
+                                    "name": "refGroup"
                                 }
                             ],
                             "name": "childReference"
@@ -137,22 +143,25 @@
                         "repeatId": "0",
                         "children": [
                             {
-                                "children": [
-                                    {
-                                        "name": "linkedRecordId",
-                                        "value": "bookCoverOutputPLink"
-                                    },
-                                    {
-                                        "name": "linkedRecordType",
-                                        "value": "presentationRecordLink"
-                                    }
-                                ],
-                                "name": "ref",
-                                "attributes": {"type": "pRecordLink"}
-                            },
-                            {
                                 "name": "default",
                                 "value": "ref"
+                            },
+                            {
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "bookCoverOutputPLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationRecordLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "pRecordLink"}
+                                }],
+                                "name": "refGroup"
                             }
                         ],
                         "name": "childReference"
