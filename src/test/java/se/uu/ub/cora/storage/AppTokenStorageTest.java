@@ -20,7 +20,7 @@
 package se.uu.ub.cora.storage;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
@@ -29,7 +29,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -93,44 +92,33 @@ public class AppTokenStorageTest {
 
 	@Test
 	public void testGetAppTokenForUser() {
-		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("dummy1");
-		assertNotNull(apptokensForUser);
-		assertEquals(apptokensForUser.get(0), "someSecretString");
+		assertTrue(appTokenStorage.userIdHasAppToken("dummy1", "someSecretString"));
+		assertEquals(appTokenStorage.getNoOfReadsFromDisk(), 1);
 	}
 
 	@Test
 	public void testGetAppTokenForUser2() {
-		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("dummy2");
-		assertNotNull(apptokensForUser);
-		assertEquals(apptokensForUser.get(0), "someOtherSecretString");
+		assertTrue(appTokenStorage.userIdHasAppToken("dummy2", "someOtherSecretString"));
 	}
 
 	@Test
 	public void testGetAppTokenForNonExistingUser() {
-		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("nonExistingUser");
-		assertNotNull(apptokensForUser);
-		assertEquals(apptokensForUser.size(), 0);
+		assertFalse(appTokenStorage.userIdHasAppToken("nonExistingUser", "someThirdSecretString"));
 	}
 
 	@Test
 	public void testGetAppTokenForInactiveUser() {
-		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("inactiveUser");
-		assertNotNull(apptokensForUser);
-		assertEquals(apptokensForUser.size(), 0);
+		assertFalse(appTokenStorage.userIdHasAppToken("inactiveUser", "someThirdSecretString"));
 	}
 
 	@Test
 	public void testGetAppTokenForUserNoAppToken() {
-		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("noAppTokenUser");
-		assertNotNull(apptokensForUser);
-		assertEquals(apptokensForUser.size(), 0);
+		assertFalse(appTokenStorage.userIdHasAppToken("noAppTokenUser", "someThirdSecretString"));
 	}
 
 	@Test
 	public void testGetAppTokenForUserNoAppTokenRepopulatesOnceFromDisk() {
-		List<String> apptokensForUser = appTokenStorage.getAppTokensForUserId("noAppTokenUser");
-		assertNotNull(apptokensForUser);
-		assertEquals(apptokensForUser.size(), 0);
+		assertFalse(appTokenStorage.userIdHasAppToken("noAppTokenUser", "someThirdSecretString"));
 		assertEquals(appTokenStorage.getNoOfReadsFromDisk(), 2);
 	}
 
