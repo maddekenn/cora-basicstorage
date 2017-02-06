@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import se.uu.ub.cora.bookkeeper.data.DataAtomic;
 import se.uu.ub.cora.bookkeeper.data.DataElement;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.bookkeeper.metadata.MetadataTypes;
@@ -213,6 +214,29 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 
 	@Override
 	public boolean recordsExistForRecordTypeOrAbstract(String type) {
+		boolean recordExists = recordsExistsForRecordType(type);
+		if(!recordExists){
+			DataGroup recordTypeDataGroup = read("recordType", type);
+			String typeIsAbstract = recordTypeDataGroup.getFirstAtomicValueWithNameInData("abstract");
+			if("true".equals(typeIsAbstract)){
+				for(Entry<String, DividerGroup> entry : records.get("recordType").entrySet()){
+					DividerGroup dividerGroup = entry.getValue();
+					String recordTypeId = entry.getKey();
+					DataGroup dataGroup = dividerGroup.dataGroup;
+					if(dataGroup.containsChildWithNameInData("parentId")){
+						DataGroup parent = dataGroup.getFirstGroupWithNameInData("parentId");
+						String parentId = parent.getFirstAtomicValueWithNameInData("linkedRecordId");
+						if(parentId.equals(type)){
+							return recordsExistsForRecordType(recordTypeId);
+						}
+					}
+				}
+			}
+		}
+		return recordExists;
+	}
+
+	private boolean recordsExistsForRecordType(String type) {
 		return records.get(type) != null;
 	}
 
