@@ -590,7 +590,7 @@ public class RecordStorageInMemoryTest {
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
 		recordStorage.create("type", "place:0001", dataGroup, emptyLinkList, dataDivider);
 
-		assertTrue(recordStorage.recordExistsForRecordTypeAndRecordId("type", "place:0001"));
+		assertTrue(recordStorage.recordExistsForRecordTypeOrAbstractAndRecordId("type", "place:0001"));
 	}
 
 	@Test
@@ -599,7 +599,7 @@ public class RecordStorageInMemoryTest {
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
 		recordStorage.create("type", "place:0001", dataGroup, emptyLinkList, dataDivider);
 
-		assertFalse(recordStorage.recordExistsForRecordTypeAndRecordId("type", "NOTplace:0001"));
+		assertFalse(recordStorage.recordExistsForRecordTypeOrAbstractAndRecordId("type", "NOTplace:0001"));
 	}
 
 	@Test
@@ -608,7 +608,7 @@ public class RecordStorageInMemoryTest {
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
 		recordStorage.create("type", "place:0001", dataGroup, emptyLinkList, dataDivider);
 
-		assertFalse(recordStorage.recordExistsForRecordTypeAndRecordId("NOTtype", "place:0002"));
+		assertFalse(recordStorage.recordExistsForRecordTypeOrAbstractAndRecordId("NOTtype", "place:0002"));
 	}
 
 }

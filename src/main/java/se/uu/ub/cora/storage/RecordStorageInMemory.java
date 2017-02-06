@@ -212,13 +212,13 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	}
 
 	@Override
-	public boolean recordsExistForRecordType(String type) {
+	public boolean recordsExistForRecordTypeOrAbstract(String type) {
 		return records.get(type) != null;
 	}
 
 	@Override
-	public boolean recordExistsForRecordTypeAndRecordId(String recordType, String recordId) {
-		return recordsExistForRecordType(recordType)
+	public boolean recordExistsForRecordTypeOrAbstractAndRecordId(String recordType, String recordId) {
+		return recordsExistForRecordTypeOrAbstract(recordType)
 				&& recordIdExistsForRecordType(recordType, recordId);
 	}
 
