@@ -212,26 +212,6 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		return typeRecords.values();
 	}
 
-	private boolean isAbstractRecordType(String typeIsAbstract) {
-		return "true".equals(typeIsAbstract);
-	}
-
-
-	private boolean isImplementingChild(String type, DataGroup dataGroup) {
-		if(dataGroup.containsChildWithNameInData("parentId")){
-			String parentId = extractParentId(dataGroup);
-            if(parentId.equals(type)){
-				return true;
-            }
-        }
-		return false;
-	}
-
-	private String extractParentId(DataGroup dataGroup) {
-		DataGroup parent = dataGroup.getFirstGroupWithNameInData("parentId");
-		return parent.getFirstAtomicValueWithNameInData("linkedRecordId");
-	}
-
 	@Override
 	public boolean recordsExistForRecordType(String type) {
 		return records.get(type) != null;
@@ -258,34 +238,65 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		return recordExists;
 	}
 
+	private boolean recordTypeIsAbstract(DataGroup recordTypeDataGroup) {
+		String abstractValue = recordTypeDataGroup.getFirstAtomicValueWithNameInData("abstract");
+		return isAbstractRecordType(abstractValue);
+	}
+	
+
+	private boolean isAbstractRecordType(String typeIsAbstract) {
+		return "true".equals(typeIsAbstract);
+	}
+	
 	private boolean checkIfRecordIdExistsInChildren(String recordType, String recordId) {
 		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(recordType);
 		for (String childType : implementingChildRecordTypes) {
-            if (recordsExistForRecordType(childType)
-                    && recordIdExistsForRecordType(childType, recordId)) {
-                return true;
+			if (recordsExistForRecordType(childType)
+					&& recordIdExistsForRecordType(childType, recordId)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private List<String> findImplementingChildRecordTypes(String type) {
+		List<String> implementingRecordTypes = new ArrayList<>();
+		Map<String, DividerGroup> allRecordTypes = records.get(RECORD_TYPE);
+		for(Entry<String, DividerGroup> entry : allRecordTypes.entrySet()){
+			checkIfChildAndAddToList(type, implementingRecordTypes, entry);
+		}
+		return implementingRecordTypes;
+	}
+
+	private void checkIfChildAndAddToList(String type, List<String> implementingRecordTypes,
+			Entry<String, DividerGroup> entry) {
+		DataGroup dataGroup = extractDataGroupFromDataDividerGroup(entry);
+		String recordTypeId = entry.getKey();
+
+		if(isImplementingChild(type, dataGroup)){
+			implementingRecordTypes.add(recordTypeId);
+		}
+	}
+
+	private DataGroup extractDataGroupFromDataDividerGroup(Entry<String, DividerGroup> entry) {
+		DividerGroup dividerGroup = entry.getValue();
+		DataGroup dataGroup = dividerGroup.dataGroup;
+		return dataGroup;
+	}
+
+	private boolean isImplementingChild(String type, DataGroup dataGroup) {
+		if(dataGroup.containsChildWithNameInData("parentId")){
+			String parentId = extractParentId(dataGroup);
+            if(parentId.equals(type)){
+				return true;
             }
         }
 		return false;
 	}
 
-	private boolean recordTypeIsAbstract(DataGroup recordTypeDataGroup) {
-		String abstractValue = recordTypeDataGroup.getFirstAtomicValueWithNameInData("abstract");
-		return isAbstractRecordType(abstractValue);
-	}
-
-	private List<String> findImplementingChildRecordTypes(String type) {
-		List<String> implementingRecordTypes = new ArrayList<>();
-		for(Entry<String, DividerGroup> entry : records.get(RECORD_TYPE).entrySet()){
-			DividerGroup dividerGroup = entry.getValue();
-			String recordTypeId = entry.getKey();
-			DataGroup dataGroup = dividerGroup.dataGroup;
-
-			if(isImplementingChild(type, dataGroup)){
-				implementingRecordTypes.add(recordTypeId);
-			}
-		}
-		return implementingRecordTypes;
+	private String extractParentId(DataGroup dataGroup) {
+		DataGroup parent = dataGroup.getFirstGroupWithNameInData("parentId");
+		return parent.getFirstAtomicValueWithNameInData("linkedRecordId");
 	}
 
 	@Override
