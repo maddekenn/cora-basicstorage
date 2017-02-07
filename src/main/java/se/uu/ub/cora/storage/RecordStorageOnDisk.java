@@ -199,7 +199,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void writeRecordsToDisk(String recordType, String dataDivider) {
-		if (recordsExistForRecordTypeOrAbstract(recordType)) {
+		if (recordsExistForRecordType(recordType)) {
 			writeRecordsToDiskWhereRecordTypeExists(recordType, dataDivider);
 		} else {
 			removeFileFromDisk(recordType, dataDivider);
