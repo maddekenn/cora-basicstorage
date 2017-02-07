@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import se.uu.ub.cora.bookkeeper.data.DataAtomic;
 import se.uu.ub.cora.bookkeeper.data.DataElement;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.bookkeeper.metadata.MetadataTypes;
@@ -217,18 +216,12 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		boolean recordExists = recordsExistsForRecordType(type);
 		if(!recordExists){
 			DataGroup recordTypeDataGroup = read("recordType", type);
-			String typeIsAbstract = recordTypeDataGroup.getFirstAtomicValueWithNameInData("abstract");
-			if("true".equals(typeIsAbstract)){
-				for(Entry<String, DividerGroup> entry : records.get("recordType").entrySet()){
-					DividerGroup dividerGroup = entry.getValue();
-					String recordTypeId = entry.getKey();
-					DataGroup dataGroup = dividerGroup.dataGroup;
-					if(dataGroup.containsChildWithNameInData("parentId")){
-						DataGroup parent = dataGroup.getFirstGroupWithNameInData("parentId");
-						String parentId = parent.getFirstAtomicValueWithNameInData("linkedRecordId");
-						if(parentId.equals(type)){
-							return recordsExistsForRecordType(recordTypeId);
-						}
+			if(recordTypeIsAbstract(recordTypeDataGroup)){
+				List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(type);
+				for(String childType : implementingChildRecordTypes){
+					if(recordsExistsForRecordType(childType)){
+						//return true?? fast måste man inte i detta läge veta
+						//VILKEN recordType man har hittat??
 					}
 				}
 			}
@@ -236,8 +229,46 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 		return recordExists;
 	}
 
+	private boolean recordTypeIsAbstract(DataGroup recordTypeDataGroup) {
+		String abstractValue = recordTypeDataGroup.getFirstAtomicValueWithNameInData("abstract");
+		return isAbstractRecordType(abstractValue);
+	}
+
 	private boolean recordsExistsForRecordType(String type) {
 		return records.get(type) != null;
+	}
+
+	private boolean isAbstractRecordType(String typeIsAbstract) {
+		return "true".equals(typeIsAbstract);
+	}
+
+	private List<String> findImplementingChildRecordTypes(String type) {
+		List<String> implementingRecordTypes = new ArrayList<>();
+		for(Entry<String, DividerGroup> entry : records.get("recordType").entrySet()){
+			DividerGroup dividerGroup = entry.getValue();
+			String recordTypeId = entry.getKey();
+			DataGroup dataGroup = dividerGroup.dataGroup;
+
+			if(isImplementingChild(type, dataGroup)){
+                implementingRecordTypes.add(recordTypeId);
+			}
+        }
+		return implementingRecordTypes;
+	}
+
+	private boolean isImplementingChild(String type, DataGroup dataGroup) {
+		if(dataGroup.containsChildWithNameInData("parentId")){
+			String parentId = extractParentId(dataGroup);
+            if(parentId.equals(type)){
+				return true;
+            }
+        }
+		return false;
+	}
+
+	private String extractParentId(DataGroup dataGroup) {
+		DataGroup parent = dataGroup.getFirstGroupWithNameInData("parentId");
+		return parent.getFirstAtomicValueWithNameInData("linkedRecordId");
 	}
 
 	@Override
