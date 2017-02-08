@@ -36,7 +36,8 @@ import se.uu.ub.cora.spider.record.storage.RecordConflictException;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.spider.record.storage.RecordStorage;
 
-public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
+public class RecordStorageInMemory implements RecordStorage, MetadataStorage
+{
 	private static final String RECORD_TYPE = "recordType";
 	protected Map<String, Map<String, DividerGroup>> records = new HashMap<>();
 	protected Map<String, Map<String, DividerGroup>> linkLists = new HashMap<>();
@@ -213,16 +214,29 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	}
 
 	@Override
+	public Collection<DataGroup> readAbstractList(String s) {
+		return null;
+	}
+
+	@Override
 	public boolean recordsExistForRecordType(String type) {
 		return records.get(type) != null;
 	}
 
 	@Override
-	public boolean recordExistsForRecordTypeOrAbstractAndRecordId(String recordType, String recordId) {
-		return (recordsExistForRecordType(recordType)
-				&& recordIdExistsForRecordType(recordType, recordId))
-			|| (recordsExistForRecordType(RECORD_TYPE) &&
-				recordTypeIsAbstractAndRecordIdExistInImplementingChild(recordType, recordId));
+	public boolean recordExistsForAbstractOrImplementingRecordTypeAndRecordId(String recordType, String recordId) {
+		return recordExistsForRecordTypeAndRecordId(recordType, recordId)
+			|| recordExistsForAbstractRecordTypeAndRecordId(recordType, recordId);
+	}
+
+	private boolean recordExistsForRecordTypeAndRecordId(String recordType, String recordId) {
+		return recordsExistForRecordType(recordType)
+				&& recordIdExistsForRecordType(recordType, recordId);
+	}
+
+	private boolean recordExistsForAbstractRecordTypeAndRecordId(String recordType, String recordId) {
+		return recordsExistForRecordType(RECORD_TYPE) &&
+            recordTypeIsAbstractAndRecordIdExistInImplementingChild(recordType, recordId);
 	}
 
 	private boolean recordIdExistsForRecordType(String recordType, String recordId) {
