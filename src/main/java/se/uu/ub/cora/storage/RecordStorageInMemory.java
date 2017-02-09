@@ -214,8 +214,14 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 	}
 
 	@Override
-	public Collection<DataGroup> readAbstractList(String s) {
-		return null;
+	public Collection<DataGroup> readAbstractList(String type) {
+		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(type);
+		List<DataGroup> aggregatedRecordList = new ArrayList<>();
+
+		for(String implementingRecordType : implementingChildRecordTypes){
+			aggregatedRecordList.addAll(readList(implementingRecordType));
+		}
+		return aggregatedRecordList;
 	}
 
 	@Override

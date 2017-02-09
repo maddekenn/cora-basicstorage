@@ -638,12 +638,26 @@ public class RecordStorageInMemoryTest {
 		
 		DataGroup implementingRecordType = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId("implementingRecordType", "true", "abstractRecordType");
 		recordStorage.create("recordType", "implementingRecordType", implementingRecordType, emptyLinkList, dataDivider);
-		
+
+		DataGroup otherImplementingRecordType = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId("otherImplementingRecordType", "true", "abstractRecordType");
+		recordStorage.create("recordType", "otherImplementingRecordType", otherImplementingRecordType, emptyLinkList, dataDivider);
+
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
 		recordStorage.create("implementingRecordType", "someType:0001", dataGroup, emptyLinkList, dataDivider);
 
 		assertTrue(recordStorage.recordExistsForAbstractOrImplementingRecordTypeAndRecordId("abstractRecordType", "someType:0001"));
+	}
+
+	@Test
+	public void testRecordExistForAbstractRecordTypeAndRecordIdNoRecordsExists() {
+		DataGroup abstractRecordType = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("abstractRecordType", "true", "true");
+		recordStorage.create("recordType", "abstractRecordType", abstractRecordType, emptyLinkList, dataDivider);
+
+		DataGroup otherImplementingRecordType = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId("otherImplementingRecordType", "true", "abstractRecordType");
+		recordStorage.create("recordType", "otherImplementingRecordType", otherImplementingRecordType, emptyLinkList, dataDivider);
+
+		assertFalse(recordStorage.recordExistsForAbstractOrImplementingRecordTypeAndRecordId("abstractRecordType", "someType:0001"));
 	}
 
 }
