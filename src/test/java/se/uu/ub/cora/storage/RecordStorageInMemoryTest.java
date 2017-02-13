@@ -258,6 +258,15 @@ public class RecordStorageInMemoryTest {
 	public void testReadAbstractRecordList() {
 		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
 
+		createImageRecords();
+		createGenericBinaryRecord();
+
+		String recordType = "binary";
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType);
+		assertEquals(recordList.size(), 3);
+	}
+
+	private void createImageRecords() {
 		DataGroup dataGroup = DataCreator.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId(
 				"nameInData", "image", "image:0001");
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
@@ -267,11 +276,35 @@ public class RecordStorageInMemoryTest {
 				"nameInData", "image", "image:0002");
 		dataGroup2.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
 		recordStorage.create("image", "image:0002", dataGroup2, emptyLinkList, dataDivider);
+	}
+
+	private void createGenericBinaryRecord() {
+		DataGroup dataGroup = DataCreator.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId(
+				"nameInData", "genericBinary", "genericBinary:0001");
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		recordStorage.create("genericBinary", "genericBinary:0001", dataGroup, emptyLinkList, dataDivider);
+	}
+
+	@Test
+	public void testReadAbstractRecordListOneImplementingChildHasNoRecords() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
+		createImageRecords();
+		//create no records of genericBinary
 
 		String recordType = "binary";
 		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType);
 		assertEquals(recordList.size(), 2);
-//		assertEquals(recordList.iterator().next().getNameInData(), "authority");
+	}
+
+	@Test(expectedExceptions = RecordNotFoundException.class)
+	public void testReadAbstractRecordListNoImplementingChildHasNoRecords() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
+		//create no records
+
+		String recordType = "binary";
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType);
 	}
 
 	@Test(expectedExceptions = RecordNotFoundException.class)

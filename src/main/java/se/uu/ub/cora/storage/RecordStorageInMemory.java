@@ -39,6 +39,7 @@ import se.uu.ub.cora.spider.record.storage.RecordStorage;
 public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 {
 	private static final String RECORD_TYPE = "recordType";
+	private static final String NO_RECORDS_EXISTS_MESSAGE = "No records exists with recordType: ";
 	protected Map<String, Map<String, DividerGroup>> records = new HashMap<>();
 	protected Map<String, Map<String, DividerGroup>> linkLists = new HashMap<>();
 	protected Map<String, Map<String, Map<String, Map<String, List<DataGroup>>>>> incomingLinks = new HashMap<>();
@@ -204,7 +205,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 	public Collection<DataGroup> readList(String type) {
 		Map<String, DividerGroup> typeDividerRecords = records.get(type);
 		if (null == typeDividerRecords) {
-			throw new RecordNotFoundException("No records exists with recordType: " + type);
+			throw new RecordNotFoundException(NO_RECORDS_EXISTS_MESSAGE + type);
 		}
 		Map<String, DataGroup> typeRecords = addDataGroupToRecordTypeList(typeDividerRecords);
 		return typeRecords.values();
@@ -223,10 +224,25 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 		List<DataGroup> aggregatedRecordList = new ArrayList<>();
 		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(type);
 
-		for(String implementingRecordType : implementingChildRecordTypes){
-			aggregatedRecordList.addAll(readList(implementingRecordType));
-		}
+		addRecordsToAggregatedRecordList(aggregatedRecordList, implementingChildRecordTypes);
+		throwErrorIfEmptyAggregatedList(type, aggregatedRecordList);
 		return aggregatedRecordList;
+	}
+
+	private void addRecordsToAggregatedRecordList(List<DataGroup> aggregatedRecordList, List<String> implementingChildRecordTypes) {
+		for(String implementingRecordType : implementingChildRecordTypes){
+			try{
+				aggregatedRecordList.addAll(readList(implementingRecordType));
+			}catch(RecordNotFoundException e){
+				//Do nothing, another implementing child might have records
+			}
+		}
+	}
+
+	private void throwErrorIfEmptyAggregatedList(String type, List<DataGroup> aggregatedRecordList) {
+		if(aggregatedRecordList.isEmpty()){
+			throw new RecordNotFoundException(NO_RECORDS_EXISTS_MESSAGE + type);
+		}
 	}
 
 	@Override
@@ -331,7 +347,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 
 	private void checkRecordExists(String recordType, String recordId) {
 		if (holderForRecordTypeDoesNotExistInStorage(recordType)) {
-			throw new RecordNotFoundException("No records exists with recordType: " + recordType);
+			throw new RecordNotFoundException(NO_RECORDS_EXISTS_MESSAGE + recordType);
 		}
 		if (null == records.get(recordType).get(recordId)) {
 			throw new RecordNotFoundException("No record exists with recordId: " + recordId);
