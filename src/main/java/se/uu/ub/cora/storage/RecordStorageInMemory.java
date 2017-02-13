@@ -305,8 +305,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 
 	private DataGroup extractDataGroupFromDataDividerGroup(Entry<String, DividerGroup> entry) {
 		DividerGroup dividerGroup = entry.getValue();
-		DataGroup dataGroup = dividerGroup.dataGroup;
-		return dataGroup;
+		return dividerGroup.dataGroup;
 	}
 
 	private boolean isImplementingChild(String type, DataGroup dataGroup) {
