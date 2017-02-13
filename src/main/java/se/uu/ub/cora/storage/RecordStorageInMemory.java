@@ -206,17 +206,22 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 		if (null == typeDividerRecords) {
 			throw new RecordNotFoundException("No records exists with recordType: " + type);
 		}
+		Map<String, DataGroup> typeRecords = addDataGroupToRecordTypeList(typeDividerRecords);
+		return typeRecords.values();
+	}
+
+	private Map<String, DataGroup> addDataGroupToRecordTypeList(Map<String, DividerGroup> typeDividerRecords) {
 		Map<String, DataGroup> typeRecords = new HashMap<>();
 		for (Entry<String, DividerGroup> entry : typeDividerRecords.entrySet()) {
 			typeRecords.put(entry.getKey(), entry.getValue().dataGroup);
 		}
-		return typeRecords.values();
+		return typeRecords;
 	}
 
 	@Override
 	public Collection<DataGroup> readAbstractList(String type) {
-		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(type);
 		List<DataGroup> aggregatedRecordList = new ArrayList<>();
+		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(type);
 
 		for(String implementingRecordType : implementingChildRecordTypes){
 			aggregatedRecordList.addAll(readList(implementingRecordType));
@@ -225,14 +230,14 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 	}
 
 	@Override
-	public boolean recordsExistForRecordType(String type) {
-		return records.get(type) != null;
-	}
-
-	@Override
 	public boolean recordExistsForAbstractOrImplementingRecordTypeAndRecordId(String recordType, String recordId) {
 		return recordExistsForRecordTypeAndRecordId(recordType, recordId)
 			|| recordExistsForAbstractRecordTypeAndRecordId(recordType, recordId);
+	}
+
+	@Override
+	public boolean recordsExistForRecordType(String type) {
+		return records.get(type) != null;
 	}
 
 	private boolean recordExistsForRecordTypeAndRecordId(String recordType, String recordId) {
