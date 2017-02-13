@@ -294,7 +294,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 		for (String childType : implementingChildRecordTypes) {
 			if (recordsExistForRecordType(childType)
 					&& recordIdExistsForRecordType(childType, recordId)) {
-				return true;
+					return true;
 			}
 		}
 		return false;

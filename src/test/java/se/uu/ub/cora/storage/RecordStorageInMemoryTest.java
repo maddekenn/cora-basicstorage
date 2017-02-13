@@ -648,11 +648,12 @@ public class RecordStorageInMemoryTest {
 
 	@Test
 	public void testRecordNOTExistForRecordTypeAndRecordIdMissingRecordId() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
-		recordStorage.create("type", "place:0001", dataGroup, emptyLinkList, dataDivider);
+		recordStorage.create("place", "place:0004", dataGroup, emptyLinkList, dataDivider);
 
-		assertFalse(recordStorage.recordExistsForAbstractOrImplementingRecordTypeAndRecordId("type", "NOTplace:0001"));
+		assertFalse(recordStorage.recordExistsForAbstractOrImplementingRecordTypeAndRecordId("place", "NOTplace:0001"));
 	}
 
 	@Test
@@ -691,6 +692,24 @@ public class RecordStorageInMemoryTest {
 		recordStorage.create("recordType", "otherImplementingRecordType", otherImplementingRecordType, emptyLinkList, dataDivider);
 
 		assertFalse(recordStorage.recordExistsForAbstractOrImplementingRecordTypeAndRecordId("abstractRecordType", "someType:0001"));
+	}
+
+	@Test
+	public void testRecordExistForNotAbstractNoRecordsExists() {
+		DataGroup abstractRecordType = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("notAbstractRecordType", "true", "false");
+		recordStorage.create("recordType", "notAbstractRecordType", abstractRecordType, emptyLinkList, dataDivider);
+
+		assertFalse(recordStorage.recordExistsForAbstractOrImplementingRecordTypeAndRecordId("notAbstractRecordType", "someType:0001"));
+	}
+
+	@Test
+	public void testRecordNOTExistForAbstractRecordTypeAndRecordIdMissingRecordId() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		recordStorage.create("image", "image:0004", dataGroup, emptyLinkList, dataDivider);
+
+		assertFalse(recordStorage.recordExistsForAbstractOrImplementingRecordTypeAndRecordId("binary", "NOTimage:0004"));
 	}
 
 }
