@@ -307,6 +307,12 @@ public class RecordStorageInMemoryTest {
 		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType);
 	}
 
+	@Test
+	public void testReadRecordOfAbstractType(){
+
+
+	}
+
 	@Test(expectedExceptions = RecordNotFoundException.class)
 	public void testReadMissingRecordType() {
 		recordStorage.read("", "");
