@@ -43,12 +43,14 @@ public class RecordStorageInMemoryReadFromDiskTest {
 	private static final String TO_RECORD_TYPE = "toRecordType";
 	private String basePath = "/tmp/recordStorageOnDiskTemp/";
 	private DataGroup emptyLinkList = DataCreator.createLinkList();
+	private RecordStorageOnDisk recordStorage;
 
 	@BeforeMethod
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
 		File dir = new File(basePath);
 		dir.mkdir();
 		deleteFiles();
+		setUpData();
 	}
 
 	private void deleteFiles() throws IOException {
@@ -66,6 +68,20 @@ public class RecordStorageInMemoryReadFromDiskTest {
 		}
 	}
 
+	private void setUpData() {
+		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
+		recordStorage = RecordStorageInMemoryReadFromDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup placeRecordType = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true", "false");
+		recordStorage.create("recordType", "place", placeRecordType, emptyLinkList, "cora");
+		DataGroup recordTypeRecordType = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("recordType", "true", "false");
+		recordStorage.create("recordType", "recordType", recordTypeRecordType, emptyLinkList,
+				"cora");
+	}
+
 	@AfterMethod
 	public void removeTempFiles() throws IOException {
 		if (Files.exists(Paths.get(basePath))) {
@@ -77,9 +93,6 @@ public class RecordStorageInMemoryReadFromDiskTest {
 
 	@Test
 	public void testInitNoFilesOnDisk() throws IOException {
-		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
-		RecordStorageOnDisk recordStorage = RecordStorageInMemoryReadFromDisk
-				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
@@ -101,8 +114,6 @@ public class RecordStorageInMemoryReadFromDiskTest {
 	@Test
 	public void testRecordWithLinks() throws IOException {
 		DataGroup linkListWithTwoLinks = createLinkListWithTwoLinks("place:0001");
-		RecordStorageOnDisk recordStorage = RecordStorageInMemoryReadFromDisk
-				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");

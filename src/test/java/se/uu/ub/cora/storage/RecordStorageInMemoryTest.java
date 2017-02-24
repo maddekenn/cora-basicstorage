@@ -770,6 +770,7 @@ public class RecordStorageInMemoryTest {
 	@Test
 	public void testRecordNOTExistForAbstractRecordTypeAndRecordIdMissingRecordId() {
 		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
 		recordStorage.create("image", "image:0004", dataGroup, emptyLinkList, dataDivider);
@@ -778,4 +779,31 @@ public class RecordStorageInMemoryTest {
 				"binary", "NOTimage:0004"));
 	}
 
+	@Test
+	public void testRecordNOTExistForAbstractRecordTypeAndRecordIdRecordIdNoRecordTypeExist() {
+		recordStorage = new RecordStorageInMemory();
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		recordStorage.create("image", "image:0004", dataGroup, emptyLinkList, dataDivider);
+
+		assertFalse(recordStorage.recordExistsForAbstractOrImplementingRecordTypeAndRecordId(
+				"binary", "NOTimage:0004"));
+	}
+
+	@Test(expectedExceptions = RecordNotFoundException.class)
+	public void testReadWhenRecordExistForAbstractRecordTypeAndRecordIdNoRecordsExists() {
+		DataGroup abstractRecordType = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("abstractRecordType", "true",
+						"true");
+		recordStorage.create("recordType", "abstractRecordType", abstractRecordType, emptyLinkList,
+				dataDivider);
+
+		DataGroup otherImplementingRecordType = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndParentId("otherImplementingRecordType",
+						"true", "abstractRecordType");
+		recordStorage.create("recordType", "otherImplementingRecordType",
+				otherImplementingRecordType, emptyLinkList, dataDivider);
+
+		recordStorage.read("abstractRecordType", "someType:0001");
+	}
 }

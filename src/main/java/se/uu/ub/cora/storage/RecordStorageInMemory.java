@@ -268,22 +268,33 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	private boolean recordExistsForAbstractRecordTypeAndRecordId(String recordType,
 			String recordId) {
 		return recordsExistForRecordType(RECORD_TYPE)
-				&& recordTypeIsAbstractAndRecordIdExistInImplementingChild(recordType, recordId);
+				&& recordTypeExistsAndIsAbstractAndRecordIdExistInImplementingChild(recordType,
+						recordId);
 	}
 
 	private boolean recordIdExistsForRecordType(String recordType, String recordId) {
 		return records.get(recordType).containsKey(recordId);
 	}
 
+	private boolean recordTypeExistsAndIsAbstractAndRecordIdExistInImplementingChild(
+			String recordType, String recordId) {
+		if (recordTypeDoesNotExist(recordType)) {
+			return false;
+		}
+		return recordTypeIsAbstractAndRecordIdExistInImplementingChild(recordType, recordId);
+	}
+
+	private boolean recordTypeDoesNotExist(String recordType) {
+		return !recordExistsForRecordTypeAndRecordId(RECORD_TYPE, recordType);
+	}
+
 	private boolean recordTypeIsAbstractAndRecordIdExistInImplementingChild(String recordType,
 			String recordId) {
-		boolean recordExists = false;
-		// TODO: kolla om recordType finns, annars returnera falskt
 		DataGroup recordTypeDataGroup = read(RECORD_TYPE, recordType);
 		if (recordTypeIsAbstract(recordTypeDataGroup)) {
-			recordExists = checkIfRecordIdExistsInChildren(recordType, recordId);
+			return checkIfRecordIdExistsInChildren(recordType, recordId);
 		}
-		return recordExists;
+		return false;
 	}
 
 	private boolean recordTypeIsAbstract(DataGroup recordTypeDataGroup) {
