@@ -99,6 +99,7 @@ public class RecordStorageOnDiskTest {
 			+ ",\"name\":\"recordInfo\"}" + "],\"name\":\"authority\"}],\"name\":\"recordList\"}";
 
 	private String expectedRecordJsonTwoRecords = getExpectedRecordJsonTwoRecords();
+	private RecordStorageOnDisk recordStorage;
 
 	private String getExpectedRecordJsonTwoRecords() {
 		String expectedJson = "{\n";
@@ -172,6 +173,13 @@ public class RecordStorageOnDiskTest {
 		File dir = new File(basePath);
 		dir.mkdir();
 		deleteFiles();
+		recordStorage = RecordStorageOnDisk.createRecordStorageOnDiskWithBasePath(basePath);
+		DataGroup placeRecordType = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true", "false");
+		recordStorage.create("recordType", "place", placeRecordType, emptyLinkList, "cora");
+		DataGroup personRecordType = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("person", "true", "false");
+		recordStorage.create("recordType", "person", personRecordType, emptyLinkList, "cora");
 	}
 
 	private void deleteFiles() throws IOException {
@@ -201,8 +209,11 @@ public class RecordStorageOnDiskTest {
 	@Test
 	public void testInitNoFilesOnDisk() throws IOException {
 		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
-		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
-				.createRecordStorageOnDiskWithBasePath(basePath);
+		// DataGroup placeRecordType = DataCreator
+		// .createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true",
+		// "false");
+		// recordStorage.create("recordType", "place", placeRecordType,
+		// emptyLinkList, "cora");
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");

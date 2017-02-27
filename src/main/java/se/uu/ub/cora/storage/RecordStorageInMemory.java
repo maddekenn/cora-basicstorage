@@ -36,8 +36,7 @@ import se.uu.ub.cora.spider.record.storage.RecordConflictException;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.spider.record.storage.RecordStorage;
 
-public class RecordStorageInMemory implements RecordStorage, MetadataStorage
-{
+public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	private static final String RECORD_TYPE = "recordType";
 	private static final String NO_RECORDS_EXISTS_MESSAGE = "No records exists with recordType: ";
 	protected Map<String, Map<String, DividerGroup>> records = new HashMap<>();
@@ -211,7 +210,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 		return typeRecords.values();
 	}
 
-	private Map<String, DataGroup> addDataGroupToRecordTypeList(Map<String, DividerGroup> typeDividerRecords) {
+	private Map<String, DataGroup> addDataGroupToRecordTypeList(
+			Map<String, DividerGroup> typeDividerRecords) {
 		Map<String, DataGroup> typeRecords = new HashMap<>();
 		for (Entry<String, DividerGroup> entry : typeDividerRecords.entrySet()) {
 			typeRecords.put(entry.getKey(), entry.getValue().dataGroup);
@@ -229,26 +229,30 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 		return aggregatedRecordList;
 	}
 
-	private void addRecordsToAggregatedRecordList(List<DataGroup> aggregatedRecordList, List<String> implementingChildRecordTypes) {
-		for(String implementingRecordType : implementingChildRecordTypes){
-			try{
-				aggregatedRecordList.addAll(readList(implementingRecordType));
-			}catch(RecordNotFoundException e){
-				//Do nothing, another implementing child might have records
+	private void addRecordsToAggregatedRecordList(List<DataGroup> aggregatedRecordList,
+			List<String> implementingChildRecordTypes) {
+		for (String implementingRecordType : implementingChildRecordTypes) {
+			try {
+				Collection<DataGroup> readList = readList(implementingRecordType);
+				aggregatedRecordList.addAll(readList);
+			} catch (RecordNotFoundException e) {
+				// Do nothing, another implementing child might have records
 			}
 		}
 	}
 
-	private void throwErrorIfEmptyAggregatedList(String type, List<DataGroup> aggregatedRecordList) {
-		if(aggregatedRecordList.isEmpty()){
+	private void throwErrorIfEmptyAggregatedList(String type,
+			List<DataGroup> aggregatedRecordList) {
+		if (aggregatedRecordList.isEmpty()) {
 			throw new RecordNotFoundException(NO_RECORDS_EXISTS_MESSAGE + type);
 		}
 	}
 
 	@Override
-	public boolean recordExistsForAbstractOrImplementingRecordTypeAndRecordId(String recordType, String recordId) {
+	public boolean recordExistsForAbstractOrImplementingRecordTypeAndRecordId(String recordType,
+			String recordId) {
 		return recordExistsForRecordTypeAndRecordId(recordType, recordId)
-			|| recordExistsForAbstractRecordTypeAndRecordId(recordType, recordId);
+				|| recordExistsForAbstractRecordTypeAndRecordId(recordType, recordId);
 	}
 
 	@Override
@@ -261,40 +265,53 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 				&& recordIdExistsForRecordType(recordType, recordId);
 	}
 
-	private boolean recordExistsForAbstractRecordTypeAndRecordId(String recordType, String recordId) {
-		return recordsExistForRecordType(RECORD_TYPE) &&
-            recordTypeIsAbstractAndRecordIdExistInImplementingChild(recordType, recordId);
+	private boolean recordExistsForAbstractRecordTypeAndRecordId(String recordType,
+			String recordId) {
+		return recordsExistForRecordType(RECORD_TYPE)
+				&& recordTypeExistsAndIsAbstractAndRecordIdExistInImplementingChild(recordType,
+						recordId);
 	}
 
 	private boolean recordIdExistsForRecordType(String recordType, String recordId) {
 		return records.get(recordType).containsKey(recordId);
 	}
 
-	private boolean recordTypeIsAbstractAndRecordIdExistInImplementingChild(String recordType, String recordId) {
-		boolean recordExists = false;
+	private boolean recordTypeExistsAndIsAbstractAndRecordIdExistInImplementingChild(
+			String recordType, String recordId) {
+		if (recordTypeDoesNotExist(recordType)) {
+			return false;
+		}
+		return recordTypeIsAbstractAndRecordIdExistInImplementingChild(recordType, recordId);
+	}
+
+	private boolean recordTypeDoesNotExist(String recordType) {
+		return !recordExistsForRecordTypeAndRecordId(RECORD_TYPE, recordType);
+	}
+
+	private boolean recordTypeIsAbstractAndRecordIdExistInImplementingChild(String recordType,
+			String recordId) {
 		DataGroup recordTypeDataGroup = read(RECORD_TYPE, recordType);
 		if (recordTypeIsAbstract(recordTypeDataGroup)) {
-			recordExists = checkIfRecordIdExistsInChildren(recordType, recordId);
+			return checkIfRecordIdExistsInChildren(recordType, recordId);
 		}
-		return recordExists;
+		return false;
 	}
 
 	private boolean recordTypeIsAbstract(DataGroup recordTypeDataGroup) {
 		String abstractValue = recordTypeDataGroup.getFirstAtomicValueWithNameInData("abstract");
-		return isAbstractRecordType(abstractValue);
+		return valueIsAbstract(abstractValue);
 	}
-	
 
-	private boolean isAbstractRecordType(String typeIsAbstract) {
+	private boolean valueIsAbstract(String typeIsAbstract) {
 		return "true".equals(typeIsAbstract);
 	}
-	
+
 	private boolean checkIfRecordIdExistsInChildren(String recordType, String recordId) {
 		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(recordType);
 		for (String childType : implementingChildRecordTypes) {
 			if (recordsExistForRecordType(childType)
 					&& recordIdExistsForRecordType(childType, recordId)) {
-					return true;
+				return true;
 			}
 		}
 		return false;
@@ -303,7 +320,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 	private List<String> findImplementingChildRecordTypes(String type) {
 		List<String> implementingRecordTypes = new ArrayList<>();
 		Map<String, DividerGroup> allRecordTypes = records.get(RECORD_TYPE);
-		for(Entry<String, DividerGroup> entry : allRecordTypes.entrySet()){
+		for (Entry<String, DividerGroup> entry : allRecordTypes.entrySet()) {
 			checkIfChildAndAddToList(type, implementingRecordTypes, entry);
 		}
 		return implementingRecordTypes;
@@ -314,7 +331,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 		DataGroup dataGroup = extractDataGroupFromDataDividerGroup(entry);
 		String recordTypeId = entry.getKey();
 
-		if(isImplementingChild(type, dataGroup)){
+		if (isImplementingChild(type, dataGroup)) {
 			implementingRecordTypes.add(recordTypeId);
 		}
 	}
@@ -325,12 +342,12 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 	}
 
 	private boolean isImplementingChild(String type, DataGroup dataGroup) {
-		if(dataGroup.containsChildWithNameInData("parentId")){
+		if (dataGroup.containsChildWithNameInData("parentId")) {
 			String parentId = extractParentId(dataGroup);
-            if(parentId.equals(type)){
+			if (parentId.equals(type)) {
 				return true;
-            }
-        }
+			}
+		}
 		return false;
 	}
 
@@ -341,6 +358,36 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage
 
 	@Override
 	public DataGroup read(String recordType, String recordId) {
+		DataGroup recordTypeDataGroup = returnRecordIfExisting(RECORD_TYPE, recordType);
+		if (recordTypeIsAbstract(recordTypeDataGroup)) {
+			return readRecordFromImplementingRecordTypes(recordType, recordId);
+		}
+		return returnRecordIfExisting(recordType, recordId);
+	}
+
+	private DataGroup readRecordFromImplementingRecordTypes(String recordType, String recordId) {
+		DataGroup readRecord = tryToReadRecordFromImplementingRecordTypes(recordType, recordId);
+		if (readRecord == null) {
+			throw new RecordNotFoundException("No record exists with recordId: " + recordId);
+		}
+		return readRecord;
+	}
+
+	private DataGroup tryToReadRecordFromImplementingRecordTypes(String recordType,
+			String recordId) {
+		DataGroup readRecord = null;
+		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(recordType);
+		for (String implementingType : implementingChildRecordTypes) {
+			try {
+				readRecord = returnRecordIfExisting(implementingType, recordId);
+			} catch (RecordNotFoundException e) {
+				// Do nothing, another implementing child might have records
+			}
+		}
+		return readRecord;
+	}
+
+	private DataGroup returnRecordIfExisting(String recordType, String recordId) {
 		checkRecordExists(recordType, recordId);
 		return records.get(recordType).get(recordId).dataGroup;
 	}
