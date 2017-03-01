@@ -9684,6 +9684,14 @@
                             "value": "searchTermNewGroup"
                         },
                         {
+                            "name": "type",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "141414"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -9695,14 +9703,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "name": "type",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "141414"
                         }
                     ],
                     "name": "recordInfo"
@@ -9797,6 +9797,34 @@
                                         {
                                             "name": "linkedRecordId",
                                             "value": "searchFieldRefLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "recordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "X"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "recordTypeToSearchInLink"
                                         }
                                     ],
                                     "name": "ref",
@@ -11960,6 +11988,34 @@
                                         {
                                             "name": "linkedRecordId",
                                             "value": "searchFieldRefLink"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "recordLink"}
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "X"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "recordTypeToSearchInLink"
                                         }
                                     ],
                                     "name": "ref",
