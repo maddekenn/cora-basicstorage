@@ -1,116 +1,344 @@
 {
-    "children": [{
-        "children": [
-            {
-                "children": [
-                    {
-                        "name": "id",
-                        "value": "identifierTypeCollection"
-                    },
-                    {
-                        "name": "type",
-                        "value": "metadataItemCollection"
-                    },
-                    {
-                        "name": "createdBy",
-                        "value": "141414"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "bibsys"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    }
-                ],
-                "name": "recordInfo"
-            },
-            {
-                "name": "nameInData",
-                "value": "identifierType"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "coraText"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "identifierTypeCollectionText"
-                    }
-                ],
-                "name": "textId"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "coraText"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "identifierTypeCollectionDefText"
-                    }
-                ],
-                "name": "defTextId"
-            },
-            {
-                "children": [
-                    {
-                        "repeatId": "0",
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "metadataCollectionItem"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "viafItem"
-                            }
-                        ],
-                        "name": "ref"
-                    },
-                    {
-                        "repeatId": "1",
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "metadataCollectionItem"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "librisItem"
-                            }
-                        ],
-                        "name": "ref"
-                    },
-                    {
-                        "repeatId": "2",
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "metadataCollectionItem"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "cerlItem"
-                            }
-                        ],
-                        "name": "ref"
-                    }
-                ],
-                "name": "collectionItemReferences"
-            }
-        ],
-        "name": "metadata",
-        "attributes": {"type": "itemCollection"}
-    }],
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "nameFormTypeCollection"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "141414"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "type"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "nameFormTypeCollectionText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "nameFormTypeCollectionDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "authorizedItem"
+                                }
+                            ],
+                            "name": "ref"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "alternativeItem"
+                                }
+                            ],
+                            "name": "ref"
+                        }
+                    ],
+                    "name": "collectionItemReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "itemCollection"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "identifierTypeCollection"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "141414"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "identifierType"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "identifierTypeCollectionText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "identifierTypeCollectionDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "viafItem"
+                                }
+                            ],
+                            "name": "ref"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "librisItem"
+                                }
+                            ],
+                            "name": "ref"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cerlItem"
+                                }
+                            ],
+                            "name": "ref"
+                        }
+                    ],
+                    "name": "collectionItemReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "itemCollection"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "namePartTypeCollection"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "141414"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "type"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "namePartTypeCollectionText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "namePartTypeCollectionDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "givenNameItem"
+                                }
+                            ],
+                            "name": "ref"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "familyNameItem"
+                                }
+                            ],
+                            "name": "ref"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "numberItem"
+                                }
+                            ],
+                            "name": "ref"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "metadataCollectionItem"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "additionItem"
+                                }
+                            ],
+                            "name": "ref"
+                        }
+                    ],
+                    "name": "collectionItemReferences"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "itemCollection"}
+        }
+    ],
     "name": "recordList"
 }
