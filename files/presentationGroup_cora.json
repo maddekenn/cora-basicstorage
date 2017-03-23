@@ -58,12 +58,12 @@
                                     "children": [{
                                         "children": [
                                             {
-                                                "name": "linkedRecordId",
-                                                "value": "recordInfoTextMenuPGroup"
-                                            },
-                                            {
                                                 "name": "linkedRecordType",
                                                 "value": "presentation"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "recordInfoTextMenuPGroup"
                                             }
                                         ],
                                         "name": "ref",
@@ -85,12 +85,12 @@
                                     "children": [{
                                         "children": [
                                             {
-                                                "name": "linkedRecordId",
-                                                "value": "textPartDefaultPGroup"
-                                            },
-                                            {
                                                 "name": "linkedRecordType",
                                                 "value": "presentation"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "textPartDefaultPGroup"
                                             }
                                         ],
                                         "name": "ref",
@@ -112,12 +112,12 @@
                                     "children": [{
                                         "children": [
                                             {
-                                                "name": "linkedRecordId",
-                                                "value": "textPartAlternativePGroup"
-                                            },
-                                            {
                                                 "name": "linkedRecordType",
                                                 "value": "presentation"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "textPartAlternativePGroup"
                                             }
                                         ],
                                         "name": "ref",
@@ -12186,6 +12186,10 @@
                                         "attributes": {"type": "presentation"}
                                     }],
                                     "name": "refGroup"
+                                },
+                                {
+                                    "name": "minNumberOfRepeatingToShow",
+                                    "value": "1"
                                 }
                             ],
                             "name": "childReference"
@@ -12240,6 +12244,10 @@
                                         "attributes": {"type": "presentation"}
                                     }],
                                     "name": "refGroup"
+                                },
+                                {
+                                    "name": "minNumberOfRepeatingToShow",
+                                    "value": "1"
                                 }
                             ],
                             "name": "childReference"
@@ -12294,6 +12302,10 @@
                                         "attributes": {"type": "presentation"}
                                     }],
                                     "name": "refGroup"
+                                },
+                                {
+                                    "name": "minNumberOfRepeatingToShow",
+                                    "value": "1"
                                 }
                             ],
                             "name": "childReference"
@@ -12348,6 +12360,10 @@
                                         "attributes": {"type": "presentation"}
                                     }],
                                     "name": "refGroup"
+                                },
+                                {
+                                    "name": "minNumberOfRepeatingToShow",
+                                    "value": "1"
                                 }
                             ],
                             "name": "childReference"
@@ -20353,18 +20369,18 @@
                             "children": [
                                 {
                                     "name": "default",
-                                    "value": "refMinimized"
+                                    "value": "ref"
                                 },
                                 {
                                     "children": [{
                                         "children": [
                                             {
-                                                "name": "linkedRecordId",
-                                                "value": "presentationChildReferenceGroupPGroup"
-                                            },
-                                            {
                                                 "name": "linkedRecordType",
                                                 "value": "presentation"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "presentationChildReferenceGroupPGroup"
                                             }
                                         ],
                                         "name": "ref",
@@ -20376,12 +20392,12 @@
                                     "children": [{
                                         "children": [
                                             {
-                                                "name": "linkedRecordId",
-                                                "value": "presentationChildReferenceGroupMinimizedPGroup"
-                                            },
-                                            {
                                                 "name": "linkedRecordType",
                                                 "value": "presentation"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "presentationChildReferenceGroupMinimizedPGroup"
                                             }
                                         ],
                                         "name": "ref",
@@ -28801,12 +28817,12 @@
                                     "children": [{
                                         "children": [
                                             {
-                                                "name": "linkedRecordId",
-                                                "value": "recordInfoOutputPGroup"
-                                            },
-                                            {
                                                 "name": "linkedRecordType",
                                                 "value": "presentation"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "recordInfoOutputPGroup"
                                             }
                                         ],
                                         "name": "ref",
@@ -28825,20 +28841,26 @@
                                     "value": "ref"
                                 },
                                 {
-                                    "children": [{
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "permissionRulePartActionOutputPGroup"
-                                            },
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "presentation"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "presentation"}
-                                    }],
+                                    "children": [
+                                        {
+                                            "name": "childStyle",
+                                            "value": "zeroChildStyle"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "name": "linkedRecordType",
+                                                    "value": "presentation"
+                                                },
+                                                {
+                                                    "name": "linkedRecordId",
+                                                    "value": "permissionRulePartActionOutputPGroup"
+                                                }
+                                            ],
+                                            "name": "ref",
+                                            "attributes": {"type": "presentation"}
+                                        }
+                                    ],
                                     "name": "refGroup"
                                 }
                             ],
@@ -28852,20 +28874,26 @@
                                     "value": "ref"
                                 },
                                 {
-                                    "children": [{
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "permissionRulePartRecordTypeOutputPGroup"
-                                            },
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "presentation"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "presentation"}
-                                    }],
+                                    "children": [
+                                        {
+                                            "name": "childStyle",
+                                            "value": "zeroChildStyle"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "name": "linkedRecordType",
+                                                    "value": "presentation"
+                                                },
+                                                {
+                                                    "name": "linkedRecordId",
+                                                    "value": "permissionRulePartRecordTypeOutputPGroup"
+                                                }
+                                            ],
+                                            "name": "ref",
+                                            "attributes": {"type": "presentation"}
+                                        }
+                                    ],
                                     "name": "refGroup"
                                 }
                             ],
@@ -28879,20 +28907,26 @@
                                     "value": "ref"
                                 },
                                 {
-                                    "children": [{
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "permissionRulePartDeleteOutputPGroup"
-                                            },
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "presentation"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "presentation"}
-                                    }],
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "name": "linkedRecordType",
+                                                    "value": "presentation"
+                                                },
+                                                {
+                                                    "name": "linkedRecordId",
+                                                    "value": "permissionRulePartDeleteOutputPGroup"
+                                                }
+                                            ],
+                                            "name": "ref",
+                                            "attributes": {"type": "presentation"}
+                                        },
+                                        {
+                                            "name": "childStyle",
+                                            "value": "zeroChildStyle"
+                                        }
+                                    ],
                                     "name": "refGroup"
                                 }
                             ],
@@ -28906,20 +28940,26 @@
                                     "value": "ref"
                                 },
                                 {
-                                    "children": [{
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "permissionRulePartPublishOutputPGroup"
-                                            },
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "presentation"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "presentation"}
-                                    }],
+                                    "children": [
+                                        {
+                                            "name": "childStyle",
+                                            "value": "zeroChildStyle"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "name": "linkedRecordType",
+                                                    "value": "presentation"
+                                                },
+                                                {
+                                                    "name": "linkedRecordId",
+                                                    "value": "permissionRulePartPublishOutputPGroup"
+                                                }
+                                            ],
+                                            "name": "ref",
+                                            "attributes": {"type": "presentation"}
+                                        }
+                                    ],
                                     "name": "refGroup"
                                 }
                             ],
@@ -28936,12 +28976,12 @@
                                     "children": [{
                                         "children": [
                                             {
-                                                "name": "linkedRecordId",
-                                                "value": "activeStatusCollectionVarText"
-                                            },
-                                            {
                                                 "name": "linkedRecordType",
                                                 "value": "text"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "activeStatusCollectionVarText"
                                             }
                                         ],
                                         "name": "ref",
@@ -28963,12 +29003,12 @@
                                     "children": [{
                                         "children": [
                                             {
-                                                "name": "linkedRecordId",
-                                                "value": "activeStatusOutputPCollVar"
-                                            },
-                                            {
                                                 "name": "linkedRecordType",
                                                 "value": "presentation"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "activeStatusOutputPCollVar"
                                             }
                                         ],
                                         "name": "ref",
@@ -32520,6 +32560,10 @@
                                         "attributes": {"type": "presentation"}
                                     }],
                                     "name": "refGroup"
+                                },
+                                {
+                                    "name": "minNumberOfRepeatingToShow",
+                                    "value": "1"
                                 }
                             ],
                             "name": "childReference"
