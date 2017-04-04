@@ -40,56 +40,46 @@
                     "children": [
                         {
                             "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                },
-                                {
-                                    "children": [{
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "releatedPersonsGroupText"
-                                            },
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "text"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "text"}
-                                    }],
-                                    "name": "refGroup"
-                                }
-                            ],
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "releatedPersonsGroupText"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "text"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }],
+                                "name": "refGroup"
+                            }],
                             "name": "childReference"
                         },
                         {
                             "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "default",
-                                    "value": "ref"
-                                },
-                                {
-                                    "children": [{
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "relatedPersonsGroupOutputPGroup"
-                                            },
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "presentation"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "presentation"}
-                                    }],
-                                    "name": "refGroup"
-                                }
-                            ],
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "relatedPersonsGroupOutputPGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentation"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
+                                "name": "refGroup"
+                            }],
                             "name": "childReference"
                         }
                     ],
@@ -141,29 +131,24 @@
                 {
                     "children": [{
                         "repeatId": "0",
-                        "children": [
-                            {
-                                "name": "default",
-                                "value": "ref"
-                            },
-                            {
-                                "children": [{
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "bookCoverOutputPLink"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "presentation"
-                                        }
-                                    ],
-                                    "name": "ref",
-                                    "attributes": {"type": "presentation"}
-                                }],
-                                "name": "refGroup"
-                            }
-                        ],
+                        "children": [{
+                            "repeatId": "0",
+                            "children": [{
+                                "children": [
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "bookCoverOutputPLink"
+                                    },
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "presentation"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "presentation"}
+                            }],
+                            "name": "refGroup"
+                        }],
                         "name": "childReference"
                     }],
                     "name": "childReferences"
