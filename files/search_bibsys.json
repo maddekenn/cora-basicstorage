@@ -1,78 +1,185 @@
 {
-    "children": [{
-        "children": [
-            {
-                "children": [
-                    {
-                        "name": "id",
-                        "value": "authoritySearch"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "bibsys"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    },
-                    {
-                        "name": "type",
-                        "value": "search"
-                    },
-                    {
-                        "name": "createdBy",
-                        "value": "141414"
-                    }
-                ],
-                "name": "recordInfo"
-            },
-            {
-                "repeatId": "0",
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "recordType"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "authority"
-                    }
-                ],
-                "name": "recordTypeToSearchIn"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "metadataGroup"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "autocompleteSearchGroup"
-                    }
-                ],
-                "name": "metadataId"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "presentationGroup"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "autocompleteSearchPGroup"
-                    }
-                ],
-                "name": "presentationId"
-            }
-        ],
-        "name": "search"
-    }],
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "placeSearch"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "search"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "141414"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "recordType"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "place"
+                        }
+                    ],
+                    "name": "recordTypeToSearchIn"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "autocompleteSearchGroup"
+                        }
+                    ],
+                    "name": "metadataId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "autocompleteSearchPGroup"
+                        }
+                    ],
+                    "name": "presentationId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeSearchText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeSearchDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
+                    "name": "searchGroup",
+                    "value": "autocomplete"
+                }
+            ],
+            "name": "search"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "authoritySearch"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "search"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "141414"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "recordType"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authority"
+                        }
+                    ],
+                    "name": "recordTypeToSearchIn"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "autocompleteSearchGroup"
+                        }
+                    ],
+                    "name": "metadataId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "autocompleteSearchPGroup"
+                        }
+                    ],
+                    "name": "presentationId"
+                }
+            ],
+            "name": "search"
+        }
+    ],
     "name": "recordList"
 }

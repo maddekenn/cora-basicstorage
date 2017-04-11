@@ -1,167 +1,359 @@
 {
-    "children": [{
-        "children": [
-            {
-                "name": "abstract",
-                "value": "true"
-            },
-            {
-                "children": [
-                    {
-                        "name": "id",
-                        "value": "authority"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "bibsys"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    },
-                    {
-                        "name": "type",
-                        "value": "recordType"
-                    },
-                    {
-                        "name": "createdBy",
-                        "value": "141414"
-                    }
-                ],
-                "name": "recordInfo"
-            },
-            {
-                "name": "userSuppliedId",
-                "value": "false"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "metadataGroup"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "authorityGroup"
-                    }
-                ],
-                "name": "metadataId"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "metadataGroup"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "authorityNewGroup"
-                    }
-                ],
-                "name": "newMetadataId"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "presentationGroup"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "authorityViewPGroup"
-                    }
-                ],
-                "name": "presentationViewId"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "presentationGroup"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "authorityFormPGroup"
-                    }
-                ],
-                "name": "presentationFormId"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "presentationGroup"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "authorityFormNewPGroup"
-                    }
-                ],
-                "name": "newPresentationFormId"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "presentationGroup"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "authorityMenuPGroup"
-                    }
-                ],
-                "name": "menuPresentationViewId"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "presentationGroup"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "authorityListPGroup"
-                    }
-                ],
-                "name": "listPresentationViewId"
-            },
-            {
-                "name": "selfPresentationViewId",
-                "value": "authorityViewSelfPGroup"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "coraText"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "authorityText"
-                    }
-                ],
-                "name": "textId"
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "coraText"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "authorityDefText"
-                    }
-                ],
-                "name": "defTextId"
-            }
-        ],
-        "name": "recordType"
-    }],
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeGroup"
+                        }
+                    ],
+                    "name": "metadataId"
+                },
+                {
+                    "name": "abstract",
+                    "value": "false"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "recordType"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authority"
+                        }
+                    ],
+                    "name": "parentId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "place"
+                        },
+                        {
+                            "name": "type",
+                            "value": "recordType"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "141414"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeViewPGroup"
+                        }
+                    ],
+                    "name": "presentationViewId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeFormPGroup"
+                        }
+                    ],
+                    "name": "presentationFormId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeNewGroup"
+                        }
+                    ],
+                    "name": "newMetadataId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeFormNewPGroup"
+                        }
+                    ],
+                    "name": "newPresentationFormId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeMenuPGroup"
+                        }
+                    ],
+                    "name": "menuPresentationViewId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeListPGroup"
+                        }
+                    ],
+                    "name": "listPresentationViewId"
+                },
+                {
+                    "name": "userSuppliedId",
+                    "value": "true"
+                },
+                {
+                    "name": "selfPresentationViewId",
+                    "value": "placeViewSelfPGroup"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "search"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeSearch"
+                        }
+                    ],
+                    "name": "search"
+                }
+            ],
+            "name": "recordType"
+        },
+        {
+            "children": [
+                {
+                    "name": "abstract",
+                    "value": "true"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "authority"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "type",
+                            "value": "recordType"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "141414"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "userSuppliedId",
+                    "value": "false"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authorityGroup"
+                        }
+                    ],
+                    "name": "metadataId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authorityNewGroup"
+                        }
+                    ],
+                    "name": "newMetadataId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authorityViewPGroup"
+                        }
+                    ],
+                    "name": "presentationViewId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authorityFormPGroup"
+                        }
+                    ],
+                    "name": "presentationFormId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authorityFormNewPGroup"
+                        }
+                    ],
+                    "name": "newPresentationFormId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authorityMenuPGroup"
+                        }
+                    ],
+                    "name": "menuPresentationViewId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authorityListPGroup"
+                        }
+                    ],
+                    "name": "listPresentationViewId"
+                },
+                {
+                    "name": "selfPresentationViewId",
+                    "value": "authorityViewSelfPGroup"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authorityText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "authorityDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                }
+            ],
+            "name": "recordType"
+        }
+    ],
     "name": "recordList"
 }
