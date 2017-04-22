@@ -7875,53 +7875,131 @@
         {
             "children": [{
                 "children": [{
-                    "children": [{
-                        "children": [
-                            {
-                                "children": [
-                                    {
-                                        "name": "linkedRecordType",
-                                        "value": "metadataRecordLink"
-                                    },
-                                    {
-                                        "name": "linkedRecordId",
-                                        "value": "personLink"
-                                    },
-                                    {
-                                        "children": [
-                                            {
-                                                "name": "nameInData",
-                                                "value": "recordInfo"
-                                            },
-                                            {
-                                                "children": [{
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "personLink"
+                                        },
+                                        {
+                                            "children": [
+                                                {
                                                     "name": "nameInData",
-                                                    "value": "dataDivider"
-                                                }],
-                                                "name": "linkedPath"
-                                            }
-                                        ],
-                                        "name": "linkedPath"
-                                    }
-                                ],
-                                "name": "from"
-                            },
-                            {
-                                "children": [
-                                    {
-                                        "name": "linkedRecordType",
-                                        "value": "system"
-                                    },
-                                    {
-                                        "name": "linkedRecordId",
-                                        "value": "bibsys"
-                                    }
-                                ],
-                                "name": "to"
-                            }
-                        ],
-                        "name": "recordToRecordLink"
-                    }],
+                                                    "value": "recordInfo"
+                                                },
+                                                {
+                                                    "children": [{
+                                                        "name": "nameInData",
+                                                        "value": "dataDivider"
+                                                    }],
+                                                    "name": "linkedPath"
+                                                }
+                                            ],
+                                            "name": "linkedPath"
+                                        }
+                                    ],
+                                    "name": "from"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "bibsys"
+                                        }
+                                    ],
+                                    "name": "to"
+                                }
+                            ],
+                            "name": "recordToRecordLink"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "personLink"
+                                        },
+                                        {
+                                            "children": [{
+                                                "name": "nameInData",
+                                                "value": "textId"
+                                            }],
+                                            "name": "linkedPath"
+                                        }
+                                    ],
+                                    "name": "from"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "text"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "personLinkText"
+                                        }
+                                    ],
+                                    "name": "to"
+                                }
+                            ],
+                            "name": "recordToRecordLink"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "personLink"
+                                        },
+                                        {
+                                            "children": [{
+                                                "name": "nameInData",
+                                                "value": "defTextId"
+                                            }],
+                                            "name": "linkedPath"
+                                        }
+                                    ],
+                                    "name": "from"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "text"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "personLinkDefText"
+                                        }
+                                    ],
+                                    "name": "to"
+                                }
+                            ],
+                            "name": "recordToRecordLink"
+                        }
+                    ],
                     "name": "collectedDataLinks"
                 }],
                 "name": "personLink"
