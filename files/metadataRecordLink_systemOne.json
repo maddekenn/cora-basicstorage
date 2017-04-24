@@ -37,16 +37,34 @@
                     "value": "bookCover"
                 },
                 {
-                    "name": "textId",
-                    "value": "bookCoverText"
-                },
-                {
-                    "name": "defTextId",
-                    "value": "bookCoverDefText"
-                },
-                {
                     "name": "linkedRecordType",
                     "value": "image"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookCoverText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookCoverDefText"
+                        }
+                    ],
+                    "name": "defTextId"
                 }
             ],
             "name": "metadata",
@@ -89,14 +107,6 @@
                     "value": "relatedPerson"
                 },
                 {
-                    "name": "textId",
-                    "value": "bookRelatedPersonAuthorLinkText"
-                },
-                {
-                    "name": "defTextId",
-                    "value": "bookRelatedPersonAuthorLinkDefText"
-                },
-                {
                     "name": "linkedRecordType",
                     "value": "person"
                 },
@@ -107,6 +117,32 @@
                         "value": "bookRelatedPersonAuthorTypeCollectionVar"
                     }],
                     "name": "attributeReferences"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookRelatedPersonAuthorLinkText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookRelatedPersonAuthorLinkDefText"
+                        }
+                    ],
+                    "name": "defTextId"
                 }
             ],
             "name": "metadata",
@@ -149,14 +185,6 @@
                     "value": "relatedPerson"
                 },
                 {
-                    "name": "textId",
-                    "value": "bookRelatedPersonIllustratorLinkText"
-                },
-                {
-                    "name": "defTextId",
-                    "value": "bookRelatedPersonIllustratorLinkDefText"
-                },
-                {
                     "children": [{
                         "repeatId": "0",
                         "name": "ref",
@@ -167,6 +195,32 @@
                 {
                     "name": "linkedRecordType",
                     "value": "person"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookRelatedPersonIllustratorLinkText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookRelatedPersonIllustratorLinkDefText"
+                        }
+                    ],
+                    "name": "defTextId"
                 }
             ],
             "name": "metadata",
@@ -209,20 +263,38 @@
                     "value": "dataDivider"
                 },
                 {
-                    "name": "textId",
-                    "value": "dataDividerSystemOneLinkText"
-                },
-                {
-                    "name": "defTextId",
-                    "value": "dataDividerSystemOneLinkDefText"
-                },
-                {
                     "name": "linkedRecordType",
                     "value": "system"
                 },
                 {
                     "name": "finalValue",
                     "value": "systemOne"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "dataDividerSystemOneLinkText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "dataDividerSystemOneLinkDefText"
+                        }
+                    ],
+                    "name": "defTextId"
                 }
             ],
             "name": "metadata",
@@ -265,14 +337,6 @@
                     "value": "bookAuthor"
                 },
                 {
-                    "name": "textId",
-                    "value": "bookAuthorText"
-                },
-                {
-                    "name": "defTextId",
-                    "value": "bookAuthorDefText"
-                },
-                {
                     "children": [{
                         "repeatId": "0",
                         "name": "ref",
@@ -283,6 +347,32 @@
                 {
                     "name": "linkedRecordType",
                     "value": "person"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookAuthorText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookAuthorDefText"
+                        }
+                    ],
+                    "name": "defTextId"
                 }
             ],
             "name": "metadata",
@@ -325,14 +415,6 @@
                     "value": "bookAuthor"
                 },
                 {
-                    "name": "textId",
-                    "value": "bookAuthorText"
-                },
-                {
-                    "name": "defTextId",
-                    "value": "bookAuthorDefText"
-                },
-                {
                     "children": [{
                         "repeatId": "0",
                         "name": "ref",
@@ -343,6 +425,32 @@
                 {
                     "name": "linkedRecordType",
                     "value": "person"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookAuthorText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookAuthorDefText"
+                        }
+                    ],
+                    "name": "defTextId"
                 }
             ],
             "name": "metadata",

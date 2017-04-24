@@ -36,16 +36,34 @@
                 "value": "personLink"
             },
             {
-                "name": "textId",
-                "value": "personLinkText"
-            },
-            {
-                "name": "defTextId",
-                "value": "personLinkDefText"
-            },
-            {
                 "name": "linkedRecordType",
                 "value": "person"
+            },
+            {
+                "children": [
+                    {
+                        "name": "linkedRecordType",
+                        "value": "text"
+                    },
+                    {
+                        "name": "linkedRecordId",
+                        "value": "personLinkText"
+                    }
+                ],
+                "name": "textId"
+            },
+            {
+                "children": [
+                    {
+                        "name": "linkedRecordType",
+                        "value": "text"
+                    },
+                    {
+                        "name": "linkedRecordId",
+                        "value": "personLinkDefText"
+                    }
+                ],
+                "name": "defTextId"
             }
         ],
         "name": "metadata",
