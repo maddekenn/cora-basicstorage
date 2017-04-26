@@ -582,6 +582,32 @@
                 {
                     "children": [
                         {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookGroupText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookGroupDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
                             "repeatId": "0",
                             "children": [
                                 {
@@ -641,7 +667,7 @@
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "someSearchTerm"
+                                            "value": "titleSearchTerm"
                                         }
                                     ],
                                     "name": "childRefSearchTerm"
@@ -705,32 +731,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "text"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "bookGroupText"
-                        }
-                    ],
-                    "name": "textId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "text"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "bookGroupDefText"
-                        }
-                    ],
-                    "name": "defTextId"
                 }
             ],
             "name": "metadata",
@@ -1661,6 +1661,32 @@
                     "value": "book"
                 },
                 {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookNewGroupText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookNewGroupDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
                     "name": "refParentId",
                     "value": "bookGroup"
                 },
@@ -1716,6 +1742,20 @@
                                         }
                                     ],
                                     "name": "ref"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "searchTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "titleSearchTerm"
+                                        }
+                                    ],
+                                    "name": "childRefSearchTerm"
                                 }
                             ],
                             "name": "childReference"
@@ -1776,32 +1816,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "text"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "bookNewGroupText"
-                        }
-                    ],
-                    "name": "textId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "text"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "bookNewGroupDefText"
-                        }
-                    ],
-                    "name": "defTextId"
                 }
             ],
             "name": "metadata",

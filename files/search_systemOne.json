@@ -160,7 +160,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "autocompleteSearchGroup"
+                            "value": "bookSearchGroup"
                         }
                     ],
                     "name": "metadataId"
@@ -203,7 +203,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "autocompleteSearchPGroup"
+                            "value": "bookSearchPGroup"
                         }
                     ],
                     "name": "presentationId"
@@ -221,6 +221,36 @@
                         }
                     ],
                     "name": "recordTypeToSearchIn"
+                },
+                {
+                    "name": "searchGroup",
+                    "value": "autocomplete"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookSearchText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookSearchDefText"
+                        }
+                    ],
+                    "name": "defTextId"
                 }
             ],
             "name": "search"
