@@ -80,6 +80,80 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "bookSearchPGroup"
+                        },
+                        {
+                            "name": "type",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "createdBy",
+                            "value": "141414"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookSearchGroup"
+                        }
+                    ],
+                    "name": "presentationOf"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [{
+                            "repeatId": "1",
+                            "children": [{
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "presentation"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "bookSearchIncludePGroup"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "presentation"}
+                            }],
+                            "name": "refGroup"
+                        }],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pGroup"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "namePartOutputPGroup"
                         },
                         {
