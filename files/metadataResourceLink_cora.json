@@ -22,12 +22,21 @@
                             "name": "dataDivider"
                         },
                         {
-                            "name": "type",
-                            "value": "metadataResourceLink"
-                        },
-                        {
                             "name": "createdBy",
                             "value": "12345"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "metadataResourceLink"
+                                }
+                            ],
+                            "name": "type"
                         }
                     ],
                     "name": "recordInfo"
@@ -75,10 +84,6 @@
                             "value": "master"
                         },
                         {
-                            "name": "type",
-                            "value": "metadataResourceLink"
-                        },
-                        {
                             "name": "createdBy",
                             "value": "12345"
                         },
@@ -94,6 +99,19 @@
                                 }
                             ],
                             "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "metadataResourceLink"
+                                }
+                            ],
+                            "name": "type"
                         }
                     ],
                     "name": "recordInfo"
