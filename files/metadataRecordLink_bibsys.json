@@ -46,10 +46,6 @@
                     "value": "personLink"
                 },
                 {
-                    "name": "linkedRecordType",
-                    "value": "person"
-                },
-                {
                     "children": [
                         {
                             "name": "linkedRecordType",
@@ -74,6 +70,19 @@
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "recordType"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "person"
+                        }
+                    ],
+                    "name": "linkedRecordType"
                 }
             ],
             "name": "metadata",
@@ -151,12 +160,21 @@
                     "name": "defTextId"
                 },
                 {
-                    "name": "linkedRecordType",
-                    "value": "system"
-                },
-                {
                     "name": "finalValue",
                     "value": "bibsys"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "recordType"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "system"
+                        }
+                    ],
+                    "name": "linkedRecordType"
                 }
             ],
             "name": "metadata",
