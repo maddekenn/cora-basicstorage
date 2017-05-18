@@ -5,24 +5,7 @@
                 "children": [
                     {
                         "name": "id",
-                        "value": "uppsala"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "recordType"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "place"
-                            }
-                        ],
-                        "name": "type"
-                    },
-                    {
-                        "name": "createdBy",
-                        "value": "12345"
+                        "value": "se"
                     },
                     {
                         "children": [
@@ -32,10 +15,27 @@
                             },
                             {
                                 "name": "linkedRecordId",
-                                "value": "testSystem"
+                                "value": "bibsys"
                             }
                         ],
                         "name": "dataDivider"
+                    },
+                    {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "recordType"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "country"
+                            }
+                        ],
+                        "name": "type"
+                    },
+                    {
+                        "name": "createdBy",
+                        "value": "141414"
                     }
                 ],
                 "name": "recordInfo"
@@ -44,7 +44,7 @@
                 "children": [{
                     "children": [{
                         "name": "value",
-                        "value": "Uppsala"
+                        "value": "Sverige"
                     }],
                     "name": "namePart",
                     "attributes": {"type": "defaultName"}
@@ -53,16 +53,31 @@
                 "attributes": {"type": "authorized"}
             },
             {
-                "repeatId": "0",
+                "name": "iso31661Alpha2",
+                "value": "SE"
+            },
+            {
+                "name": "iso31661Alpha3",
+                "value": "SWE"
+            },
+            {
+                "name": "iso31661Numeric",
+                "value": "752"
+            },
+            {
+                "name": "marcCountryCode",
+                "value": "sw"
+            },
+            {
                 "children": [
                     {
                         "name": "language",
-                        "value": "sv"
+                        "value": "en"
                     },
                     {
                         "children": [{
                             "name": "value",
-                            "value": "sdads"
+                            "value": "Sweden"
                         }],
                         "name": "namePart",
                         "attributes": {"type": "defaultName"}
@@ -70,22 +85,9 @@
                 ],
                 "name": "name",
                 "attributes": {"type": "alternative"}
-            },
-            {
-                "children": [
-                    {
-                        "name": "linkedRecordType",
-                        "value": "country"
-                    },
-                    {
-                        "name": "linkedRecordId",
-                        "value": "se"
-                    }
-                ],
-                "name": "country"
             }
         ],
-        "name": "place"
+        "name": "country"
     }],
     "name": "recordList"
 }

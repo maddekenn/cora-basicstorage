@@ -189,6 +189,19 @@
                             "value": "systemOneSystemUser"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "permissionRule"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
                             "name": "createdBy",
                             "value": "131313"
                         },
@@ -204,19 +217,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "recordType"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "permissionRule"
-                                }
-                            ],
-                            "name": "type"
                         }
                     ],
                     "name": "recordInfo"
@@ -256,6 +256,11 @@
                             "repeatId": "3",
                             "name": "permissionRulePartValue",
                             "value": "system.search"
+                        },
+                        {
+                            "repeatId": "5",
+                            "name": "permissionRulePartValue",
+                            "value": "system.country"
                         }
                     ],
                     "name": "permissionRulePart",
