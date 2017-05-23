@@ -42,6 +42,8 @@ public class TestDataRecordInMemoryStorage {
 		addRecordTypePlace(recordsInMemory);
 		addRecordTypeAbstractAuthority(recordsInMemory);
 		addChildRecordTypeOfAbstractAuthority(recordsInMemory);
+		addRecordTypeSearchTerm(recordsInMemory);
+		addSearchTerm(recordsInMemory);
 
 		DataGroup dummy = DataGroup.withNameInData("dummy");
 		recordsInMemory.create("metadataCollectionVariable", "dummy1", dummy,
@@ -240,6 +242,27 @@ public class TestDataRecordInMemoryStorage {
 				"childToAbstractAuthority", "false", "abstractAuthority");
 
 		recordsInMemory.create(recordType, "childToAbstractAuthority", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+	}
+
+	private static void addRecordTypeSearchTerm(RecordStorageInMemory recordsInMemory) {
+		String recordType = "recordType";
+
+		DataGroup dataGroup = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("searchTerm", "false", "false");
+
+		recordsInMemory.create(recordType, "searchTerm", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+	}
+
+	private static void addSearchTerm(RecordStorageInMemory recordsInMemory) {
+		DataGroup dataGroup = DataGroup.withNameInData("searchTerm");
+
+		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId("searchTerm",
+				"titleSearchTerm");
+		dataGroup.addChild(recordInfo);
+
+		recordsInMemory.create("searchTerm", "titleSearchTerm", dataGroup,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 }
