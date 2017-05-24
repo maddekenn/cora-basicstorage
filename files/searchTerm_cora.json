@@ -8,6 +8,19 @@
                         "value": "someSearchTerm"
                     },
                     {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "recordType"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "searchTerm"
+                            }
+                        ],
+                        "name": "type"
+                    },
+                    {
                         "name": "createdBy",
                         "value": "141414"
                     },
@@ -23,19 +36,6 @@
                             }
                         ],
                         "name": "dataDivider"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "recordType"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "searchTerm"
-                            }
-                        ],
-                        "name": "type"
                     }
                 ],
                 "name": "recordInfo"
@@ -56,6 +56,10 @@
                     }
                 ],
                 "name": "searchFieldRef"
+            },
+            {
+                "name": "indexType",
+                "value": "indexTypeString"
             }
         ],
         "name": "searchTerm"
