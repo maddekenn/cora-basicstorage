@@ -42,10 +42,6 @@
                     "name": "recordInfo"
                 },
                 {
-                    "name": "presentationOf",
-                    "value": "releatedPersonsGroup"
-                },
-                {
                     "children": [
                         {
                             "repeatId": "0",
@@ -93,6 +89,19 @@
                         }
                     ],
                     "name": "childReferences"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadata"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "releatedPersonsGroup"
+                        }
+                    ],
+                    "name": "presentationOf"
                 }
             ],
             "name": "presentation",
@@ -143,10 +152,6 @@
                     "name": "recordInfo"
                 },
                 {
-                    "name": "presentationOf",
-                    "value": "bookCoverLink"
-                },
-                {
                     "children": [{
                         "repeatId": "0",
                         "children": [{
@@ -170,6 +175,19 @@
                         "name": "childReference"
                     }],
                     "name": "childReferences"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadata"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookCoverLink"
+                        }
+                    ],
+                    "name": "presentationOf"
                 }
             ],
             "name": "presentation",
