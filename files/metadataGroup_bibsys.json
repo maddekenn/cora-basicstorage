@@ -4524,14 +4524,14 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
+                                    "value": "recordType"
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "bibsys"
+                                    "value": "metadataGroup"
                                 }
                             ],
-                            "name": "dataDivider"
+                            "name": "type"
                         },
                         {
                             "name": "createdBy",
@@ -4541,14 +4541,14 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "recordType"
+                                    "value": "system"
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "metadataGroup"
+                                    "value": "bibsys"
                                 }
                             ],
-                            "name": "type"
+                            "name": "dataDivider"
                         }
                     ],
                     "name": "recordInfo"
@@ -4556,6 +4556,45 @@
                 {
                     "name": "nameInData",
                     "value": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "recordInfoBibsysGroupText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "recordInfoBibsysGroupDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "recordInfoGroup"
+                        }
+                    ],
+                    "name": "refParentId"
                 },
                 {
                     "children": [
@@ -4632,7 +4671,7 @@
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "createdByTextVar"
+                                            "value": "createdByLink"
                                         }
                                     ],
                                     "name": "ref"
@@ -4669,45 +4708,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "text"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "recordInfoBibsysGroupText"
-                        }
-                    ],
-                    "name": "textId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "text"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "recordInfoBibsysGroupDefText"
-                        }
-                    ],
-                    "name": "defTextId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "recordInfoGroup"
-                        }
-                    ],
-                    "name": "refParentId"
                 }
             ],
             "name": "metadata",

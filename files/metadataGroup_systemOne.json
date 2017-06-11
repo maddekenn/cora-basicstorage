@@ -1483,6 +1483,19 @@
                             "value": "recordInfoSystemOneGroup"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "metadataGroup"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
                             "name": "createdBy",
                             "value": "12345"
                         },
@@ -1498,19 +1511,6 @@
                                 }
                             ],
                             "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "recordType"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "metadataGroup"
-                                }
-                            ],
-                            "name": "type"
                         }
                     ],
                     "name": "recordInfo"
@@ -1544,6 +1544,19 @@
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "recordInfoGroup"
+                        }
+                    ],
+                    "name": "refParentId"
                 },
                 {
                     "children": [
@@ -1620,7 +1633,7 @@
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "createdByTextVar"
+                                            "value": "createdByLink"
                                         }
                                     ],
                                     "name": "ref"
@@ -1657,19 +1670,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "recordInfoGroup"
-                        }
-                    ],
-                    "name": "refParentId"
                 }
             ],
             "name": "metadata",
