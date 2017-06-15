@@ -6,92 +6,6 @@
                     "children": [
                         {
                             "name": "id",
-                            "value": "masterImageOutputRContainer"
-                        },
-                        {
-                            "name": "createdBy",
-                            "value": "12345"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "recordType"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "presentationRepeatingContainer"
-                                }
-                            ],
-                            "name": "type"
-                        }
-                    ],
-                    "name": "recordInfo"
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "children": [{
-                            "repeatId": "0",
-                            "children": [{
-                                "children": [
-                                    {
-                                        "name": "linkedRecordId",
-                                        "value": "bookCoverOutputPLink"
-                                    },
-                                    {
-                                        "name": "linkedRecordType",
-                                        "value": "presentation"
-                                    }
-                                ],
-                                "name": "ref",
-                                "attributes": {"type": "presentation"}
-                            }],
-                            "name": "refGroup"
-                        }],
-                        "name": "childReference"
-                    }],
-                    "name": "childReferences"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadata"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "bookCoverLink"
-                        }
-                    ],
-                    "name": "presentationOf"
-                }
-            ],
-            "name": "presentation",
-            "attributes": {
-                "repeat": "this",
-                "type": "container"
-            }
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "name": "id",
                             "value": "refPresentationLinkRContainer"
                         },
                         {
@@ -108,10 +22,6 @@
                             "name": "dataDivider"
                         },
                         {
-                            "name": "createdBy",
-                            "value": "141414"
-                        },
-                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -123,6 +33,19 @@
                                 }
                             ],
                             "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
                         }
                     ],
                     "name": "recordInfo"
@@ -218,10 +141,6 @@
                             "name": "dataDivider"
                         },
                         {
-                            "name": "createdBy",
-                            "value": "131313"
-                        },
-                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -233,6 +152,19 @@
                                 }
                             ],
                             "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "131313"
+                                }
+                            ],
+                            "name": "createdBy"
                         }
                     ],
                     "name": "recordInfo"
@@ -295,6 +227,101 @@
                         {
                             "name": "linkedRecordId",
                             "value": "refPresentationTextLink"
+                        }
+                    ],
+                    "name": "presentationOf"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {
+                "repeat": "this",
+                "type": "container"
+            }
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "masterImageOutputRContainer"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "presentationRepeatingContainer"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
+                                }
+                            ],
+                            "name": "createdBy"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [{
+                            "repeatId": "0",
+                            "children": [{
+                                "children": [
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "bookCoverOutputPLink"
+                                    },
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "presentation"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "presentation"}
+                            }],
+                            "name": "refGroup"
+                        }],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadata"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "bookCoverLink"
                         }
                     ],
                     "name": "presentationOf"
