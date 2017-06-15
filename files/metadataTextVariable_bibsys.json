@@ -804,19 +804,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "bibsys"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -838,6 +825,19 @@
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
                         }
                     ],
                     "name": "recordInfo"
@@ -845,10 +845,6 @@
                 {
                     "name": "nameInData",
                     "value": "searchTitle"
-                },
-                {
-                    "name": "regEx",
-                    "value": "(^[0-9A-ZÅÄÖ a-zåäö:-_]{2,100}$)"
                 },
                 {
                     "children": [
@@ -875,6 +871,10 @@
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "name": "regEx",
+                    "value": "(^[0-9A-ZÅÄÖ a-zåäö:-_\\*]{2,100}$)"
                 }
             ],
             "name": "metadata",
