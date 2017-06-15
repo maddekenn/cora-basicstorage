@@ -34,7 +34,7 @@ import org.testng.annotations.Test;
 
 import se.uu.ub.cora.bookkeeper.data.DataAtomic;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
-import se.uu.ub.cora.storage.data.converter.DataGroupToJsonConverter;
+import se.uu.ub.cora.bookkeeper.data.converter.DataGroupToJsonConverter;
 import se.uu.ub.cora.storage.testdata.DataCreator;
 
 public class RecordStorageInMemoryReadFromDiskTest {
