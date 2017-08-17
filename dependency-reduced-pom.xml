@@ -3,7 +3,7 @@
   <parent>
     <artifactId>cora-parent</artifactId>
     <groupId>se.uu.ub.cora</groupId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.6-SNAPSHOT</version>
     <relativePath>../pom.xml/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -49,22 +49,11 @@
     <repository>
       <releases />
       <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>epc-release</id>
-      <name>EPC Nexus Release Repository</name>
-      <url>http://epc.ub.uu.se/nexus/content/groups/public</url>
-    </repository>
-    <repository>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
         <updatePolicy>daily</updatePolicy>
       </snapshots>
-      <id>epc-snapshot</id>
-      <name>EPC Nexus Snapshot Repository</name>
-      <url>http://epc.ub.uu.se/nexus/content/groups/public-snapshots</url>
+      <id>maven-public</id>
+      <name>LSU Nexus Repository</name>
+      <url>http://epc.ub.uu.se/nexus/repository/maven-public/</url>
     </repository>
   </repositories>
   <dependencies>
