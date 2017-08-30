@@ -16,13 +16,11 @@ public class SearchStorageImp implements SearchStorage {
 		basePath = initInfo.get("storageOnDiskBasePath");
 		recordStorage = RecordStorageInMemoryReadFromDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
-		// populateFromStorage();
 	}
 
 	@Override
 	public DataGroup getSearchTerm(String searchTermId) {
 		return recordStorage.read("searchTerm", searchTermId);
-		// return null;
 	}
 
 }
