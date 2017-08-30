@@ -87,7 +87,7 @@ public class SearchStorageTest {
 	@Test(expectedExceptions = RuntimeException.class)
 	public void testInitNoStorageOnDiskBasePath() {
 		Map<String, String> initInfo = new HashMap<>();
-		new UserStorageImp(initInfo);
+		new SearchStorageImp(initInfo);
 	}
 
 	@Test
@@ -96,19 +96,4 @@ public class SearchStorageTest {
 		assertEquals(userGroup.getFirstGroupWithNameInData("recordInfo")
 				.getFirstAtomicValueWithNameInData("id"), "someSearchTerm");
 	}
-	//
-	// @Test
-	// public void testGetUserDummy1() {
-	// DataGroup userGroup = userStorage.getUserById("dummy1");
-	// assertEquals(userGroup.getFirstGroupWithNameInData("recordInfo")
-	// .getFirstAtomicValueWithNameInData("id"), "dummy1");
-	// }
-	//
-	// @Test
-	// public void testGetUserRepopulatesOnceFromDiskIfNotFound() {
-	// DataGroup userGroup = userStorage.getUserById("unKnownUser");
-	// assertNull(userGroup);
-	// assertEquals(userStorage.getNoOfReadsFromDisk(), 2);
-	// }
-
 }
