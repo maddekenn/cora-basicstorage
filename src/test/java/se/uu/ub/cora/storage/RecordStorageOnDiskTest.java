@@ -174,12 +174,12 @@ public class RecordStorageOnDiskTest {
 		dir.mkdir();
 		deleteFiles();
 		recordStorage = RecordStorageOnDisk.createRecordStorageOnDiskWithBasePath(basePath);
+	}
+
+	private void createRecordTypePlace() {
 		DataGroup placeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true", "false");
 		recordStorage.create("recordType", "place", placeRecordType, emptyLinkList, "cora");
-		DataGroup personRecordType = DataCreator
-				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("person", "true", "false");
-		recordStorage.create("recordType", "person", personRecordType, emptyLinkList, "cora");
 	}
 
 	private void deleteFiles() throws IOException {
@@ -209,11 +209,7 @@ public class RecordStorageOnDiskTest {
 	@Test
 	public void testInitNoFilesOnDisk() throws IOException {
 		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
-		// DataGroup placeRecordType = DataCreator
-		// .createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true",
-		// "false");
-		// recordStorage.create("recordType", "place", placeRecordType,
-		// emptyLinkList, "cora");
+		createRecordTypePlace();
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
@@ -283,6 +279,7 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testInitTwoFilesOnDiskTwoSystems() throws IOException {
+		createRecordTypePlace();
 		writeFileToDisk(expectedRecordJsonOneRecordPlace1, PLACE_FILENAME);
 		writeFileToDisk(expectedRecordJsonOneRecordPlace2, "place_jsClient.json");
 
@@ -302,6 +299,7 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testInitTwoFilesOnDiskTwoSystemsUnrelatedDirectory() throws IOException {
+		createRecordTypePlace();
 		writeDirectoryToDisk("someUnrelatedDir");
 		writeFileToDisk(expectedRecordJsonOneRecordPlace1, PLACE_FILENAME);
 		writeFileToDisk(expectedRecordJsonOneRecordPlace2, "place_jsClient.json");
@@ -322,6 +320,7 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testRecordWithLinks() throws IOException {
+		createRecordTypePlace();
 		DataGroup linkListWithTwoLinks = createLinkListWithTwoLinks("place:0001");
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
@@ -925,6 +924,7 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testInitWithFileOnDiskNoLinksOnDisk() {
+		createRecordTypePlace();
 		writePlaceFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
@@ -980,6 +980,10 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testInitPlaceAndPersonFileOnDisk() {
+		createRecordTypePlace();
+		DataGroup personRecordType = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("person", "true", "false");
+		recordStorage.create("recordType", "person", personRecordType, emptyLinkList, "cora");
 		writePlaceFileToDisk();
 		writePersonFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
@@ -1102,6 +1106,7 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testInitWithFileOnDiskLinksOnDisk() {
+		createRecordTypePlace();
 		writePlaceFileToDisk();
 		writePlaceLinksFileToDisk();
 
