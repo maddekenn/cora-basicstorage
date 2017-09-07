@@ -31,12 +31,13 @@ import se.uu.ub.cora.bookkeeper.data.DataElement;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.bookkeeper.metadata.MetadataTypes;
 import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
+import se.uu.ub.cora.searchstorage.SearchStorage;
 import se.uu.ub.cora.spider.data.SpiderDataGroup;
 import se.uu.ub.cora.spider.record.storage.RecordConflictException;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.spider.record.storage.RecordStorage;
 
-public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
+public class RecordStorageInMemory implements RecordStorage, MetadataStorage, SearchStorage {
 	private static final String RECORD_TYPE = "recordType";
 	private static final String NO_RECORDS_EXISTS_MESSAGE = "No records exists with recordType: ";
 	protected Map<String, Map<String, DividerGroup>> records = new HashMap<>();
@@ -582,6 +583,11 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage {
 	@Override
 	public Collection<DataGroup> getSearchTerms() {
 		return readList("searchTerm");
+	}
+
+	@Override
+	public DataGroup getSearchTerm(String searchTermId) {
+		return read("searchTerm", searchTermId);
 	}
 
 }

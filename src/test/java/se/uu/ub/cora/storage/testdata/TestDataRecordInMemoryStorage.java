@@ -21,6 +21,13 @@ package se.uu.ub.cora.storage.testdata;
 
 import se.uu.ub.cora.bookkeeper.data.DataAtomic;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.bookkeeper.data.DataPart;
+import se.uu.ub.cora.bookkeeper.data.converter.JsonToDataConverter;
+import se.uu.ub.cora.bookkeeper.data.converter.JsonToDataConverterFactory;
+import se.uu.ub.cora.bookkeeper.data.converter.JsonToDataConverterFactoryImp;
+import se.uu.ub.cora.json.parser.JsonParser;
+import se.uu.ub.cora.json.parser.JsonValue;
+import se.uu.ub.cora.json.parser.org.OrgJsonParser;
 import se.uu.ub.cora.spider.record.storage.RecordStorage;
 import se.uu.ub.cora.storage.RecordStorageInMemory;
 
@@ -44,6 +51,7 @@ public class TestDataRecordInMemoryStorage {
 		addChildRecordTypeOfAbstractAuthority(recordsInMemory);
 		addRecordTypeSearchTerm(recordsInMemory);
 		addSearchTerm(recordsInMemory);
+		addSomeSearchTerm(recordsInMemory);
 
 		DataGroup dummy = DataGroup.withNameInData("dummy");
 		recordsInMemory.create("metadataCollectionVariable", "dummy1", dummy,
@@ -209,8 +217,8 @@ public class TestDataRecordInMemoryStorage {
 
 	private static void addRecordTypeGenericBinary(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
-		DataGroup dataGroup = DataCreator
-				.createRecordTypeWithIdAndUserSuppliedIdAndParentId("genericBinary", "true", "binary");
+		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId(
+				"genericBinary", "true", "binary");
 		recordsInMemory.create(recordType, "genericBinary", dataGroup,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
@@ -235,7 +243,8 @@ public class TestDataRecordInMemoryStorage {
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
-	private static void addChildRecordTypeOfAbstractAuthority(RecordStorageInMemory recordsInMemory) {
+	private static void addChildRecordTypeOfAbstractAuthority(
+			RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
 
 		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId(
@@ -264,5 +273,22 @@ public class TestDataRecordInMemoryStorage {
 
 		recordsInMemory.create("searchTerm", "titleSearchTerm", dataGroup,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
+	}
+
+	private static void addSomeSearchTerm(RecordStorageInMemory recordsInMemory) {
+		String searchTermJson = "{\"name\":\"searchTerm\",\"children\":[{\"name\":\"recordInfo\",\"children\":[{\"name\":\"id\",\"value\":\"someSearchTerm\"},{\"name\":\"type\",\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"recordType\"},{\"name\":\"linkedRecordId\",\"value\":\"searchTerm\"}]},{\"name\":\"createdBy\",\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"user\"},{\"name\":\"linkedRecordId\",\"value\":\"141414\"}]},{\"name\":\"dataDivider\",\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"},{\"name\":\"linkedRecordId\",\"value\":\"cora\"}]}]},{\"name\":\"searchTermType\",\"value\":\"linkedData\"},{\"name\":\"searchFieldRef\",\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"metadata\"},{\"name\":\"linkedRecordId\",\"value\":\"refTextVar\"}]},{\"name\":\"indexType\",\"value\":\"indexTypeString\"}]}";
+		DataGroup searchTerm = convertJsonStringToDataGroup(searchTermJson);
+		recordsInMemory.create("searchTerm", "someSearchTerm", searchTerm,
+				DataGroup.withNameInData("collectedLinksList"), "systemOne");
+	}
+
+	private static DataGroup convertJsonStringToDataGroup(String jsonRecord) {
+		JsonParser jsonParser = new OrgJsonParser();
+		JsonValue jsonValue = jsonParser.parseString(jsonRecord);
+		JsonToDataConverterFactory jsonToDataConverterFactory = new JsonToDataConverterFactoryImp();
+		JsonToDataConverter jsonToDataConverter = jsonToDataConverterFactory
+				.createForJsonObject(jsonValue);
+		DataPart dataPart = jsonToDataConverter.toInstance();
+		return (DataGroup) dataPart;
 	}
 }

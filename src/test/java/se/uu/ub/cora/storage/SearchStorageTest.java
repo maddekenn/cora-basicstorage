@@ -20,74 +20,23 @@
 package se.uu.ub.cora.storage;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Stream;
-
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
-import se.uu.ub.cora.storage.testdata.TestDataSearchStorage;
+import se.uu.ub.cora.searchstorage.SearchStorage;
+import se.uu.ub.cora.storage.testdata.TestDataRecordInMemoryStorage;
 
 public class SearchStorageTest {
-	private String basePath = "/tmp/recordStorageOnDiskTemp/";
-	private Map<String, String> initInfo;
-	private SearchStorageImp searchStorage;
+	private SearchStorage searchStorage;
 
 	@BeforeMethod
-	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
-		File dir = new File(basePath);
-		dir.mkdir();
-		deleteFiles();
-		TestDataSearchStorage.createRecordStorageInMemoryWithTestData(basePath);
+	public void BeforeMethod() {
 
-		initInfo = new HashMap<>();
-		initInfo.put("storageOnDiskBasePath", basePath);
-		searchStorage = new SearchStorageImp(initInfo);
-	}
-
-	private void deleteFiles() throws IOException {
-		Stream<Path> list;
-		list = Files.list(Paths.get(basePath));
-		list.forEach(p -> deleteFile(p));
-		list.close();
-	}
-
-	private void deleteFile(Path path) {
-		try {
-			Files.delete(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@AfterMethod
-	public void removeTempFiles() throws IOException {
-		if (Files.exists(Paths.get(basePath))) {
-			deleteFiles();
-			File dir = new File(basePath);
-			dir.delete();
-		}
-	}
-
-	@Test
-	public void test() {
-		assertTrue(searchStorage.recordStorage instanceof RecordStorageInMemoryReadFromDisk);
-	}
-
-	@Test(expectedExceptions = RuntimeException.class)
-	public void testInitNoStorageOnDiskBasePath() {
-		Map<String, String> initInfo = new HashMap<>();
-		new SearchStorageImp(initInfo);
+		RecordStorageInMemory recordStorageInMemory = TestDataRecordInMemoryStorage
+				.createRecordStorageInMemoryWithTestData();
+		searchStorage = recordStorageInMemory;
 	}
 
 	@Test

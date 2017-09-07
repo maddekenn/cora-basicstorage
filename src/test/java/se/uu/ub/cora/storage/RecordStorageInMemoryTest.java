@@ -321,7 +321,7 @@ public class RecordStorageInMemoryTest {
 		// create no records
 
 		String recordType = "binary";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType);
+		recordStorage.readAbstractList(recordType);
 	}
 
 	@Test

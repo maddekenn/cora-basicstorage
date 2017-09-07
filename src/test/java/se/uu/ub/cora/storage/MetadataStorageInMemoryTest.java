@@ -91,6 +91,6 @@ public class MetadataStorageInMemoryTest {
 		Collection<DataGroup> searchTerms = metadataStorage.getSearchTerms();
 		DataGroup searchTerm = searchTerms.iterator().next();
 		assertEquals(searchTerm.getNameInData(), "searchTerm");
-		assertIdInRecordInfoIsCorrect(searchTerm, "titleSearchTerm");
+		assertIdInRecordInfoIsCorrect(searchTerm, "someSearchTerm");
 	}
 }
