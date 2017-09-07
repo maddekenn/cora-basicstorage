@@ -29,6 +29,7 @@
 		<bookkeeper.version>0.10-SNAPSHOT</bookkeeper.version>
 		<spider.version>0.14-SNAPSHOT</spider.version>
 		<apptokenstorage.version>0.3-SNAPSHOT</apptokenstorage.version>
+		<searchstorage.version>0.1-SNAPSHOT</searchstorage.version>
 		<json.version>0.3-SNAPSHOT</json.version>
 	</properties>
 
@@ -74,6 +75,12 @@
 			<groupId>se.uu.ub.cora</groupId>
 			<artifactId>apptokenstorage</artifactId>
 			<version>${apptokenstorage.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>se.uu.ub.cora</groupId>
+			<artifactId>searchstorage</artifactId>
+			<version>${searchstorage.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
