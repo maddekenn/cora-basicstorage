@@ -581,7 +581,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	}
 
 	@Override
-	public Collection<DataGroup> getSearchTerms() {
+	public Collection<DataGroup> getCollectTerms() {
 		return readList("searchTerm");
 	}
 
