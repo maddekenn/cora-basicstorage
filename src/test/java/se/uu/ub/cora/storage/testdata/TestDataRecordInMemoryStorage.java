@@ -53,6 +53,10 @@ public class TestDataRecordInMemoryStorage {
 		addSearchTerm(recordsInMemory);
 		addSomeSearchTerm(recordsInMemory);
 
+		addRecordTypeCollectTerm(recordsInMemory);
+		addRecordTypeCollectIndexTerm(recordsInMemory);
+		addRecordTypeCollectPermissionTerm(recordsInMemory);
+
 		DataGroup dummy = DataGroup.withNameInData("dummy");
 		recordsInMemory.create("metadataCollectionVariable", "dummy1", dummy,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
@@ -290,5 +294,29 @@ public class TestDataRecordInMemoryStorage {
 				.createForJsonObject(jsonValue);
 		DataPart dataPart = jsonToDataConverter.toInstance();
 		return (DataGroup) dataPart;
+	}
+
+	private static void addRecordTypeCollectTerm(RecordStorageInMemory recordsInMemory) {
+		String recordType = "recordType";
+		DataGroup dataGroup = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("collectTerm", "true", "true");
+		recordsInMemory.create(recordType, "collectTerm", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+	}
+
+	private static void addRecordTypeCollectIndexTerm(RecordStorageInMemory recordsInMemory) {
+		String recordType = "recordType";
+		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId(
+				"collectIndexTerm", "true", "collectTerm");
+		recordsInMemory.create(recordType, "collectIndexTerm", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+	}
+
+	private static void addRecordTypeCollectPermissionTerm(RecordStorageInMemory recordsInMemory) {
+		String recordType = "recordType";
+		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId(
+				"collectPermissionTerm", "true", "collectTerm");
+		recordsInMemory.create(recordType, "collectPermissionTerm", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 }

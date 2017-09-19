@@ -29,15 +29,17 @@ import org.testng.annotations.Test;
 
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
+import se.uu.ub.cora.storage.testdata.DataCreator;
 import se.uu.ub.cora.storage.testdata.TestDataRecordInMemoryStorage;
 
 public class MetadataStorageInMemoryTest {
 
 	private MetadataStorage metadataStorage;
+	private RecordStorageInMemory recordStorageInMemory;
 
 	@BeforeMethod
 	public void BeforeMethod() {
-		RecordStorageInMemory recordStorageInMemory = TestDataRecordInMemoryStorage
+		recordStorageInMemory = TestDataRecordInMemoryStorage
 				.createRecordStorageInMemoryWithTestData();
 		metadataStorage = recordStorageInMemory;
 	}
@@ -79,18 +81,55 @@ public class MetadataStorageInMemoryTest {
 		DataGroup recordType = iterator.next();
 
 		assertEquals(recordType.getNameInData(), "recordType");
-		assertIdInRecordInfoIsCorrect(recordType, "image");
+		assertIdInRecordInfoIsCorrect(recordType, "collectTerm");
 
 		recordType = iterator.next();
 		assertEquals(recordType.getNameInData(), "recordType");
-		assertIdInRecordInfoIsCorrect(recordType, "metadata");
+		assertIdInRecordInfoIsCorrect(recordType, "image");
+	}
+
+	// @Test(expectedExceptions = RecordNotFoundException.class)
+	// public void testGetCollectTermsWhitoutCollectTerms() {
+	// metadataStorage.getCollectTerms();
+	// }
+	//
+	// @Test
+	// public void testGetCollectTerms() {
+	// Exception e1 = null;
+	// try {
+	// metadataStorage.getCollectTerms();
+	// } catch (Exception e) {
+	// e1 = e;
+	// }
+	// StackTraceElement[] stackTrace = e1.getStackTrace();
+	// assertEquals(stackTrace[1].getMethodName(), "readAbstractList");
+	// }
+	@Test
+	public void testGetCollectTermsWithoutCollectTerms() {
+		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
+		assertEquals(collectTerms.size(), 0);
 	}
 
 	@Test
-	public void testGetSearchTerms() {
-		Collection<DataGroup> searchTerms = metadataStorage.getCollectTerms();
-		DataGroup searchTerm = searchTerms.iterator().next();
-		assertEquals(searchTerm.getNameInData(), "searchTerm");
-		assertIdInRecordInfoIsCorrect(searchTerm, "someSearchTerm");
+	public void testGetCollectTermsWithCollectIndexTerm() {
+		DataGroup collectIndexTerm = DataCreator
+				.createRecordInfoWithRecordTypeAndRecordId("collectIndexTerm", "someIndexTerm");
+		recordStorageInMemory.create("collectIndexTerm", "someIndexTerm", collectIndexTerm,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+
+		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
+		assertEquals(collectTerms.size(), 1);
 	}
+
+	@Test
+	public void testGetCollectTermsWithCollectPermissionTerm() {
+		DataGroup collectPermissionTerm = DataCreator.createRecordInfoWithRecordTypeAndRecordId(
+				"collectPermissionTerm", "somePermissionTerm");
+		recordStorageInMemory.create("collectPermissionTerm", "somePermissionTerm",
+				collectPermissionTerm, DataGroup.withNameInData("collectedLinksList"), "cora");
+
+		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
+		assertEquals(collectTerms.size(), 1);
+	}
+
 }

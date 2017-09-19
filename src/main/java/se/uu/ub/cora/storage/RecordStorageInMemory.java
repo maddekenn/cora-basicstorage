@@ -123,8 +123,9 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private void storeLinkList(String recordType, String recordId,
 			DataGroup linkListIndependentFromEntered, String dataDivider) {
-		linkLists.get(recordType).put(recordId, DividerGroup
-				.withDataDividerAndDataGroup(dataDivider, linkListIndependentFromEntered));
+		Map<String, DividerGroup> linksForRecordType = linkLists.get(recordType);
+		linksForRecordType.put(recordId, DividerGroup.withDataDividerAndDataGroup(dataDivider,
+				linkListIndependentFromEntered));
 	}
 
 	private void storeLinksInIncomingLinks(DataGroup incomingLinkList) {
@@ -582,7 +583,11 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	@Override
 	public Collection<DataGroup> getCollectTerms() {
-		return readList("searchTerm");
+		try {
+			return readAbstractList("collectTerm");
+		} catch (Exception e) {
+			return Collections.emptyList();
+		}
 	}
 
 	@Override
