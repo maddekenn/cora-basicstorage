@@ -595,4 +595,9 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		return read("searchTerm", searchTermId);
 	}
 
+	@Override
+	public DataGroup getCollectIndexTerm(String collectIndexTermId) {
+		return read("collectIndexTerm", collectIndexTermId);
+	}
+
 }

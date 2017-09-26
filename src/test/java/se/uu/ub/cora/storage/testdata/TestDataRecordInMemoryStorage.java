@@ -54,6 +54,7 @@ public class TestDataRecordInMemoryStorage {
 		addSomeSearchTerm(recordsInMemory);
 
 		addRecordTypeCollectTerm(recordsInMemory);
+		addCollectIndexTerm(recordsInMemory);
 		addRecordTypeCollectIndexTerm(recordsInMemory);
 		addRecordTypeCollectPermissionTerm(recordsInMemory);
 
@@ -307,15 +308,26 @@ public class TestDataRecordInMemoryStorage {
 	private static void addRecordTypeCollectIndexTerm(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
 		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId(
-				"collectIndexTerm", "true", "collectTerm");
+				"collectIndexTermId", "true", "collectTerm");
 		recordsInMemory.create(recordType, "collectIndexTerm", dataGroup,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+	}
+
+	private static void addCollectIndexTerm(RecordStorageInMemory recordsInMemory) {
+		DataGroup dataGroup = DataGroup.withNameInData("collectTerm");
+
+		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId(
+				"collectIndexTerm", "collectIndexTermId");
+		dataGroup.addChild(recordInfo);
+
+		recordsInMemory.create("collectIndexTerm", "collectIndexTermId", dataGroup,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addRecordTypeCollectPermissionTerm(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
 		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId(
-				"collectPermissionTerm", "true", "collectTerm");
+				"collectPermissionTermId", "true", "collectTerm");
 		recordsInMemory.create(recordType, "collectPermissionTerm", dataGroup,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}

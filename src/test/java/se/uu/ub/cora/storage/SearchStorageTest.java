@@ -45,4 +45,13 @@ public class SearchStorageTest {
 		assertEquals(userGroup.getFirstGroupWithNameInData("recordInfo")
 				.getFirstAtomicValueWithNameInData("id"), "someSearchTerm");
 	}
+
+	@Test
+	public void testGetCollectIndexTerm() {
+		DataGroup collectIndexTerm = searchStorage.getCollectIndexTerm("collectIndexTermId");
+		DataGroup recordInfo = collectIndexTerm.getFirstGroupWithNameInData("recordInfo");
+		assertEquals(recordInfo.getFirstAtomicValueWithNameInData("id"), "collectIndexTermId");
+		assertEquals(recordInfo.getFirstAtomicValueWithNameInData("type"), "collectIndexTerm");
+
+	}
 }
