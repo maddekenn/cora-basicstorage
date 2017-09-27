@@ -107,7 +107,7 @@ public class MetadataStorageInMemoryTest {
 	@Test
 	public void testGetCollectTermsWithoutCollectTerms() {
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
-		assertEquals(collectTerms.size(), 0);
+		assertEquals(collectTerms.size(), 1);
 	}
 
 	@Test
@@ -118,7 +118,7 @@ public class MetadataStorageInMemoryTest {
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
-		assertEquals(collectTerms.size(), 1);
+		assertEquals(collectTerms.size(), 2);
 	}
 
 	@Test
@@ -129,7 +129,7 @@ public class MetadataStorageInMemoryTest {
 				collectPermissionTerm, DataGroup.withNameInData("collectedLinksList"), "cora");
 
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
-		assertEquals(collectTerms.size(), 1);
+		assertEquals(collectTerms.size(), 2);
 	}
 
 }
