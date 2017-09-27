@@ -583,11 +583,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	@Override
 	public Collection<DataGroup> getCollectTerms() {
-		try {
-			return readAbstractList("collectTerm");
-		} catch (Exception e) {
-			return Collections.emptyList();
-		}
+		return readAbstractList("collectTerm");
 	}
 
 	@Override
