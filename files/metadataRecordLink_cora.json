@@ -2265,19 +2265,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -2299,13 +2286,26 @@
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         }
                     ],
                     "name": "recordInfo"
                 },
                 {
                     "name": "nameInData",
-                    "value": "childRefIndexTerm"
+                    "value": "childRefCollectTerm"
                 },
                 {
                     "children": [
@@ -2345,6 +2345,23 @@
                         }
                     ],
                     "name": "linkedRecordType"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "metadataCollectionVariable"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "collectIndexTermTypeCollectionVar"
+                            }
+                        ],
+                        "name": "ref"
+                    }],
+                    "name": "attributeReferences"
                 }
             ],
             "name": "metadata",
@@ -5347,19 +5364,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -5381,26 +5385,26 @@
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         }
                     ],
                     "name": "recordInfo"
                 },
                 {
                     "name": "nameInData",
-                    "value": "childRefPermissionTerm"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "recordType"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "collectPermissionTerm"
-                        }
-                    ],
-                    "name": "linkedRecordType"
+                    "value": "childRefCollectTerm"
                 },
                 {
                     "children": [
@@ -5427,6 +5431,36 @@
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "recordType"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "collectPermissionTerm"
+                        }
+                    ],
+                    "name": "linkedRecordType"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "metadataCollectionVariable"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "collectPermissionTermTypeCollectionVar"
+                            }
+                        ],
+                        "name": "ref"
+                    }],
+                    "name": "attributeReferences"
                 }
             ],
             "name": "metadata",
