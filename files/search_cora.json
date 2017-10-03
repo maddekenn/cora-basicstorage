@@ -2771,7 +2771,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "autocompleteSearchGroup"
+                            "value": "textSearchGroup"
                         }
                     ],
                     "name": "metadataId"
@@ -2781,19 +2781,6 @@
                         {
                             "name": "id",
                             "value": "textSearch"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
                         },
                         {
                             "children": [
@@ -2820,6 +2807,19 @@
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         }
                     ],
                     "name": "recordInfo"
@@ -2832,7 +2832,7 @@
                         },
                         {
                             "name": "linkedRecordId",
-                            "value": "autocompleteSearchPGroup"
+                            "value": "textSearchPGroup"
                         }
                     ],
                     "name": "presentationId"
@@ -2850,6 +2850,36 @@
                         }
                     ],
                     "name": "recordTypeToSearchIn"
+                },
+                {
+                    "name": "searchGroup",
+                    "value": "autocomplete"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "textSearchText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "textSearchDefText"
+                        }
+                    ],
+                    "name": "defTextId"
                 }
             ],
             "name": "search"

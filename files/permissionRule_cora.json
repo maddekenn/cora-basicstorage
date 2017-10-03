@@ -6,6 +6,106 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "textSearch"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "permissionRule"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system.search"
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "action"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.text"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.coraText"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "recordType"}
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system.*"
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "delete"}
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "name": "permissionRulePartValue",
+                        "value": "system.*"
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "publish"}
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "permissionRule"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "appTokenCreate"
                         },
                         {
@@ -433,19 +533,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -467,16 +554,36 @@
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         }
                     ],
                     "name": "recordInfo"
                 },
                 {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.*"
-                    }],
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.*"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.search"
+                        }
+                    ],
                     "name": "permissionRulePart",
                     "attributes": {"type": "action"}
                 },
