@@ -1,65 +1,155 @@
 {
-    "children": [{
-        "children": [
-            {
-                "children": [
-                    {
-                        "name": "id",
-                        "value": "someSearchTerm"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "recordType"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "searchTerm"
-                            }
-                        ],
-                        "name": "type"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "user"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "141414"
-                            }
-                        ],
-                        "name": "createdBy"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "cora"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    }
-                ],
-                "name": "recordInfo"
-            },
-            {
-                "name": "searchTermType",
-                "value": "linkedData"
-            },
-            {
-                "repeatId": "0",
-                "name": "indexType",
-                "value": "indexTypeString"
-            }
-        ],
-        "name": "searchTerm"
-    }],
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "someSearchTerm"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "searchTerm"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "searchTermType",
+                    "value": "linkedData"
+                },
+                {
+                    "repeatId": "0",
+                    "name": "indexType",
+                    "value": "indexTypeString"
+                }
+            ],
+            "name": "searchTerm"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "recordIdSearchTerm"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "searchTerm"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "searchTermType",
+                    "value": "final"
+                },
+                {
+                    "repeatId": "0",
+                    "name": "indexType",
+                    "value": "indexTypeString"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "recordType"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "text"
+                        }
+                    ],
+                    "name": "searchInRecordType"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "collectIndexTerm"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "recordIdCollectIndexTerm"
+                        }
+                    ],
+                    "name": "indexTerm"
+                }
+            ],
+            "name": "searchTerm"
+        }
+    ],
     "name": "recordList"
 }

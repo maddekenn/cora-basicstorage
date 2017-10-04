@@ -1,74 +1,147 @@
 {
-    "children": [{
-        "children": [
-            {
-                "children": [
-                    {
-                        "name": "id",
-                        "value": "someIndexTerm"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "recordType"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "collectIndexTerm"
-                            }
-                        ],
-                        "name": "type"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "user"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "141414"
-                            }
-                        ],
-                        "name": "createdBy"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "cora"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    }
-                ],
-                "name": "recordInfo"
-            },
-            {
-                "name": "nameInData",
-                "value": "someIndexTerm"
-            },
-            {
-                "children": [
-                    {
-                        "name": "indexFieldName",
-                        "value": "some"
-                    },
-                    {
-                        "name": "indexType",
-                        "value": "indexTypeId"
-                    }
-                ],
-                "name": "extraData"
-            }
-        ],
-        "name": "collectTerm",
-        "attributes": {"type": "index"}
-    }],
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "someIndexTerm"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "collectIndexTerm"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "someIndexTerm"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "indexFieldName",
+                            "value": "some"
+                        },
+                        {
+                            "name": "indexType",
+                            "value": "indexTypeId"
+                        }
+                    ],
+                    "name": "extraData"
+                }
+            ],
+            "name": "collectTerm",
+            "attributes": {"type": "index"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "recordIdCollectIndexTerm"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "collectIndexTerm"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "recordIdCollectIndexTerm"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "indexFieldName",
+                            "value": "recordId"
+                        },
+                        {
+                            "name": "indexType",
+                            "value": "indexTypeString"
+                        }
+                    ],
+                    "name": "extraData"
+                }
+            ],
+            "name": "collectTerm",
+            "attributes": {"type": "index"}
+        }
+    ],
     "name": "recordList"
 }
