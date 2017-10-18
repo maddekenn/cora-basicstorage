@@ -4,19 +4,6 @@
             {
                 "children": [
                     {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "bibsys"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    },
-                    {
                         "name": "id",
                         "value": "place:8289025659762"
                     },
@@ -45,6 +32,19 @@
                             }
                         ],
                         "name": "createdBy"
+                    },
+                    {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "system"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "bibsys"
+                            }
+                        ],
+                        "name": "dataDivider"
                     }
                 ],
                 "name": "recordInfo"
@@ -60,6 +60,25 @@
                 }],
                 "name": "name",
                 "attributes": {"type": "authorized"}
+            },
+            {
+                "repeatId": "0",
+                "children": [
+                    {
+                        "name": "language",
+                        "value": "en"
+                    },
+                    {
+                        "children": [{
+                            "name": "value",
+                            "value": "nonsense"
+                        }],
+                        "name": "namePart",
+                        "attributes": {"type": "defaultName"}
+                    }
+                ],
+                "name": "name",
+                "attributes": {"type": "alternative"}
             }
         ],
         "name": "place"

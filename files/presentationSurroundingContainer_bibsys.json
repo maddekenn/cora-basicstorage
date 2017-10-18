@@ -24,19 +24,6 @@
                         "children": [
                             {
                                 "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "bibsys"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
                                 "value": "user"
                             },
                             {
@@ -45,6 +32,19 @@
                             }
                         ],
                         "name": "createdBy"
+                    },
+                    {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "system"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "bibsys"
+                            }
+                        ],
+                        "name": "dataDivider"
                     }
                 ],
                 "name": "recordInfo"
@@ -53,7 +53,7 @@
                 "children": [{
                     "repeatId": "0",
                     "name": "presentationOf",
-                    "value": "namePlaceAlternativeGroup"
+                    "value": "nameAlternativeGroup"
                 }],
                 "name": "presentationsOf"
             },
@@ -62,6 +62,10 @@
                     {
                         "repeatId": "0",
                         "children": [
+                            {
+                                "name": "textStyle",
+                                "value": "h2TextStyle"
+                            },
                             {
                                 "repeatId": "0",
                                 "children": [{
@@ -79,10 +83,6 @@
                                     "attributes": {"type": "text"}
                                 }],
                                 "name": "refGroup"
-                            },
-                            {
-                                "name": "textStyle",
-                                "value": "h2TextStyle"
                             }
                         ],
                         "name": "childReference"
@@ -99,7 +99,7 @@
                                     },
                                     {
                                         "name": "linkedRecordId",
-                                        "value": "namePlaceAlternativeOutputPGroup"
+                                        "value": "nameAlternativeOutputPGroup"
                                     }
                                 ],
                                 "name": "ref",
