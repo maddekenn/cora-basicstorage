@@ -4197,6 +4197,91 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "presentationOfGroupLinkText"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "coraText"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
+                            "name": "tsCreated",
+                            "value": "2017-11-14 07:40:43.923"
+                        },
+                        {
+                            "name": "tsUpdated",
+                            "value": "2017-11-14 07:40:43.923"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [{
+                        "name": "text",
+                        "value": "Metadatagrupp som presenteras"
+                    }],
+                    "name": "textPart",
+                    "attributes": {
+                        "type": "default",
+                        "lang": "sv"
+                    }
+                }
+            ],
+            "name": "text"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "collectPermissionTermText"
                         },
                         {
@@ -4762,6 +4847,91 @@
                     "attributes": {
                         "type": "alternative",
                         "lang": "en"
+                    }
+                }
+            ],
+            "name": "text"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "presentationChildReferenceGroupDefText"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "coraText"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "tsCreated",
+                            "value": "2017-11-14 07:59:07.717"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
+                            "name": "tsUpdated",
+                            "value": "2017-11-14 08:48:50.156"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [{
+                        "name": "text",
+                        "value": "En presentation som skall visas i presentationsgruppen. Det finns två huvudtyper av presentationer: 1. Texter och surroundingContainer, dessa skrivs ut rakt av i presentationsGruppen oberoende av vilket data som finns för gruppen. 2. Övriga presentationer (variabler, länkar, grupper, etc), dessa skrivs ut i presentationen baserat på sitt metadata och datat som ingår i gruppen. För denna typ av presenationer kan man lägga till en extra presentation som i så fall går att växla till genom en knapp. Den första presentationen visas som standard och den andra i ordningen går att växla till. En förutsättning för att systemet med att växla presentation skall fungera korrekt är att bägge presentationerna presenterar samma metadata, annars blir resultatet oberäkneligt. För denna typ av presentationer går det också att ange hur många som initial skall visas. Man kan tex välja att för ett icke obligatoriskt fält alltid visa minst en, som då visas även om det inte finns ifyllt data för den. "
+                    }],
+                    "name": "textPart",
+                    "attributes": {
+                        "type": "default",
+                        "lang": "sv"
                     }
                 }
             ],
@@ -9719,6 +9889,10 @@
                             "name": "dataDivider"
                         },
                         {
+                            "name": "tsCreated",
+                            "value": "2017-10-01 00:00:00.0"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -9732,12 +9906,8 @@
                             "name": "updatedBy"
                         },
                         {
-                            "name": "tsCreated",
-                            "value": "2017-10-01 00:00:00.0"
-                        },
-                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:37:36.0"
+                            "value": "2017-11-14 08:42:30.149"
                         }
                     ],
                     "name": "recordInfo"
@@ -9745,7 +9915,7 @@
                 {
                     "children": [{
                         "name": "text",
-                        "value": "Presentation av barn"
+                        "value": "Presentation att visa som barn"
                     }],
                     "name": "textPart",
                     "attributes": {
@@ -9756,7 +9926,7 @@
                 {
                     "children": [{
                         "name": "text",
-                        "value": "Child presentation"
+                        "value": "Presentation to show as child"
                     }],
                     "name": "textPart",
                     "attributes": {
@@ -34713,6 +34883,91 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "presentationOfGroupLinkDefText"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "coraText"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
+                            "name": "tsCreated",
+                            "value": "2017-11-14 07:40:05.495"
+                        },
+                        {
+                            "name": "tsUpdated",
+                            "value": "2017-11-14 07:40:05.495"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [{
+                        "name": "text",
+                        "value": "Länk till den metadataGrupp som skall presenteras med hjälp av denna presentationsGrupp."
+                    }],
+                    "name": "textPart",
+                    "attributes": {
+                        "type": "default",
+                        "lang": "sv"
+                    }
+                }
+            ],
+            "name": "text"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "collectPermissionTermSearchText"
                         },
                         {
@@ -52520,6 +52775,10 @@
                             "name": "dataDivider"
                         },
                         {
+                            "name": "tsCreated",
+                            "value": "2017-10-01 00:00:00.0"
+                        },
+                        {
                             "children": [
                                 {
                                     "name": "linkedRecordType",
@@ -52527,18 +52786,14 @@
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "12345"
+                                    "value": "141414"
                                 }
                             ],
                             "name": "updatedBy"
                         },
                         {
-                            "name": "tsCreated",
-                            "value": "2017-10-01 00:00:00.0"
-                        },
-                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:37:36.0"
+                            "value": "2017-11-14 08:43:30.636"
                         }
                     ],
                     "name": "recordInfo"
@@ -52546,7 +52801,7 @@
                 {
                     "children": [{
                         "name": "text",
-                        "value": "Barn som ska visas i presentationen"
+                        "value": "Presentationer att visa som barn"
                     }],
                     "name": "textPart",
                     "attributes": {
@@ -52557,7 +52812,7 @@
                 {
                     "children": [{
                         "name": "text",
-                        "value": "Children to show in the presentation"
+                        "value": "Presentations to show as children"
                     }],
                     "name": "textPart",
                     "attributes": {
@@ -54886,6 +55141,91 @@
                     "attributes": {
                         "type": "alternative",
                         "lang": "en"
+                    }
+                }
+            ],
+            "name": "text"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "presentationChildReferencesGroupDefText"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "coraText"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
+                            "name": "tsCreated",
+                            "value": "2017-11-14 07:54:34.406"
+                        },
+                        {
+                            "name": "tsUpdated",
+                            "value": "2017-11-14 07:54:34.406"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [{
+                        "name": "text",
+                        "value": "Lista med presentationer som denna presentationsgrupp innehåller"
+                    }],
+                    "name": "textPart",
+                    "attributes": {
+                        "type": "default",
+                        "lang": "sv"
                     }
                 }
             ],
