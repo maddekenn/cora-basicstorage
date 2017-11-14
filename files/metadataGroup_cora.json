@@ -18557,19 +18557,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -18596,22 +18583,35 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "user"
+                                    "value": "system"
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "12345"
+                                    "value": "cora"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2017-10-01 00:00:00.0"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:46:48.0"
+                            "value": "2017-11-14 10:19:18.899"
                         }
                     ],
                     "name": "recordInfo"
@@ -18619,36 +18619,6 @@
                 {
                     "name": "nameInData",
                     "value": "textPart"
-                },
-                {
-                    "children": [{
-                        "repeatId": "1",
-                        "children": [
-                            {
-                                "name": "repeatMin",
-                                "value": "1"
-                            },
-                            {
-                                "name": "repeatMax",
-                                "value": "1"
-                            },
-                            {
-                                "children": [
-                                    {
-                                        "name": "linkedRecordId",
-                                        "value": "textTextVar"
-                                    },
-                                    {
-                                        "name": "linkedRecordType",
-                                        "value": "metadata"
-                                    }
-                                ],
-                                "name": "ref"
-                            }
-                        ],
-                        "name": "childReference"
-                    }],
-                    "name": "childReferences"
                 },
                 {
                     "children": [
@@ -18675,6 +18645,19 @@
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "textPartDefaultGroup"
+                        }
+                    ],
+                    "name": "refParentId"
                 },
                 {
                     "children": [
@@ -18710,17 +18693,49 @@
                     "name": "attributeReferences"
                 },
                 {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "textPartDefaultGroup"
-                        }
-                    ],
-                    "name": "refParentId"
+                    "children": [{
+                        "repeatId": "1",
+                        "children": [
+                            {
+                                "name": "repeatMin",
+                                "value": "1"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "metadata"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "textTextVar"
+                                    }
+                                ],
+                                "name": "ref"
+                            },
+                            {
+                                "repeatId": "0",
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "collectIndexTerm"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "swedishIndexTerm"
+                                    }
+                                ],
+                                "name": "childRefCollectTerm",
+                                "attributes": {"type": "index"}
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
                 }
             ],
             "name": "metadata",
@@ -19050,19 +19065,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "user"
                                 },
                                 {
@@ -19076,22 +19078,35 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "user"
+                                    "value": "system"
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "12345"
+                                    "value": "cora"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2017-10-01 00:00:00.0"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:46:48.0"
+                            "value": "2017-11-14 12:43:10.927"
                         }
                     ],
                     "name": "recordInfo"
@@ -19222,6 +19237,21 @@
                                         }
                                     ],
                                     "name": "ref"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "collectIndexTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "linkedTextIndexTerm"
+                                        }
+                                    ],
+                                    "name": "childRefCollectTerm",
+                                    "attributes": {"type": "index"}
                                 }
                             ],
                             "name": "childReference"
