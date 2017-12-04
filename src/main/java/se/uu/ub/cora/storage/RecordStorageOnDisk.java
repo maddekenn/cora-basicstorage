@@ -281,8 +281,9 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			writer.write(json, 0, json.length());
 			writer.flush();
 		} finally {
-			if (writer != null) {
+			try {
 				writer.close();
+			} catch (NullPointerException e) {
 			}
 		}
 	}
