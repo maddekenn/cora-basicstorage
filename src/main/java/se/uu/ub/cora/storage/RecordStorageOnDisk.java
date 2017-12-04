@@ -264,7 +264,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		String json = convertDataGroupToJsonString(dataGroup);
 		try {
 			writeDataGroupToDiskAsJson(pathString, json);
-		} catch (IOException e) {
+		} catch (IOException | NullPointerException e) {
 			throw DataStorageException.withMessage("can not write files to disk" + e);
 		}
 	}
@@ -281,10 +281,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			writer.write(json, 0, json.length());
 			writer.flush();
 		} finally {
-			try {
-				writer.close();
-			} catch (NullPointerException e) {
-			}
+			writer.close();
 		}
 	}
 
