@@ -63,14 +63,11 @@ public class AppTokenStorageImp implements AppTokenStorage {
 
 	private boolean populatedDataUserIdHasAppToken(String userId, String appToken) {
 		List<String> appTokensForUser = findUserAndGetAppTokens(userId);
-		if (apptokenNotFoundInList(appToken, appTokensForUser)) {
-			return false;
-		}
-		return true;
+		return apptokenFoundInList(appToken, appTokensForUser);
 	}
 
-	private boolean apptokenNotFoundInList(String appToken, List<String> tokenList) {
-		return !tokenList.stream().anyMatch(token -> token.equals(appToken));
+	private boolean apptokenFoundInList(String appToken, List<String> tokenList) {
+		return tokenList.stream().anyMatch(token -> token.equals(appToken));
 	}
 
 	private List<String> findUserAndGetAppTokens(String userId) {

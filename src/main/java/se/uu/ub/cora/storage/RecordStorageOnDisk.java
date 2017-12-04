@@ -64,20 +64,22 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void tryToReadStoredDataFromDisk() {
+		Stream<Path> list = Stream.empty();
 		try {
-			readStoredDataFromDisk();
+			list = Files.list(Paths.get(basePath));
+			readStoredDataFromDisk(list);
 		} catch (IOException e) {
 			throw DataStorageException.withMessage("can not read files from disk on init" + e);
+		} finally {
+			list.close();
 		}
 	}
 
-	private void readStoredDataFromDisk() throws IOException {
-		Stream<Path> list = Files.list(Paths.get(basePath));
+	private void readStoredDataFromDisk(Stream<Path> list) throws IOException {
 		Iterator<Path> iterator = list.iterator();
 		while (iterator.hasNext()) {
 			readFileIfNotDirectory(iterator);
 		}
-		list.close();
 	}
 
 	private void readFileIfNotDirectory(Iterator<Path> iterator) throws IOException {
@@ -106,13 +108,17 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private String readJsonFileByPath(Path path) throws IOException {
-		BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
-		String line;
 		StringBuilder jsonBuilder = new StringBuilder();
-		while ((line = reader.readLine()) != null) {
-			jsonBuilder.append(line);
+		BufferedReader reader = null;
+		try {
+			reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+			String line;
+			while ((line = reader.readLine()) != null) {
+				jsonBuilder.append(line);
+			}
+		} finally {
+			reader.close();
 		}
-		reader.close();
 		return jsonBuilder.toString();
 	}
 
@@ -264,15 +270,19 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void writeDataGroupToDiskAsJson(String pathString, String json) throws IOException {
-		BufferedWriter writer;
-		Path path = Paths.get(basePath, pathString);
-		if (Files.exists(path)) {
-			Files.delete(path);
+		BufferedWriter writer = null;
+		try {
+			Path path = Paths.get(basePath, pathString);
+			if (Files.exists(path)) {
+				Files.delete(path);
+			}
+			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
+					StandardOpenOption.CREATE);
+			writer.write(json, 0, json.length());
+			writer.flush();
+		} finally {
+			writer.close();
 		}
-		writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
-		writer.write(json, 0, json.length());
-		writer.flush();
-		writer.close();
 	}
 
 	private String convertDataGroupToJsonString(DataGroup dataGroup) {

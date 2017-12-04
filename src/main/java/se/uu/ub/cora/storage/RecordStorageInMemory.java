@@ -578,7 +578,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	@Override
 	public Collection<DataGroup> getRecordTypes() {
-		return readList("recordType");
+		return readList(RECORD_TYPE);
 	}
 
 	@Override
