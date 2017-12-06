@@ -52,7 +52,7 @@ public class RecordStorageOnDiskTest {
 	private static final String TO_RECORD_ID = "toRecordId";
 	private static final String TO_RECORD_TYPE = "toRecordType";
 	private String basePath = "/tmp/recordStorageOnDiskTemp/";
-	private DataGroup emptyLinkList = DataCreator.createLinkList();
+	private DataGroup emptyLinkList = DataCreator.createEmptyLinkList();
 
 	private String expectedRecordJsonOneRecordPlace1 = getExpectedRecordJsonOneRecordPlace1();
 
@@ -179,7 +179,7 @@ public class RecordStorageOnDiskTest {
 	private void createRecordTypePlace() {
 		DataGroup placeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true", "false");
-		recordStorage.create("recordType", "place", placeRecordType, emptyLinkList, "cora");
+		recordStorage.create("recordType", "place", placeRecordType, null, emptyLinkList, "cora");
 	}
 
 	private void deleteFiles() throws IOException {
@@ -212,7 +212,7 @@ public class RecordStorageOnDiskTest {
 		createRecordTypePlace();
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
@@ -233,10 +233,10 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
 		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
 
-		recordStorage.create("place", "place:0002", dataGroup, emptyLinkList, "jsClient");
+		recordStorage.create("place", "place:0002", dataGroup, null, emptyLinkList, "jsClient");
 		assertEquals(readJsonFileFromDisk("place_jsClient.json"),
 				expectedRecordJsonOneRecordPlace1);
 	}
@@ -260,10 +260,10 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
 		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
 
-		recordStorage.create("place", "place:0002", dataGroup, emptyLinkList, "jsClient");
+		recordStorage.create("place", "place:0002", dataGroup, null, emptyLinkList, "jsClient");
 		assertEquals(readJsonFileFromDisk("place_jsClient.json"),
 				expectedRecordJsonOneRecordPlace1);
 
@@ -326,7 +326,7 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, linkListWithTwoLinks, "cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
@@ -420,8 +420,8 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
-		recordStorage.create("organisation", "organisation:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, linkListWithTwoLinks, "cora");
+		recordStorage.create("organisation", "organisation:0001", dataGroup, null, emptyLinkList, "cora");
 
 		String expectedLinkListJson = "{\n";
 		expectedLinkListJson += "    \"children\": [{\n";
@@ -506,7 +506,7 @@ public class RecordStorageOnDiskTest {
 	}
 
 	private DataGroup createLinkListWithTwoLinks(String fromRecordId) {
-		DataGroup linkList = DataCreator.createLinkList();
+		DataGroup linkList = DataCreator.createEmptyLinkList();
 
 		linkList.addChild(DataCreator.createRecordToRecordLink(FROM_RECORD_TYPE, fromRecordId,
 				TO_RECORD_TYPE, TO_RECORD_ID));
@@ -523,12 +523,12 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
-		recordStorage.create("place", "place:0002", dataGroup, linkListWithTwoLinks, "jsClient");
-		recordStorage.create("place", "place:0003", dataGroup, linkListWithTwoLinks, "jsClient");
-		recordStorage.create("organisation", "org:0001", dataGroup, linkListWithTwoLinks, "cora");
-		recordStorage.create("organisation", "org:0002", dataGroup, linkListWithTwoLinks,
-				"jsClient");
+		recordStorage.create("place", "place:0001", dataGroup, null, linkListWithTwoLinks, "cora");
+		recordStorage.create("place", "place:0002", dataGroup, null, linkListWithTwoLinks, "jsClient");
+		recordStorage.create("place", "place:0003", dataGroup, null, linkListWithTwoLinks, "jsClient");
+		recordStorage.create("organisation", "org:0001", dataGroup, null, linkListWithTwoLinks, "cora");
+		recordStorage.create("organisation", "org:0002", dataGroup, null,
+				linkListWithTwoLinks, "jsClient");
 
 		Path path = Paths.get(basePath, LINK_LISTS_FILENAME);
 		assertTrue(Files.exists(path));
@@ -983,7 +983,7 @@ public class RecordStorageOnDiskTest {
 		createRecordTypePlace();
 		DataGroup personRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("person", "true", "false");
-		recordStorage.create("recordType", "person", personRecordType, emptyLinkList, "cora");
+		recordStorage.create("recordType", "person", personRecordType, null, emptyLinkList, "cora");
 		writePlaceFileToDisk();
 		writePersonFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
@@ -1010,7 +1010,7 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("someNameInData", "someValue"));
 		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
@@ -1062,7 +1062,7 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
 		Path path = Paths.get(basePath, PLACE_FILENAME);
 		assertTrue(Files.exists(path));
 
@@ -1076,13 +1076,13 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
 		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
 
 		DataGroup dataGroup2 = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("authority",
 						"place", "place:0002");
-		recordStorage.create("place", "place:0002", dataGroup2, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0002", dataGroup2, null, emptyLinkList, "cora");
 
 		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonTwoRecords);
 
@@ -1096,7 +1096,7 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
 		Path path = Paths.get(basePath, PLACE_FILENAME);
 		assertTrue(Files.exists(path));
 
@@ -1215,7 +1215,7 @@ public class RecordStorageOnDiskTest {
 		assertEquals(convertDataGroupToJsonString(linkListPlace), expectedLinkListJson);
 
 		DataGroup dataGroupTo = createDataGroupWithRecordInfo();
-		recordStorage.create("toRecordType", "toRecordId", dataGroupTo, emptyLinkList, "cora");
+		recordStorage.create("toRecordType", "toRecordId", dataGroupTo, null, emptyLinkList, "cora");
 		Collection<DataGroup> incomingLinksTo = recordStorage
 				.generateLinkCollectionPointingToRecord("toRecordType", "toRecordId");
 
@@ -1261,7 +1261,7 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 		removeTempFiles();
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
 
 	}
 
@@ -1270,7 +1270,7 @@ public class RecordStorageOnDiskTest {
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
 		removeTempFiles();
 		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
 
@@ -1281,7 +1281,7 @@ public class RecordStorageOnDiskTest {
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
 		removeTempFiles();
 		recordStorage.deleteByTypeAndId("place", "place:0001");
 

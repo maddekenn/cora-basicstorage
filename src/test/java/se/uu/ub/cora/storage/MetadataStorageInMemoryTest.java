@@ -115,7 +115,7 @@ public class MetadataStorageInMemoryTest {
 		DataGroup collectIndexTerm = DataCreator
 				.createRecordInfoWithRecordTypeAndRecordId("collectIndexTerm", "someIndexTerm");
 		recordStorageInMemory.create("collectIndexTerm", "someIndexTerm", collectIndexTerm,
-				DataGroup.withNameInData("collectedLinksList"), "cora");
+				null, DataGroup.withNameInData("collectedLinksList"), "cora");
 
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
 		assertEquals(collectTerms.size(), 2);
@@ -126,7 +126,7 @@ public class MetadataStorageInMemoryTest {
 		DataGroup collectPermissionTerm = DataCreator.createRecordInfoWithRecordTypeAndRecordId(
 				"collectPermissionTerm", "somePermissionTerm");
 		recordStorageInMemory.create("collectPermissionTerm", "somePermissionTerm",
-				collectPermissionTerm, DataGroup.withNameInData("collectedLinksList"), "cora");
+				collectPermissionTerm, null, DataGroup.withNameInData("collectedLinksList"), "cora");
 
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
 		assertEquals(collectTerms.size(), 2);

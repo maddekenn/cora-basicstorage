@@ -41,23 +41,22 @@ public final class DataCreator {
 				abstractValue, null);
 	}
 
-	private static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(
-			String id, String userSuppliedId, String abstractValue, String parentId) {
+	private static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(String id,
+			String userSuppliedId, String abstractValue, String parentId) {
 		String idWithCapitalFirst = id.substring(0, 1).toUpperCase() + id.substring(1);
 
 		DataGroup dataGroup = DataGroup.withNameInData(RECORD_TYPE);
 		dataGroup.addChild(createRecordInfoWithRecordTypeAndRecordId(RECORD_TYPE, id));
 
-		dataGroup.addChild(
-				createChildWithNamInDataLinkedTypeLinkedId(METADATA_ID, "metadataGroup", id));
+		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(METADATA_ID, "metadataGroup", id));
 
 		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(PRESENTATION_VIEW_ID,
 				"presentationGroup", "pg" + idWithCapitalFirst + "View"));
 
 		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(PRESENTATION_FORM_ID,
 				"presentationGroup", "pg" + idWithCapitalFirst + "Form"));
-		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(NEW_METADATA_ID,
-				"metadataGroup", id + "New"));
+		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(NEW_METADATA_ID, "metadataGroup",
+				id + "New"));
 
 		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(NEW_PRESENTATION_FORM_ID,
 				"presentationGroup", "pg" + idWithCapitalFirst + "FormNew"));
@@ -81,16 +80,15 @@ public final class DataCreator {
 	private static DataGroup createChildWithNamInDataLinkedTypeLinkedId(String nameInData,
 			String linkedRecordType, String id) {
 		DataGroup metadataId = DataGroup.withNameInData(nameInData);
-		metadataId
-				.addChild(DataAtomic.withNameInDataAndValue("linkedRecordType", linkedRecordType));
+		metadataId.addChild(DataAtomic.withNameInDataAndValue("linkedRecordType", linkedRecordType));
 		metadataId.addChild(DataAtomic.withNameInDataAndValue("linkedRecordId", id));
 		return metadataId;
 	}
 
 	public static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndParentId(String id,
 			String userSuppliedId, String parentId) {
-		return createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(id, userSuppliedId,
-				"false", parentId);
+		return createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(id, userSuppliedId, "false",
+				parentId);
 	}
 
 	public static DataGroup createRecordInfoWithRecordTypeAndRecordId(String recordType,
@@ -113,7 +111,7 @@ public final class DataCreator {
 		return dataGroup;
 	}
 
-	public static DataGroup createLinkList() {
+	public static DataGroup createEmptyLinkList() {
 		return DataGroup.withNameInData("collectedDataLinks");
 	}
 
@@ -139,10 +137,51 @@ public final class DataCreator {
 				toRecordType);
 		to.addChild(toLinkedRecordType);
 
-		DataAtomic toLinkedRecordId = DataAtomic.withNameInDataAndValue("linkedRecordId",
-				toRecordId);
+		DataAtomic toLinkedRecordId = DataAtomic.withNameInDataAndValue("linkedRecordId", toRecordId);
 		to.addChild(toLinkedRecordId);
 
 		return recordToRecordLink;
+	}
+
+	public static DataGroup createEmptyCollectedData() {
+		return DataGroup.withNameInData("collectedData");
+	}
+
+	public static DataGroup createCollectedDataWithTypeAndId(String type, String id) {
+		DataGroup collectedData = DataGroup.withNameInData("collectedData");
+		collectedData.addChild(DataAtomic.withNameInDataAndValue("type", type));
+		collectedData.addChild(DataAtomic.withNameInDataAndValue("id", id));
+		return collectedData;
+	}
+
+	public static DataGroup createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey(
+			String repeatId, String termId, String termValue, String storageKey) {
+		DataGroup collectedDataTerm = DataGroup.withNameInData("collectedDataTerm");
+		collectedDataTerm.addAttributeByIdWithValue("type", "storage");
+		collectedDataTerm.setRepeatId(repeatId);
+
+		DataAtomic collectedDataTermId = DataAtomic.withNameInDataAndValue("collectTermId", termId);
+		collectedDataTerm.addChild(collectedDataTermId);
+
+		DataAtomic collectedDataTermValue = DataAtomic.withNameInDataAndValue("collectTermValue",
+				termValue);
+		collectedDataTerm.addChild(collectedDataTermValue);
+		DataGroup extraData = DataGroup.withNameInData("extraData");
+		collectedDataTerm.addChild(extraData);
+		extraData.addChild(DataAtomic.withNameInDataAndValue("storageKey", storageKey));
+		return collectedDataTerm;
+	}
+
+	public static DataGroup createEmptyFilter() {
+		return DataGroup.withNameInData("filter");
+	}
+
+	public static DataGroup createFilterPartWithRepeatIdAndKeyAndValue(String repeatId, String key,
+			String value) {
+		DataGroup part = DataGroup.withNameInData("part");
+		part.setRepeatId(repeatId);
+		part.addChild(DataAtomic.withNameInDataAndValue("key", key));
+		part.addChild(DataAtomic.withNameInDataAndValue("value", value));
+		return part;
 	}
 }

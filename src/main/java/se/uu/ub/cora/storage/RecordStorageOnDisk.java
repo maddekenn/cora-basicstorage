@@ -194,8 +194,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	@Override
 	public synchronized void create(String recordType, String recordId, DataGroup record,
-			DataGroup linkList, String dataDivider) {
-		super.create(recordType, recordId, record, linkList, dataDivider);
+			DataGroup collectedTerms, DataGroup linkList, String dataDivider) {
+		super.create(recordType, recordId, record, collectedTerms, linkList, dataDivider);
 		writeDataToDisk(recordType, dataDivider);
 	}
 

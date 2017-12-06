@@ -118,8 +118,7 @@ public class AppTokenStorageImp implements AppTokenStorage {
 	}
 
 	private String getTokenFromStorage(String appTokenId) {
-		return recordStorage.read("appToken", appTokenId)
-				.getFirstAtomicValueWithNameInData("token");
+		return recordStorage.read("appToken", appTokenId).getFirstAtomicValueWithNameInData("token");
 	}
 
 	private boolean userIsActive(DataGroup user) {
@@ -127,7 +126,8 @@ public class AppTokenStorageImp implements AppTokenStorage {
 	}
 
 	private void populateUserRecordTypeNameList() {
-		Collection<DataGroup> recordTypes = recordStorage.readList(RECORD_TYPE);
+		Collection<DataGroup> recordTypes = recordStorage.readList(RECORD_TYPE,
+				DataGroup.withNameInData("filter"));
 
 		for (DataGroup recordTypePossibleChild : recordTypes) {
 			addChildOfUserToUserRecordTypeNameList(recordTypePossibleChild);
