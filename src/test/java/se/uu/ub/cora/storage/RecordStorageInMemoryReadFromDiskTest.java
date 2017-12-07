@@ -44,6 +44,7 @@ public class RecordStorageInMemoryReadFromDiskTest {
 	private String basePath = "/tmp/recordStorageOnDiskTemp/";
 	private DataGroup emptyLinkList = DataCreator.createEmptyLinkList();
 	private RecordStorageOnDisk recordStorage;
+	DataGroup emptyCollectedData = DataCreator.createEmptyCollectedData();
 
 	@BeforeMethod
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
@@ -75,10 +76,11 @@ public class RecordStorageInMemoryReadFromDiskTest {
 
 		DataGroup placeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true", "false");
-		recordStorage.create("recordType", "place", placeRecordType, null, emptyLinkList, "cora");
+		recordStorage.create("recordType", "place", placeRecordType, emptyCollectedData, emptyLinkList,
+				"cora");
 		DataGroup recordTypeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("recordType", "true", "false");
-		recordStorage.create("recordType", "recordType", recordTypeRecordType, null,
+		recordStorage.create("recordType", "recordType", recordTypeRecordType, emptyCollectedData,
 				emptyLinkList, "cora");
 	}
 
@@ -95,7 +97,8 @@ public class RecordStorageInMemoryReadFromDiskTest {
 	public void testInitNoFilesOnDisk() throws IOException {
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
@@ -116,7 +119,8 @@ public class RecordStorageInMemoryReadFromDiskTest {
 		DataGroup linkListWithTwoLinks = createLinkListWithTwoLinks("place:0001");
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, null, linkListWithTwoLinks, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, linkListWithTwoLinks,
+				"cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
@@ -162,7 +166,8 @@ public class RecordStorageInMemoryReadFromDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, null, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("someNameInData", "someValue"));
 		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");

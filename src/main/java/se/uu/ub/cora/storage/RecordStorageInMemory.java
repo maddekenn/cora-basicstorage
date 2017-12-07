@@ -113,27 +113,40 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private void storeCollectedTerms(String recordType, String recordId, DataGroup collectedTerms,
 			String dataDivider) {
-		// TODO: refactor
 		if (collectedTerms.containsChildWithNameInData("collectStorageTerm")) {
-			DataGroup collectStorageTerm = collectedTerms
-					.getFirstGroupWithNameInData("collectStorageTerm");
-			for (DataGroup collectedDataTerm : collectStorageTerm
-					.getAllGroupsWithNameInData("collectedDataTerm")) {
-				DataGroup extraData = collectedDataTerm.getFirstGroupWithNameInData("extraData");
-				String storageKey = extraData.getFirstAtomicValueWithNameInData("storageKey");
-				String termValue = collectedDataTerm
-						.getFirstAtomicValueWithNameInData("collectTermValue");
-				if (!terms.get(recordType).containsKey(storageKey)) {
-
-					terms.get(recordType).put(storageKey, new ArrayList<>());
-				}
-				List<StorageTermData> listOfStorageTermData = terms.get(recordType).get(storageKey);
-
-				listOfStorageTermData.add(
-						StorageTermData.withValueAndIdAndDataDivider(termValue, recordId, dataDivider));
-				// terms.get(recordType).put(storageKey, listOfStorageTermData);
-			}
+			storeCollectedStorageTerms(recordType, recordId, collectedTerms, dataDivider);
 		}
+	}
+
+	private void storeCollectedStorageTerms(String recordType, String recordId, DataGroup collectedTerms,
+			String dataDivider) {
+		DataGroup collectStorageTerm = collectedTerms.getFirstGroupWithNameInData("collectStorageTerm");
+		for (DataGroup collectedDataTerm : collectStorageTerm
+				.getAllGroupsWithNameInData("collectedDataTerm")) {
+			storeCollectedStorageTerm(recordType, recordId, dataDivider, collectedDataTerm);
+		}
+	}
+
+	private void storeCollectedStorageTerm(String recordType, String recordId, String dataDivider,
+			DataGroup collectedDataTerm) {
+		DataGroup extraData = collectedDataTerm.getFirstGroupWithNameInData("extraData");
+		String storageKey = extraData.getFirstAtomicValueWithNameInData("storageKey");
+		String termValue = collectedDataTerm.getFirstAtomicValueWithNameInData("collectTermValue");
+
+		List<StorageTermData> listOfStorageTermData = ensureStorageListExistsForTermForTypeAndKey(
+				recordType, storageKey);
+
+		listOfStorageTermData
+				.add(StorageTermData.withValueAndIdAndDataDivider(termValue, recordId, dataDivider));
+	}
+
+	private List<StorageTermData> ensureStorageListExistsForTermForTypeAndKey(String recordType,
+			String storageKey) {
+		Map<String, List<StorageTermData>> storageKeysForType = terms.get(recordType);
+		if (!storageKeysForType.containsKey(storageKey)) {
+			storageKeysForType.put(storageKey, new ArrayList<>());
+		}
+		return storageKeysForType.get(storageKey);
 	}
 
 	protected void storeLinks(String recordType, String recordId, DataGroup linkList,
@@ -235,23 +248,45 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		throwErrorIfNoRecordOfType(type, typeDividerRecords);
 
 		if (filterIsEmpty(filter)) {
-			Map<String, DataGroup> typeRecords = addDataGroupToRecordTypeList(typeDividerRecords);
-			return typeRecords.values();
+			return readListWithoutFilter(typeDividerRecords);
 		}
+		return readListWithFilter(type, filter);
+	}
+
+	private Collection<DataGroup> readListWithoutFilter(Map<String, DividerGroup> typeDividerRecords) {
+		Map<String, DataGroup> typeRecords = addDataGroupToRecordTypeList(typeDividerRecords);
+		return typeRecords.values();
+	}
+
+	private Collection<DataGroup> readListWithFilter(String type, DataGroup filter) {
 		List<DataGroup> foundRecords = new ArrayList<>();
 		DataGroup filterPart = filter.getFirstGroupWithNameInData("part");
+		List<DataGroup> foundRecordsForPart = getRecordsMatchingFilterPart(type, filterPart);
+		foundRecords.addAll(foundRecordsForPart);
+		return foundRecords;
+	}
+
+	private List<DataGroup> getRecordsMatchingFilterPart(String type, DataGroup filterPart) {
 		String key = filterPart.getFirstAtomicValueWithNameInData("key");
 		String value = filterPart.getFirstAtomicValueWithNameInData("value");
-		Map<String, List<StorageTermData>> termsForType = terms.get(type);
-		if (termsForType.containsKey(key)) {
-			List<StorageTermData> storageTermDataListForKey = termsForType.get(key);
-			for (StorageTermData storageTermData : storageTermDataListForKey) {
-				if (storageTermData.value.equals(value)) {
-					foundRecords.add(read(type, storageTermData.id));
-				}
+		Map<String, List<StorageTermData>> storageTermsForRecordType = terms.get(type);
+		if (storageTermsForRecordType.containsKey(key)) {
+			List<StorageTermData> storageTermDataListForKey = storageTermsForRecordType.get(key);
+			return getRecordsMatchingValueForKey(type, value, storageTermDataListForKey);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<DataGroup> getRecordsMatchingValueForKey(String type, String value,
+			List<StorageTermData> storageTermDataListForKey) {
+		List<DataGroup> foundRecordsForKey = new ArrayList<>();
+
+		for (StorageTermData storageTermData : storageTermDataListForKey) {
+			if (storageTermData.value.equals(value)) {
+				foundRecordsForKey.add(read(type, storageTermData.id));
 			}
 		}
-		return foundRecords;
+		return foundRecordsForKey;
 	}
 
 	private void throwErrorIfNoRecordOfType(String type, Map<String, DividerGroup> typeDividerRecords) {

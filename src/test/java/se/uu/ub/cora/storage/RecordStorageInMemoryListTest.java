@@ -83,6 +83,20 @@ public class RecordStorageInMemoryListTest {
 	}
 
 	@Test
+	public void testListWithCollectedStorageTermReadWithNonExisitingKeyFilter() {
+		createPlaceInStorageWithUppsalaStorageTerm();
+		createPlaceInStorageWithStockholmStorageTerm();
+
+		DataGroup filter = DataCreator.createEmptyFilter();
+		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "NOT_placeName",
+				"Uppsala");
+		filter.addChild(part);
+
+		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		assertEquals(readList.size(), 0);
+	}
+
+	@Test
 	public void testListWithCollectedStorageTermReadWithMatchingUppsalaFilter() {
 		createPlaceInStorageWithUppsalaStorageTerm();
 		createPlaceInStorageWithStockholmStorageTerm();
@@ -94,6 +108,10 @@ public class RecordStorageInMemoryListTest {
 
 		Collection<DataGroup> readList = recordStorage.readList("place", filter);
 		assertEquals(readList.size(), 1);
+		DataGroup first = readList.iterator().next();
+		assertEquals(
+				first.getFirstGroupWithNameInData("recordInfo").getFirstAtomicValueWithNameInData("id"),
+				"place:0001");
 	}
 
 	private void createPlaceInStorageWithUppsalaStorageTerm() {

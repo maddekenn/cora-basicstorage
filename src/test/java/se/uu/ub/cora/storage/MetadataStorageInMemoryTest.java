@@ -36,11 +36,11 @@ public class MetadataStorageInMemoryTest {
 
 	private MetadataStorage metadataStorage;
 	private RecordStorageInMemory recordStorageInMemory;
+	DataGroup emptyCollectedData = DataCreator.createEmptyCollectedData();
 
 	@BeforeMethod
 	public void BeforeMethod() {
-		recordStorageInMemory = TestDataRecordInMemoryStorage
-				.createRecordStorageInMemoryWithTestData();
+		recordStorageInMemory = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
 		metadataStorage = recordStorageInMemory;
 	}
 
@@ -95,7 +95,7 @@ public class MetadataStorageInMemoryTest {
 	//
 	// @Test
 	// public void testGetCollectTerms() {
-	// Exception e1 = null;
+	// Exception e1 = emptyCollectedData;
 	// try {
 	// metadataStorage.getCollectTerms();
 	// } catch (Exception e) {
@@ -115,7 +115,7 @@ public class MetadataStorageInMemoryTest {
 		DataGroup collectIndexTerm = DataCreator
 				.createRecordInfoWithRecordTypeAndRecordId("collectIndexTerm", "someIndexTerm");
 		recordStorageInMemory.create("collectIndexTerm", "someIndexTerm", collectIndexTerm,
-				null, DataGroup.withNameInData("collectedLinksList"), "cora");
+				emptyCollectedData, DataGroup.withNameInData("collectedLinksList"), "cora");
 
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
 		assertEquals(collectTerms.size(), 2);
@@ -126,7 +126,8 @@ public class MetadataStorageInMemoryTest {
 		DataGroup collectPermissionTerm = DataCreator.createRecordInfoWithRecordTypeAndRecordId(
 				"collectPermissionTerm", "somePermissionTerm");
 		recordStorageInMemory.create("collectPermissionTerm", "somePermissionTerm",
-				collectPermissionTerm, null, DataGroup.withNameInData("collectedLinksList"), "cora");
+				collectPermissionTerm, emptyCollectedData,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
 		assertEquals(collectTerms.size(), 2);
