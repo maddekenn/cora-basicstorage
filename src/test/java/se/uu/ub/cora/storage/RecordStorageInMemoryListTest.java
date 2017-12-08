@@ -22,6 +22,7 @@ package se.uu.ub.cora.storage;
 import static org.testng.Assert.assertEquals;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -114,6 +115,30 @@ public class RecordStorageInMemoryListTest {
 				"place:0001");
 	}
 
+	@Test
+	public void testListWithCollectedStorageTermReadWithMatchingUppsalaFilter2() {
+		createPlaceInStorageWithUppsalaStorageTerm();
+		createPlaceInStorageWithStockholmStorageTerm();
+		createPlaceInStorageWithUppsalaStorageAndStockholmTerm();
+
+		DataGroup filter = DataCreator.createEmptyFilter();
+		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "placeName",
+				"Uppsala");
+		filter.addChild(part);
+
+		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		assertEquals(readList.size(), 2);
+		Iterator<DataGroup> listIterator = readList.iterator();
+		DataGroup first = listIterator.next();
+		assertEquals(
+				first.getFirstGroupWithNameInData("recordInfo").getFirstAtomicValueWithNameInData("id"),
+				"place:0001");
+		DataGroup second = listIterator.next();
+		assertEquals(
+				second.getFirstGroupWithNameInData("recordInfo").getFirstAtomicValueWithNameInData("id"),
+				"place:0003");
+	}
+
 	private void createPlaceInStorageWithUppsalaStorageTerm() {
 		DataGroup dataGroup = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
@@ -147,6 +172,28 @@ public class RecordStorageInMemoryListTest {
 		collectStorageTerm.addChild(collectedDataTerm);
 
 		recordStorage.create("place", "place:0002", dataGroup, collectedData, emptyLinkList,
+				dataDivider);
+	}
+
+	private void createPlaceInStorageWithUppsalaStorageAndStockholmTerm() {
+		DataGroup dataGroup = DataCreator
+				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
+						"place", "place:0003");
+
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0003");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("collectStorageTerm");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm);
+		DataGroup collectedDataTerm2 = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Stockholm", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm2);
+
+		recordStorage.create("place", "place:0003", dataGroup, collectedData, emptyLinkList,
 				dataDivider);
 	}
 
