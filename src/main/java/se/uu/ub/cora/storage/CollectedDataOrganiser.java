@@ -10,46 +10,39 @@ import se.uu.ub.cora.bookkeeper.data.DataGroup;
 
 class CollectedDataOrganiser {
 	private Map<String, DataGroup> collectedDataByDataDivider;
+	private String recordType;
+	private String key;
+	private int repeatId;
 
 	protected Map<String, DataGroup> structureCollectedDataForDisk(
 			Map<String, Map<String, List<StorageTermData>>> collectedDataTerms) {
 		collectedDataByDataDivider = new HashMap<>();
+		repeatId = 0;
 		for (Entry<String, Map<String, List<StorageTermData>>> entryRecordType : collectedDataTerms
 				.entrySet()) {
-			loopRecordTypesAndCreateStorageTerms(entryRecordType);
+			recordType = entryRecordType.getKey();
+			loopKeysAndCreateStorageTerms(entryRecordType.getValue());
 		}
 		return collectedDataByDataDivider;
 	}
 
-	private void loopRecordTypesAndCreateStorageTerms(
-			Entry<String, Map<String, List<StorageTermData>>> entryRecordType) {
-		String recordType = entryRecordType.getKey();
-		Map<String, List<StorageTermData>> mapForRecordType = entryRecordType.getValue();
+	private void loopKeysAndCreateStorageTerms(Map<String, List<StorageTermData>> mapForRecordType) {
 		for (Entry<String, List<StorageTermData>> mapForEntryKey : mapForRecordType.entrySet()) {
-			loopKeysAndCreateStorageTerm(recordType, mapForEntryKey);
+			key = mapForEntryKey.getKey();
+			loopStorageTermDataAndCreateStorageTerm(mapForEntryKey.getValue());
 		}
 	}
 
-	private void loopKeysAndCreateStorageTerm(String recordType,
-			Entry<String, List<StorageTermData>> mapForEntryKey) {
-		String key = mapForEntryKey.getKey();
-
-		int repeatId2 = 0;
-		for (StorageTermData storageTermData : mapForEntryKey.getValue()) {
-			DataGroup storageTerm = createStorageTerm(recordType, key, repeatId2, storageTermData);
-
-			String dataDivider = storageTermData.dataDivider;
-
-			ensureCollectedDataForDataDivider(dataDivider);
-			collectedDataByDataDivider.get(dataDivider).addChild(storageTerm);
-			repeatId2++;
+	private void loopStorageTermDataAndCreateStorageTerm(List<StorageTermData> listOfStorageTermData) {
+		for (StorageTermData storageTermData : listOfStorageTermData) {
+			DataGroup storageTerm = createStorageTerm(storageTermData);
+			addStorageTermToResult(storageTermData, storageTerm);
 		}
 	}
 
-	private DataGroup createStorageTerm(String recordType, String key, int repeatId2,
-			StorageTermData storageTermData) {
+	private DataGroup createStorageTerm(StorageTermData storageTermData) {
 		DataGroup storageTerm = DataGroup.withNameInData("storageTerm");
-		storageTerm.setRepeatId(String.valueOf(repeatId2));
+		storageTerm.setRepeatId(String.valueOf(repeatId));
 		storageTerm.addChild(DataAtomic.withNameInDataAndValue("type", recordType));
 		storageTerm.addChild(DataAtomic.withNameInDataAndValue("key", key));
 
@@ -57,7 +50,14 @@ class CollectedDataOrganiser {
 		storageTerm.addChild(DataAtomic.withNameInDataAndValue("id", storageTermData.id));
 		storageTerm
 				.addChild(DataAtomic.withNameInDataAndValue("dataDivider", storageTermData.dataDivider));
+		repeatId++;
 		return storageTerm;
+	}
+
+	private void addStorageTermToResult(StorageTermData storageTermData, DataGroup storageTerm) {
+		String dataDivider = storageTermData.dataDivider;
+		ensureCollectedDataForDataDivider(dataDivider);
+		collectedDataByDataDivider.get(dataDivider).addChild(storageTerm);
 	}
 
 	private void ensureCollectedDataForDataDivider(String dataDivider) {
