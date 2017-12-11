@@ -92,12 +92,14 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private void readFileAndParseFileByPath(Path path) throws IOException {
 		String fileNameTypePart = getTypeFromPath(path);
 		String dataDivider = getDataDividerFromPath(path);
-		List<DataElement> recordTypes = extractChildrenFromFileByPath(path);
+		List<DataElement> recordsFromFile = extractChildrenFromFileByPath(path);
 
 		if (fileContainsLinkLists(fileNameTypePart)) {
-			parseAndStoreDataLinksInMemory(dataDivider, recordTypes);
+			parseAndStoreDataLinksInMemory(dataDivider, recordsFromFile);
+		} else if (fileNameTypePart.equals("collectedData")) {
+			parseAndStoreCollectedStorageTermsInMemory(recordsFromFile);
 		} else {
-			parseAndStoreRecordsInMemory(fileNameTypePart, dataDivider, recordTypes);
+			parseAndStoreRecordsInMemory(fileNameTypePart, dataDivider, recordsFromFile);
 		}
 	}
 
@@ -142,8 +144,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 	}
 
-	private void parseAndStoreRecordTypeDataLinksInMemory(String dataDivider,
-			DataElement typesElement) {
+	private void parseAndStoreRecordTypeDataLinksInMemory(String dataDivider, DataElement typesElement) {
 		DataGroup recordType = (DataGroup) typesElement;
 		String recordTypeName = recordType.getNameInData();
 		ensureStorageExistsForRecordType(recordTypeName);
@@ -161,6 +162,27 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		DataGroup collectedDataLinks = (DataGroup) record
 				.getFirstChildWithNameInData("collectedDataLinks");
 		storeLinks(recordTypeName, recordId, collectedDataLinks, dataDivider);
+	}
+
+	private void parseAndStoreCollectedStorageTermsInMemory(List<DataElement> recordsFromFile) {
+		for (DataElement storageTerm : recordsFromFile) {
+			parseAndStoreCollectedStorageTermInMemory((DataGroup) storageTerm);
+		}
+	}
+
+	private void parseAndStoreCollectedStorageTermInMemory(DataGroup storageTerm) {
+		String type = storageTerm.getFirstAtomicValueWithNameInData("type");
+		String key = storageTerm.getFirstAtomicValueWithNameInData("key");
+		String id = storageTerm.getFirstAtomicValueWithNameInData("id");
+		StorageTermData storageTermData = createStorageTermData(storageTerm);
+		ensureStorageListExistsForTermForTypeAndKeyAndId(type, key, id);
+		terms.get(type).get(key).get(id).add(storageTermData);
+	}
+
+	private StorageTermData createStorageTermData(DataGroup storageTerm) {
+		String value = storageTerm.getFirstAtomicValueWithNameInData("value");
+		String dataDivider = storageTerm.getFirstAtomicValueWithNameInData("dataDivider");
+		return StorageTermData.withValueAndDataDivider(value, dataDivider);
 	}
 
 	private void parseAndStoreRecordsInMemory(String fileNameTypePart, String dataDivider,
@@ -194,14 +216,31 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	@Override
 	public synchronized void create(String recordType, String recordId, DataGroup record,
-			DataGroup linkList, String dataDivider) {
-		super.create(recordType, recordId, record, linkList, dataDivider);
+			DataGroup collectedTerms, DataGroup linkList, String dataDivider) {
+		super.create(recordType, recordId, record, collectedTerms, linkList, dataDivider);
 		writeDataToDisk(recordType, dataDivider);
 	}
 
 	protected void writeDataToDisk(String recordType, String dataDivider) {
 		writeRecordsToDisk(recordType, dataDivider);
+		writeCollectedDataToDisk();
 		writeLinkListToDisk(dataDivider);
+	}
+
+	private void writeCollectedDataToDisk() {
+		Map<String, DataGroup> collectedDataByDataDivider = new CollectedDataOrganiser()
+				.structureCollectedDataForDisk(terms);
+		if (!collectedDataByDataDivider.isEmpty()) {
+			writeCollectedDataForDataDividersToDisk(collectedDataByDataDivider);
+		}
+	}
+
+	private void writeCollectedDataForDataDividersToDisk(
+			Map<String, DataGroup> collectedDataByDataDivider) {
+		for (Entry<String, DataGroup> entry : collectedDataByDataDivider.entrySet()) {
+			String path = "collectedData_" + entry.getKey() + JSON_FILE_END;
+			tryToWriteDataGroupToDiskAsJson(path, entry.getValue());
+		}
 	}
 
 	private void writeRecordsToDisk(String recordType, String dataDivider) {
@@ -276,8 +315,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			if (Files.exists(path)) {
 				Files.delete(path);
 			}
-			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
-					StandardOpenOption.CREATE);
+			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
 			writer.write(json, 0, json.length());
 			writer.flush();
 		} finally {
@@ -324,8 +362,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 	}
 
-	private void addLinkListsForRecordToListBasedOnDataDivider(
-			Map<String, DataGroup> linkListsGroups,
+	private void addLinkListsForRecordToListBasedOnDataDivider(Map<String, DataGroup> linkListsGroups,
 			Entry<String, Map<String, DividerGroup>> recordType,
 			Entry<String, DividerGroup> recordEntry) {
 		DividerGroup dataDividerGroup = recordEntry.getValue();
@@ -347,8 +384,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	private void ensureLinkListForRecordType(Map<String, DataGroup> linkListsGroups,
 			Entry<String, Map<String, DividerGroup>> recordType, String currentDataDivider) {
-		if (!linkListsGroups.get(currentDataDivider)
-				.containsChildWithNameInData(recordType.getKey())) {
+		if (!linkListsGroups.get(currentDataDivider).containsChildWithNameInData(recordType.getKey())) {
 			DataGroup recordTypeGroup = DataGroup.withNameInData(recordType.getKey());
 			linkListsGroups.get(currentDataDivider).addChild(recordTypeGroup);
 		}

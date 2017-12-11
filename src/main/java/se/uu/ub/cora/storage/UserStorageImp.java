@@ -53,7 +53,8 @@ public class UserStorageImp implements UserStorage {
 	}
 
 	private void populateUserRecordTypeNameList() {
-		Collection<DataGroup> recordTypes = recordStorage.readList(RECORD_TYPE);
+		Collection<DataGroup> recordTypes = recordStorage.readList(RECORD_TYPE,
+				DataGroup.withNameInData("filter"));
 
 		for (DataGroup recordTypePossibleChild : recordTypes) {
 			addChildOfUserToUserRecordTypeNameList(recordTypePossibleChild);

@@ -47,12 +47,14 @@ import se.uu.ub.cora.storage.testdata.DataCreator;
 public class RecordStorageOnDiskTest {
 	private static final String PERSON_FILENAME = "person_cora.json";
 	private static final String PLACE_FILENAME = "place_cora.json";
+	private static final String COLLECTED_DATA_FILENAME = "collectedData_cora.json";
 	private static final String LINK_LISTS_FILENAME = "linkLists_cora.json";
 	private static final String FROM_RECORD_TYPE = "fromRecordType";
 	private static final String TO_RECORD_ID = "toRecordId";
 	private static final String TO_RECORD_TYPE = "toRecordType";
 	private String basePath = "/tmp/recordStorageOnDiskTemp/";
-	private DataGroup emptyLinkList = DataCreator.createLinkList();
+	private DataGroup emptyLinkList = DataCreator.createEmptyLinkList();
+	DataGroup emptyCollectedData = DataCreator.createEmptyCollectedData();
 
 	private String expectedRecordJsonOneRecordPlace1 = getExpectedRecordJsonOneRecordPlace1();
 
@@ -179,7 +181,8 @@ public class RecordStorageOnDiskTest {
 	private void createRecordTypePlace() {
 		DataGroup placeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true", "false");
-		recordStorage.create("recordType", "place", placeRecordType, emptyLinkList, "cora");
+		recordStorage.create("recordType", "place", placeRecordType, emptyCollectedData, emptyLinkList,
+				"cora");
 	}
 
 	private void deleteFiles() throws IOException {
@@ -212,7 +215,8 @@ public class RecordStorageOnDiskTest {
 		createRecordTypePlace();
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
@@ -233,12 +237,13 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
 
-		recordStorage.create("place", "place:0002", dataGroup, emptyLinkList, "jsClient");
-		assertEquals(readJsonFileFromDisk("place_jsClient.json"),
-				expectedRecordJsonOneRecordPlace1);
+		recordStorage.create("place", "place:0002", dataGroup, emptyCollectedData, emptyLinkList,
+				"jsClient");
+		assertEquals(readJsonFileFromDisk("place_jsClient.json"), expectedRecordJsonOneRecordPlace1);
 	}
 
 	private String readJsonFileFromDisk(String fileName) throws IOException {
@@ -260,12 +265,13 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
 
-		recordStorage.create("place", "place:0002", dataGroup, emptyLinkList, "jsClient");
-		assertEquals(readJsonFileFromDisk("place_jsClient.json"),
-				expectedRecordJsonOneRecordPlace1);
+		recordStorage.create("place", "place:0002", dataGroup, emptyCollectedData, emptyLinkList,
+				"jsClient");
+		assertEquals(readJsonFileFromDisk("place_jsClient.json"), expectedRecordJsonOneRecordPlace1);
 
 		DataGroup dataGroup2 = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("authority",
@@ -326,7 +332,8 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, linkListWithTwoLinks,
+				"cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
@@ -420,8 +427,10 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
-		recordStorage.create("organisation", "organisation:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, linkListWithTwoLinks,
+				"cora");
+		recordStorage.create("organisation", "organisation:0001", dataGroup, emptyCollectedData,
+				emptyLinkList, "cora");
 
 		String expectedLinkListJson = "{\n";
 		expectedLinkListJson += "    \"children\": [{\n";
@@ -506,7 +515,7 @@ public class RecordStorageOnDiskTest {
 	}
 
 	private DataGroup createLinkListWithTwoLinks(String fromRecordId) {
-		DataGroup linkList = DataCreator.createLinkList();
+		DataGroup linkList = DataCreator.createEmptyLinkList();
 
 		linkList.addChild(DataCreator.createRecordToRecordLink(FROM_RECORD_TYPE, fromRecordId,
 				TO_RECORD_TYPE, TO_RECORD_ID));
@@ -523,12 +532,16 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, linkListWithTwoLinks, "cora");
-		recordStorage.create("place", "place:0002", dataGroup, linkListWithTwoLinks, "jsClient");
-		recordStorage.create("place", "place:0003", dataGroup, linkListWithTwoLinks, "jsClient");
-		recordStorage.create("organisation", "org:0001", dataGroup, linkListWithTwoLinks, "cora");
-		recordStorage.create("organisation", "org:0002", dataGroup, linkListWithTwoLinks,
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, linkListWithTwoLinks,
+				"cora");
+		recordStorage.create("place", "place:0002", dataGroup, emptyCollectedData, linkListWithTwoLinks,
 				"jsClient");
+		recordStorage.create("place", "place:0003", dataGroup, emptyCollectedData, linkListWithTwoLinks,
+				"jsClient");
+		recordStorage.create("organisation", "org:0001", dataGroup, emptyCollectedData,
+				linkListWithTwoLinks, "cora");
+		recordStorage.create("organisation", "org:0002", dataGroup, emptyCollectedData,
+				linkListWithTwoLinks, "jsClient");
 
 		Path path = Paths.get(basePath, LINK_LISTS_FILENAME);
 		assertTrue(Files.exists(path));
@@ -923,6 +936,344 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
+	public void testWriteCollectedTermsToDiskOneRecordOneTerm() throws IOException {
+		createRecordTypePlace();
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm);
+
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
+
+		String expectedCollectedDataOneTerm = "{\n";
+		expectedCollectedDataOneTerm += "    \"children\": [{\n";
+		expectedCollectedDataOneTerm += "        \"repeatId\": \"0\",\n";
+		expectedCollectedDataOneTerm += "        \"children\": [\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"type\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"place\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"key\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"placeName\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"id\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"place:0001\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"value\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"Uppsala\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"dataDivider\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"cora\"\n";
+		expectedCollectedDataOneTerm += "            }\n";
+		expectedCollectedDataOneTerm += "        ],\n";
+		expectedCollectedDataOneTerm += "        \"name\": \"storageTerm\"\n";
+		expectedCollectedDataOneTerm += "    }],\n";
+		expectedCollectedDataOneTerm += "    \"name\": \"collectedData\"\n";
+		expectedCollectedDataOneTerm += "}\n";
+
+		Path path = Paths.get(basePath, COLLECTED_DATA_FILENAME);
+
+		assertTrue(Files.exists(path));
+		assertEquals(readJsonFileFromDisk(COLLECTED_DATA_FILENAME), expectedCollectedDataOneTerm);
+	}
+
+	@Test
+	public void testWriteCollectedTermsToDiskTwoRecordOneTerm() throws IOException {
+		createRecordTypePlace();
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm);
+
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
+
+		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
+		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place", "place:0002");
+		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
+		collectedData2.addChild(collectStorageTerm2);
+
+		DataGroup collectedDataTerm2 = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm2.addChild(collectedDataTerm2);
+
+		recordStorage.create("place", "place:0002", dataGroup2, collectedData2, emptyLinkList, "cora");
+
+		String expectedCollectedDataOneTerm = "{\n";
+		expectedCollectedDataOneTerm += "    \"children\": [\n";
+		expectedCollectedDataOneTerm += "        {\n";
+		expectedCollectedDataOneTerm += "            \"repeatId\": \"0\",\n";
+		expectedCollectedDataOneTerm += "            \"children\": [\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"type\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"key\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"placeName\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"id\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place:0001\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"value\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"Uppsala\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"dataDivider\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"cora\"\n";
+		expectedCollectedDataOneTerm += "                }\n";
+		expectedCollectedDataOneTerm += "            ],\n";
+		expectedCollectedDataOneTerm += "            \"name\": \"storageTerm\"\n";
+		expectedCollectedDataOneTerm += "        },\n";
+		expectedCollectedDataOneTerm += "        {\n";
+		expectedCollectedDataOneTerm += "            \"repeatId\": \"1\",\n";
+		expectedCollectedDataOneTerm += "            \"children\": [\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"type\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"key\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"placeName\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"id\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place:0002\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"value\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"Uppsala\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"dataDivider\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"cora\"\n";
+		expectedCollectedDataOneTerm += "                }\n";
+		expectedCollectedDataOneTerm += "            ],\n";
+		expectedCollectedDataOneTerm += "            \"name\": \"storageTerm\"\n";
+		expectedCollectedDataOneTerm += "        }\n";
+		expectedCollectedDataOneTerm += "    ],\n";
+		expectedCollectedDataOneTerm += "    \"name\": \"collectedData\"\n";
+		expectedCollectedDataOneTerm += "}\n";
+
+		Path path = Paths.get(basePath, COLLECTED_DATA_FILENAME);
+
+		assertTrue(Files.exists(path));
+		assertEquals(readJsonFileFromDisk(COLLECTED_DATA_FILENAME), expectedCollectedDataOneTerm);
+	}
+
+	@Test
+	public void testWriteCollectedTermsToDiskOneRecordTwoTerms() throws IOException {
+		createRecordTypePlace();
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm);
+
+		DataGroup collectedDataTerm2 = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("2",
+						"placeNameStorageTerm", "Stockholm", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm2);
+
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
+
+		String expectedCollectedDataOneTerm = "{\n";
+		expectedCollectedDataOneTerm += "    \"children\": [\n";
+		expectedCollectedDataOneTerm += "        {\n";
+		expectedCollectedDataOneTerm += "            \"repeatId\": \"0\",\n";
+		expectedCollectedDataOneTerm += "            \"children\": [\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"type\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"key\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"placeName\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"id\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place:0001\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"value\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"Uppsala\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"dataDivider\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"cora\"\n";
+		expectedCollectedDataOneTerm += "                }\n";
+		expectedCollectedDataOneTerm += "            ],\n";
+		expectedCollectedDataOneTerm += "            \"name\": \"storageTerm\"\n";
+		expectedCollectedDataOneTerm += "        },\n";
+		expectedCollectedDataOneTerm += "        {\n";
+		expectedCollectedDataOneTerm += "            \"repeatId\": \"1\",\n";
+		expectedCollectedDataOneTerm += "            \"children\": [\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"type\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"key\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"placeName\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"id\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place:0001\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"value\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"Stockholm\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"dataDivider\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"cora\"\n";
+		expectedCollectedDataOneTerm += "                }\n";
+		expectedCollectedDataOneTerm += "            ],\n";
+		expectedCollectedDataOneTerm += "            \"name\": \"storageTerm\"\n";
+		expectedCollectedDataOneTerm += "        }\n";
+		expectedCollectedDataOneTerm += "    ],\n";
+		expectedCollectedDataOneTerm += "    \"name\": \"collectedData\"\n";
+		expectedCollectedDataOneTerm += "}\n";
+
+		Path path = Paths.get(basePath, COLLECTED_DATA_FILENAME);
+
+		assertTrue(Files.exists(path));
+		assertEquals(readJsonFileFromDisk(COLLECTED_DATA_FILENAME), expectedCollectedDataOneTerm);
+	}
+
+	@Test
+	public void testWriteCollectedTermsToDiskTwoRecordOneTermDifferentDataDividers() throws IOException {
+		createRecordTypePlace();
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm);
+
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
+
+		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
+		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place", "place:0002");
+		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
+		collectedData2.addChild(collectStorageTerm2);
+
+		DataGroup collectedDataTerm2 = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm2.addChild(collectedDataTerm2);
+
+		recordStorage.create("place", "place:0002", dataGroup2, collectedData2, emptyLinkList,
+				"testSystem");
+
+		String expectedCollectedDataOneTerm = "{\n";
+		expectedCollectedDataOneTerm += "    \"children\": [{\n";
+		expectedCollectedDataOneTerm += "        \"repeatId\": \"0\",\n";
+		expectedCollectedDataOneTerm += "        \"children\": [\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"type\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"place\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"key\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"placeName\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"id\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"place:0001\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"value\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"Uppsala\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"dataDivider\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"cora\"\n";
+		expectedCollectedDataOneTerm += "            }\n";
+		expectedCollectedDataOneTerm += "        ],\n";
+		expectedCollectedDataOneTerm += "        \"name\": \"storageTerm\"\n";
+		expectedCollectedDataOneTerm += "    }],\n";
+		expectedCollectedDataOneTerm += "    \"name\": \"collectedData\"\n";
+		expectedCollectedDataOneTerm += "}\n";
+
+		Path path = Paths.get(basePath, COLLECTED_DATA_FILENAME);
+
+		assertTrue(Files.exists(path));
+		assertEquals(readJsonFileFromDisk(COLLECTED_DATA_FILENAME), expectedCollectedDataOneTerm);
+
+		String expectedCollectedDataOneTerm2 = "{\n";
+		expectedCollectedDataOneTerm2 += "    \"children\": [{\n";
+		expectedCollectedDataOneTerm2 += "        \"repeatId\": \"1\",\n";
+		expectedCollectedDataOneTerm2 += "        \"children\": [\n";
+		expectedCollectedDataOneTerm2 += "            {\n";
+		expectedCollectedDataOneTerm2 += "                \"name\": \"type\",\n";
+		expectedCollectedDataOneTerm2 += "                \"value\": \"place\"\n";
+		expectedCollectedDataOneTerm2 += "            },\n";
+		expectedCollectedDataOneTerm2 += "            {\n";
+		expectedCollectedDataOneTerm2 += "                \"name\": \"key\",\n";
+		expectedCollectedDataOneTerm2 += "                \"value\": \"placeName\"\n";
+		expectedCollectedDataOneTerm2 += "            },\n";
+		expectedCollectedDataOneTerm2 += "            {\n";
+		expectedCollectedDataOneTerm2 += "                \"name\": \"id\",\n";
+		expectedCollectedDataOneTerm2 += "                \"value\": \"place:0002\"\n";
+		expectedCollectedDataOneTerm2 += "            },\n";
+		expectedCollectedDataOneTerm2 += "            {\n";
+		expectedCollectedDataOneTerm2 += "                \"name\": \"value\",\n";
+		expectedCollectedDataOneTerm2 += "                \"value\": \"Uppsala\"\n";
+		expectedCollectedDataOneTerm2 += "            },\n";
+		expectedCollectedDataOneTerm2 += "            {\n";
+		expectedCollectedDataOneTerm2 += "                \"name\": \"dataDivider\",\n";
+		expectedCollectedDataOneTerm2 += "                \"value\": \"testSystem\"\n";
+		expectedCollectedDataOneTerm2 += "            }\n";
+		expectedCollectedDataOneTerm2 += "        ],\n";
+		expectedCollectedDataOneTerm2 += "        \"name\": \"storageTerm\"\n";
+		expectedCollectedDataOneTerm2 += "    }],\n";
+		expectedCollectedDataOneTerm2 += "    \"name\": \"collectedData\"\n";
+		expectedCollectedDataOneTerm2 += "}\n";
+
+		Path path2 = Paths.get(basePath, "collectedData_testSystem.json");
+
+		assertTrue(Files.exists(path2));
+		assertEquals(readJsonFileFromDisk("collectedData_testSystem.json"),
+				expectedCollectedDataOneTerm2);
+	}
+
+	@Test
 	public void testInitWithFileOnDiskNoLinksOnDisk() {
 		createRecordTypePlace();
 		writePlaceFileToDisk();
@@ -951,8 +1302,7 @@ public class RecordStorageOnDiskTest {
 		Path path = FileSystems.getDefault().getPath(basePath, fileName);
 		BufferedWriter writer;
 		try {
-			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
-					StandardOpenOption.CREATE);
+			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
 			writer.write(json, 0, json.length());
 			writer.flush();
 			writer.close();
@@ -983,7 +1333,8 @@ public class RecordStorageOnDiskTest {
 		createRecordTypePlace();
 		DataGroup personRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("person", "true", "false");
-		recordStorage.create("recordType", "person", personRecordType, emptyLinkList, "cora");
+		recordStorage.create("recordType", "person", personRecordType, emptyCollectedData, emptyLinkList,
+				"cora");
 		writePlaceFileToDisk();
 		writePersonFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
@@ -1010,7 +1361,8 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("someNameInData", "someValue"));
 		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
@@ -1062,7 +1414,8 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 		Path path = Paths.get(basePath, PLACE_FILENAME);
 		assertTrue(Files.exists(path));
 
@@ -1076,13 +1429,15 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonOneRecordPlace1);
 
 		DataGroup dataGroup2 = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("authority",
 						"place", "place:0002");
-		recordStorage.create("place", "place:0002", dataGroup2, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0002", dataGroup2, emptyCollectedData, emptyLinkList,
+				"cora");
 
 		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonTwoRecords);
 
@@ -1096,7 +1451,8 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 		Path path = Paths.get(basePath, PLACE_FILENAME);
 		assertTrue(Files.exists(path));
 
@@ -1215,11 +1571,33 @@ public class RecordStorageOnDiskTest {
 		assertEquals(convertDataGroupToJsonString(linkListPlace), expectedLinkListJson);
 
 		DataGroup dataGroupTo = createDataGroupWithRecordInfo();
-		recordStorage.create("toRecordType", "toRecordId", dataGroupTo, emptyLinkList, "cora");
+		recordStorage.create("toRecordType", "toRecordId", dataGroupTo, emptyCollectedData,
+				emptyLinkList, "cora");
 		Collection<DataGroup> incomingLinksTo = recordStorage
 				.generateLinkCollectionPointingToRecord("toRecordType", "toRecordId");
 
 		assertEquals(incomingLinksTo.size(), 1);
+	}
+
+	@Test
+	public void testListWithCollectedStorageTermReadWithMatchingUppsalaFilter() {
+		createRecordTypePlace();
+		writePlaceFileToDisk();
+		writeStorageTermsPlaceFileToDisk();
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup filter = DataCreator.createEmptyFilter();
+		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "placeName",
+				"Uppsala");
+		filter.addChild(part);
+
+		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		assertEquals(readList.size(), 1);
+		DataGroup first = readList.iterator().next();
+		assertEquals(
+				first.getFirstGroupWithNameInData("recordInfo").getFirstAtomicValueWithNameInData("id"),
+				"place:0001");
 	}
 
 	private void writePlaceLinksFileToDisk() {
@@ -1246,7 +1624,67 @@ public class RecordStorageOnDiskTest {
 				+ ",\"name\":\"collectedDataLinks\"}],\"name\":\"place:0001\"}]"
 				+ ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
 		writeFileToDisk(expectedLinkListJson, LINK_LISTS_FILENAME);
+	}
 
+	private void writeStorageTermsPlaceFileToDisk() {
+		String expectedCollectedDataOneTerm = "{\n";
+		expectedCollectedDataOneTerm += "    \"children\": [\n";
+		expectedCollectedDataOneTerm += "        {\n";
+		expectedCollectedDataOneTerm += "            \"repeatId\": \"0\",\n";
+		expectedCollectedDataOneTerm += "            \"children\": [\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"type\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"key\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"placeName\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"id\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place:0001\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"value\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"Uppsala\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"dataDivider\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"cora\"\n";
+		expectedCollectedDataOneTerm += "                }\n";
+		expectedCollectedDataOneTerm += "            ],\n";
+		expectedCollectedDataOneTerm += "            \"name\": \"storageTerm\"\n";
+		expectedCollectedDataOneTerm += "        },\n";
+		expectedCollectedDataOneTerm += "        {\n";
+		expectedCollectedDataOneTerm += "            \"repeatId\": \"1\",\n";
+		expectedCollectedDataOneTerm += "            \"children\": [\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"type\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"key\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"placeName\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"id\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"place:0001\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"value\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"Stockholm\"\n";
+		expectedCollectedDataOneTerm += "                },\n";
+		expectedCollectedDataOneTerm += "                {\n";
+		expectedCollectedDataOneTerm += "                    \"name\": \"dataDivider\",\n";
+		expectedCollectedDataOneTerm += "                    \"value\": \"cora\"\n";
+		expectedCollectedDataOneTerm += "                }\n";
+		expectedCollectedDataOneTerm += "            ],\n";
+		expectedCollectedDataOneTerm += "            \"name\": \"storageTerm\"\n";
+		expectedCollectedDataOneTerm += "        }\n";
+		expectedCollectedDataOneTerm += "    ],\n";
+		expectedCollectedDataOneTerm += "    \"name\": \"collectedData\"\n";
+		expectedCollectedDataOneTerm += "}\n";
+		writeFileToDisk(expectedCollectedDataOneTerm, COLLECTED_DATA_FILENAME);
 	}
 
 	@Test(expectedExceptions = DataStorageException.class)
@@ -1261,7 +1699,8 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 		removeTempFiles();
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 
 	}
 
@@ -1270,7 +1709,8 @@ public class RecordStorageOnDiskTest {
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 		removeTempFiles();
 		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
 
@@ -1281,7 +1721,8 @@ public class RecordStorageOnDiskTest {
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 		removeTempFiles();
 		recordStorage.deleteByTypeAndId("place", "place:0001");
 
