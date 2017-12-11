@@ -13,12 +13,13 @@ class CollectedDataOrganiser {
 	private String recordType;
 	private String key;
 	private int repeatId;
+	private String id;
 
 	protected Map<String, DataGroup> structureCollectedDataForDisk(
-			Map<String, Map<String, List<StorageTermData>>> collectedDataTerms) {
+			Map<String, Map<String, Map<String, List<StorageTermData>>>> terms) {
 		collectedDataByDataDivider = new HashMap<>();
 		repeatId = 0;
-		for (Entry<String, Map<String, List<StorageTermData>>> entryRecordType : collectedDataTerms
+		for (Entry<String, Map<String, Map<String, List<StorageTermData>>>> entryRecordType : terms
 				.entrySet()) {
 			recordType = entryRecordType.getKey();
 			loopKeysAndCreateStorageTerms(entryRecordType.getValue());
@@ -26,15 +27,22 @@ class CollectedDataOrganiser {
 		return collectedDataByDataDivider;
 	}
 
-	private void loopKeysAndCreateStorageTerms(Map<String, List<StorageTermData>> mapForRecordType) {
-		for (Entry<String, List<StorageTermData>> mapForEntryKey : mapForRecordType.entrySet()) {
+	private void loopKeysAndCreateStorageTerms(Map<String, Map<String, List<StorageTermData>>> map) {
+		for (Entry<String, Map<String, List<StorageTermData>>> mapForEntryKey : map.entrySet()) {
 			key = mapForEntryKey.getKey();
-			loopStorageTermDataAndCreateStorageTerm(mapForEntryKey.getValue());
+			loopRecordIdsAndCreateStorageTerms(mapForEntryKey.getValue());
 		}
 	}
 
-	private void loopStorageTermDataAndCreateStorageTerm(List<StorageTermData> listOfStorageTermData) {
-		for (StorageTermData storageTermData : listOfStorageTermData) {
+	private void loopRecordIdsAndCreateStorageTerms(Map<String, List<StorageTermData>> map) {
+		for (Entry<String, List<StorageTermData>> idEntry : map.entrySet()) {
+			id = idEntry.getKey();
+			loopStorageTermDataAndCreateStorageTerms(idEntry);
+		}
+	}
+
+	private void loopStorageTermDataAndCreateStorageTerms(Entry<String, List<StorageTermData>> idEntry) {
+		for (StorageTermData storageTermData : idEntry.getValue()) {
 			DataGroup storageTerm = createStorageTerm(storageTermData);
 			addStorageTermToResult(storageTermData, storageTerm);
 		}
@@ -45,9 +53,9 @@ class CollectedDataOrganiser {
 		storageTerm.setRepeatId(String.valueOf(repeatId));
 		storageTerm.addChild(DataAtomic.withNameInDataAndValue("type", recordType));
 		storageTerm.addChild(DataAtomic.withNameInDataAndValue("key", key));
+		storageTerm.addChild(DataAtomic.withNameInDataAndValue("id", id));
 
 		storageTerm.addChild(DataAtomic.withNameInDataAndValue("value", storageTermData.value));
-		storageTerm.addChild(DataAtomic.withNameInDataAndValue("id", storageTermData.id));
 		storageTerm
 				.addChild(DataAtomic.withNameInDataAndValue("dataDivider", storageTermData.dataDivider));
 		repeatId++;

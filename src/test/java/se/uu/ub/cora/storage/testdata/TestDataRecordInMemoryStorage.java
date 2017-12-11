@@ -84,6 +84,7 @@ public class TestDataRecordInMemoryStorage {
 				"place:0001");
 		DataGroup dataGroup = DataGroup.withNameInData("authority");
 		dataGroup.addChild(recordInfo);
+
 		recordsInMemory.create("place", "place:0001", dataGroup, emptyCollectedData,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}

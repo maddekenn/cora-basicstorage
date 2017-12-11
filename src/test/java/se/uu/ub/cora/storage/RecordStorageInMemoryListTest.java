@@ -145,7 +145,7 @@ public class RecordStorageInMemoryListTest {
 						"place", "place:0001");
 
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("collectStorageTerm");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -163,7 +163,7 @@ public class RecordStorageInMemoryListTest {
 						"place", "place:0002");
 
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0002");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("collectStorageTerm");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -181,7 +181,7 @@ public class RecordStorageInMemoryListTest {
 						"place", "place:0003");
 
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0003");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("collectStorageTerm");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -219,8 +219,27 @@ public class RecordStorageInMemoryListTest {
 		createGenericBinaryRecord();
 
 		String recordType = "binary";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType);
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
 		assertEquals(recordList.size(), 3);
+	}
+
+	@Test
+	public void testAbstractListWithCollectedStorageTermReadWithMatchingUppsalaFilter() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
+		createImageRecords();
+		createGenericBinaryRecord();
+
+		DataGroup filter = DataCreator.createEmptyFilter();
+		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "id", "image:0001");
+		filter.addChild(part);
+
+		Collection<DataGroup> readList = recordStorage.readAbstractList("binary", filter);
+		assertEquals(readList.size(), 1);
+		DataGroup first = readList.iterator().next();
+		assertEquals(
+				first.getFirstGroupWithNameInData("recordInfo").getFirstAtomicValueWithNameInData("id"),
+				"image:0001");
 	}
 
 	private void createImageRecords() {
@@ -228,15 +247,35 @@ public class RecordStorageInMemoryListTest {
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
 						"image", "image:0001");
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
-		recordStorage.create("image", "image:0001", dataGroup, DataCreator.createEmptyCollectedData(),
-				emptyLinkList, dataDivider);
+
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("image", "image:0001");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1", "idStorageTerm",
+						"image:0001", "id");
+		collectStorageTerm.addChild(collectedDataTerm);
+
+		recordStorage.create("image", "image:0001", dataGroup, collectedData, emptyLinkList,
+				dataDivider);
 
 		DataGroup dataGroup2 = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
 						"image", "image:0002");
 		dataGroup2.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
-		recordStorage.create("image", "image:0002", dataGroup2, DataCreator.createEmptyCollectedData(),
-				emptyLinkList, dataDivider);
+
+		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("image", "image:0002");
+		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
+		collectedData2.addChild(collectStorageTerm2);
+
+		DataGroup collectedDataTerm2 = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1", "IdStorageTerm",
+						"image:0002", "id");
+		collectStorageTerm2.addChild(collectedDataTerm2);
+
+		recordStorage.create("image", "image:0002", dataGroup2, collectedData2, emptyLinkList,
+				dataDivider);
 	}
 
 	private void createGenericBinaryRecord() {
@@ -256,7 +295,7 @@ public class RecordStorageInMemoryListTest {
 		// create no records of genericBinary
 
 		String recordType = "binary";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType);
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
 		assertEquals(recordList.size(), 2);
 	}
 
@@ -267,7 +306,7 @@ public class RecordStorageInMemoryListTest {
 		// create no records
 
 		String recordType = "binary";
-		recordStorage.readAbstractList(recordType);
+		recordStorage.readAbstractList(recordType, emptyFilter);
 	}
 
 }

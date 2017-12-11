@@ -43,7 +43,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private DataGroup emptyFilter = DataGroup.withNameInData("filter");
 	protected Map<String, Map<String, DividerGroup>> records = new HashMap<>();
-	protected Map<String, Map<String, List<StorageTermData>>> terms = new HashMap<>();
+	protected Map<String, Map<String, Map<String, List<StorageTermData>>>> terms = new HashMap<>();
 	protected Map<String, Map<String, DividerGroup>> linkLists = new HashMap<>();
 	protected Map<String, Map<String, Map<String, Map<String, List<DataGroup>>>>> incomingLinks = new HashMap<>();
 
@@ -113,14 +113,14 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private void storeCollectedTerms(String recordType, String recordId, DataGroup collectedTerms,
 			String dataDivider) {
-		if (collectedTerms.containsChildWithNameInData("collectStorageTerm")) {
+		if (collectedTerms.containsChildWithNameInData("storage")) {
 			storeCollectedStorageTerms(recordType, recordId, collectedTerms, dataDivider);
 		}
 	}
 
 	private void storeCollectedStorageTerms(String recordType, String recordId, DataGroup collectedTerms,
 			String dataDivider) {
-		DataGroup collectStorageTerm = collectedTerms.getFirstGroupWithNameInData("collectStorageTerm");
+		DataGroup collectStorageTerm = collectedTerms.getFirstGroupWithNameInData("storage");
 		for (DataGroup collectedDataTerm : collectStorageTerm
 				.getAllGroupsWithNameInData("collectedDataTerm")) {
 			storeCollectedStorageTerm(recordType, recordId, dataDivider, collectedDataTerm);
@@ -133,20 +133,33 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		String storageKey = extraData.getFirstAtomicValueWithNameInData("storageKey");
 		String termValue = collectedDataTerm.getFirstAtomicValueWithNameInData("collectTermValue");
 
-		List<StorageTermData> listOfStorageTermData = ensureStorageListExistsForTermForTypeAndKey(
-				recordType, storageKey);
+		List<StorageTermData> listOfStorageTermData = ensureStorageListExistsForTermForTypeAndKeyAndId(
+				recordType, storageKey, recordId);
 
-		listOfStorageTermData
-				.add(StorageTermData.withValueAndIdAndDataDivider(termValue, recordId, dataDivider));
+		listOfStorageTermData.add(StorageTermData.withValueAndDataDivider(termValue, dataDivider));
 	}
 
-	private List<StorageTermData> ensureStorageListExistsForTermForTypeAndKey(String recordType,
-			String storageKey) {
-		Map<String, List<StorageTermData>> storageKeysForType = terms.get(recordType);
+	protected List<StorageTermData> ensureStorageListExistsForTermForTypeAndKeyAndId(String recordType,
+			String storageKey, String recordId) {
+		Map<String, Map<String, List<StorageTermData>>> storageKeysForType = terms.get(recordType);
+		ensureStorageListExistsForTermKey(storageKey, storageKeysForType);
+		ensureStorageListExistsForId(storageKey, recordId, storageKeysForType);
+		return storageKeysForType.get(storageKey).get(recordId);
+	}
+
+	private void ensureStorageListExistsForTermKey(String storageKey,
+			Map<String, Map<String, List<StorageTermData>>> storageKeysForType) {
 		if (!storageKeysForType.containsKey(storageKey)) {
-			storageKeysForType.put(storageKey, new ArrayList<>());
+			HashMap<String, List<StorageTermData>> mapOfIds = new HashMap<>();
+			storageKeysForType.put(storageKey, mapOfIds);
 		}
-		return storageKeysForType.get(storageKey);
+	}
+
+	private void ensureStorageListExistsForId(String storageKey, String recordId,
+			Map<String, Map<String, List<StorageTermData>>> storageKeysForType) {
+		if (!storageKeysForType.get(storageKey).containsKey(recordId)) {
+			storageKeysForType.get(storageKey).put(recordId, new ArrayList<>());
+		}
 	}
 
 	protected void storeLinks(String recordType, String recordId, DataGroup linkList,
@@ -269,24 +282,36 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	private List<DataGroup> getRecordsMatchingFilterPart(String type, DataGroup filterPart) {
 		String key = filterPart.getFirstAtomicValueWithNameInData("key");
 		String value = filterPart.getFirstAtomicValueWithNameInData("value");
-		Map<String, List<StorageTermData>> storageTermsForRecordType = terms.get(type);
+		Map<String, Map<String, List<StorageTermData>>> storageTermsForRecordType = terms.get(type);
 		if (storageTermsForRecordType.containsKey(key)) {
-			List<StorageTermData> storageTermDataListForKey = storageTermsForRecordType.get(key);
-			return getRecordsMatchingValueForKey(type, value, storageTermDataListForKey);
+
+			Map<String, List<StorageTermData>> mapOfIdsAndStorageTermForTypeAndKey = storageTermsForRecordType
+					.get(key);
+			return getRecordsMatchingValueForKey(type, value, mapOfIdsAndStorageTermForTypeAndKey);
 		}
 		return Collections.emptyList();
 	}
 
 	private List<DataGroup> getRecordsMatchingValueForKey(String type, String value,
-			List<StorageTermData> storageTermDataListForKey) {
+			Map<String, List<StorageTermData>> mapOfIdsAndStorageTermForTypeAndKey) {
 		List<DataGroup> foundRecordsForKey = new ArrayList<>();
 
-		for (StorageTermData storageTermData : storageTermDataListForKey) {
+		for (Entry<String, List<StorageTermData>> entry : mapOfIdsAndStorageTermForTypeAndKey
+				.entrySet()) {
+			getRecordsMatchingValueForId(type, value, foundRecordsForKey, entry);
+		}
+
+		return foundRecordsForKey;
+	}
+
+	private void getRecordsMatchingValueForId(String type, String value,
+			List<DataGroup> foundRecordsForKey, Entry<String, List<StorageTermData>> entry) {
+		String key = entry.getKey();
+		for (StorageTermData storageTermData : entry.getValue()) {
 			if (storageTermData.value.equals(value)) {
-				foundRecordsForKey.add(read(type, storageTermData.id));
+				foundRecordsForKey.add(read(type, key));
 			}
 		}
-		return foundRecordsForKey;
 	}
 
 	private void throwErrorIfNoRecordOfType(String type, Map<String, DividerGroup> typeDividerRecords) {
@@ -309,20 +334,20 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	}
 
 	@Override
-	public Collection<DataGroup> readAbstractList(String type) {
+	public Collection<DataGroup> readAbstractList(String type, DataGroup filter) {
 		List<DataGroup> aggregatedRecordList = new ArrayList<>();
 		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(type);
 
-		addRecordsToAggregatedRecordList(aggregatedRecordList, implementingChildRecordTypes);
+		addRecordsToAggregatedRecordList(aggregatedRecordList, implementingChildRecordTypes, filter);
 		throwErrorIfEmptyAggregatedList(type, aggregatedRecordList);
 		return aggregatedRecordList;
 	}
 
 	private void addRecordsToAggregatedRecordList(List<DataGroup> aggregatedRecordList,
-			List<String> implementingChildRecordTypes) {
+			List<String> implementingChildRecordTypes, DataGroup filter) {
 		for (String implementingRecordType : implementingChildRecordTypes) {
 			try {
-				Collection<DataGroup> readList = readList(implementingRecordType, emptyFilter);
+				Collection<DataGroup> readList = readList(implementingRecordType, filter);
 				aggregatedRecordList.addAll(readList);
 			} catch (RecordNotFoundException e) {
 				// Do nothing, another implementing child might have records
@@ -666,7 +691,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	@Override
 	public Collection<DataGroup> getCollectTerms() {
-		return readAbstractList("collectTerm");
+		return readAbstractList("collectTerm", emptyFilter);
 	}
 
 	@Override
