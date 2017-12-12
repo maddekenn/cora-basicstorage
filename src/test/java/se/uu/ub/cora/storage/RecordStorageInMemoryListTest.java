@@ -38,6 +38,7 @@ public class RecordStorageInMemoryListTest {
 	private RecordStorage recordStorage;
 	private DataGroup emptyLinkList = DataCreator.createEmptyLinkList();
 	DataGroup emptyFilter = DataGroup.withNameInData("filter");
+	private DataGroup emptyCollectedData = DataCreator.createEmptyCollectedData();
 	private String dataDivider = "cora";
 
 	@BeforeMethod
@@ -98,6 +99,19 @@ public class RecordStorageInMemoryListTest {
 	}
 
 	@Test
+	public void testListWithNoCollectedStorageTermReadWithFilter() {
+		createPlaceInStorageWithCollectedData(emptyCollectedData);
+
+		DataGroup filter = DataCreator.createEmptyFilter();
+		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "placeName",
+				"Uppsala");
+		filter.addChild(part);
+
+		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		assertEquals(readList.size(), 0);
+	}
+
+	@Test
 	public void testListWithCollectedStorageTermReadWithMatchingUppsalaFilter() {
 		createPlaceInStorageWithUppsalaStorageTerm();
 		createPlaceInStorageWithStockholmStorageTerm();
@@ -116,7 +130,37 @@ public class RecordStorageInMemoryListTest {
 	}
 
 	@Test
-	public void testListWithCollectedStorageTermReadWithMatchingUppsalaFilter2() {
+	public void testListAfterUpdateWithNoCollectedStorageTermReadWithFilter() {
+		createPlaceInStorageWithUppsalaStorageTerm();
+		updatePlaceInStorageWithCollectedData(emptyCollectedData);
+
+		DataGroup filter = DataCreator.createEmptyFilter();
+		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "placeName",
+				"Uppsala");
+		filter.addChild(part);
+
+		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		assertEquals(readList.size(), 0);
+	}
+
+	@Test
+	public void testListAfterUpdateWithCollectedStorageTermReadWithMatchingUppsalaFilter() {
+		DataGroup filter = DataCreator.createEmptyFilter();
+		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "placeName",
+				"Uppsala");
+		filter.addChild(part);
+
+		createPlaceInStorageWithCollectedData(emptyCollectedData);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		assertEquals(readList.size(), 0);
+
+		updatePlaceInStorageWithUppsalaStorageTerm();
+		Collection<DataGroup> readList2 = recordStorage.readList("place", filter);
+		assertEquals(readList2.size(), 1);
+	}
+
+	@Test
+	public void testListWithCollectedStorageTermReadWithMatchingUppsalaFilterFromTwoRecords() {
 		createPlaceInStorageWithUppsalaStorageTerm();
 		createPlaceInStorageWithStockholmStorageTerm();
 		createPlaceInStorageWithUppsalaStorageAndStockholmTerm();
@@ -140,10 +184,16 @@ public class RecordStorageInMemoryListTest {
 	}
 
 	private void createPlaceInStorageWithUppsalaStorageTerm() {
-		DataGroup dataGroup = DataCreator
-				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
-						"place", "place:0001");
+		DataGroup collectedData = createCollectedDataWithUppsalaStorageTerm();
+		createPlaceInStorageWithCollectedData(collectedData);
+	}
 
+	private void updatePlaceInStorageWithUppsalaStorageTerm() {
+		DataGroup collectedData = createCollectedDataWithUppsalaStorageTerm();
+		updatePlaceInStorageWithCollectedData(collectedData);
+	}
+
+	private DataGroup createCollectedDataWithUppsalaStorageTerm() {
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
 		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
@@ -152,8 +202,20 @@ public class RecordStorageInMemoryListTest {
 				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
 						"placeNameStorageTerm", "Uppsala", "placeName");
 		collectStorageTerm.addChild(collectedDataTerm);
+		return collectedData;
+	}
 
+	private void createPlaceInStorageWithCollectedData(DataGroup collectedData) {
+		DataGroup dataGroup = DataCreator
+				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
+						"place", "place:0001");
 		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList,
+				dataDivider);
+	}
+
+	private void updatePlaceInStorageWithCollectedData(DataGroup collectedData) {
+		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
+		recordStorage.update("place", "place:0001", dataGroupOut, collectedData, emptyLinkList,
 				dataDivider);
 	}
 

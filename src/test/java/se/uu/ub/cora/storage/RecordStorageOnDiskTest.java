@@ -182,8 +182,8 @@ public class RecordStorageOnDiskTest {
 	private void createRecordTypePlace() {
 		DataGroup placeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true", "false");
-		recordStorage.create("recordType", "place", placeRecordType, emptyCollectedData,
-				emptyLinkList, "cora");
+		recordStorage.create("recordType", "place", placeRecordType, emptyCollectedData, emptyLinkList,
+				"cora");
 	}
 
 	private void deleteFiles() throws IOException {
@@ -244,8 +244,7 @@ public class RecordStorageOnDiskTest {
 
 		recordStorage.create("place", "place:0002", dataGroup, emptyCollectedData, emptyLinkList,
 				"jsClient");
-		assertEquals(readJsonFileFromDisk("place_jsClient.json"),
-				expectedRecordJsonOneRecordPlace1);
+		assertEquals(readJsonFileFromDisk("place_jsClient.json"), expectedRecordJsonOneRecordPlace1);
 	}
 
 	private String readJsonFileFromDisk(String fileName) throws IOException {
@@ -273,13 +272,13 @@ public class RecordStorageOnDiskTest {
 
 		recordStorage.create("place", "place:0002", dataGroup, emptyCollectedData, emptyLinkList,
 				"jsClient");
-		assertEquals(readJsonFileFromDisk("place_jsClient.json"),
-				expectedRecordJsonOneRecordPlace1);
+		assertEquals(readJsonFileFromDisk("place_jsClient.json"), expectedRecordJsonOneRecordPlace1);
 
 		DataGroup dataGroup2 = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("authority",
 						"place", "place:0002");
-		recordStorage.update("place", "place:0002", dataGroup2, emptyLinkList, "cora");
+		recordStorage.update("place", "place:0002", dataGroup2, emptyCollectedData, emptyLinkList,
+				"cora");
 		assertEquals(readJsonFileFromDisk(PLACE_FILENAME), expectedRecordJsonTwoRecords);
 
 		Path path = Paths.get(basePath, "place_jsClient.json");
@@ -335,8 +334,8 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData,
-				linkListWithTwoLinks, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, linkListWithTwoLinks,
+				"cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 
@@ -430,8 +429,8 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData,
-				linkListWithTwoLinks, "cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, linkListWithTwoLinks,
+				"cora");
 		recordStorage.create("organisation", "organisation:0001", dataGroup, emptyCollectedData,
 				emptyLinkList, "cora");
 
@@ -535,12 +534,12 @@ public class RecordStorageOnDiskTest {
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData,
-				linkListWithTwoLinks, "cora");
-		recordStorage.create("place", "place:0002", dataGroup, emptyCollectedData,
-				linkListWithTwoLinks, "jsClient");
-		recordStorage.create("place", "place:0003", dataGroup, emptyCollectedData,
-				linkListWithTwoLinks, "jsClient");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, linkListWithTwoLinks,
+				"cora");
+		recordStorage.create("place", "place:0002", dataGroup, emptyCollectedData, linkListWithTwoLinks,
+				"jsClient");
+		recordStorage.create("place", "place:0003", dataGroup, emptyCollectedData, linkListWithTwoLinks,
+				"jsClient");
 		recordStorage.create("organisation", "org:0001", dataGroup, emptyCollectedData,
 				linkListWithTwoLinks, "cora");
 		recordStorage.create("organisation", "org:0002", dataGroup, emptyCollectedData,
@@ -928,25 +927,29 @@ public class RecordStorageOnDiskTest {
 		expectedLinkListJson2 += "}\n";
 		assertEquals(readJsonFileFromDisk("linkLists_jsClient.json"), expectedLinkListJson2);
 
-		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
-		recordStorage.update("place", "place:0002", dataGroup, emptyLinkList, "jsClient");
-		recordStorage.update("place", "place:0003", dataGroup, emptyLinkList, "jsClient");
-		recordStorage.update("organisation", "org:0001", dataGroup, emptyLinkList, "cora");
-		recordStorage.update("organisation", "org:0002", dataGroup, emptyLinkList, "jsClient");
+		recordStorage.update("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
+		recordStorage.update("place", "place:0002", dataGroup, emptyCollectedData, emptyLinkList,
+				"jsClient");
+		recordStorage.update("place", "place:0003", dataGroup, emptyCollectedData, emptyLinkList,
+				"jsClient");
+		recordStorage.update("organisation", "org:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
+		recordStorage.update("organisation", "org:0002", dataGroup, emptyCollectedData, emptyLinkList,
+				"jsClient");
 
 		assertFalse(Files.exists(path));
 		assertFalse(Files.exists(path2));
 	}
 
 	@Test
-	public void testWriteCollectedTermsToDiskOneRecordOneTerm() throws IOException {
+	public void testWriteCollectedDataToDiskOneRecordOneTerm() throws IOException {
 		createRecordTypePlace();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
-				"place:0001");
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
 		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
@@ -955,8 +958,7 @@ public class RecordStorageOnDiskTest {
 						"placeNameStorageTerm", "Uppsala", "placeName");
 		collectStorageTerm.addChild(collectedDataTerm);
 
-		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList,
-				"cora");
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
 
 		String expectedCollectedDataOneTerm = "{\n";
 		expectedCollectedDataOneTerm += "    \"children\": [{\n";
@@ -995,14 +997,13 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
-	public void testWriteCollectedTermsToDiskTwoRecordOneTerm() throws IOException {
+	public void testWriteCollectedDataToDiskTwoRecordOneTerm() throws IOException {
 		createRecordTypePlace();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
-				"place:0001");
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
 		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
@@ -1011,12 +1012,10 @@ public class RecordStorageOnDiskTest {
 						"placeNameStorageTerm", "Uppsala", "placeName");
 		collectStorageTerm.addChild(collectedDataTerm);
 
-		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList,
-				"cora");
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
 
 		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
-		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place",
-				"place:0002");
+		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place", "place:0002");
 		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
 		collectedData2.addChild(collectStorageTerm2);
 
@@ -1025,8 +1024,7 @@ public class RecordStorageOnDiskTest {
 						"placeNameStorageTerm", "Uppsala", "placeName");
 		collectStorageTerm2.addChild(collectedDataTerm2);
 
-		recordStorage.create("place", "place:0002", dataGroup2, collectedData2, emptyLinkList,
-				"cora");
+		recordStorage.create("place", "place:0002", dataGroup2, collectedData2, emptyLinkList, "cora");
 
 		String expectedCollectedDataOneTerm = "{\n";
 		expectedCollectedDataOneTerm += "    \"children\": [\n";
@@ -1093,14 +1091,13 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
-	public void testWriteCollectedTermsToDiskOneRecordTwoTerms() throws IOException {
+	public void testWriteCollectedDataToDiskOneRecordTwoTerms() throws IOException {
 		createRecordTypePlace();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
-				"place:0001");
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
 		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
@@ -1114,8 +1111,7 @@ public class RecordStorageOnDiskTest {
 						"placeNameStorageTerm", "Stockholm", "placeName");
 		collectStorageTerm.addChild(collectedDataTerm2);
 
-		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList,
-				"cora");
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
 
 		String expectedCollectedDataOneTerm = "{\n";
 		expectedCollectedDataOneTerm += "    \"children\": [\n";
@@ -1182,15 +1178,13 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
-	public void testWriteCollectedTermsToDiskTwoRecordOneTermDifferentDataDividers()
-			throws IOException {
+	public void testWriteCollectedDataToDiskTwoRecordOneTermDifferentDataDividers() throws IOException {
 		createRecordTypePlace();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
-				"place:0001");
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
 		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
@@ -1199,12 +1193,10 @@ public class RecordStorageOnDiskTest {
 						"placeNameStorageTerm", "Uppsala", "placeName");
 		collectStorageTerm.addChild(collectedDataTerm);
 
-		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList,
-				"cora");
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
 
 		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
-		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place",
-				"place:0002");
+		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place", "place:0002");
 		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
 		collectedData2.addChild(collectStorageTerm2);
 
@@ -1289,6 +1281,101 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
+	public void testWriteUpdatedCollectedDataToDiskOneRecordOneTerms() throws IOException {
+		createRecordTypePlace();
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm);
+
+		DataGroup collectedDataTerm2 = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("2",
+						"placeNameStorageTerm", "Stockholm", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm2);
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
+
+		DataGroup read = recordStorage.read("place", "place:0001");
+		collectStorageTerm.removeFirstChildWithNameInData("collectedDataTerm");
+		recordStorage.update("place", "place:0001", read, collectedData, emptyLinkList, "cora");
+
+		String expectedCollectedDataOneTerm = "{\n";
+		expectedCollectedDataOneTerm += "    \"children\": [{\n";
+		expectedCollectedDataOneTerm += "        \"repeatId\": \"0\",\n";
+		expectedCollectedDataOneTerm += "        \"children\": [\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"type\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"place\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"key\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"placeName\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"id\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"place:0001\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"value\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"Stockholm\"\n";
+		expectedCollectedDataOneTerm += "            },\n";
+		expectedCollectedDataOneTerm += "            {\n";
+		expectedCollectedDataOneTerm += "                \"name\": \"dataDivider\",\n";
+		expectedCollectedDataOneTerm += "                \"value\": \"cora\"\n";
+		expectedCollectedDataOneTerm += "            }\n";
+		expectedCollectedDataOneTerm += "        ],\n";
+		expectedCollectedDataOneTerm += "        \"name\": \"storageTerm\"\n";
+		expectedCollectedDataOneTerm += "    }],\n";
+		expectedCollectedDataOneTerm += "    \"name\": \"collectedData\"\n";
+		expectedCollectedDataOneTerm += "}\n";
+
+		Path path = Paths.get(basePath, COLLECTED_DATA_FILENAME);
+
+		assertTrue(Files.exists(path));
+		assertEquals(readJsonFileFromDisk(COLLECTED_DATA_FILENAME), expectedCollectedDataOneTerm);
+	}
+
+	@Test
+	public void testWriteUpdatedCollectedDataToDiskOneRecordNoTerms() throws IOException {
+		createRecordTypePlace();
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm);
+
+		DataGroup collectedDataTerm2 = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("2",
+						"placeNameStorageTerm", "Stockholm", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm2);
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
+
+		DataGroup read = recordStorage.read("place", "place:0001");
+		recordStorage.update("place", "place:0001", read, emptyCollectedData, emptyLinkList, "cora");
+
+		Path path = Paths.get(basePath, COLLECTED_DATA_FILENAME);
+
+		assertFalse(Files.exists(path));
+
+		recordStorage.update("place", "place:0001", read, emptyCollectedData, emptyLinkList, "cora");
+		assertFalse(Files.exists(path));
+	}
+
+	@Test
 	public void testInitWithFileOnDiskNoLinksOnDisk() {
 		createRecordTypePlace();
 		writePlaceFileToDisk();
@@ -1317,8 +1404,7 @@ public class RecordStorageOnDiskTest {
 		Path path = FileSystems.getDefault().getPath(basePath, fileName);
 		BufferedWriter writer;
 		try {
-			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
-					StandardOpenOption.CREATE);
+			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
 			writer.write(json, 0, json.length());
 			writer.flush();
 			writer.close();
@@ -1349,8 +1435,8 @@ public class RecordStorageOnDiskTest {
 		createRecordTypePlace();
 		DataGroup personRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("person", "true", "false");
-		recordStorage.create("recordType", "person", personRecordType, emptyCollectedData,
-				emptyLinkList, "cora");
+		recordStorage.create("recordType", "person", personRecordType, emptyCollectedData, emptyLinkList,
+				"cora");
 		writePlaceFileToDisk();
 		writePersonFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
@@ -1381,7 +1467,8 @@ public class RecordStorageOnDiskTest {
 				"cora");
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("someNameInData", "someValue"));
-		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.update("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 
 		String expectedJson = "{\n";
 		expectedJson += "    \"children\": [{\n";
@@ -1611,12 +1698,14 @@ public class RecordStorageOnDiskTest {
 		Collection<DataGroup> readList = recordStorage.readList("place", filter);
 		assertEquals(readList.size(), 1);
 		DataGroup first = readList.iterator().next();
-		assertEquals(first.getFirstGroupWithNameInData("recordInfo")
-				.getFirstAtomicValueWithNameInData("id"), "place:0001");
+		assertEquals(
+				first.getFirstGroupWithNameInData("recordInfo").getFirstAtomicValueWithNameInData("id"),
+				"place:0001");
 	}
 
 	@Test(expectedExceptions = RecordNotFoundException.class)
-	public void testReadingCollectedTermsBeforeReadingRecordFiles() {
+	// @Test
+	public void testReadingEmptyCollectedDataBeforeReadingRecordFiles() {
 		writeStorageTermsPlaceFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
@@ -1741,7 +1830,8 @@ public class RecordStorageOnDiskTest {
 		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
 				"cora");
 		removeTempFiles();
-		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.update("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 
 	}
 

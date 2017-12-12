@@ -28,10 +28,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import se.uu.ub.cora.bookkeeper.data.DataElement;
@@ -50,8 +52,10 @@ import se.uu.ub.cora.spider.record.storage.RecordStorage;
 
 public class RecordStorageOnDisk extends RecordStorageInMemory
 		implements RecordStorage, MetadataStorage {
+	private static final String COLLECTED_DATA = "collectedData";
 	private static final String LINK_LISTS = "linkLists";
 	private static final String JSON_FILE_END = ".json";
+	private Set<String> allSeenCollectedDataFileNames = new HashSet<>();
 	private String basePath;
 
 	protected RecordStorageOnDisk(String basePath) {
@@ -96,7 +100,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 		if (fileContainsLinkLists(fileNameTypePart)) {
 			parseAndStoreDataLinksInMemory(dataDivider, recordsFromFile);
-		} else if (fileNameTypePart.equals("collectedData")) {
+		} else if (fileNameTypePart.equals(COLLECTED_DATA)) {
+			allSeenCollectedDataFileNames.add(dataDivider);
 			parseAndStoreCollectedStorageTermsInMemory(recordsFromFile);
 		} else {
 			parseAndStoreRecordsInMemory(fileNameTypePart, dataDivider, recordsFromFile);
@@ -175,8 +180,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		String key = storageTerm.getFirstAtomicValueWithNameInData("key");
 		String id = storageTerm.getFirstAtomicValueWithNameInData("id");
 		StorageTermData storageTermData = createStorageTermData(storageTerm);
-		ensureStorageListExistsForTermForTypeAndKeyAndId(type, key, id);
-		terms.get(type).get(key).get(id).add(storageTermData);
+		collectedTermsHolder.storeCollectedStorageTermData(type, key, id, storageTermData);
 	}
 
 	private StorageTermData createStorageTermData(DataGroup storageTerm) {
@@ -228,10 +232,21 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void writeCollectedDataToDisk() {
-		Map<String, DataGroup> collectedDataByDataDivider = new CollectedDataOrganiser()
-				.structureCollectedDataForDisk(terms);
+		Map<String, DataGroup> collectedDataByDataDivider = collectedTermsHolder
+				.structureCollectedTermsForDisk();
+		removePreviousCollectedDataFiles();
 		if (!collectedDataByDataDivider.isEmpty()) {
 			writeCollectedDataForDataDividersToDisk(collectedDataByDataDivider);
+		}
+	}
+
+	private void removePreviousCollectedDataFiles() {
+		for (String dataDivider : allSeenCollectedDataFileNames) {
+			String pathString2 = COLLECTED_DATA + "_" + dataDivider + JSON_FILE_END;
+			Path path = Paths.get(basePath, pathString2);
+			if (path.toFile().exists()) {
+				removeFileFromDisk(COLLECTED_DATA, dataDivider);
+			}
 		}
 	}
 
@@ -240,6 +255,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		for (Entry<String, DataGroup> entry : collectedDataByDataDivider.entrySet()) {
 			String path = "collectedData_" + entry.getKey() + JSON_FILE_END;
 			tryToWriteDataGroupToDiskAsJson(path, entry.getValue());
+			allSeenCollectedDataFileNames.add(entry.getKey());
 		}
 	}
 
@@ -345,7 +361,6 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		divideLinkListsByDataDivider(linkListsGroups);
 		writeDividedLinkListsToDisk(linkListsGroups);
 		possiblyRemoveOldDataDividerLinkListFile(dataDivider, linkListsGroups);
-
 	}
 
 	private void divideLinkListsByDataDivider(Map<String, DataGroup> linkListsGroups) {
@@ -418,9 +433,9 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	@Override
 	public synchronized void update(String recordType, String recordId, DataGroup record,
-			DataGroup linkList, String dataDivider) {
+			DataGroup collectedTerms, DataGroup linkList, String dataDivider) {
 		String previousDataDivider = records.get(recordType).get(recordId).dataDivider;
-		super.update(recordType, recordId, record, linkList, dataDivider);
+		super.update(recordType, recordId, record, collectedTerms, linkList, dataDivider);
 		writeDataToDisk(recordType, previousDataDivider);
 	}
 

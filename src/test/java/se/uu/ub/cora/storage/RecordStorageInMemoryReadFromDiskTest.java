@@ -170,7 +170,8 @@ public class RecordStorageInMemoryReadFromDiskTest {
 				"cora");
 
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("someNameInData", "someValue"));
-		recordStorage.update("place", "place:0001", dataGroup, emptyLinkList, "cora");
+		recordStorage.update("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
 
 		Path placePath = Paths.get(basePath, "place.json");
 		assertFalse(Files.exists(placePath));

@@ -487,7 +487,8 @@ public class RecordStorageInMemoryTest {
 
 		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
 		dataGroup2.addChild(DataAtomic.withNameInDataAndValue("childId2", "childValue2"));
-		recordStorage.update("type", "place:0001", dataGroup2, emptyLinkList, dataDivider);
+		recordStorage.update("type", "place:0001", dataGroup2, emptyCollectedData, emptyLinkList,
+				dataDivider);
 
 		DataGroup dataGroupOut2 = recordStorage.read("type", "place:0001");
 		DataAtomic child2 = (DataAtomic) dataGroupOut2.getChildren().get(1);
@@ -505,7 +506,8 @@ public class RecordStorageInMemoryTest {
 
 		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
 
-		recordStorage.update("place", "place:0001", dataGroup2, emptyLinkList, dataDivider);
+		recordStorage.update("place", "place:0001", dataGroup2, emptyCollectedData, emptyLinkList,
+				dataDivider);
 
 		DataGroup readLinkList = recordStorage.readLinkList("place", "place:0001");
 		assertEquals(readLinkList.getChildren().size(), 0);
@@ -524,7 +526,8 @@ public class RecordStorageInMemoryTest {
 
 		// update
 		DataGroup linkListOne = createLinkListWithOneLink(FROM_RECORD_ID);
-		recordStorage.update(FROM_RECORD_TYPE, FROM_RECORD_ID, dataGroup, linkListOne, dataDivider);
+		recordStorage.update(FROM_RECORD_TYPE, FROM_RECORD_ID, dataGroup, emptyCollectedData,
+				linkListOne, dataDivider);
 
 		DataGroup readLinkListUpdated = recordStorage.readLinkList(FROM_RECORD_TYPE, FROM_RECORD_ID);
 
@@ -549,11 +552,13 @@ public class RecordStorageInMemoryTest {
 				dataDivider);
 		assertNoOfLinksPointingToRecord(TO_RECORD_TYPE, TO_RECORD_ID, 1);
 		// update
-		recordStorage.update(FROM_RECORD_TYPE, FROM_RECORD_ID, dataGroup, emptyLinkList, dataDivider);
+		recordStorage.update(FROM_RECORD_TYPE, FROM_RECORD_ID, dataGroup, emptyCollectedData,
+				emptyLinkList, dataDivider);
 		assertNoOfLinksPointingToRecord(TO_RECORD_TYPE, TO_RECORD_ID, 0);
 
 		// update
-		recordStorage.update(FROM_RECORD_TYPE, FROM_RECORD_ID, dataGroup, linkList, dataDivider);
+		recordStorage.update(FROM_RECORD_TYPE, FROM_RECORD_ID, dataGroup, emptyCollectedData, linkList,
+				dataDivider);
 		assertNoOfLinksPointingToRecord(TO_RECORD_TYPE, TO_RECORD_ID, 1);
 	}
 
@@ -567,7 +572,8 @@ public class RecordStorageInMemoryTest {
 		assertNoOfLinksPointingToRecord(TO_RECORD_TYPE, TO_RECORD_ID, 3);
 		// update
 		linkList = createLinkListWithTwoLinksFromDifferentRecords(FROM_RECORD_ID);
-		recordStorage.update(FROM_RECORD_TYPE, FROM_RECORD_ID, dataGroup, linkList, dataDivider);
+		recordStorage.update(FROM_RECORD_TYPE, FROM_RECORD_ID, dataGroup, emptyCollectedData, linkList,
+				dataDivider);
 		assertNoOfLinksPointingToRecord(TO_RECORD_TYPE, TO_RECORD_ID, 1);
 	}
 
@@ -607,7 +613,8 @@ public class RecordStorageInMemoryTest {
 	public void testUpdateNotFoundType() {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
-		recordStorage.update("type", "place:0001", dataGroup, emptyLinkList, dataDivider);
+		recordStorage.update("type", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				dataDivider);
 	}
 
 	@Test(expectedExceptions = RecordNotFoundException.class)
@@ -615,7 +622,8 @@ public class RecordStorageInMemoryTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
 		recordStorage.create("type", "place:0001", dataGroup, emptyLinkList, emptyLinkList, dataDivider);
-		recordStorage.update("type", "place:0002", dataGroup, emptyLinkList, dataDivider);
+		recordStorage.update("type", "place:0002", dataGroup, emptyCollectedData, emptyLinkList,
+				dataDivider);
 	}
 
 	@Test
@@ -623,7 +631,8 @@ public class RecordStorageInMemoryTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
 		recordStorage.create("type", "place:0001", dataGroup, emptyLinkList, emptyLinkList, dataDivider);
-		recordStorage.update("type", "place:0001", dataGroup, emptyLinkList, dataDivider);
+		recordStorage.update("type", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				dataDivider);
 
 		dataGroup.getChildren().clear();
 
