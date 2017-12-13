@@ -1376,6 +1376,123 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
+	public void testDeletedCollectedDataToDiskOneRecordTwoTerms() throws IOException {
+		createRecordTypePlace();
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm);
+
+		DataGroup collectedDataTerm2 = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("2",
+						"placeNameStorageTerm", "Stockholm", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm2);
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
+
+		Path path = Paths.get(basePath, COLLECTED_DATA_FILENAME);
+		assertTrue(Files.exists(path));
+
+		recordStorage.deleteByTypeAndId("place", "place:0001");
+
+		assertFalse(Files.exists(path));
+	}
+
+	@Test
+	public void testDeletedCollectedDataToDiskTwoRecordOneTermDifferentDataDividers()
+			throws IOException {
+		createRecordTypePlace();
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm);
+
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
+
+		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
+		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place", "place:0002");
+		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
+		collectedData2.addChild(collectStorageTerm2);
+
+		DataGroup collectedDataTerm2 = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm2.addChild(collectedDataTerm2);
+
+		recordStorage.create("place", "place:0002", dataGroup2, collectedData2, emptyLinkList,
+				"testSystem");
+
+		Path path = Paths.get(basePath, COLLECTED_DATA_FILENAME);
+		assertTrue(Files.exists(path));
+
+		Path path2 = Paths.get(basePath, "collectedData_testSystem.json");
+		assertTrue(Files.exists(path2));
+
+		recordStorage.deleteByTypeAndId("place", "place:0001");
+		assertFalse(Files.exists(path));
+		assertTrue(Files.exists(path2));
+
+		recordStorage.deleteByTypeAndId("place", "place:0002");
+		assertFalse(Files.exists(path));
+		assertFalse(Files.exists(path2));
+	}
+
+	@Test
+	public void testDeletedCollectedDataToDiskTwoRecordOneTerm() throws IOException {
+		createRecordTypePlace();
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		collectedData.addChild(collectStorageTerm);
+
+		DataGroup collectedDataTerm = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm.addChild(collectedDataTerm);
+
+		recordStorage.create("place", "place:0001", dataGroup, collectedData, emptyLinkList, "cora");
+
+		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
+		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place", "place:0002");
+		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
+		collectedData2.addChild(collectStorageTerm2);
+
+		DataGroup collectedDataTerm2 = DataCreator
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"placeNameStorageTerm", "Uppsala", "placeName");
+		collectStorageTerm2.addChild(collectedDataTerm2);
+
+		recordStorage.create("place", "place:0002", dataGroup2, collectedData2, emptyLinkList, "cora");
+
+		Path path = Paths.get(basePath, COLLECTED_DATA_FILENAME);
+		assertTrue(Files.exists(path));
+
+		recordStorage.deleteByTypeAndId("place", "place:0001");
+		assertTrue(Files.exists(path));
+
+		recordStorage.deleteByTypeAndId("place", "place:0002");
+		assertFalse(Files.exists(path));
+	}
+
+	@Test
 	public void testInitWithFileOnDiskNoLinksOnDisk() {
 		createRecordTypePlace();
 		writePlaceFileToDisk();

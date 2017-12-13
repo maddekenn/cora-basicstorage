@@ -449,10 +449,12 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		checkRecordExists(recordType, recordId);
 		removeOldLinksStoredAsIncomingLinks(recordType, recordId);
 		removeFromLinkList(recordType, recordId);
+		collectedTermsHolder.removePreviousCollectedStorageTerms(recordType, recordId);
 		records.get(recordType).remove(recordId);
 		if (records.get(recordType).isEmpty()) {
 			records.remove(recordType);
 		}
+
 	}
 
 	private void removeFromLinkList(String recordType, String recordId) {

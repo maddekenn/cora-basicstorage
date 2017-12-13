@@ -160,6 +160,24 @@ public class RecordStorageInMemoryListTest {
 	}
 
 	@Test
+	public void testListAfterDeleteWithCollectedStorageTermReadWithMatchingUppsalaFilter() {
+		createPlaceInStorageWithUppsalaStorageTerm();
+		createPlaceInStorageWithStockholmStorageTerm();
+
+		DataGroup filter = DataCreator.createEmptyFilter();
+		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "placeName",
+				"Uppsala");
+		filter.addChild(part);
+
+		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		assertEquals(readList.size(), 1);
+
+		recordStorage.deleteByTypeAndId("place", "place:0001");
+		Collection<DataGroup> readList2 = recordStorage.readList("place", filter);
+		assertEquals(readList2.size(), 0);
+	}
+
+	@Test
 	public void testListWithCollectedStorageTermReadWithMatchingUppsalaFilterFromTwoRecords() {
 		createPlaceInStorageWithUppsalaStorageTerm();
 		createPlaceInStorageWithStockholmStorageTerm();

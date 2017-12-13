@@ -191,4 +191,5 @@ class CollectedTermsInMemoryStorage {
 	Map<String, DataGroup> structureCollectedTermsForDisk() {
 		return new CollectedDataOrganiser().structureCollectedDataForDisk(terms);
 	}
+
 }
