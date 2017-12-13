@@ -68,10 +68,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		ensureStorageExistsForRecordType(recordType);
 		checkNoConflictOnRecordId(recordType, recordId);
 		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record, dataDivider);
-		DataGroup independentCopyOfCollectedTerms = createIndependentCopy(collectedTerms);
-		// collectedTermsHolder.storeCollectedTerms(recordType, recordId, collectedTerms, dataDivider);
-		collectedTermsHolder.storeCollectedTerms(recordType, recordId, independentCopyOfCollectedTerms,
-				dataDivider);
+		collectedTermsHolder.storeCollectedTerms(recordType, recordId, collectedTerms, dataDivider);
 		storeLinks(recordType, recordId, linkList, dataDivider);
 	}
 
@@ -524,10 +521,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		removeOldLinksStoredAsIncomingLinks(recordType, recordId);
 		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record, dataDivider);
 		ensureStorageExistsForRecordType(recordType);
-		DataGroup independentCopyOfCollectedTerms = createIndependentCopy(collectedTerms);
-		// collectedTermsHolder.storeCollectedTerms(recordType, recordId, collectedTerms, dataDivider);
-		collectedTermsHolder.storeCollectedTerms(recordType, recordId, independentCopyOfCollectedTerms,
-				dataDivider);
+		collectedTermsHolder.storeCollectedTerms(recordType, recordId, collectedTerms, dataDivider);
 		storeLinks(recordType, recordId, linkList, dataDivider);
 	}
 
