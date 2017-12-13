@@ -52,10 +52,24 @@ class CollectedTermsInMemoryStorage {
 
 	private void removePreviousCollectedStorageTermsForRecordId(String recordId,
 			Map<String, List<StorageTermData>> termsForRecordId) {
+		List<String> idsToRemove = new ArrayList<>();
+		findIdsToRemove(recordId, termsForRecordId, idsToRemove);
+		removeStorageTermsForIds(termsForRecordId, idsToRemove);
+	}
+
+	private void findIdsToRemove(String recordId, Map<String, List<StorageTermData>> termsForRecordId,
+			List<String> idsToRemove) {
 		for (Entry<String, List<StorageTermData>> recordIdEntry : termsForRecordId.entrySet()) {
 			if (termsExistForRecordId(recordId, recordIdEntry)) {
-				termsForRecordId.remove(recordIdEntry.getKey());
+				idsToRemove.add(recordIdEntry.getKey());
 			}
+		}
+	}
+
+	private void removeStorageTermsForIds(Map<String, List<StorageTermData>> termsForRecordId,
+			List<String> idsToRemove) {
+		for (String key : idsToRemove) {
+			termsForRecordId.remove(key);
 		}
 	}
 
