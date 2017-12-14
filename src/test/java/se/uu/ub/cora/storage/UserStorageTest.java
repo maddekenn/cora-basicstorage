@@ -20,7 +20,6 @@
 package se.uu.ub.cora.storage;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
@@ -37,6 +36,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.storage.testdata.TestDataAppTokenStorage;
 
 public class UserStorageTest {
@@ -98,6 +98,11 @@ public class UserStorageTest {
 				.getFirstAtomicValueWithNameInData("id"), "12345");
 	}
 
+	@Test(expectedExceptions = RecordNotFoundException.class)
+	public void testGetUserNotFound() {
+		userStorage.getUserById("ThisUserDoesNotExist");
+	}
+
 	@Test
 	public void testGetUserDummy1() {
 		DataGroup userGroup = userStorage.getUserById("dummy1");
@@ -107,9 +112,46 @@ public class UserStorageTest {
 
 	@Test
 	public void testGetUserRepopulatesOnceFromDiskIfNotFound() {
-		DataGroup userGroup = userStorage.getUserById("unKnownUser");
-		assertNull(userGroup);
+		try {
+			userStorage.getUserById("unKnownUser");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		assertEquals(userStorage.getNoOfReadsFromDisk(), 2);
+	}
+
+	@Test(expectedExceptions = RecordNotFoundException.class)
+	public void testGetUserByIdFromLoginNotFound() {
+		userStorage.getUserByIdFromLogin("NotInStorage@not.ever");
+	}
+
+	@Test
+	public void testGetUserByIdFromLoginRepopulatesOnceFromDiskIfNotFound() {
+		try {
+			userStorage.getUserByIdFromLogin("NotInStorage@not.ever");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		assertEquals(userStorage.getNoOfReadsFromDisk(), 2);
+	}
+
+	@Test
+	public void testGetUserByIdFromLogin() {
+		DataGroup userGroup = userStorage.getUserByIdFromLogin("noAppTokenUser@ub.uu.se");
+		assertEquals(userGroup.getFirstGroupWithNameInData("recordInfo")
+				.getFirstAtomicValueWithNameInData("id"), "noAppTokenUser");
+	}
+
+	@Test()
+	public void testGetUserByIdFromLoginTwoUsersSameUserIdFilterShouldResultInUserNotFound() {
+		String errorMessage = null;
+		try {
+			userStorage.getUserByIdFromLogin("sameUser@ub.uu.se");
+		} catch (Exception e) {
+			errorMessage = e.getMessage();
+		}
+		assertEquals(errorMessage,
+				"More than one users with same userId, no user returned: sameUser@ub.uu.se");
 	}
 
 }

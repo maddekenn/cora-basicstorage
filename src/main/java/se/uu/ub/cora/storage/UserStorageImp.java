@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import se.uu.ub.cora.bookkeeper.data.DataAtomic;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.userpicker.UserStorage;
@@ -98,9 +99,9 @@ public class UserStorageImp implements UserStorage {
 
 	@Override
 	public DataGroup getUserById(String id) {
-		DataGroup userGroup = findUser(id);
-		if (userGroup != null) {
-			return userGroup;
+		DataGroup userDataGroup = findUser(id);
+		if (userDataGroup != null) {
+			return userDataGroup;
 		}
 		return repopulateDataFromStorageAndGetUser(id);
 	}
@@ -119,6 +120,52 @@ public class UserStorageImp implements UserStorage {
 
 	private DataGroup repopulateDataFromStorageAndGetUser(String userId) {
 		populateFromStorage();
-		return findUser(userId);
+		DataGroup findUser = findUser(userId);
+		if (null == findUser) {
+			throw new RecordNotFoundException("User not found: " + userId);
+		}
+		return findUser;
+	}
+
+	@Override
+	public DataGroup getUserByIdFromLogin(String idFromLogin) {
+		try {
+			return findUserByIdFromLogin(idFromLogin);
+		} catch (Exception e) {
+			populateFromStorage();
+		}
+		return tryAfterRepopulateFromStorageToFindNewlyCreatedUsers(idFromLogin);
+	}
+
+	private DataGroup findUserByIdFromLogin(String idFromLogin) {
+		Collection<DataGroup> foundUsers = getUserFromStorageByIdFromLogin(idFromLogin);
+		throwErrorIfMoreThanOneUserReturnedFromStorage(idFromLogin, foundUsers);
+		return foundUsers.iterator().next();
+	}
+
+	private Collection<DataGroup> getUserFromStorageByIdFromLogin(String idFromLogin) {
+		DataGroup filter = createFilterForIdFromLogin(idFromLogin);
+		return recordStorage.readAbstractList("user", filter);
+	}
+
+	private void throwErrorIfMoreThanOneUserReturnedFromStorage(String idFromLogin,
+			Collection<DataGroup> foundUsers) {
+		if (foundUsers.size() > 1) {
+			throw new RecordNotFoundException(
+					"More than one users with same userId, no user returned: " + idFromLogin);
+		}
+	}
+
+	private DataGroup createFilterForIdFromLogin(String idFromLogin) {
+		DataGroup filter = DataGroup.withNameInData("filter");
+		DataGroup part = DataGroup.withNameInData("part");
+		filter.addChild(part);
+		part.addChild(DataAtomic.withNameInDataAndValue("key", "userId"));
+		part.addChild(DataAtomic.withNameInDataAndValue("value", idFromLogin));
+		return filter;
+	}
+
+	private DataGroup tryAfterRepopulateFromStorageToFindNewlyCreatedUsers(String idFromLogin) {
+		return findUserByIdFromLogin(idFromLogin);
 	}
 }
