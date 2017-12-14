@@ -101,6 +101,14 @@ public class TestDataAppTokenStorage {
 		return recordsOnDisk;
 	}
 
+	public static void createUserOnDisk(RecordStorageOnDisk recordsOnDisk) {
+		String noAppTokenUserJson = "{\"name\":\"user\",\"children\":[{\"name\":\"recordInfo\",\"children\":[{\"name\":\"id\",\"value\":\"createdLater\"},{\"name\":\"type\",\"value\":\"systemTwoUser\"},{\"name\":\"createdBy\",\"value\":\"131313\"},{\"name\":\"dataDivider\",\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"},{\"name\":\"linkedRecordId\",\"value\":\"systemOne\"}]}]},{\"name\":\"userId\",\"value\":\"noAppTokenUser@ub.uu.se\"},{\"name\":\"userFirstname\",\"value\":\"Dummy\"},{\"name\":\"userLastname\",\"value\":\"Dumsson\"},{\"name\":\"userRole\",\"children\":[{\"name\":\"userRole\",\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"permissionRole\"},{\"name\":\"linkedRecordId\",\"value\":\"nothing\"}]},{\"name\":\"userRoleRulePart\",\"children\":[{\"name\":\"permissionRulePart\",\"children\":[{\"name\":\"permissionRulePartValue\",\"value\":\"system.\",\"repeatId\":\"0\"}],\"attributes\":{\"type\":\"organisation\"}}]}],\"repeatId\":\"0\"},{\"name\":\"activeStatus\",\"value\":\"inactive\"}]}";
+		DataGroup noAppTokenUser = convertJsonStringToDataGroup(noAppTokenUserJson);
+		DataGroup collectedData = createCollectedDataForUserIdWithValue("createdLater@ub.uu.se");
+		recordsOnDisk.create("systemTwoUser", "createdLater", noAppTokenUser, collectedData,
+				DataGroup.withNameInData("collectedLinksList"), "systemTwo");
+	}
+
 	private static DataGroup createCollectedDataForUserIdWithValue(String termValue) {
 		// collectedData
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");

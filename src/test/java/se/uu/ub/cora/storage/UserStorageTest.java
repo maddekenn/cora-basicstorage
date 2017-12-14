@@ -112,11 +112,12 @@ public class UserStorageTest {
 
 	@Test
 	public void testGetUserRepopulatesOnceFromDiskIfNotFound() {
-		try {
-			userStorage.getUserById("unKnownUser");
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		RecordStorageOnDisk recordsOnDisk = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+		TestDataAppTokenStorage.createUserOnDisk(recordsOnDisk);
+		DataGroup userGroup = userStorage.getUserById("createdLater");
+		assertEquals(userGroup.getFirstGroupWithNameInData("recordInfo")
+				.getFirstAtomicValueWithNameInData("id"), "createdLater");
 		assertEquals(userStorage.getNoOfReadsFromDisk(), 2);
 	}
 
@@ -127,11 +128,12 @@ public class UserStorageTest {
 
 	@Test
 	public void testGetUserByIdFromLoginRepopulatesOnceFromDiskIfNotFound() {
-		try {
-			userStorage.getUserByIdFromLogin("NotInStorage@not.ever");
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		RecordStorageOnDisk recordsOnDisk = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+		TestDataAppTokenStorage.createUserOnDisk(recordsOnDisk);
+		DataGroup userGroup = userStorage.getUserByIdFromLogin("createdLater@ub.uu.se");
+		assertEquals(userGroup.getFirstGroupWithNameInData("recordInfo")
+				.getFirstAtomicValueWithNameInData("id"), "createdLater");
 		assertEquals(userStorage.getNoOfReadsFromDisk(), 2);
 	}
 
