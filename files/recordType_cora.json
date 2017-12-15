@@ -5762,27 +5762,40 @@
         {
             "children": [
                 {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataGroupGroup"
+                        }
+                    ],
+                    "name": "metadataId"
+                },
+                {
                     "name": "abstract",
                     "value": "false"
                 },
                 {
                     "children": [
                         {
-                            "name": "id",
-                            "value": "metadataGroup"
+                            "name": "linkedRecordType",
+                            "value": "recordType"
                         },
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
+                            "name": "linkedRecordId",
+                            "value": "metadata"
+                        }
+                    ],
+                    "name": "parentId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "metadataGroup"
                         },
                         {
                             "children": [
@@ -5814,59 +5827,38 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "user"
+                                    "value": "system"
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "12345"
+                                    "value": "cora"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2017-10-01 00:00:00.0"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:52:34.0"
+                            "value": "2017-12-14 20:53:06.470"
                         }
                     ],
                     "name": "recordInfo"
-                },
-                {
-                    "name": "userSuppliedId",
-                    "value": "true"
-                },
-                {
-                    "name": "selfPresentationViewId",
-                    "value": "metadataGroupViewSelfPGroup"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "metadataGroupGroup"
-                        }
-                    ],
-                    "name": "metadataId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "recordType"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "metadata"
-                        }
-                    ],
-                    "name": "parentId"
                 },
                 {
                     "children": [
@@ -5947,14 +5939,22 @@
                     "name": "listPresentationViewId"
                 },
                 {
+                    "name": "userSuppliedId",
+                    "value": "true"
+                },
+                {
+                    "name": "selfPresentationViewId",
+                    "value": "metadataGroupViewSelfPGroup"
+                },
+                {
                     "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "metadataGroupText"
-                        },
                         {
                             "name": "linkedRecordType",
                             "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataGroupText"
                         }
                     ],
                     "name": "textId"
@@ -5962,12 +5962,12 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "metadataGroupDefText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataGroupDefText"
                         }
                     ],
                     "name": "defTextId"
@@ -5984,6 +5984,50 @@
                         }
                     ],
                     "name": "search"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataGroupFilterPGroup"
+                        }
+                    ],
+                    "name": "autocompletePresentationView"
+                },
+                {
+                    "repeatId": "0",
+                    "name": "groupOfRecordType",
+                    "value": "metadata"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataGroupFilterGroup"
+                        }
+                    ],
+                    "name": "filter"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "metadataGroupFilterPGroup"
+                        }
+                    ],
+                    "name": "filterPresentation"
                 }
             ],
             "name": "recordType"
@@ -8687,6 +8731,19 @@
         {
             "children": [
                 {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userGroup"
+                        }
+                    ],
+                    "name": "metadataId"
+                },
+                {
                     "name": "abstract",
                     "value": "true"
                 },
@@ -8695,19 +8752,6 @@
                         {
                             "name": "id",
                             "value": "user"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
                         },
                         {
                             "children": [
@@ -8739,46 +8783,38 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "user"
+                                    "value": "system"
                                 },
                                 {
                                     "name": "linkedRecordId",
-                                    "value": "12345"
+                                    "value": "cora"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2017-10-01 00:00:00.0"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:52:34.0"
+                            "value": "2017-12-14 20:26:02.158"
                         }
                     ],
                     "name": "recordInfo"
-                },
-                {
-                    "name": "userSuppliedId",
-                    "value": "true"
-                },
-                {
-                    "name": "selfPresentationViewId",
-                    "value": "userViewSelfPGroup"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "userGroup"
-                        }
-                    ],
-                    "name": "metadataId"
                 },
                 {
                     "children": [
@@ -8859,14 +8895,22 @@
                     "name": "listPresentationViewId"
                 },
                 {
+                    "name": "userSuppliedId",
+                    "value": "true"
+                },
+                {
+                    "name": "selfPresentationViewId",
+                    "value": "userViewSelfPGroup"
+                },
+                {
                     "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "userText"
-                        },
                         {
                             "name": "linkedRecordType",
                             "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userText"
                         }
                     ],
                     "name": "textId"
@@ -8874,12 +8918,12 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "userDefText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "text"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userDefText"
                         }
                     ],
                     "name": "defTextId"
@@ -8896,6 +8940,45 @@
                         }
                     ],
                     "name": "search"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userFilterPGroup"
+                        }
+                    ],
+                    "name": "autocompletePresentationView"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userFilterGroup"
+                        }
+                    ],
+                    "name": "filter"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userFilterPGroup"
+                        }
+                    ],
+                    "name": "filterPresentation"
                 }
             ],
             "name": "recordType"
