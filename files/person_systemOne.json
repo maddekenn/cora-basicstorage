@@ -268,6 +268,124 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "PersonTwo"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "person"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "tsCreated",
+                            "value": "2018-01-25 07:10:45.189"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
+                            "name": "tsUpdated",
+                            "value": "2018-01-25 07:12:50.183"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [{
+                                "name": "value",
+                                "value": "Person"
+                            }],
+                            "name": "namePart",
+                            "attributes": {"type": "givenName"}
+                        },
+                        {
+                            "children": [{
+                                "name": "value",
+                                "value": "Two"
+                            }],
+                            "name": "namePart",
+                            "attributes": {"type": "familyName"}
+                        },
+                        {
+                            "children": [{
+                                "name": "value",
+                                "value": "II"
+                            }],
+                            "name": "namePart",
+                            "attributes": {"type": "number"}
+                        }
+                    ],
+                    "name": "name",
+                    "attributes": {"type": "authorized"}
+                },
+                {
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "person"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "PersonOne"
+                        }
+                    ],
+                    "name": "relatedPerson"
+                }
+            ],
+            "name": "person"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "sdfsdfsg"
                         },
                         {
@@ -424,7 +542,7 @@
                         },
                         {
                             "name": "tsUpdated",
-                            "value": "2017-11-22 11:25:16.040"
+                            "value": "2018-01-25 07:32:14.933"
                         }
                     ],
                     "name": "recordInfo"
@@ -472,6 +590,50 @@
                     ],
                     "name": "name",
                     "attributes": {"type": "authorized"}
+                },
+                {
+                    "repeatId": "2",
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "person"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "PersonTwo"
+                        }
+                    ],
+                    "name": "relatedPerson"
+                },
+                {
+                    "repeatId": "3",
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "organisation"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "someOrganisation"
+                        }
+                    ],
+                    "name": "relatedOrganisation",
+                    "attributes": {"type": "other"}
+                },
+                {
+                    "repeatId": "5",
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "organisation"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "otherOrganisation"
+                        }
+                    ],
+                    "name": "relatedOrganisation",
+                    "attributes": {"type": "other"}
                 }
             ],
             "name": "person"
