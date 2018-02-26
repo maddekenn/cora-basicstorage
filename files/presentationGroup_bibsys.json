@@ -1927,12 +1927,12 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
                                 }
                             ],
                             "name": "createdBy"
@@ -1957,19 +1957,19 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "141414"
+                                    "name": "linkedRecordType",
+                                    "value": "user"
                                 },
                                 {
-                                    "name": "linkedRecordType",
-                                    "value": "systemOneUser"
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
                                 }
                             ],
                             "name": "updatedBy"
                         },
                         {
                             "name": "tsUpdated",
-                            "value": "2017-11-29 07:58:47.168"
+                            "value": "2018-02-26 08:21:58.721"
                         }
                     ],
                     "name": "recordInfo"
@@ -1988,52 +1988,28 @@
                     "name": "presentationOf"
                 },
                 {
-                    "children": [
-                        {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [{
                             "repeatId": "0",
                             "children": [{
-                                "repeatId": "0",
-                                "children": [{
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "recordInfoMenuPGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "presentationGroup"
-                                        }
-                                    ],
-                                    "name": "ref",
-                                    "attributes": {"type": "presentation"}
-                                }],
-                                "name": "refGroup"
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "presentationGroup"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "recordInfoMenuPGroup"
+                                    }
+                                ],
+                                "name": "ref",
+                                "attributes": {"type": "presentation"}
                             }],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "1",
-                            "children": [{
-                                "repeatId": "0",
-                                "children": [{
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "lastNameTextVarOutputPVar"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "presentationVar"
-                                        }
-                                    ],
-                                    "name": "ref",
-                                    "attributes": {"type": "presentation"}
-                                }],
-                                "name": "refGroup"
-                            }],
-                            "name": "childReference"
-                        }
-                    ],
+                            "name": "refGroup"
+                        }],
+                        "name": "childReference"
+                    }],
                     "name": "childReferences"
                 },
                 {
