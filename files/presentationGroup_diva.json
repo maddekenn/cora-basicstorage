@@ -1316,52 +1316,10 @@
         {
             "children": [
                 {
-                    "children": [{
-                        "repeatId": "0",
-                        "children": [{
-                            "repeatId": "0",
-                            "children": [{
-                                "children": [
-                                    {
-                                        "name": "linkedRecordId",
-                                        "value": "divaIdentifierTypePersonPCollVar"
-                                    },
-                                    {
-                                        "name": "linkedRecordType",
-                                        "value": "presentationCollectionVar"
-                                    }
-                                ],
-                                "name": "ref",
-                                "attributes": {"type": "presentation"}
-                            }],
-                            "name": "refGroup"
-                        }],
-                        "name": "childReference"
-                    }],
-                    "name": "childReferences"
-                },
-                {
-                    "name": "mode",
-                    "value": "input"
-                },
-                {
                     "children": [
                         {
                             "name": "id",
                             "value": "divaIdentifierPersonPGroup"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "diva"
-                                }
-                            ],
-                            "name": "dataDivider"
                         },
                         {
                             "children": [
@@ -1379,12 +1337,12 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "141414"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
                                 }
                             ],
                             "name": "createdBy"
@@ -1392,23 +1350,36 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "141414"
+                                    "name": "linkedRecordType",
+                                    "value": "system"
                                 },
                                 {
-                                    "name": "linkedRecordType",
-                                    "value": "systemOneUser"
+                                    "name": "linkedRecordId",
+                                    "value": "diva"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2018-02-14 08:37:33.099"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2018-02-14 08:37:33.099"
+                            "value": "2018-02-28 08:16:08.644"
                         }
                     ],
                     "name": "recordInfo"
@@ -1425,6 +1396,59 @@
                         }
                     ],
                     "name": "presentationOf"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationCollectionVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "divaIdentifierTypePersonPCollVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "identifierValueTextVarPVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
                 }
             ],
             "name": "presentation",

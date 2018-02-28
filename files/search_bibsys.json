@@ -293,21 +293,21 @@
                 {
                     "children": [
                         {
-                            "name": "id",
-                            "value": "organisationSearch"
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
                         },
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "bibsys"
-                                }
-                            ],
-                            "name": "dataDivider"
+                            "name": "linkedRecordId",
+                            "value": "organisationAutocompleteSearchGroup"
+                        }
+                    ],
+                    "name": "metadataId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "organisationSearch"
                         },
                         {
                             "children": [
@@ -325,12 +325,12 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "141414"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
                                 }
                             ],
                             "name": "createdBy"
@@ -338,26 +338,52 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "141414"
+                                    "name": "linkedRecordType",
+                                    "value": "system"
                                 },
                                 {
-                                    "name": "linkedRecordType",
-                                    "value": "systemOneUser"
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2017-11-22 09:28:50.338"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-22 09:28:50.338"
+                            "value": "2018-02-28 09:40:43.718"
                         }
                     ],
                     "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "presentationGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "organisationAutocompleteSearchPGroup"
+                        }
+                    ],
+                    "name": "presentationId"
                 },
                 {
                     "repeatId": "0",
@@ -374,40 +400,18 @@
                     "name": "recordTypeToSearchIn"
                 },
                 {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "autocompleteSearchGroup"
-                        }
-                    ],
-                    "name": "metadataId"
+                    "name": "searchGroup",
+                    "value": "autocomplete"
                 },
                 {
                     "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "presentationGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "autocompleteSearchPGroup"
-                        }
-                    ],
-                    "name": "presentationId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "organisationSearchText"
-                        },
                         {
                             "name": "linkedRecordType",
                             "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "organisationSearchText"
                         }
                     ],
                     "name": "textId"
@@ -415,19 +419,15 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "organisationSearchDefText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "organisationSearchDefText"
                         }
                     ],
                     "name": "defTextId"
-                },
-                {
-                    "name": "searchGroup",
-                    "value": "autocomplete"
                 }
             ],
             "name": "search"
