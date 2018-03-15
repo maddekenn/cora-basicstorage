@@ -3,27 +3,40 @@
         {
             "children": [
                 {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "systemOneUserGroup"
+                        }
+                    ],
+                    "name": "metadataId"
+                },
+                {
                     "name": "abstract",
                     "value": "false"
                 },
                 {
                     "children": [
                         {
-                            "name": "id",
-                            "value": "systemOneUser"
+                            "name": "linkedRecordType",
+                            "value": "recordType"
                         },
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "systemOne"
-                                }
-                            ],
-                            "name": "dataDivider"
+                            "name": "linkedRecordId",
+                            "value": "user"
+                        }
+                    ],
+                    "name": "parentId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "systemOneUser"
                         },
                         {
                             "children": [
@@ -41,12 +54,12 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
                                 }
                             ],
                             "name": "createdBy"
@@ -54,60 +67,39 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
+                                    "name": "linkedRecordType",
+                                    "value": "system"
                                 },
                                 {
-                                    "name": "linkedRecordType",
-                                    "value": "systemOneUser"
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2017-10-01 00:00:00.0"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:52:34.0"
+                            "value": "2018-03-15 10:07:12.154"
                         }
                     ],
                     "name": "recordInfo"
-                },
-                {
-                    "name": "userSuppliedId",
-                    "value": "true"
-                },
-                {
-                    "name": "selfPresentationViewId",
-                    "value": "systemOneUserViewSelfPGroup"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "systemOneUserGroup"
-                        }
-                    ],
-                    "name": "metadataId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "recordType"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "user"
-                        }
-                    ],
-                    "name": "parentId"
                 },
                 {
                     "children": [
@@ -188,14 +180,22 @@
                     "name": "listPresentationViewId"
                 },
                 {
+                    "name": "userSuppliedId",
+                    "value": "true"
+                },
+                {
+                    "name": "selfPresentationViewId",
+                    "value": "systemOneUserViewSelfPGroup"
+                },
+                {
                     "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "systemOneUserText"
-                        },
                         {
                             "name": "linkedRecordType",
                             "value": "textSystemOne"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "systemOneUserText"
                         }
                     ],
                     "name": "textId"
@@ -203,12 +203,12 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "systemOneUserDefText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "textSystemOne"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "systemOneUserDefText"
                         }
                     ],
                     "name": "defTextId"
@@ -225,6 +225,16 @@
                         }
                     ],
                     "name": "search"
+                },
+                {
+                    "repeatId": "0",
+                    "name": "groupOfRecordType",
+                    "value": "permission"
+                },
+                {
+                    "repeatId": "1",
+                    "name": "groupOfRecordType",
+                    "value": "systemConfiguration"
                 }
             ],
             "name": "recordType"
@@ -251,21 +261,21 @@
                 {
                     "children": [
                         {
-                            "name": "id",
-                            "value": "person"
+                            "name": "linkedRecordType",
+                            "value": "recordType"
                         },
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "systemOne"
-                                }
-                            ],
-                            "name": "dataDivider"
+                            "name": "linkedRecordId",
+                            "value": "authority"
+                        }
+                    ],
+                    "name": "parentId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "person"
                         },
                         {
                             "children": [
@@ -283,12 +293,12 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
                                 }
                             ],
                             "name": "createdBy"
@@ -296,23 +306,36 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
+                                    "name": "linkedRecordType",
+                                    "value": "system"
                                 },
                                 {
-                                    "name": "linkedRecordType",
-                                    "value": "systemOneUser"
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2017-10-01 00:00:00.0"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:52:34.0"
+                            "value": "2018-03-15 09:38:32.327"
                         }
                     ],
                     "name": "recordInfo"
@@ -406,12 +429,12 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "personText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "personText"
                         }
                     ],
                     "name": "textId"
@@ -419,12 +442,12 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "personDefText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "personDefText"
                         }
                     ],
                     "name": "defTextId"
@@ -443,17 +466,9 @@
                     "name": "search"
                 },
                 {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "recordType"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "authority"
-                        }
-                    ],
-                    "name": "parentId"
+                    "repeatId": "0",
+                    "name": "groupOfRecordType",
+                    "value": "authority"
                 }
             ],
             "name": "recordType"
