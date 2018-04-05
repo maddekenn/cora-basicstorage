@@ -1018,6 +1018,178 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "presentationSearchRule"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "permissionRule"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "name": "tsCreated",
+                            "value": "2018-04-05 08:18:30.230"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
+                            "name": "tsUpdated",
+                            "value": "2018-04-05 08:30:26.900"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "2",
+                            "name": "permissionRulePartValue",
+                            "value": "system.search"
+                        },
+                        {
+                            "repeatId": "3",
+                            "name": "permissionRulePartValue",
+                            "value": "system.list"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "action"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "9",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentation"
+                        },
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationGroup"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationResourceLink"
+                        },
+                        {
+                            "repeatId": "2",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationRecordLink"
+                        },
+                        {
+                            "repeatId": "5",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationVar"
+                        },
+                        {
+                            "repeatId": "10",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationCollectionVar"
+                        },
+                        {
+                            "repeatId": "11",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationSurroundingContainer"
+                        },
+                        {
+                            "repeatId": "12",
+                            "name": "permissionRulePartValue",
+                            "value": "system.presentationRepeatingContainer"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "recordType"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.existing"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.deleted"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "delete"}
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.published"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.notpublished"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "publish"}
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "permissionRule"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "systemOneSystemUser"
                         },
                         {
