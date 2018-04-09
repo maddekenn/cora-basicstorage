@@ -5235,6 +5235,170 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "permissionTermRulePartGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "metadataGroup"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
+                            "name": "tsCreated",
+                            "value": "2018-04-09 14:04:00.801"
+                        },
+                        {
+                            "name": "tsUpdated",
+                            "value": "2018-04-09 14:04:00.801"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "name": "nameInData",
+                    "value": "permissionTermRulePart"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionTermRulePartRuleLink"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "X"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataTextVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionTermRulePartValueTextVar"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionTermRulePartGroupText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionTermRulePartGroupDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                }
+            ],
+            "name": "metadata",
+            "attributes": {"type": "group"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "presentationsOfGroup"
                         },
                         {
@@ -6588,7 +6752,7 @@
                         },
                         {
                             "name": "tsUpdated",
-                            "value": "2018-04-09 12:02:31.754"
+                            "value": "2018-04-09 14:06:06.011"
                         }
                     ],
                     "name": "recordInfo"
@@ -6699,6 +6863,33 @@
                                         {
                                             "name": "linkedRecordId",
                                             "value": "activeStatusCollectionVar"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "7",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "X"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionTermRulePartGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -14854,19 +15045,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -14879,12 +15057,12 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
                                 }
                             ],
                             "name": "createdBy"
@@ -14892,23 +15070,36 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
+                                    "name": "linkedRecordType",
+                                    "value": "system"
                                 },
                                 {
-                                    "name": "linkedRecordType",
-                                    "value": "systemOneUser"
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2017-10-01 00:00:00.0"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:46:48.0"
+                            "value": "2018-04-09 15:08:37.704"
                         }
                     ],
                     "name": "recordInfo"
@@ -14916,6 +15107,45 @@
                 {
                     "name": "nameInData",
                     "value": "permissionRule"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionRuleNewGroupText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionRuleNewGroupDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "defaultPermissionRuleGroup"
+                        }
+                    ],
+                    "name": "refParentId"
                 },
                 {
                     "children": [
@@ -14933,12 +15163,12 @@
                                 {
                                     "children": [
                                         {
-                                            "name": "linkedRecordId",
-                                            "value": "recordInfoNewGroup"
-                                        },
-                                        {
                                             "name": "linkedRecordType",
                                             "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "recordInfoNewGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -14960,12 +15190,12 @@
                                 {
                                     "children": [
                                         {
-                                            "name": "linkedRecordId",
-                                            "value": "permissionRulePartActionGroup"
-                                        },
-                                        {
                                             "name": "linkedRecordType",
                                             "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionRulePartActionGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -14987,66 +15217,12 @@
                                 {
                                     "children": [
                                         {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
                                             "name": "linkedRecordId",
                                             "value": "permissionRulePartRecordTypeGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "2",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "permissionRulePartDeleteGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "3",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "permissionRulePartPublishGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -15068,12 +15244,39 @@
                                 {
                                     "children": [
                                         {
-                                            "name": "linkedRecordId",
-                                            "value": "activeStatusCollectionVar"
-                                        },
-                                        {
                                             "name": "linkedRecordType",
                                             "value": "metadataCollectionVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "activeStatusCollectionVar"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "7",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "X"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionTermRulePartGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -15083,45 +15286,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "permissionRuleNewGroupText"
-                        },
-                        {
-                            "name": "linkedRecordType",
-                            "value": "coraText"
-                        }
-                    ],
-                    "name": "textId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "permissionRuleNewGroupDefText"
-                        },
-                        {
-                            "name": "linkedRecordType",
-                            "value": "coraText"
-                        }
-                    ],
-                    "name": "defTextId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "defaultPermissionRuleGroup"
-                        }
-                    ],
-                    "name": "refParentId"
                 }
             ],
             "name": "metadata",
@@ -30848,19 +31012,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -30873,12 +31024,12 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
                                 }
                             ],
                             "name": "createdBy"
@@ -30886,23 +31037,36 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
+                                    "name": "linkedRecordType",
+                                    "value": "system"
                                 },
                                 {
-                                    "name": "linkedRecordType",
-                                    "value": "systemOneUser"
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2017-10-01 00:00:00.0"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:46:48.0"
+                            "value": "2018-04-09 14:33:18.729"
                         }
                     ],
                     "name": "recordInfo"
@@ -30910,6 +31074,45 @@
                 {
                     "name": "nameInData",
                     "value": "permissionRule"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "defaultPermissionRuleGroupText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "defaultPermissionRuleGroupDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionRuleGroup"
+                        }
+                    ],
+                    "name": "refParentId"
                 },
                 {
                     "children": [
@@ -30927,12 +31130,12 @@
                                 {
                                     "children": [
                                         {
-                                            "name": "linkedRecordId",
-                                            "value": "recordInfoGroup"
-                                        },
-                                        {
                                             "name": "linkedRecordType",
                                             "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "recordInfoGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -30954,12 +31157,12 @@
                                 {
                                     "children": [
                                         {
-                                            "name": "linkedRecordId",
-                                            "value": "permissionRulePartActionGroup"
-                                        },
-                                        {
                                             "name": "linkedRecordType",
                                             "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionRulePartActionGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -30981,66 +31184,12 @@
                                 {
                                     "children": [
                                         {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
                                             "name": "linkedRecordId",
                                             "value": "permissionRulePartRecordTypeGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "2",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "permissionRulePartDeleteGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "3",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "permissionRulePartPublishGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -31062,12 +31211,39 @@
                                 {
                                     "children": [
                                         {
-                                            "name": "linkedRecordId",
-                                            "value": "activeStatusCollectionVar"
-                                        },
-                                        {
                                             "name": "linkedRecordType",
                                             "value": "metadataCollectionVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "activeStatusCollectionVar"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "7",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "X"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionTermRulePartGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -31077,45 +31253,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "defaultPermissionRuleGroupText"
-                        },
-                        {
-                            "name": "linkedRecordType",
-                            "value": "coraText"
-                        }
-                    ],
-                    "name": "textId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "defaultPermissionRuleGroupDefText"
-                        },
-                        {
-                            "name": "linkedRecordType",
-                            "value": "coraText"
-                        }
-                    ],
-                    "name": "defTextId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "metadataGroup"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "permissionRuleGroup"
-                        }
-                    ],
-                    "name": "refParentId"
                 }
             ],
             "name": "metadata",

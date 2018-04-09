@@ -66,7 +66,7 @@
                         },
                         {
                             "name": "tsUpdated",
-                            "value": "2018-04-09 12:03:36.611"
+                            "value": "2018-04-09 14:44:12.523"
                         }
                     ],
                     "name": "recordInfo"
@@ -107,26 +107,32 @@
                     "attributes": {"type": "recordType"}
                 },
                 {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.*"
-                    }],
-                    "name": "permissionRulePart",
-                    "attributes": {"type": "delete"}
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.*"
-                    }],
-                    "name": "permissionRulePart",
-                    "attributes": {"type": "publish"}
-                },
-                {
                     "name": "activeStatus",
                     "value": "active"
+                },
+                {
+                    "repeatId": "0",
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "collectPermissionTerm"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "deletedPermissionTerm"
+                                }
+                            ],
+                            "name": "rule"
+                        },
+                        {
+                            "repeatId": "0",
+                            "name": "value",
+                            "value": "system.existing"
+                        }
+                    ],
+                    "name": "permissionTermRulePart"
                 }
             ],
             "name": "permissionRule"
