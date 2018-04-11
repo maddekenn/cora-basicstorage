@@ -1030,19 +1030,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "systemOne"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -1055,12 +1042,12 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
                                 }
                             ],
                             "name": "createdBy"
@@ -1068,23 +1055,36 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
+                                    "name": "linkedRecordType",
+                                    "value": "system"
                                 },
                                 {
-                                    "name": "linkedRecordType",
-                                    "value": "systemOneUser"
+                                    "name": "linkedRecordId",
+                                    "value": "systemOne"
                                 }
                             ],
-                            "name": "updatedBy"
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
                             "value": "2017-10-01 00:00:00.0"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "updatedBy"
+                        },
+                        {
                             "name": "tsUpdated",
-                            "value": "2017-11-01 17:46:48.0"
+                            "value": "2018-04-11 08:24:44.092"
                         }
                     ],
                     "name": "recordInfo"
@@ -1096,71 +1096,12 @@
                 {
                     "children": [
                         {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "userRoleLink"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataRecordLink"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
+                            "name": "linkedRecordType",
+                            "value": "coraText"
                         },
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "systemOneUserRoleRulePartGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        }
-                    ],
-                    "name": "childReferences"
-                },
-                {
-                    "children": [
                         {
                             "name": "linkedRecordId",
                             "value": "systemOneUserRoleRelationGroupText"
-                        },
-                        {
-                            "name": "linkedRecordType",
-                            "value": "coraText"
                         }
                     ],
                     "name": "textId"
@@ -1168,12 +1109,12 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "systemOneUserRoleRelationGroupDefText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "textSystemOne"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "systemOneUserRoleRelationGroupDefText"
                         }
                     ],
                     "name": "defTextId"
@@ -1190,6 +1131,36 @@
                         }
                     ],
                     "name": "refParentId"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "repeatMin",
+                                "value": "1"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "metadataRecordLink"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "userRoleLink"
+                                    }
+                                ],
+                                "name": "ref"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
+                    "name": "childReferences"
                 }
             ],
             "name": "metadata",
