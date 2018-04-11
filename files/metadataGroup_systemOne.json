@@ -1084,7 +1084,7 @@
                         },
                         {
                             "name": "tsUpdated",
-                            "value": "2018-04-11 08:24:44.092"
+                            "value": "2018-04-11 10:18:38.727"
                         }
                     ],
                     "name": "recordInfo"
@@ -1133,33 +1133,62 @@
                     "name": "refParentId"
                 },
                 {
-                    "children": [{
-                        "repeatId": "0",
-                        "children": [
-                            {
-                                "name": "repeatMin",
-                                "value": "1"
-                            },
-                            {
-                                "name": "repeatMax",
-                                "value": "1"
-                            },
-                            {
-                                "children": [
-                                    {
-                                        "name": "linkedRecordType",
-                                        "value": "metadataRecordLink"
-                                    },
-                                    {
-                                        "name": "linkedRecordId",
-                                        "value": "userRoleLink"
-                                    }
-                                ],
-                                "name": "ref"
-                            }
-                        ],
-                        "name": "childReference"
-                    }],
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataRecordLink"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "userRoleLink"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "X"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionTermRulePartGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        }
+                    ],
                     "name": "childReferences"
                 }
             ],
