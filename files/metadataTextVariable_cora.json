@@ -2841,19 +2841,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -2875,6 +2862,19 @@
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
@@ -2902,6 +2902,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-05-07 06:59:16.863"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -2909,10 +2932,6 @@
                 {
                     "name": "nameInData",
                     "value": "value"
-                },
-                {
-                    "name": "regEx",
-                    "value": "^system\\.[\\*A-Za-z.]{0,300}$"
                 },
                 {
                     "children": [
@@ -2939,6 +2958,10 @@
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "name": "regEx",
+                    "value": "^system\\.[\\*A-Za-z._]{0,300}$"
                 }
             ],
             "name": "metadata",
