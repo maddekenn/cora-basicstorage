@@ -407,19 +407,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -432,15 +419,28 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "131313"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "131313"
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
@@ -468,6 +468,52 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-05-09 09:42:24.777"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-05-09 09:42:33.920"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -482,31 +528,25 @@
                     "attributes": {"type": "action"}
                 },
                 {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.systemOneUser"
-                    }],
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "name": "permissionRulePartValue",
+                            "value": "system.systemOneUser"
+                        },
+                        {
+                            "repeatId": "1",
+                            "name": "permissionRulePartValue",
+                            "value": "system.coraUser"
+                        },
+                        {
+                            "repeatId": "2",
+                            "name": "permissionRulePartValue",
+                            "value": "system.user"
+                        }
+                    ],
                     "name": "permissionRulePart",
                     "attributes": {"type": "recordType"}
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.*"
-                    }],
-                    "name": "permissionRulePart",
-                    "attributes": {"type": "delete"}
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.*"
-                    }],
-                    "name": "permissionRulePart",
-                    "attributes": {"type": "publish"}
                 },
                 {
                     "name": "activeStatus",
