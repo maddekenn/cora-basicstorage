@@ -265,6 +265,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 		addRecordsToAggregatedRecordList(aggregatedRecordList, implementingChildRecordTypes,
 				filter);
+		addRecordsForParentIfParentIsNotAbstract(type, filter, aggregatedRecordList);
 		throwErrorIfEmptyAggregatedList(type, aggregatedRecordList);
 		return aggregatedRecordList;
 	}
@@ -272,11 +273,11 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	private List<String> findImplementingChildRecordTypes(String type) {
 		Map<String, DividerGroup> allRecordTypes = records.get(RECORD_TYPE);
 		List<String> implementingRecordTypes = new ArrayList<>();
-		return findImplementingChildRecordTypesUsingTypeAndRecorTypeList(type, allRecordTypes,
+		return findImplementingChildRecordTypesUsingTypeAndRecordTypeList(type, allRecordTypes,
 				implementingRecordTypes);
 	}
 
-	private List<String> findImplementingChildRecordTypesUsingTypeAndRecorTypeList(String type,
+	private List<String> findImplementingChildRecordTypesUsingTypeAndRecordTypeList(String type,
 			Map<String, DividerGroup> allRecordTypes, List<String> implementingRecordTypes) {
 		for (Entry<String, DividerGroup> entry : allRecordTypes.entrySet()) {
 			checkIfChildAndAddToList(type, implementingRecordTypes, entry);
@@ -291,7 +292,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 		if (isImplementingChild(type, dataGroup)) {
 			implementingRecordTypes.add(recordTypeId);
-			findImplementingChildRecordTypesUsingTypeAndRecorTypeList(entry.getKey(),
+			findImplementingChildRecordTypesUsingTypeAndRecordTypeList(entry.getKey(),
 					records.get(RECORD_TYPE), implementingRecordTypes);
 		}
 	}
@@ -320,11 +321,29 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 			List<String> implementingChildRecordTypes, DataGroup filter) {
 		for (String implementingRecordType : implementingChildRecordTypes) {
 			try {
-				Collection<DataGroup> readList = readList(implementingRecordType, filter);
-				aggregatedRecordList.addAll(readList);
+				readRecordsForTypeAndFilterAndAddToList(implementingRecordType, filter,
+						aggregatedRecordList);
 			} catch (RecordNotFoundException e) {
 				// Do nothing, another implementing child might have records
 			}
+		}
+	}
+
+	private void readRecordsForTypeAndFilterAndAddToList(String implementingRecordType,
+			DataGroup filter, List<DataGroup> aggregatedRecordList) {
+		Collection<DataGroup> readList = readList(implementingRecordType, filter);
+		aggregatedRecordList.addAll(readList);
+	}
+
+	private boolean parentRecordTypeIsNotAbstract(DataGroup recordTypeDataGroup) {
+		return !recordTypeIsAbstract(recordTypeDataGroup);
+	}
+
+	private void addRecordsForParentIfParentIsNotAbstract(String type, DataGroup filter,
+			List<DataGroup> aggregatedRecordList) {
+		DataGroup recordTypeDataGroup = read(RECORD_TYPE, type);
+		if (parentRecordTypeIsNotAbstract(recordTypeDataGroup)) {
+			readRecordsForTypeAndFilterAndAddToList(type, filter, aggregatedRecordList);
 		}
 	}
 

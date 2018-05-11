@@ -453,4 +453,38 @@ public class RecordStorageInMemoryListTest {
 		recordStorage.create("grandChildToAbstractAuthority", "grandChildToAbstractAuthority:0001",
 				dataGroup, DataCreator.createEmptyCollectedData(), emptyLinkList, dataDivider);
 	}
+
+	@Test
+	public void testReadAbstractRecordListWithGrandChildrenNoRecordsForChild() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
+		createGrandChildOfAbstractAuthorityRecord();
+
+		String recordType = "abstractAuthority";
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		assertEquals(recordList.size(), 1);
+	}
+
+	@Test
+	public void testReadAbstractRecordListWithGrandChildrenNoRecordsForGrandChild() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
+		createChildOfAbstractAuthorityRecord();
+
+		String recordType = "abstractAuthority";
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		assertEquals(recordList.size(), 1);
+	}
+
+	@Test
+	public void testReadAbstractRecordListWithNonAbstractRecordTypeWithChildren() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
+		createChildOfAbstractAuthorityRecord();
+		createGrandChildOfAbstractAuthorityRecord();
+
+		String recordType = "childToAbstractAuthority";
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		assertEquals(recordList.size(), 2);
+	}
 }
