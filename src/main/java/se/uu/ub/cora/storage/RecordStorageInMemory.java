@@ -208,6 +208,24 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	@Override
 	public Collection<DataGroup> readList(String type, DataGroup filter) {
+
+		Collection<DataGroup> typeList = readListForType(type, filter);
+		List<String> implementingRecordTypes = findImplementingChildRecordTypes(type);
+		List<DataGroup> aggregatedList = new ArrayList<>();
+		for (DataGroup dataGroup : typeList) {
+			aggregatedList.add(dataGroup);
+		}
+		for (String implementingType : implementingRecordTypes) {
+			Collection<DataGroup> readListForType = readListForType(implementingType, filter);
+			for (DataGroup dataGroup2 : readListForType) {
+				aggregatedList.add(dataGroup2);
+			}
+		}
+
+		return aggregatedList;
+	}
+
+	private Collection<DataGroup> readListForType(String type, DataGroup filter) {
 		Map<String, DividerGroup> typeDividerRecords = records.get(type);
 		throwErrorIfNoRecordOfType(type, typeDividerRecords);
 
@@ -331,7 +349,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private void readRecordsForTypeAndFilterAndAddToList(String implementingRecordType,
 			DataGroup filter, List<DataGroup> aggregatedRecordList) {
-		Collection<DataGroup> readList = readList(implementingRecordType, filter);
+		Collection<DataGroup> readList = readListForType(implementingRecordType, filter);
 		aggregatedRecordList.addAll(readList);
 	}
 
@@ -630,24 +648,24 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	public Collection<DataGroup> getMetadataElements() {
 		Collection<DataGroup> readDataGroups = new ArrayList<>();
 		for (MetadataTypes metadataType : MetadataTypes.values()) {
-			readDataGroups.addAll(readList(metadataType.type, emptyFilter));
+			readDataGroups.addAll(readListForType(metadataType.type, emptyFilter));
 		}
 		return readDataGroups;
 	}
 
 	@Override
 	public Collection<DataGroup> getPresentationElements() {
-		return readList("presentation", emptyFilter);
+		return readListForType("presentation", emptyFilter);
 	}
 
 	@Override
 	public Collection<DataGroup> getTexts() {
-		return readList("text", emptyFilter);
+		return readListForType("text", emptyFilter);
 	}
 
 	@Override
 	public Collection<DataGroup> getRecordTypes() {
-		return readList(RECORD_TYPE, emptyFilter);
+		return readListForType(RECORD_TYPE, emptyFilter);
 	}
 
 	@Override
