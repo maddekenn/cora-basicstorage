@@ -487,16 +487,4 @@ public class RecordStorageInMemoryListTest {
 		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
 		assertEquals(recordList.size(), 2);
 	}
-
-	@Test
-	public void testReadRecordListWithNonAbstractRecordTypeWithChildren() {
-		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
-
-		createChildOfAbstractAuthorityRecord();
-		createGrandChildOfAbstractAuthorityRecord();
-
-		String recordType = "childToAbstractAuthority";
-		Collection<DataGroup> recordList = recordStorage.readList(recordType, emptyFilter);
-		assertEquals(recordList.size(), 2);
-	}
 }
