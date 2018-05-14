@@ -1,5 +1,5 @@
 /*
- * Copyright 2015, 2017 Uppsala University Library
+ * Copyright 2015, 2017, 2018 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -56,15 +56,16 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		this.records = records;
 	}
 
-	private void throwErrorIfConstructorArgumentIsNull(Map<String, Map<String, DividerGroup>> records) {
+	private void throwErrorIfConstructorArgumentIsNull(
+			Map<String, Map<String, DividerGroup>> records) {
 		if (null == records) {
 			throw new IllegalArgumentException("Records must not be null");
 		}
 	}
 
 	@Override
-	public void create(String recordType, String recordId, DataGroup record, DataGroup collectedTerms,
-			DataGroup linkList, String dataDivider) {
+	public void create(String recordType, String recordId, DataGroup record,
+			DataGroup collectedTerms, DataGroup linkList, String dataDivider) {
 		ensureStorageExistsForRecordType(recordType);
 		checkNoConflictOnRecordId(recordType, recordId);
 		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record, dataDivider);
@@ -89,7 +90,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private void checkNoConflictOnRecordId(String recordType, String recordId) {
 		if (recordIdExistsForRecordType(recordType, recordId)) {
-			throw new RecordConflictException("Record with recordId: " + recordId + " already exists");
+			throw new RecordConflictException(
+					"Record with recordId: " + recordId + " already exists");
 		}
 	}
 
@@ -106,8 +108,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	protected void storeRecordByRecordTypeAndRecordId(String recordType, String recordId,
 			DataGroup recordIndependentOfEnteredRecord, String dataDivider) {
-		records.get(recordType).put(recordId,
-				DividerGroup.withDataDividerAndDataGroup(dataDivider, recordIndependentOfEnteredRecord));
+		records.get(recordType).put(recordId, DividerGroup.withDataDividerAndDataGroup(dataDivider,
+				recordIndependentOfEnteredRecord));
 	}
 
 	protected void storeLinks(String recordType, String recordId, DataGroup linkList,
@@ -126,8 +128,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	private void storeLinkList(String recordType, String recordId,
 			DataGroup linkListIndependentFromEntered, String dataDivider) {
 		Map<String, DividerGroup> linksForRecordType = linkLists.get(recordType);
-		linksForRecordType.put(recordId,
-				DividerGroup.withDataDividerAndDataGroup(dataDivider, linkListIndependentFromEntered));
+		linksForRecordType.put(recordId, DividerGroup.withDataDividerAndDataGroup(dataDivider,
+				linkListIndependentFromEntered));
 	}
 
 	private void storeLinksInIncomingLinks(DataGroup incomingLinkList) {
@@ -142,7 +144,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		storeLinkInIncomingLinks(link, toPartOfIncomingLinks);
 	}
 
-	private Map<String, Map<String, List<DataGroup>>> getIncomingLinkStorageForLink(DataGroup link) {
+	private Map<String, Map<String, List<DataGroup>>> getIncomingLinkStorageForLink(
+			DataGroup link) {
 		DataGroup to = link.getFirstGroupWithNameInData("to");
 		String toType = extractLinkedRecordTypeValue(to);
 		String toId = extractLinkedRecordIdValue(to);
@@ -214,13 +217,15 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		return readListWithFilter(type, filter);
 	}
 
-	private Collection<DataGroup> readListWithoutFilter(Map<String, DividerGroup> typeDividerRecords) {
+	private Collection<DataGroup> readListWithoutFilter(
+			Map<String, DividerGroup> typeDividerRecords) {
 		Map<String, DataGroup> typeRecords = addDataGroupToRecordTypeList(typeDividerRecords);
 		return typeRecords.values();
 	}
 
 	private Collection<DataGroup> readListWithFilter(String type, DataGroup filter) {
-		List<String> foundRecordIdsForFilter = collectedTermsHolder.findRecordIdsForFilter(type, filter);
+		List<String> foundRecordIdsForFilter = collectedTermsHolder.findRecordIdsForFilter(type,
+				filter);
 		return readRecordsForTypeAndListOfIds(type, foundRecordIdsForFilter);
 	}
 
@@ -233,7 +238,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		return foundRecords;
 	}
 
-	private void throwErrorIfNoRecordOfType(String type, Map<String, DividerGroup> typeDividerRecords) {
+	private void throwErrorIfNoRecordOfType(String type,
+			Map<String, DividerGroup> typeDividerRecords) {
 		if (null == typeDividerRecords) {
 			throw new RecordNotFoundException(NO_RECORDS_EXISTS_MESSAGE + type);
 		}
@@ -257,24 +263,92 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		List<DataGroup> aggregatedRecordList = new ArrayList<>();
 		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(type);
 
-		addRecordsToAggregatedRecordList(aggregatedRecordList, implementingChildRecordTypes, filter);
+		addRecordsToAggregatedRecordList(aggregatedRecordList, implementingChildRecordTypes,
+				filter);
+		addRecordsForParentIfParentIsNotAbstract(type, filter, aggregatedRecordList);
 		throwErrorIfEmptyAggregatedList(type, aggregatedRecordList);
 		return aggregatedRecordList;
+	}
+
+	private List<String> findImplementingChildRecordTypes(String type) {
+		Map<String, DividerGroup> allRecordTypes = records.get(RECORD_TYPE);
+		List<String> implementingRecordTypes = new ArrayList<>();
+		return findImplementingChildRecordTypesUsingTypeAndRecordTypeList(type, allRecordTypes,
+				implementingRecordTypes);
+	}
+
+	private List<String> findImplementingChildRecordTypesUsingTypeAndRecordTypeList(String type,
+			Map<String, DividerGroup> allRecordTypes, List<String> implementingRecordTypes) {
+		for (Entry<String, DividerGroup> entry : allRecordTypes.entrySet()) {
+			checkIfChildAndAddToList(type, implementingRecordTypes, entry);
+		}
+		return implementingRecordTypes;
+	}
+
+	private void checkIfChildAndAddToList(String type, List<String> implementingRecordTypes,
+			Entry<String, DividerGroup> entry) {
+		DataGroup dataGroup = extractDataGroupFromDataDividerGroup(entry);
+		String recordTypeId = entry.getKey();
+
+		if (isImplementingChild(type, dataGroup)) {
+			implementingRecordTypes.add(recordTypeId);
+			findImplementingChildRecordTypesUsingTypeAndRecordTypeList(entry.getKey(),
+					records.get(RECORD_TYPE), implementingRecordTypes);
+		}
+	}
+
+	private DataGroup extractDataGroupFromDataDividerGroup(Entry<String, DividerGroup> entry) {
+		DividerGroup dividerGroup = entry.getValue();
+		return dividerGroup.dataGroup;
+	}
+
+	private boolean isImplementingChild(String type, DataGroup dataGroup) {
+		if (dataGroup.containsChildWithNameInData("parentId")) {
+			String parentId = extractParentId(dataGroup);
+			if (parentId.equals(type)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private String extractParentId(DataGroup dataGroup) {
+		DataGroup parent = dataGroup.getFirstGroupWithNameInData("parentId");
+		return parent.getFirstAtomicValueWithNameInData("linkedRecordId");
 	}
 
 	private void addRecordsToAggregatedRecordList(List<DataGroup> aggregatedRecordList,
 			List<String> implementingChildRecordTypes, DataGroup filter) {
 		for (String implementingRecordType : implementingChildRecordTypes) {
 			try {
-				Collection<DataGroup> readList = readList(implementingRecordType, filter);
-				aggregatedRecordList.addAll(readList);
+				readRecordsForTypeAndFilterAndAddToList(implementingRecordType, filter,
+						aggregatedRecordList);
 			} catch (RecordNotFoundException e) {
 				// Do nothing, another implementing child might have records
 			}
 		}
 	}
 
-	private void throwErrorIfEmptyAggregatedList(String type, List<DataGroup> aggregatedRecordList) {
+	private void readRecordsForTypeAndFilterAndAddToList(String implementingRecordType,
+			DataGroup filter, List<DataGroup> aggregatedRecordList) {
+		Collection<DataGroup> readList = readList(implementingRecordType, filter);
+		aggregatedRecordList.addAll(readList);
+	}
+
+	private boolean parentRecordTypeIsNotAbstract(DataGroup recordTypeDataGroup) {
+		return !recordTypeIsAbstract(recordTypeDataGroup);
+	}
+
+	private void addRecordsForParentIfParentIsNotAbstract(String type, DataGroup filter,
+			List<DataGroup> aggregatedRecordList) {
+		DataGroup recordTypeDataGroup = read(RECORD_TYPE, type);
+		if (parentRecordTypeIsNotAbstract(recordTypeDataGroup)) {
+			readRecordsForTypeAndFilterAndAddToList(type, filter, aggregatedRecordList);
+		}
+	}
+
+	private void throwErrorIfEmptyAggregatedList(String type,
+			List<DataGroup> aggregatedRecordList) {
 		if (aggregatedRecordList.isEmpty()) {
 			throw new RecordNotFoundException(NO_RECORDS_EXISTS_MESSAGE + type);
 		}
@@ -297,7 +371,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 				&& recordIdExistsForRecordType(recordType, recordId);
 	}
 
-	private boolean recordExistsForAbstractRecordTypeAndRecordId(String recordType, String recordId) {
+	private boolean recordExistsForAbstractRecordTypeAndRecordId(String recordType,
+			String recordId) {
 		return recordsExistForRecordType(RECORD_TYPE)
 				&& recordTypeExistsAndIsAbstractAndRecordIdExistInImplementingChild(recordType,
 						recordId);
@@ -307,8 +382,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		return records.get(recordType).containsKey(recordId);
 	}
 
-	private boolean recordTypeExistsAndIsAbstractAndRecordIdExistInImplementingChild(String recordType,
-			String recordId) {
+	private boolean recordTypeExistsAndIsAbstractAndRecordIdExistInImplementingChild(
+			String recordType, String recordId) {
 		if (recordTypeDoesNotExist(recordType)) {
 			return false;
 		}
@@ -348,45 +423,6 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		return false;
 	}
 
-	private List<String> findImplementingChildRecordTypes(String type) {
-		List<String> implementingRecordTypes = new ArrayList<>();
-		Map<String, DividerGroup> allRecordTypes = records.get(RECORD_TYPE);
-		for (Entry<String, DividerGroup> entry : allRecordTypes.entrySet()) {
-			checkIfChildAndAddToList(type, implementingRecordTypes, entry);
-		}
-		return implementingRecordTypes;
-	}
-
-	private void checkIfChildAndAddToList(String type, List<String> implementingRecordTypes,
-			Entry<String, DividerGroup> entry) {
-		DataGroup dataGroup = extractDataGroupFromDataDividerGroup(entry);
-		String recordTypeId = entry.getKey();
-
-		if (isImplementingChild(type, dataGroup)) {
-			implementingRecordTypes.add(recordTypeId);
-		}
-	}
-
-	private DataGroup extractDataGroupFromDataDividerGroup(Entry<String, DividerGroup> entry) {
-		DividerGroup dividerGroup = entry.getValue();
-		return dividerGroup.dataGroup;
-	}
-
-	private boolean isImplementingChild(String type, DataGroup dataGroup) {
-		if (dataGroup.containsChildWithNameInData("parentId")) {
-			String parentId = extractParentId(dataGroup);
-			if (parentId.equals(type)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private String extractParentId(DataGroup dataGroup) {
-		DataGroup parent = dataGroup.getFirstGroupWithNameInData("parentId");
-		return parent.getFirstAtomicValueWithNameInData("linkedRecordId");
-	}
-
 	@Override
 	public DataGroup read(String recordType, String recordId) {
 		DataGroup recordTypeDataGroup = returnRecordIfExisting(RECORD_TYPE, recordType);
@@ -404,7 +440,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		return readRecord;
 	}
 
-	private DataGroup tryToReadRecordFromImplementingRecordTypes(String recordType, String recordId) {
+	private DataGroup tryToReadRecordFromImplementingRecordTypes(String recordType,
+			String recordId) {
 		DataGroup readRecord = null;
 		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(recordType);
 		for (String implementingType : implementingChildRecordTypes) {
@@ -476,7 +513,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private Collection<DataGroup> generateLinkCollectionFromStoredLinks(String type, String id) {
 		List<DataGroup> generatedLinkList = new ArrayList<>();
-		Map<String, Map<String, List<DataGroup>>> linkStorageForRecord = incomingLinks.get(type).get(id);
+		Map<String, Map<String, List<DataGroup>>> linkStorageForRecord = incomingLinks.get(type)
+				.get(id);
 		addLinksForRecordFromAllRecordTypes(generatedLinkList, linkStorageForRecord);
 		return generatedLinkList;
 	}
@@ -517,8 +555,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	}
 
 	@Override
-	public void update(String recordType, String recordId, DataGroup record, DataGroup collectedTerms,
-			DataGroup linkList, String dataDivider) {
+	public void update(String recordType, String recordId, DataGroup record,
+			DataGroup collectedTerms, DataGroup linkList, String dataDivider) {
 		checkRecordExists(recordType, recordId);
 		removeOldLinksStoredAsIncomingLinks(recordType, recordId);
 		storeIndependentRecordByRecordTypeAndRecordId(recordType, recordId, record, dataDivider);

@@ -90,8 +90,8 @@ public class RecordStorageInMemoryListTest {
 		createPlaceInStorageWithStockholmStorageTerm();
 
 		DataGroup filter = DataCreator.createEmptyFilter();
-		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "NOT_placeName",
-				"Uppsala");
+		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0",
+				"NOT_placeName", "Uppsala");
 		filter.addChild(part);
 
 		Collection<DataGroup> readList = recordStorage.readList("place", filter);
@@ -124,9 +124,8 @@ public class RecordStorageInMemoryListTest {
 		Collection<DataGroup> readList = recordStorage.readList("place", filter);
 		assertEquals(readList.size(), 1);
 		DataGroup first = readList.iterator().next();
-		assertEquals(
-				first.getFirstGroupWithNameInData("recordInfo").getFirstAtomicValueWithNameInData("id"),
-				"place:0001");
+		assertEquals(first.getFirstGroupWithNameInData("recordInfo")
+				.getFirstAtomicValueWithNameInData("id"), "place:0001");
 	}
 
 	@Test
@@ -192,13 +191,11 @@ public class RecordStorageInMemoryListTest {
 		assertEquals(readList.size(), 2);
 		Iterator<DataGroup> listIterator = readList.iterator();
 		DataGroup first = listIterator.next();
-		assertEquals(
-				first.getFirstGroupWithNameInData("recordInfo").getFirstAtomicValueWithNameInData("id"),
-				"place:0001");
+		assertEquals(first.getFirstGroupWithNameInData("recordInfo")
+				.getFirstAtomicValueWithNameInData("id"), "place:0001");
 		DataGroup second = listIterator.next();
-		assertEquals(
-				second.getFirstGroupWithNameInData("recordInfo").getFirstAtomicValueWithNameInData("id"),
-				"place:0003");
+		assertEquals(second.getFirstGroupWithNameInData("recordInfo")
+				.getFirstAtomicValueWithNameInData("id"), "place:0003");
 	}
 
 	@Test
@@ -234,7 +231,8 @@ public class RecordStorageInMemoryListTest {
 	}
 
 	private DataGroup createCollectedDataWithUppsalaStorageTerm() {
-		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
+				"place:0001");
 		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
@@ -277,7 +275,8 @@ public class RecordStorageInMemoryListTest {
 	}
 
 	private DataGroup createCollectedDataWithStockholmStorageTerm() {
-		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0002");
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
+				"place:0002");
 		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
@@ -293,7 +292,8 @@ public class RecordStorageInMemoryListTest {
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
 						"place", "place:0003");
 
-		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0003");
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
+				"place:0003");
 		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
@@ -344,15 +344,15 @@ public class RecordStorageInMemoryListTest {
 		createGenericBinaryRecord();
 
 		DataGroup filter = DataCreator.createEmptyFilter();
-		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "id", "image:0001");
+		DataGroup part = DataCreator.createFilterPartWithRepeatIdAndKeyAndValue("0", "id",
+				"image:0001");
 		filter.addChild(part);
 
 		Collection<DataGroup> readList = recordStorage.readAbstractList("binary", filter);
 		assertEquals(readList.size(), 1);
 		DataGroup first = readList.iterator().next();
-		assertEquals(
-				first.getFirstGroupWithNameInData("recordInfo").getFirstAtomicValueWithNameInData("id"),
-				"image:0001");
+		assertEquals(first.getFirstGroupWithNameInData("recordInfo")
+				.getFirstAtomicValueWithNameInData("id"), "image:0001");
 	}
 
 	private void createImageRecords() {
@@ -361,13 +361,14 @@ public class RecordStorageInMemoryListTest {
 						"image", "image:0001");
 		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
 
-		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("image", "image:0001");
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("image",
+				"image:0001");
 		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
-				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1", "idStorageTerm",
-						"image:0001", "id");
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"idStorageTerm", "image:0001", "id");
 		collectStorageTerm.addChild(collectedDataTerm);
 
 		recordStorage.create("image", "image:0001", dataGroup, collectedData, emptyLinkList,
@@ -378,13 +379,14 @@ public class RecordStorageInMemoryListTest {
 						"image", "image:0002");
 		dataGroup2.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
 
-		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("image", "image:0002");
+		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("image",
+				"image:0002");
 		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
 		collectedData2.addChild(collectStorageTerm2);
 
 		DataGroup collectedDataTerm2 = DataCreator
-				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1", "IdStorageTerm",
-						"image:0002", "id");
+				.createStorageTermWithRepeatIdAndTermIdAndTermValueAndStorageKey("1",
+						"IdStorageTerm", "image:0002", "id");
 		collectStorageTerm2.addChild(collectedDataTerm2);
 
 		recordStorage.create("image", "image:0002", dataGroup2, collectedData2, emptyLinkList,
@@ -422,4 +424,67 @@ public class RecordStorageInMemoryListTest {
 		recordStorage.readAbstractList(recordType, emptyFilter);
 	}
 
+	@Test
+	public void testReadAbstractRecordListWithGrandChildren() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
+		createChildOfAbstractAuthorityRecord();
+		createGrandChildOfAbstractAuthorityRecord();
+
+		String recordType = "abstractAuthority";
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		assertEquals(recordList.size(), 2);
+	}
+
+	private void createChildOfAbstractAuthorityRecord() {
+		DataGroup dataGroup = DataCreator
+				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
+						"childToAbstractAuthority", "childToAbstractAuthority:0001");
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		recordStorage.create("childToAbstractAuthority", "childToAbstractAuthority:0001", dataGroup,
+				DataCreator.createEmptyCollectedData(), emptyLinkList, dataDivider);
+	}
+
+	private void createGrandChildOfAbstractAuthorityRecord() {
+		DataGroup dataGroup = DataCreator
+				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
+						"grandChildToAbstractAuthority", "grandChildToAbstractAuthority:0001");
+		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		recordStorage.create("grandChildToAbstractAuthority", "grandChildToAbstractAuthority:0001",
+				dataGroup, DataCreator.createEmptyCollectedData(), emptyLinkList, dataDivider);
+	}
+
+	@Test
+	public void testReadAbstractRecordListWithGrandChildrenNoRecordsForChild() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
+		createGrandChildOfAbstractAuthorityRecord();
+
+		String recordType = "abstractAuthority";
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		assertEquals(recordList.size(), 1);
+	}
+
+	@Test
+	public void testReadAbstractRecordListWithGrandChildrenNoRecordsForGrandChild() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
+		createChildOfAbstractAuthorityRecord();
+
+		String recordType = "abstractAuthority";
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		assertEquals(recordList.size(), 1);
+	}
+
+	@Test
+	public void testReadAbstractRecordListWithNonAbstractRecordTypeWithChildren() {
+		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+
+		createChildOfAbstractAuthorityRecord();
+		createGrandChildOfAbstractAuthorityRecord();
+
+		String recordType = "childToAbstractAuthority";
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		assertEquals(recordList.size(), 2);
+	}
 }
