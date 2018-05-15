@@ -630,9 +630,19 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	public Collection<DataGroup> getMetadataElements() {
 		Collection<DataGroup> readDataGroups = new ArrayList<>();
 		for (MetadataTypes metadataType : MetadataTypes.values()) {
-			readDataGroups.addAll(readList(metadataType.type, emptyFilter));
+			readListForMetadataType(readDataGroups, metadataType);
 		}
 		return readDataGroups;
+	}
+
+	private void readListForMetadataType(Collection<DataGroup> readDataGroups,
+			MetadataTypes metadataType) {
+		DataGroup recordTypeDataGroup = read(RECORD_TYPE, metadataType.type);
+		if (recordTypeIsAbstract(recordTypeDataGroup)) {
+			readDataGroups.addAll(readAbstractList(metadataType.type, emptyFilter));
+		} else {
+			readDataGroups.addAll(readList(metadataType.type, emptyFilter));
+		}
 	}
 
 	@Override
