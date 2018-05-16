@@ -54,6 +54,9 @@ public class TestDataRecordInMemoryStorage {
 		addRecordTypeSearchTerm(recordsInMemory);
 		addSearchTerm(recordsInMemory);
 		addSomeSearchTerm(recordsInMemory);
+		addMetadataRecordTypes(recordsInMemory);
+		addRecordTypeGenericCollectionItem(recordsInMemory);
+		addGenericCollectionItem(recordsInMemory);
 
 		addRecordTypeCollectTerm(recordsInMemory);
 		addCollectIndexTerm(recordsInMemory);
@@ -232,6 +235,25 @@ public class TestDataRecordInMemoryStorage {
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
+	private static void addRecordTypeGenericCollectionItem(RecordStorageInMemory recordsInMemory) {
+		String recordType = "recordType";
+		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId(
+				"genericCollectionItem", "true", "metadataCollectionItem");
+		recordsInMemory.create(recordType, "genericCollectionItem", dataGroup, emptyCollectedData,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+	}
+
+	private static void addGenericCollectionItem(RecordStorageInMemory recordsInMemory) {
+		String recordType = "genericCollectionItem";
+		DataGroup dataGroup = DataGroup.withNameInData("genericCollectionItem");
+
+		DataGroup recordInfo = DataCreator.createRecordInfoWithRecordTypeAndRecordId(recordType,
+				"someItem");
+		dataGroup.addChild(recordInfo);
+		recordsInMemory.create(recordType, "someItem", dataGroup, emptyCollectedData,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+	}
+
 	private static void addRecordTypePlace(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
 
@@ -344,6 +366,28 @@ public class TestDataRecordInMemoryStorage {
 		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId(
 				"collectPermissionTermId", "true", "collectTerm");
 		recordsInMemory.create(recordType, "collectPermissionTerm", dataGroup, emptyCollectedData,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
+	}
+
+	private static void addMetadataRecordTypes(RecordStorageInMemory recordsInMemory) {
+
+		createRecordTypeForWithIdAndAbstract("metadataGroup", "false", recordsInMemory);
+		createRecordTypeForWithIdAndAbstract("metadataTextVariable", "false", recordsInMemory);
+		createRecordTypeForWithIdAndAbstract("metadataCollectionVariable", "false",
+				recordsInMemory);
+		createRecordTypeForWithIdAndAbstract("metadataItemCollection", "false", recordsInMemory);
+		createRecordTypeForWithIdAndAbstract("metadataCollectionItem", "true", recordsInMemory);
+		createRecordTypeForWithIdAndAbstract("metadataRecordLink", "false", recordsInMemory);
+		createRecordTypeForWithIdAndAbstract("metadataResourceLink", "false", recordsInMemory);
+	}
+
+	private static void createRecordTypeForWithIdAndAbstract(String id, String abstractValue,
+			RecordStorageInMemory recordsInMemory) {
+		String recordType = "recordType";
+		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndAbstract(id,
+				"false", abstractValue);
+
+		recordsInMemory.create(recordType, id, dataGroup, emptyCollectedData,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 }
