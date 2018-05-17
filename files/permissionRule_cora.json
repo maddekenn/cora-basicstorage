@@ -2052,12 +2052,12 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
                                 }
                             ],
                             "name": "createdBy"
@@ -2098,6 +2098,29 @@
                                 {
                                     "name": "tsUpdated",
                                     "value": "2017-12-02 19:52:20.630"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-05-16 11:15:04.885"
                                 }
                             ],
                             "name": "updated"
@@ -2270,42 +2293,15 @@
                             "repeatId": "36",
                             "name": "permissionRulePartValue",
                             "value": "system.collectStorageTerm"
+                        },
+                        {
+                            "repeatId": "37",
+                            "name": "permissionRulePartValue",
+                            "value": "system.metadataCollectionItem"
                         }
                     ],
                     "name": "permissionRulePart",
                     "attributes": {"type": "recordType"}
-                },
-                {
-                    "children": [
-                        {
-                            "repeatId": "0",
-                            "name": "permissionRulePartValue",
-                            "value": "system.existing"
-                        },
-                        {
-                            "repeatId": "1",
-                            "name": "permissionRulePartValue",
-                            "value": "system.deleted"
-                        }
-                    ],
-                    "name": "permissionRulePart",
-                    "attributes": {"type": "delete"}
-                },
-                {
-                    "children": [
-                        {
-                            "repeatId": "0",
-                            "name": "permissionRulePartValue",
-                            "value": "system.published"
-                        },
-                        {
-                            "repeatId": "1",
-                            "name": "permissionRulePartValue",
-                            "value": "system.notpublished"
-                        }
-                    ],
-                    "name": "permissionRulePart",
-                    "attributes": {"type": "publish"}
                 },
                 {
                     "name": "activeStatus",
