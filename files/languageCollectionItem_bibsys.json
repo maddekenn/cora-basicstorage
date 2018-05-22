@@ -5,7 +5,20 @@
                 "children": [
                     {
                         "name": "id",
-                        "value": "bibsysAdmin"
+                        "value": "sweLangItem"
+                    },
+                    {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "system"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "bibsys"
+                            }
+                        ],
+                        "name": "dataDivider"
                     },
                     {
                         "children": [
@@ -15,7 +28,7 @@
                             },
                             {
                                 "name": "linkedRecordId",
-                                "value": "permissionRule"
+                                "value": "languageCollectionItem"
                             }
                         ],
                         "name": "type"
@@ -34,21 +47,8 @@
                         "name": "createdBy"
                     },
                     {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "bibsys"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    },
-                    {
                         "name": "tsCreated",
-                        "value": "2018-05-16 09:22:31.974"
+                        "value": "2018-05-17 18:32:29.450"
                     },
                     {
                         "repeatId": "0",
@@ -68,30 +68,7 @@
                             },
                             {
                                 "name": "tsUpdated",
-                                "value": "2018-05-16 09:22:31.974"
-                            }
-                        ],
-                        "name": "updated"
-                    },
-                    {
-                        "repeatId": "2",
-                        "children": [
-                            {
-                                "children": [
-                                    {
-                                        "name": "linkedRecordType",
-                                        "value": "user"
-                                    },
-                                    {
-                                        "name": "linkedRecordId",
-                                        "value": "141414"
-                                    }
-                                ],
-                                "name": "updatedBy"
-                            },
-                            {
-                                "name": "tsUpdated",
-                                "value": "2018-05-17 18:31:26.065"
+                                "value": "2018-05-17 18:32:29.450"
                             }
                         ],
                         "name": "updated"
@@ -100,36 +77,59 @@
                 "name": "recordInfo"
             },
             {
-                "children": [{
-                    "repeatId": "2",
-                    "name": "permissionRulePartValue",
-                    "value": "system.*"
-                }],
-                "name": "permissionRulePart",
-                "attributes": {"type": "action"}
+                "name": "nameInData",
+                "value": "swedish"
             },
             {
                 "children": [
                     {
-                        "repeatId": "9",
-                        "name": "permissionRulePartValue",
-                        "value": "system.countryCollectionItem"
+                        "children": [{
+                            "name": "value",
+                            "value": "SW"
+                        }],
+                        "name": "extraDataPart",
+                        "attributes": {"type": "iso31661Alpha2"}
                     },
                     {
-                        "repeatId": "10",
-                        "name": "permissionRulePartValue",
-                        "value": "system.languageCollectionItem"
+                        "children": [{
+                            "name": "value",
+                            "value": "SWE"
+                        }],
+                        "name": "extraDataPart",
+                        "attributes": {"type": "iso31661Alpha3"}
                     }
                 ],
-                "name": "permissionRulePart",
-                "attributes": {"type": "recordType"}
+                "name": "extraData"
             },
             {
-                "name": "activeStatus",
-                "value": "active"
+                "children": [
+                    {
+                        "name": "linkedRecordType",
+                        "value": "coraText"
+                    },
+                    {
+                        "name": "linkedRecordId",
+                        "value": "sweLangItemText"
+                    }
+                ],
+                "name": "textId"
+            },
+            {
+                "children": [
+                    {
+                        "name": "linkedRecordType",
+                        "value": "coraText"
+                    },
+                    {
+                        "name": "linkedRecordId",
+                        "value": "sweLangItemDefText"
+                    }
+                ],
+                "name": "defTextId"
             }
         ],
-        "name": "permissionRule"
+        "name": "metadata",
+        "attributes": {"type": "collectionItem"}
     }],
     "name": "recordList"
 }
