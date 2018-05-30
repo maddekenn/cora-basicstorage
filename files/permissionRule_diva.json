@@ -11,19 +11,6 @@
                         "children": [
                             {
                                 "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "diva"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
                                 "value": "recordType"
                             },
                             {
@@ -45,6 +32,19 @@
                             }
                         ],
                         "name": "createdBy"
+                    },
+                    {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "system"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "diva"
+                            }
+                        ],
+                        "name": "dataDivider"
                     },
                     {
                         "name": "tsCreated",
@@ -69,6 +69,29 @@
                             {
                                 "name": "tsUpdated",
                                 "value": "2018-03-13 09:47:35.914"
+                            }
+                        ],
+                        "name": "updated"
+                    },
+                    {
+                        "repeatId": "2",
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "user"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "141414"
+                                    }
+                                ],
+                                "name": "updatedBy"
+                            },
+                            {
+                                "name": "tsUpdated",
+                                "value": "2018-05-30 09:03:29.288"
                             }
                         ],
                         "name": "updated"
@@ -108,11 +131,6 @@
                         "value": "system.organisation"
                     },
                     {
-                        "repeatId": "5",
-                        "name": "permissionRulePartValue",
-                        "value": "system.country"
-                    },
-                    {
                         "repeatId": "6",
                         "name": "permissionRulePartValue",
                         "value": "system.writtenText"
@@ -130,24 +148,6 @@
                 ],
                 "name": "permissionRulePart",
                 "attributes": {"type": "recordType"}
-            },
-            {
-                "children": [{
-                    "repeatId": "0",
-                    "name": "permissionRulePartValue",
-                    "value": "system.*"
-                }],
-                "name": "permissionRulePart",
-                "attributes": {"type": "delete"}
-            },
-            {
-                "children": [{
-                    "repeatId": "0",
-                    "name": "permissionRulePartValue",
-                    "value": "system.*"
-                }],
-                "name": "permissionRulePart",
-                "attributes": {"type": "publish"}
             },
             {
                 "name": "activeStatus",

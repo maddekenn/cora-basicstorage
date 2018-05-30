@@ -1298,12 +1298,12 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "131313"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "131313"
                                 }
                             ],
                             "name": "createdBy"
@@ -1344,6 +1344,29 @@
                                 {
                                     "name": "tsUpdated",
                                     "value": "2018-02-14 08:23:17.200"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-05-30 09:02:30.046"
                                 }
                             ],
                             "name": "updated"
@@ -1398,11 +1421,6 @@
                             "value": "system.search"
                         },
                         {
-                            "repeatId": "5",
-                            "name": "permissionRulePartValue",
-                            "value": "system.country"
-                        },
-                        {
                             "repeatId": "6",
                             "name": "permissionRulePartValue",
                             "value": "system.writtenText"
@@ -1425,24 +1443,6 @@
                     ],
                     "name": "permissionRulePart",
                     "attributes": {"type": "recordType"}
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.*"
-                    }],
-                    "name": "permissionRulePart",
-                    "attributes": {"type": "delete"}
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "name": "permissionRulePartValue",
-                        "value": "system.*"
-                    }],
-                    "name": "permissionRulePart",
-                    "attributes": {"type": "publish"}
                 },
                 {
                     "name": "activeStatus",
