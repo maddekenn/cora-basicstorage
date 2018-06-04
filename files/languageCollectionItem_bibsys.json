@@ -11,19 +11,6 @@
                         "children": [
                             {
                                 "name": "linkedRecordType",
-                                "value": "system"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "bibsys"
-                            }
-                        ],
-                        "name": "dataDivider"
-                    },
-                    {
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
                                 "value": "recordType"
                             },
                             {
@@ -45,6 +32,19 @@
                             }
                         ],
                         "name": "createdBy"
+                    },
+                    {
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "system"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "bibsys"
+                            }
+                        ],
+                        "name": "dataDivider"
                     },
                     {
                         "name": "tsCreated",
@@ -72,6 +72,29 @@
                             }
                         ],
                         "name": "updated"
+                    },
+                    {
+                        "repeatId": "2",
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "user"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "141414"
+                                    }
+                                ],
+                                "name": "updatedBy"
+                            },
+                            {
+                                "name": "tsUpdated",
+                                "value": "2018-06-04 13:00:03.788"
+                            }
+                        ],
+                        "name": "updated"
                     }
                 ],
                 "name": "recordInfo"
@@ -79,27 +102,6 @@
             {
                 "name": "nameInData",
                 "value": "swedish"
-            },
-            {
-                "children": [
-                    {
-                        "children": [{
-                            "name": "value",
-                            "value": "SW"
-                        }],
-                        "name": "extraDataPart",
-                        "attributes": {"type": "iso31661Alpha2"}
-                    },
-                    {
-                        "children": [{
-                            "name": "value",
-                            "value": "SWE"
-                        }],
-                        "name": "extraDataPart",
-                        "attributes": {"type": "iso31661Alpha3"}
-                    }
-                ],
-                "name": "extraData"
             },
             {
                 "children": [
@@ -126,6 +128,27 @@
                     }
                 ],
                 "name": "defTextId"
+            },
+            {
+                "children": [
+                    {
+                        "children": [{
+                            "name": "value",
+                            "value": "swe"
+                        }],
+                        "name": "extraDataPart",
+                        "attributes": {"type": "iso639Alpha3"}
+                    },
+                    {
+                        "children": [{
+                            "name": "value",
+                            "value": "sw"
+                        }],
+                        "name": "extraDataPart",
+                        "attributes": {"type": "iso639Alpha2"}
+                    }
+                ],
+                "name": "extraData"
             }
         ],
         "name": "metadata",
