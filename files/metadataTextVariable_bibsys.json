@@ -357,19 +357,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "bibsys"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -391,6 +378,19 @@
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
@@ -418,6 +418,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-05 10:32:24.182"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -440,8 +463,21 @@
                     "name": "textId"
                 },
                 {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "iso639Alpha3ItemExtraDataValueTextVarDefText"
+                        }
+                    ],
+                    "name": "defTextId"
+                },
+                {
                     "name": "regEx",
-                    "value": "^[a-z]{3,3}$"
+                    "value": "^[a-z]{3}$|^9f[a-z]$"
                 },
                 {
                     "children": [
@@ -455,19 +491,6 @@
                         }
                     ],
                     "name": "refParentId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "coraText"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "iso639Alpha3ItemExtraDataValueTextVarDefText"
-                        }
-                    ],
-                    "name": "defTextId"
                 }
             ],
             "name": "metadata",
