@@ -5,19 +5,6 @@
                 {
                     "children": [
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
                             "name": "id",
                             "value": "coraUser:8012331835977"
                         },
@@ -48,6 +35,19 @@
                             "name": "createdBy"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
                             "name": "tsCreated",
                             "value": "2018-05-09 09:52:41.851"
                         },
@@ -70,6 +70,29 @@
                                 {
                                     "name": "tsUpdated",
                                     "value": "2018-05-09 09:52:41.851"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 03:56:49.849"
                                 }
                             ],
                             "name": "updated"
@@ -124,10 +147,6 @@
                     "name": "userRole"
                 },
                 {
-                    "name": "activeStatus",
-                    "value": "active"
-                },
-                {
                     "repeatId": "2",
                     "children": [{
                         "children": [
@@ -146,19 +165,45 @@
                 },
                 {
                     "repeatId": "3",
-                    "children": [{
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "systemOneSystemUserRole"
-                            }
-                        ],
-                        "name": "userRole"
-                    }],
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOneSystemUserRole"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "collectPermissionTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionUnitPermissionTerm"
+                                        }
+                                    ],
+                                    "name": "rule"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "name": "value",
+                                    "value": "system.permissionUnit_uu.ub"
+                                }
+                            ],
+                            "name": "permissionTermRulePart"
+                        }
+                    ],
                     "name": "userRole"
                 },
                 {
@@ -177,6 +222,10 @@
                         "name": "userRole"
                     }],
                     "name": "userRole"
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
                 }
             ],
             "name": "user"
@@ -185,19 +234,6 @@
             "children": [
                 {
                     "children": [
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
                         {
                             "name": "id",
                             "value": "coraUser:8140805885752"
@@ -229,6 +265,19 @@
                             "name": "createdBy"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
                             "name": "tsCreated",
                             "value": "2018-05-09 09:54:50.325"
                         },
@@ -251,6 +300,29 @@
                                 {
                                     "name": "tsUpdated",
                                     "value": "2018-05-09 09:54:50.325"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 03:58:19.787"
                                 }
                             ],
                             "name": "updated"
@@ -323,19 +395,45 @@
                 },
                 {
                     "repeatId": "3",
-                    "children": [{
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "systemOneSystemUserRole"
-                            }
-                        ],
-                        "name": "userRole"
-                    }],
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOneSystemUserRole"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "collectPermissionTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionUnitPermissionTerm"
+                                        }
+                                    ],
+                                    "name": "rule"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "name": "value",
+                                    "value": "system.permissionUnit_uu.ub"
+                                }
+                            ],
+                            "name": "permissionTermRulePart"
+                        }
+                    ],
                     "name": "userRole"
                 },
                 {
@@ -367,19 +465,6 @@
                 {
                     "children": [
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
                             "name": "id",
                             "value": "coraUser:8079536285214"
                         },
@@ -410,6 +495,19 @@
                             "name": "createdBy"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
                             "name": "tsCreated",
                             "value": "2018-05-09 09:53:49.055"
                         },
@@ -432,6 +530,29 @@
                                 {
                                     "name": "tsUpdated",
                                     "value": "2018-05-09 09:53:49.055"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 03:58:36.905"
                                 }
                             ],
                             "name": "updated"
@@ -504,19 +625,45 @@
                 },
                 {
                     "repeatId": "3",
-                    "children": [{
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "systemOneSystemUserRole"
-                            }
-                        ],
-                        "name": "userRole"
-                    }],
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOneSystemUserRole"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "collectPermissionTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionUnitPermissionTerm"
+                                        }
+                                    ],
+                                    "name": "rule"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "name": "value",
+                                    "value": "system.permissionUnit_uu.ub"
+                                }
+                            ],
+                            "name": "permissionTermRulePart"
+                        }
+                    ],
                     "name": "userRole"
                 },
                 {
@@ -548,19 +695,6 @@
                 {
                     "children": [
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
                             "name": "id",
                             "value": "coraUser:15697099230192"
                         },
@@ -591,6 +725,19 @@
                             "name": "createdBy"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
                             "name": "tsCreated",
                             "value": "2018-05-09 12:00:46.618"
                         },
@@ -613,6 +760,29 @@
                                 {
                                     "name": "tsUpdated",
                                     "value": "2018-05-09 12:00:46.618"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 03:58:49.902"
                                 }
                             ],
                             "name": "updated"
@@ -685,19 +855,45 @@
                 },
                 {
                     "repeatId": "3",
-                    "children": [{
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "systemOneSystemUserRole"
-                            }
-                        ],
-                        "name": "userRole"
-                    }],
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOneSystemUserRole"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "collectPermissionTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionUnitPermissionTerm"
+                                        }
+                                    ],
+                                    "name": "rule"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "name": "value",
+                                    "value": "system.permissionUnit_uu.ub"
+                                }
+                            ],
+                            "name": "permissionTermRulePart"
+                        }
+                    ],
                     "name": "userRole"
                 },
                 {
@@ -729,19 +925,6 @@
                 {
                     "children": [
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
                             "name": "id",
                             "value": "coraUser:15631291678429"
                         },
@@ -772,6 +955,19 @@
                             "name": "createdBy"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
                             "name": "tsCreated",
                             "value": "2018-05-09 11:59:40.811"
                         },
@@ -794,6 +990,29 @@
                                 {
                                     "name": "tsUpdated",
                                     "value": "2018-05-09 11:59:40.811"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 03:59:01.491"
                                 }
                             ],
                             "name": "updated"
@@ -866,19 +1085,45 @@
                 },
                 {
                     "repeatId": "3",
-                    "children": [{
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "systemOneSystemUserRole"
-                            }
-                        ],
-                        "name": "userRole"
-                    }],
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOneSystemUserRole"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "collectPermissionTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionUnitPermissionTerm"
+                                        }
+                                    ],
+                                    "name": "rule"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "name": "value",
+                                    "value": "system.permissionUnit_uu.ub"
+                                }
+                            ],
+                            "name": "permissionTermRulePart"
+                        }
+                    ],
                     "name": "userRole"
                 },
                 {
@@ -910,19 +1155,6 @@
                 {
                     "children": [
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
                             "name": "id",
                             "value": "coraUser:8239436126036"
                         },
@@ -953,6 +1185,19 @@
                             "name": "createdBy"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
                             "name": "tsCreated",
                             "value": "2018-05-09 09:56:28.955"
                         },
@@ -975,6 +1220,29 @@
                                 {
                                     "name": "tsUpdated",
                                     "value": "2018-05-09 09:56:28.955"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 03:59:15.154"
                                 }
                             ],
                             "name": "updated"
@@ -1047,19 +1315,45 @@
                 },
                 {
                     "repeatId": "3",
-                    "children": [{
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "systemOneSystemUserRole"
-                            }
-                        ],
-                        "name": "userRole"
-                    }],
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOneSystemUserRole"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "collectPermissionTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionUnitPermissionTerm"
+                                        }
+                                    ],
+                                    "name": "rule"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "name": "value",
+                                    "value": "system.permissionUnit_uu.ub"
+                                }
+                            ],
+                            "name": "permissionTermRulePart"
+                        }
+                    ],
                     "name": "userRole"
                 },
                 {
@@ -1091,19 +1385,6 @@
                 {
                     "children": [
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
                             "name": "id",
                             "value": "coraUser:8199051994459"
                         },
@@ -1134,6 +1415,19 @@
                             "name": "createdBy"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
                             "name": "tsCreated",
                             "value": "2018-05-09 09:55:48.571"
                         },
@@ -1156,6 +1450,29 @@
                                 {
                                     "name": "tsUpdated",
                                     "value": "2018-05-09 09:55:48.571"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 04:00:01.609"
                                 }
                             ],
                             "name": "updated"
@@ -1228,19 +1545,45 @@
                 },
                 {
                     "repeatId": "3",
-                    "children": [{
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "systemOneSystemUserRole"
-                            }
-                        ],
-                        "name": "userRole"
-                    }],
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOneSystemUserRole"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "collectPermissionTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionUnitPermissionTerm"
+                                        }
+                                    ],
+                                    "name": "rule"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "name": "value",
+                                    "value": "system.permissionUnit_uu.ub"
+                                }
+                            ],
+                            "name": "permissionTermRulePart"
+                        }
+                    ],
                     "name": "userRole"
                 },
                 {
@@ -1272,19 +1615,6 @@
                 {
                     "children": [
                         {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
                             "name": "id",
                             "value": "coraUser:8221860835759"
                         },
@@ -1315,6 +1645,19 @@
                             "name": "createdBy"
                         },
                         {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
                             "name": "tsCreated",
                             "value": "2018-05-09 09:56:11.380"
                         },
@@ -1337,6 +1680,29 @@
                                 {
                                     "name": "tsUpdated",
                                     "value": "2018-05-09 09:56:11.380"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 03:59:43.425"
                                 }
                             ],
                             "name": "updated"
@@ -1409,19 +1775,45 @@
                 },
                 {
                     "repeatId": "3",
-                    "children": [{
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "systemOneSystemUserRole"
-                            }
-                        ],
-                        "name": "userRole"
-                    }],
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOneSystemUserRole"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "collectPermissionTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionUnitPermissionTerm"
+                                        }
+                                    ],
+                                    "name": "rule"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "name": "value",
+                                    "value": "system.permissionUnit_uu.ub"
+                                }
+                            ],
+                            "name": "permissionTermRulePart"
+                        }
+                    ],
                     "name": "userRole"
                 },
                 {

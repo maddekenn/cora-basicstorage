@@ -368,6 +368,52 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 03:44:57.872"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 03:53:22.206"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -437,19 +483,45 @@
                 },
                 {
                     "repeatId": "23483446981530",
-                    "children": [{
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "systemOneSystemUserRole"
-                            }
-                        ],
-                        "name": "userRole"
-                    }],
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "permissionRole"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "systemOneSystemUserRole"
+                                }
+                            ],
+                            "name": "userRole"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "collectPermissionTerm"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "permissionUnitPermissionTerm"
+                                        }
+                                    ],
+                                    "name": "rule"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "name": "value",
+                                    "value": "system.permissionUnit_uu.ub"
+                                }
+                            ],
+                            "name": "permissionTermRulePart"
+                        }
+                    ],
                     "name": "userRole"
                 },
                 {
@@ -463,6 +535,23 @@
                             {
                                 "name": "linkedRecordId",
                                 "value": "userAdminRole"
+                            }
+                        ],
+                        "name": "userRole"
+                    }],
+                    "name": "userRole"
+                },
+                {
+                    "repeatId": "23483446981532",
+                    "children": [{
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "permissionRole"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "bibsysAdminRole"
                             }
                         ],
                         "name": "userRole"
@@ -518,23 +607,6 @@
                         }
                     ],
                     "name": "userAppTokenGroup"
-                },
-                {
-                    "repeatId": "23483446981532",
-                    "children": [{
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "permissionRole"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "bibsysAdminRole"
-                            }
-                        ],
-                        "name": "userRole"
-                    }],
-                    "name": "userRole"
                 }
             ],
             "name": "user"
