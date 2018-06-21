@@ -6290,19 +6290,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -6315,15 +6302,28 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
@@ -6351,6 +6351,52 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 06:18:17.759"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-06-21 06:18:57.502"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -6360,18 +6406,14 @@
                     "value": "userFirstname"
                 },
                 {
-                    "name": "regEx",
-                    "value": "(^[0-9A-Za-z:-_]{2,50}$)"
-                },
-                {
                     "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "userFirstnameTextVarText"
-                        },
                         {
                             "name": "linkedRecordType",
                             "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userFirstnameTextVarText"
                         }
                     ],
                     "name": "textId"
@@ -6379,15 +6421,19 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "userFirstnameTextVarDefText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "textSystemOne"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "userFirstnameTextVarDefText"
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "name": "regEx",
+                    "value": "(^[0-9A-Za-z:-_]{2,50}$)"
                 }
             ],
             "name": "metadata",
