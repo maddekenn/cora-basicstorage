@@ -520,19 +520,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "bibsys"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -545,15 +532,28 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "141414"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
@@ -581,6 +581,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-07-13 07:41:58.569"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -593,24 +616,11 @@
                     "children": [
                         {
                             "name": "linkedRecordType",
-                            "value": "metadataItemCollection"
+                            "value": "coraText"
                         },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "languageCollection"
-                        }
-                    ],
-                    "name": "refCollection"
-                },
-                {
-                    "children": [
                         {
                             "name": "linkedRecordId",
                             "value": "cataloguingLanguageCollectionVarText"
-                        },
-                        {
-                            "name": "linkedRecordType",
-                            "value": "coraText"
                         }
                     ],
                     "name": "textId"
@@ -618,15 +628,28 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "cataloguingLanguageCollectionVarDefText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "cataloguingLanguageCollectionVarDefText"
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataItemCollection"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "completeLanguageCollection"
+                        }
+                    ],
+                    "name": "refCollection"
                 }
             ],
             "name": "metadata",
