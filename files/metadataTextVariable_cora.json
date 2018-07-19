@@ -3040,6 +3040,52 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-07-18 09:02:06.431"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-07-18 09:06:23.840"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -3076,7 +3122,7 @@
                 },
                 {
                     "name": "regEx",
-                    "value": "^system\\.[\\*A-Za-z._]{0,300}$"
+                    "value": "^system\\.(^[0-9A-Z a-z:-_]{2,100}$)"
                 }
             ],
             "name": "metadata",
@@ -7141,19 +7187,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -7166,15 +7199,28 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "12345"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "12345"
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
@@ -7202,6 +7248,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-07-18 09:12:05.947"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -7211,18 +7280,14 @@
                     "value": "permissionRulePartValue"
                 },
                 {
-                    "name": "regEx",
-                    "value": "^system\\.[\\*A-Za-z.]{0,300}$"
-                },
-                {
                     "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "permissionRulePartValueTextVarText"
-                        },
                         {
                             "name": "linkedRecordType",
                             "value": "textSystemOne"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionRulePartValueTextVarText"
                         }
                     ],
                     "name": "textId"
@@ -7230,15 +7295,19 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "permissionRulePartValueTextVarDefText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "textSystemOne"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "permissionRulePartValueTextVarDefText"
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "name": "regEx",
+                    "value": "^system\\.[\\*0-9A-Za-z.]{0,300}$"
                 }
             ],
             "name": "metadata",
