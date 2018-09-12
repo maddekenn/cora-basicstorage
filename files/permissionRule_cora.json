@@ -1308,6 +1308,115 @@
                     "children": [
                         {
                             "name": "id",
+                            "value": "organisationSearchRule"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "permissionRule"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "name": "tsCreated",
+                            "value": "2018-09-11 08:42:51.744"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-11 08:42:51.744"
+                                }
+                            ],
+                            "name": "updated"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "repeatId": "2",
+                            "name": "permissionRulePartValue",
+                            "value": "system.search"
+                        },
+                        {
+                            "repeatId": "3",
+                            "name": "permissionRulePartValue",
+                            "value": "system.list"
+                        }
+                    ],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "action"}
+                },
+                {
+                    "children": [{
+                        "repeatId": "9",
+                        "name": "permissionRulePartValue",
+                        "value": "system.organisation"
+                    }],
+                    "name": "permissionRulePart",
+                    "attributes": {"type": "recordType"}
+                },
+                {
+                    "name": "activeStatus",
+                    "value": "active"
+                }
+            ],
+            "name": "permissionRule"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "id",
                             "value": "systemOneSystemUser"
                         },
                         {
@@ -1352,29 +1461,6 @@
                         {
                             "name": "tsCreated",
                             "value": "2017-10-01 00:00:00.0"
-                        },
-                        {
-                            "repeatId": "10",
-                            "children": [
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "user"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "141414"
-                                        }
-                                    ],
-                                    "name": "updatedBy"
-                                },
-                                {
-                                    "name": "tsUpdated",
-                                    "value": "2018-07-18 11:30:46.714"
-                                }
-                            ],
-                            "name": "updated"
                         },
                         {
                             "repeatId": "11",
@@ -1582,6 +1668,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "20",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-12 12:53:44.066"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -1706,6 +1815,11 @@
                             "repeatId": "23",
                             "name": "permissionRulePartValue",
                             "value": "system.divaOrganisation"
+                        },
+                        {
+                            "repeatId": "24",
+                            "name": "permissionRulePartValue",
+                            "value": "system.publishingHouse"
                         }
                     ],
                     "name": "permissionRulePart",
