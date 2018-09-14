@@ -1883,19 +1883,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "bibsys"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -1908,15 +1895,28 @@
                         {
                             "children": [
                                 {
-                                    "name": "linkedRecordId",
-                                    "value": "141414"
-                                },
-                                {
                                     "name": "linkedRecordType",
                                     "value": "systemOneUser"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
@@ -1944,6 +1944,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-14 13:52:12.603"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -1953,18 +1976,14 @@
                     "value": "identifierValue"
                 },
                 {
-                    "name": "regEx",
-                    "value": ".*"
-                },
-                {
                     "children": [
-                        {
-                            "name": "linkedRecordId",
-                            "value": "identifierValueTextVarText"
-                        },
                         {
                             "name": "linkedRecordType",
                             "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "identifierValueTextVarText"
                         }
                     ],
                     "name": "textId"
@@ -1972,15 +1991,19 @@
                 {
                     "children": [
                         {
-                            "name": "linkedRecordId",
-                            "value": "identifierValueTextVarDefText"
-                        },
-                        {
                             "name": "linkedRecordType",
                             "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "identifierValueTextVarDefText"
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "name": "regEx",
+                    "value": ".+"
                 }
             ],
             "name": "metadata",
