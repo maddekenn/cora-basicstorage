@@ -1,6 +1,6 @@
 /*
- * Copyright 2016 Olov McKie
- * Copyright 2016 Uppsala University Library
+ * Copyright 2016, 2018 Olov McKie
+ * Copyright 2016, 2018 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -91,11 +91,10 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private void readFileOrReadDirectoryIfNotStreamsDir(Iterator<Path> iterator)
 			throws IOException {
 		Path path = iterator.next();
-		if (Files.isDirectory(path)) {
+		if (path.toFile().isDirectory()) {
 			if (!path.endsWith("streams/")) {
 				Stream<Path> list = Files.list(path);
 				readStoredDataFromDisk(list);
-
 			}
 		} else {
 			readFileAndParseFileByPath(path);
@@ -361,7 +360,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private void writeDataGroupToDiskAsJson(Path path, String json) throws IOException {
 		BufferedWriter writer = null;
 		try {
-			if (Files.exists(path)) {
+			if (path.toFile().exists()) {
 				Files.delete(path);
 			}
 			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
@@ -463,7 +462,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		if (!linkListsGroups.containsKey(dataDivider)) {
 			String linkListFileName = "linkLists_" + dataDivider + JSON_FILE_END;
 			Path path = Paths.get(basePath, dataDivider, linkListFileName);
-			if (Files.exists(path)) {
+			if (path.toFile().exists()) {
 				removeFileFromDisk(LINK_LISTS, dataDivider);
 			}
 		}

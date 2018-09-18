@@ -1,5 +1,6 @@
 /*
- * Copyright 2016 Olov McKie
+ * Copyright 2016, 2018 Olov McKie
+ * Copyright 2016, 2018 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -319,7 +320,7 @@ public class RecordStorageOnDiskTest {
 
 	@Test(expectedExceptions = RecordNotFoundException.class)
 	// @Test
-	public void testInitStreamsFolderShouldNotBeRead() {
+	public void testInitStreamsFolderShouldNotBeRead() throws IOException {
 		createRecordTypePlace();
 		writeFileToDisk(expectedRecordJsonOneRecordPlace1, "streams", PLACE_FILENAME);
 		writeFileToDisk(expectedRecordJsonOneRecordPlace2, "streams", "place_jsClient.json");
@@ -1553,7 +1554,7 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
-	public void testInitWithFileOnDiskNoLinksOnDisk() {
+	public void testInitWithFileOnDiskNoLinksOnDisk() throws IOException {
 		createRecordTypePlace();
 		writePlaceFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
@@ -1573,20 +1574,26 @@ public class RecordStorageOnDiskTest {
 				convertDataGroupToJsonString(dataGroupExpected));
 	}
 
-	private void writePlaceFileToDisk() {
+	private void writePlaceFileToDisk() throws IOException {
 		writeFileToDisk(expectedRecordJsonOneRecordPlace1, "cora", PLACE_FILENAME);
 	}
 
-	private void writeFileToDisk(String json, String dataDivider, String fileName) {
+	private void writeFileToDisk(String json, String dataDivider, String fileName)
+			throws IOException {
+		possiblyCreateFolderForDataDivider(dataDivider);
 		Path path = FileSystems.getDefault().getPath(basePath, dataDivider, fileName);
 		BufferedWriter writer;
-		try {
-			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
-					StandardOpenOption.CREATE);
-			writer.write(json, 0, json.length());
-			writer.flush();
-			writer.close();
-		} catch (IOException e) {
+		writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+		writer.write(json, 0, json.length());
+		writer.flush();
+		writer.close();
+	}
+
+	private void possiblyCreateFolderForDataDivider(String dataDivider) {
+		Path pathIncludingDataDivider = Paths.get(basePath, dataDivider);
+		File newPath = pathIncludingDataDivider.toFile();
+		if (!newPath.exists()) {
+			newPath.mkdir();
 		}
 	}
 
@@ -1609,7 +1616,7 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
-	public void testInitPlaceAndPersonFileOnDisk() {
+	public void testInitPlaceAndPersonFileOnDisk() throws IOException {
 		createRecordTypePlace();
 		DataGroup personRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("person", "true", "false");
@@ -1626,7 +1633,7 @@ public class RecordStorageOnDiskTest {
 		assertEquals(dataGroupPersonOut.getNameInData(), "authority");
 	}
 
-	private void writePersonFileToDisk() {
+	private void writePersonFileToDisk() throws IOException {
 		String json = "{\"children\":[{\"children\":[{\"children\":[{\"name\":\"type\""
 				+ ",\"value\":\"person\"}" + ",{\"name\":\"id\",\"value\":\"person:0001\"}]"
 				+ ",\"name\":\"recordInfo\"}],\"name\":\"authority\"}],\"name\":\"recordList\"}";
@@ -1744,7 +1751,7 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
-	public void testInitWithFileOnDiskLinksOnDisk() {
+	public void testInitWithFileOnDiskLinksOnDisk() throws IOException {
 		createRecordTypePlace();
 		writePlaceFileToDisk();
 		writePlaceLinksFileToDisk();
@@ -1863,7 +1870,7 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
-	public void testListWithCollectedStorageTermReadWithMatchingUppsalaFilter() {
+	public void testListWithCollectedStorageTermReadWithMatchingUppsalaFilter() throws IOException {
 		createRecordTypePlace();
 		writePlaceFileToDisk();
 		writeStorageTermsPlaceFileToDisk();
@@ -1884,7 +1891,7 @@ public class RecordStorageOnDiskTest {
 
 	@Test(expectedExceptions = RecordNotFoundException.class)
 	// @Test
-	public void testReadingEmptyCollectedDataBeforeReadingRecordFiles() {
+	public void testReadingEmptyCollectedDataBeforeReadingRecordFiles() throws IOException {
 		writeStorageTermsPlaceFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
@@ -1897,7 +1904,7 @@ public class RecordStorageOnDiskTest {
 		recordStorage.readList("place", filter);
 	}
 
-	private void writePlaceLinksFileToDisk() {
+	private void writePlaceLinksFileToDisk() throws IOException {
 		String expectedLinkListJson = "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
 				+ "{\"children\":[{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
@@ -1923,7 +1930,7 @@ public class RecordStorageOnDiskTest {
 		writeFileToDisk(expectedLinkListJson, "cora", LINK_LISTS_FILENAME);
 	}
 
-	private void writeStorageTermsPlaceFileToDisk() {
+	private void writeStorageTermsPlaceFileToDisk() throws IOException {
 		String expectedCollectedDataOneTerm = "{\n";
 		expectedCollectedDataOneTerm += "    \"children\": [\n";
 		expectedCollectedDataOneTerm += "        {\n";
