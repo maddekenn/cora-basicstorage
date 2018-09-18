@@ -21,6 +21,7 @@ package se.uu.ub.cora.storage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -71,6 +72,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		Stream<Path> list = Stream.empty();
 		try {
 			list = Files.list(Paths.get(basePath));
+
 			readStoredDataFromDisk(list);
 		} catch (IOException e) {
 			throw DataStorageException.withMessage("can not read files from disk on init" + e);
@@ -82,13 +84,20 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private void readStoredDataFromDisk(Stream<Path> list) throws IOException {
 		Iterator<Path> iterator = list.iterator();
 		while (iterator.hasNext()) {
-			readFileIfNotDirectory(iterator);
+			readFileOrReadDirectoryIfNotStreamsDir(iterator);
 		}
 	}
 
-	private void readFileIfNotDirectory(Iterator<Path> iterator) throws IOException {
+	private void readFileOrReadDirectoryIfNotStreamsDir(Iterator<Path> iterator)
+			throws IOException {
 		Path path = iterator.next();
-		if (!Files.isDirectory(path)) {
+		if (Files.isDirectory(path)) {
+			if (!path.endsWith("streams/")) {
+				Stream<Path> list = Files.list(path);
+				readStoredDataFromDisk(list);
+
+			}
+		} else {
 			readFileAndParseFileByPath(path);
 		}
 	}
@@ -149,7 +158,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 	}
 
-	private void parseAndStoreRecordTypeDataLinksInMemory(String dataDivider, DataElement typesElement) {
+	private void parseAndStoreRecordTypeDataLinksInMemory(String dataDivider,
+			DataElement typesElement) {
 		DataGroup recordType = (DataGroup) typesElement;
 		String recordTypeName = recordType.getNameInData();
 		ensureStorageExistsForRecordType(recordTypeName);
@@ -242,8 +252,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	private void removePreviousCollectedDataFiles() {
 		for (String dataDivider : allSeenCollectedDataFileNames) {
-			String pathString2 = COLLECTED_DATA + "_" + dataDivider + JSON_FILE_END;
-			Path path = Paths.get(basePath, pathString2);
+			String collectedDataFileName = COLLECTED_DATA + "_" + dataDivider + JSON_FILE_END;
+			Path path = Paths.get(basePath, dataDivider, collectedDataFileName);
 			if (path.toFile().exists()) {
 				removeFileFromDisk(COLLECTED_DATA, dataDivider);
 			}
@@ -253,9 +263,11 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private void writeCollectedDataForDataDividersToDisk(
 			Map<String, DataGroup> collectedDataByDataDivider) {
 		for (Entry<String, DataGroup> entry : collectedDataByDataDivider.entrySet()) {
-			String path = "collectedData_" + entry.getKey() + JSON_FILE_END;
+			String dataDivider = entry.getKey();
+			Path path = Paths.get(basePath, dataDivider,
+					"collectedData_" + dataDivider + JSON_FILE_END);
 			tryToWriteDataGroupToDiskAsJson(path, entry.getValue());
-			allSeenCollectedDataFileNames.add(entry.getKey());
+			allSeenCollectedDataFileNames.add(dataDivider);
 		}
 	}
 
@@ -268,12 +280,21 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void removeFileFromDisk(String recordType, String dataDivider) {
-		String pathString2 = recordType + "_" + dataDivider + JSON_FILE_END;
+		String recordTypeFileName = recordType + "_" + dataDivider + JSON_FILE_END;
 		try {
-			Path path = Paths.get(basePath, pathString2);
+			Path path = Paths.get(basePath, dataDivider, recordTypeFileName);
 			Files.delete(path);
+			deleteDirectoryIfEmpty(dataDivider);
 		} catch (IOException e) {
 			throw DataStorageException.withMessage("can not delete record files from disk" + e);
+		}
+	}
+
+	private void deleteDirectoryIfEmpty(String dataDivider) {
+		File directoryIncludingDataDivider = Paths.get(basePath, dataDivider).toFile();
+		String[] list = directoryIncludingDataDivider.list();
+		if (list.length == 0) {
+			directoryIncludingDataDivider.delete();
 		}
 	}
 
@@ -310,28 +331,41 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	private void writeDividedRecordsToDisk(String recordType, Map<String, DataGroup> recordLists) {
 		for (Entry<String, DataGroup> recordListEntry : recordLists.entrySet()) {
-			String pathString2 = recordType + "_" + recordListEntry.getKey() + JSON_FILE_END;
-			tryToWriteDataGroupToDiskAsJson(pathString2, recordListEntry.getValue());
+			String dataDivider = recordListEntry.getKey();
+			DataGroup dataGroupRecord = recordListEntry.getValue();
+
+			possiblyCreateFolderForDataDivider(dataDivider);
+			Path path = Paths.get(basePath, dataDivider,
+					recordType + "_" + dataDivider + JSON_FILE_END);
+			tryToWriteDataGroupToDiskAsJson(path, dataGroupRecord);
 		}
 	}
 
-	private void tryToWriteDataGroupToDiskAsJson(String pathString, DataGroup dataGroup) {
+	private void possiblyCreateFolderForDataDivider(String dataDivider) {
+		Path pathIncludingDataDivider = Paths.get(basePath, dataDivider);
+		File newPath = pathIncludingDataDivider.toFile();
+		if (!newPath.exists()) {
+			newPath.mkdir();
+		}
+	}
+
+	private void tryToWriteDataGroupToDiskAsJson(Path path, DataGroup dataGroup) {
 		String json = convertDataGroupToJsonString(dataGroup);
 		try {
-			writeDataGroupToDiskAsJson(pathString, json);
+			writeDataGroupToDiskAsJson(path, json);
 		} catch (IOException | NullPointerException e) {
 			throw DataStorageException.withMessage("can not write files to disk" + e);
 		}
 	}
 
-	private void writeDataGroupToDiskAsJson(String pathString, String json) throws IOException {
+	private void writeDataGroupToDiskAsJson(Path path, String json) throws IOException {
 		BufferedWriter writer = null;
 		try {
-			Path path = Paths.get(basePath, pathString);
 			if (Files.exists(path)) {
 				Files.delete(path);
 			}
-			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
+					StandardOpenOption.CREATE);
 			writer.write(json, 0, json.length());
 			writer.flush();
 		} finally {
@@ -377,7 +411,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 	}
 
-	private void addLinkListsForRecordToListBasedOnDataDivider(Map<String, DataGroup> linkListsGroups,
+	private void addLinkListsForRecordToListBasedOnDataDivider(
+			Map<String, DataGroup> linkListsGroups,
 			Entry<String, Map<String, DividerGroup>> recordType,
 			Entry<String, DividerGroup> recordEntry) {
 		DividerGroup dataDividerGroup = recordEntry.getValue();
@@ -399,7 +434,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	private void ensureLinkListForRecordType(Map<String, DataGroup> linkListsGroups,
 			Entry<String, Map<String, DividerGroup>> recordType, String currentDataDivider) {
-		if (!linkListsGroups.get(currentDataDivider).containsChildWithNameInData(recordType.getKey())) {
+		if (!linkListsGroups.get(currentDataDivider)
+				.containsChildWithNameInData(recordType.getKey())) {
 			DataGroup recordTypeGroup = DataGroup.withNameInData(recordType.getKey());
 			linkListsGroups.get(currentDataDivider).addChild(recordTypeGroup);
 		}
@@ -415,16 +451,18 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	private void writeDividedLinkListsToDisk(Map<String, DataGroup> linkListsGroups) {
 		for (Entry<String, DataGroup> recordListEntry : linkListsGroups.entrySet()) {
-			String pathString2 = "linkLists_" + recordListEntry.getKey() + JSON_FILE_END;
-			tryToWriteDataGroupToDiskAsJson(pathString2, recordListEntry.getValue());
+			String dataDivider = recordListEntry.getKey();
+			Path path = Paths.get(basePath, dataDivider,
+					"linkLists_" + dataDivider + JSON_FILE_END);
+			tryToWriteDataGroupToDiskAsJson(path, recordListEntry.getValue());
 		}
 	}
 
 	private void possiblyRemoveOldDataDividerLinkListFile(String dataDivider,
 			Map<String, DataGroup> linkListsGroups) {
 		if (!linkListsGroups.containsKey(dataDivider)) {
-			String pathString2 = "linkLists_" + dataDivider + JSON_FILE_END;
-			Path path = Paths.get(basePath, pathString2);
+			String linkListFileName = "linkLists_" + dataDivider + JSON_FILE_END;
+			Path path = Paths.get(basePath, dataDivider, linkListFileName);
 			if (Files.exists(path)) {
 				removeFileFromDisk(LINK_LISTS, dataDivider);
 			}
