@@ -1174,19 +1174,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "alvin"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -1208,6 +1195,19 @@
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "alvin"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
@@ -1235,6 +1235,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-19 08:37:00.543"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -1242,6 +1265,32 @@
                 {
                     "name": "nameInData",
                     "value": "placeAndPublisherCountry"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeAndPublisherCountryGroupText"
+                        }
+                    ],
+                    "name": "textId"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "coraText"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "placeAndPublisherCountryGroupDefText"
+                        }
+                    ],
+                    "name": "defTextId"
                 },
                 {
                     "children": [
@@ -1264,7 +1313,7 @@
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "uncertainCountryCollectionVar"
+                                            "value": "uncertainCollectionVar"
                                         }
                                     ],
                                     "name": "ref"
@@ -1301,32 +1350,6 @@
                         }
                     ],
                     "name": "childReferences"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "coraText"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "placeAndPublisherCountryGroupText"
-                        }
-                    ],
-                    "name": "textId"
-                },
-                {
-                    "children": [
-                        {
-                            "name": "linkedRecordType",
-                            "value": "coraText"
-                        },
-                        {
-                            "name": "linkedRecordId",
-                            "value": "placeAndPublisherCountryGroupDefText"
-                        }
-                    ],
-                    "name": "defTextId"
                 }
             ],
             "name": "metadata",
@@ -3268,6 +3291,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-19 09:35:14.873"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -3303,62 +3349,33 @@
                     "name": "defTextId"
                 },
                 {
-                    "children": [
-                        {
-                            "repeatId": "2",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "placeInformationGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "1",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataCollectionVariable"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "locationCollectionVar"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        }
-                    ],
+                    "children": [{
+                        "repeatId": "2",
+                        "children": [
+                            {
+                                "name": "repeatMin",
+                                "value": "1"
+                            },
+                            {
+                                "name": "repeatMax",
+                                "value": "1"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "name": "linkedRecordType",
+                                        "value": "metadataGroup"
+                                    },
+                                    {
+                                        "name": "linkedRecordId",
+                                        "value": "placeInformationGroup"
+                                    }
+                                ],
+                                "name": "ref"
+                            }
+                        ],
+                        "name": "childReference"
+                    }],
                     "name": "childReferences"
                 }
             ],
@@ -13833,6 +13850,52 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "44",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-19 09:55:50.819"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "45",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-19 10:02:22.949"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -14113,34 +14176,7 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "3",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataCollectionVariable"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "typeOfLicensingCollectionVar"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "4",
+                            "repeatId": "9",
                             "children": [
                                 {
                                     "name": "repeatMin",
@@ -14158,7 +14194,7 @@
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "identifiersLocalGroup"
+                                            "value": "originGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -14167,7 +14203,7 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "5",
+                            "repeatId": "12",
                             "children": [
                                 {
                                     "name": "repeatMin",
@@ -14185,7 +14221,7 @@
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "identifiersGeneralGroup"
+                                            "value": "otherDatesGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -14221,33 +14257,6 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "7",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "publicationInformationGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
                             "repeatId": "8",
                             "children": [
                                 {
@@ -14267,87 +14276,6 @@
                                         {
                                             "name": "linkedRecordId",
                                             "value": "otherPhysicalDescriptionsGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "9",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "originGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "11",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "subjectHeadingsGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "12",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "otherDatesGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -14464,7 +14392,7 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "19",
+                            "repeatId": "23",
                             "children": [
                                 {
                                     "name": "repeatMin",
@@ -14478,11 +14406,65 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataGroup"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "accessConditionTextVar"
+                                            "value": "notesGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "22",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "externalLinksGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "11",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "subjectHeadingsGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -14545,7 +14527,7 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "22",
+                            "repeatId": "19",
                             "children": [
                                 {
                                     "name": "repeatMin",
@@ -14559,11 +14541,11 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataGroup"
+                                            "value": "metadataTextVariable"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "externalLinksGroup"
+                                            "value": "accessConditionTextVar"
                                         }
                                     ],
                                     "name": "ref"
@@ -14572,7 +14554,7 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "23",
+                            "repeatId": "7",
                             "children": [
                                 {
                                     "name": "repeatMin",
@@ -14590,7 +14572,88 @@
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "notesGroup"
+                                            "value": "publicationInformationGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "identifiersGeneralGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "identifiersLocalGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataCollectionVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "typeOfLicensingCollectionVar"
                                         }
                                     ],
                                     "name": "ref"
@@ -15082,6 +15145,52 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "45",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-19 11:14:29.342"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "46",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-19 11:14:48.038"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -15138,33 +15247,6 @@
                                         {
                                             "name": "linkedRecordId",
                                             "value": "isCollectionCollectionVar"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "0",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "recordInfoGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -15362,87 +15444,6 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "4",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataCollectionVariable"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "typeOfLicensingCollectionVar"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "5",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "identifiersLocalGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "6",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "identifiersGeneralGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
                             "repeatId": "7",
                             "children": [
                                 {
@@ -15462,33 +15463,6 @@
                                         {
                                             "name": "linkedRecordId",
                                             "value": "physicalDescriptionGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "8",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "publicationInformationGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -15524,60 +15498,6 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "10",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "originGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
-                            "repeatId": "12",
-                            "children": [
-                                {
-                                    "name": "repeatMin",
-                                    "value": "0"
-                                },
-                                {
-                                    "name": "repeatMax",
-                                    "value": "1"
-                                },
-                                {
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "metadataGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "subjectHeadingsGroup"
-                                        }
-                                    ],
-                                    "name": "ref"
-                                }
-                            ],
-                            "name": "childReference"
-                        },
-                        {
                             "repeatId": "13",
                             "children": [
                                 {
@@ -15605,11 +15525,11 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "14",
+                            "repeatId": "10",
                             "children": [
                                 {
                                     "name": "repeatMin",
-                                    "value": "1"
+                                    "value": "0"
                                 },
                                 {
                                     "name": "repeatMax",
@@ -15623,7 +15543,7 @@
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "bibliographicTitleGroup"
+                                            "value": "originGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -15740,7 +15660,7 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "21",
+                            "repeatId": "25",
                             "children": [
                                 {
                                     "name": "repeatMin",
@@ -15754,11 +15674,65 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataTextVariable"
+                                            "value": "metadataGroup"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "accessConditionTextVar"
+                                            "value": "notesGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "24",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "externalLinksGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "12",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "subjectHeadingsGroup"
                                         }
                                     ],
                                     "name": "ref"
@@ -15821,7 +15795,7 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "24",
+                            "repeatId": "21",
                             "children": [
                                 {
                                     "name": "repeatMin",
@@ -15835,11 +15809,11 @@
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "metadataGroup"
+                                            "value": "metadataTextVariable"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "externalLinksGroup"
+                                            "value": "accessConditionTextVar"
                                         }
                                     ],
                                     "name": "ref"
@@ -15848,7 +15822,7 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "25",
+                            "repeatId": "8",
                             "children": [
                                 {
                                     "name": "repeatMin",
@@ -15866,7 +15840,115 @@
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "notesGroup"
+                                            "value": "publicationInformationGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "6",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "identifiersGeneralGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "0"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "identifiersLocalGroup"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataCollectionVariable"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "typeOfLicensingCollectionVar"
+                                        }
+                                    ],
+                                    "name": "ref"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "name": "repeatMin",
+                                    "value": "1"
+                                },
+                                {
+                                    "name": "repeatMax",
+                                    "value": "1"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "metadataGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "recordInfoGroup"
                                         }
                                     ],
                                     "name": "ref"

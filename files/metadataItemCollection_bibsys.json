@@ -14080,19 +14080,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "bibsys"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -14114,6 +14101,19 @@
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "bibsys"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
@@ -14141,6 +14141,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-19 09:32:49.342"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -14148,23 +14171,6 @@
                 {
                     "name": "nameInData",
                     "value": "location"
-                },
-                {
-                    "children": [{
-                        "repeatId": "0",
-                        "children": [
-                            {
-                                "name": "linkedRecordType",
-                                "value": "genericCollectionItem"
-                            },
-                            {
-                                "name": "linkedRecordId",
-                                "value": "locationAlexandriaItem"
-                            }
-                        ],
-                        "name": "ref"
-                    }],
-                    "name": "collectionItemReferences"
                 },
                 {
                     "children": [
@@ -14191,6 +14197,23 @@
                         }
                     ],
                     "name": "defTextId"
+                },
+                {
+                    "children": [{
+                        "repeatId": "0",
+                        "children": [
+                            {
+                                "name": "linkedRecordType",
+                                "value": "genericCollectionItem"
+                            },
+                            {
+                                "name": "linkedRecordId",
+                                "value": "locationAlexandriaItem"
+                            }
+                        ],
+                        "name": "ref"
+                    }],
+                    "name": "collectionItemReferences"
                 }
             ],
             "name": "metadata",
