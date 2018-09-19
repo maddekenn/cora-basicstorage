@@ -48,7 +48,7 @@ public class UserStorageTest {
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
 		File dir = new File(basePath);
 		dir.mkdir();
-		deleteFiles();
+		deleteFiles(basePath);
 		TestDataAppTokenStorage.createRecordStorageInMemoryWithTestData(basePath);
 
 		initInfo = new HashMap<>();
@@ -56,15 +56,19 @@ public class UserStorageTest {
 		userStorage = new UserStorageImp(initInfo);
 	}
 
-	private void deleteFiles() throws IOException {
+	private void deleteFiles(String path) throws IOException {
 		Stream<Path> list;
-		list = Files.list(Paths.get(basePath));
+		list = Files.list(Paths.get(path));
+
 		list.forEach(p -> deleteFile(p));
 		list.close();
 	}
 
 	private void deleteFile(Path path) {
 		try {
+			if (path.toFile().isDirectory()) {
+				deleteFiles(path.toString());
+			}
 			Files.delete(path);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -74,7 +78,7 @@ public class UserStorageTest {
 	@AfterMethod
 	public void removeTempFiles() throws IOException {
 		if (Files.exists(Paths.get(basePath))) {
-			deleteFiles();
+			deleteFiles(basePath);
 			File dir = new File(basePath);
 			dir.delete();
 		}
