@@ -293,7 +293,15 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		File directoryIncludingDataDivider = Paths.get(basePath, dataDivider).toFile();
 		String[] list = directoryIncludingDataDivider.list();
 		if (list.length == 0) {
-			directoryIncludingDataDivider.delete();
+			deleteDirectory(directoryIncludingDataDivider);
+		}
+	}
+
+	protected void deleteDirectory(File dir) {
+		boolean failedToRemoveDir = !dir.delete();
+		if (failedToRemoveDir) {
+			throw DataStorageException
+					.withMessage("can not delete directory from disk" + dir.toString());
 		}
 	}
 
@@ -344,7 +352,11 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		Path pathIncludingDataDivider = Paths.get(basePath, dataDivider);
 		File newPath = pathIncludingDataDivider.toFile();
 		if (!newPath.exists()) {
-			newPath.mkdir();
+			boolean failedToMakeDirectory = !newPath.mkdir();
+			if (failedToMakeDirectory) {
+				throw DataStorageException
+						.withMessage("Could not make directory " + newPath.toString());
+			}
 		}
 	}
 

@@ -1997,15 +1997,33 @@ public class RecordStorageOnDiskTest {
 		RecordStorageOnDisk.createRecordStorageOnDiskWithBasePath(basePath);
 	}
 
-	@Test(expectedExceptions = DataStorageException.class)
-	public void testCreateMissingPath() throws IOException {
+	@Test
+	public void testCreateFileInLockedDir() throws IOException {
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
+		Paths.get(basePath, "cora").toFile().setWritable(false);
+		try {
+			recordStorage.create("organisation", "org:0001", dataGroup, emptyCollectedData,
+					emptyLinkList, "cora");
+		} catch (Exception e) {
+			assertEquals(e.getMessage(),
+					"can not write files to diskjava.lang.NullPointerException");
+		}
+		Paths.get(basePath, "cora").toFile().setWritable(true);
+	}
+
+	@Test(expectedExceptions = DataStorageException.class, expectedExceptionsMessageRegExp = ""
+			+ "Could not make directory /tmp/recordStorageOnDiskTemp/cora")
+	public void testCreateDirWhenParentIsGone() throws IOException {
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 		removeTempFiles();
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
 				"cora");
-
 	}
 
 	@Test(expectedExceptions = DataStorageException.class)
@@ -2030,6 +2048,17 @@ public class RecordStorageOnDiskTest {
 				"cora");
 		removeTempFiles();
 		recordStorage.deleteByTypeAndId("place", "place:0001");
+	}
 
+	@Test(expectedExceptions = DataStorageException.class, expectedExceptionsMessageRegExp = ""
+			+ "can not delete directory from disk/tmp/recordStorageOnDiskTemp/cora")
+	public void testCanNotDeleteDataDividerFolder() throws IOException {
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
+		File dir = Paths.get(basePath, "cora").toFile();
+		recordStorage.deleteDirectory(dir);
 	}
 }
