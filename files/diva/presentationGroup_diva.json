@@ -16238,6 +16238,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "13",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 09:35:14.177"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -16433,6 +16456,62 @@
                                             {
                                                 "name": "linkedRecordId",
                                                 "value": "divaPersonIdentifiersOutputPGroup"
+                                            }
+                                        ],
+                                        "name": "ref",
+                                        "attributes": {"type": "presentation"}
+                                    }],
+                                    "name": "refGroup"
+                                },
+                                {
+                                    "name": "minNumberOfRepeatingToShow",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "13",
+                            "children": [
+                                {
+                                    "repeatId": "0",
+                                    "children": [{
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "coraText"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "divaPersonURLGroupText"
+                                            }
+                                        ],
+                                        "name": "ref",
+                                        "attributes": {"type": "text"}
+                                    }],
+                                    "name": "refGroup"
+                                },
+                                {
+                                    "name": "textStyle",
+                                    "value": "h3TextStyle"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "14",
+                            "children": [
+                                {
+                                    "repeatId": "0",
+                                    "children": [{
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "divaPersonURLOutputPGroup"
                                             }
                                         ],
                                         "name": "ref",
@@ -23990,6 +24069,197 @@
         {
             "children": [
                 {
+                    "children": [
+                        {
+                            "repeatId": "0",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "divaPersonExternalURLLabelTextVarText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "divaPersonExternalURLLabelPVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "2",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "divaPersonExternalURLTextVarText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "divaPersonExternalURLPVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                },
+                {
+                    "name": "mode",
+                    "value": "input"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "divaPersonURLPGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "diva"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "presentationGroup"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "name": "tsCreated",
+                            "value": "2018-09-25 09:31:14.670"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 09:31:14.670"
+                                }
+                            ],
+                            "name": "updated"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "divaPersonURLGroup"
+                        }
+                    ],
+                    "name": "presentationOf"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pGroup"}
+        },
+        {
+            "children": [
+                {
                     "children": [{
                         "repeatId": "0",
                         "children": [{
@@ -27585,6 +27855,197 @@
                         {
                             "name": "linkedRecordId",
                             "value": "publishingHouseGroup"
+                        }
+                    ],
+                    "name": "presentationOf"
+                }
+            ],
+            "name": "presentation",
+            "attributes": {"type": "pGroup"}
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "repeatId": "4",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "divaPersonExternalURLLabelTextVarText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "divaPersonExternalURLLabelOutputPVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "6",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "divaPersonExternalURLTextVarText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "7",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "divaPersonExternalURLOutputPVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        }
+                    ],
+                    "name": "childReferences"
+                },
+                {
+                    "name": "mode",
+                    "value": "output"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "id",
+                            "value": "divaPersonURLOutputPGroup"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "diva"
+                                }
+                            ],
+                            "name": "dataDivider"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "recordType"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "presentationGroup"
+                                }
+                            ],
+                            "name": "type"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "user"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "141414"
+                                }
+                            ],
+                            "name": "createdBy"
+                        },
+                        {
+                            "name": "tsCreated",
+                            "value": "2018-09-25 09:31:17.294"
+                        },
+                        {
+                            "repeatId": "0",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 09:31:17.294"
+                                }
+                            ],
+                            "name": "updated"
+                        }
+                    ],
+                    "name": "recordInfo"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "linkedRecordType",
+                            "value": "metadataGroup"
+                        },
+                        {
+                            "name": "linkedRecordId",
+                            "value": "divaPersonURLGroup"
                         }
                     ],
                     "name": "presentationOf"
@@ -34457,6 +34918,75 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 06:23:43.764"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 06:42:26.666"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 09:20:12.387"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -34521,39 +35051,89 @@
                             "name": "childReference"
                         },
                         {
+                            "repeatId": "3",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "publicationTitlesGroupText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
                             "repeatId": "2",
                             "children": [{
                                 "repeatId": "0",
-                                "children": [
-                                    {
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "coraText"
-                                            },
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "publicationTitlesGroupText"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "text"}
-                                    },
-                                    {
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "presentationGroup"
-                                            },
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "publicationTitlesPGroup"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "presentation"}
-                                    }
-                                ],
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "publicationTitlesPGroup"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "artisticOutputContentTypeCollectionVarText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationCollectionVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "artisticOutputContentTypePCollVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
                                 "name": "refGroup"
                             }],
                             "name": "childReference"
@@ -38754,6 +39334,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "15",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 09:34:39.423"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -38977,6 +39580,62 @@
                                             {
                                                 "name": "linkedRecordId",
                                                 "value": "divaPersonIdentifiersPGroup"
+                                            }
+                                        ],
+                                        "name": "ref",
+                                        "attributes": {"type": "presentation"}
+                                    }],
+                                    "name": "refGroup"
+                                },
+                                {
+                                    "name": "minNumberOfRepeatingToShow",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "28",
+                            "children": [
+                                {
+                                    "repeatId": "0",
+                                    "children": [{
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "coraText"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "divaPersonURLGroupText"
+                                            }
+                                        ],
+                                        "name": "ref",
+                                        "attributes": {"type": "text"}
+                                    }],
+                                    "name": "refGroup"
+                                },
+                                {
+                                    "name": "textStyle",
+                                    "value": "h3TextStyle"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "29",
+                            "children": [
+                                {
+                                    "repeatId": "0",
+                                    "children": [{
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "divaPersonURLPGroup"
                                             }
                                         ],
                                         "name": "ref",
@@ -39267,6 +39926,98 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 06:24:50.599"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 06:42:42.144"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 06:43:14.659"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "6",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 09:23:59.478"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -39331,39 +40082,89 @@
                             "name": "childReference"
                         },
                         {
+                            "repeatId": "3",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "publicationTitlesGroupText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
                             "repeatId": "2",
                             "children": [{
                                 "repeatId": "0",
-                                "children": [
-                                    {
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "coraText"
-                                            },
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "publicationTitlesGroupText"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "text"}
-                                    },
-                                    {
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "presentationGroup"
-                                            },
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "publicationTitlesOutputPGroup"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "presentation"}
-                                    }
-                                ],
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "publicationTitlesOutputPGroup"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "artisticOutputContentTypeCollectionVarText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationCollectionVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "artisticOutputContentTypeOutputPCollVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
                                 "name": "refGroup"
                             }],
                             "name": "childReference"
@@ -43431,6 +44232,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "21",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 09:34:05.096"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -43624,6 +44448,62 @@
                                             {
                                                 "name": "linkedRecordId",
                                                 "value": "divaPersonIdentifiersPGroup"
+                                            }
+                                        ],
+                                        "name": "ref",
+                                        "attributes": {"type": "presentation"}
+                                    }],
+                                    "name": "refGroup"
+                                },
+                                {
+                                    "name": "minNumberOfRepeatingToShow",
+                                    "value": "1"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "37",
+                            "children": [
+                                {
+                                    "repeatId": "0",
+                                    "children": [{
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "coraText"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "divaPersonURLGroupText"
+                                            }
+                                        ],
+                                        "name": "ref",
+                                        "attributes": {"type": "text"}
+                                    }],
+                                    "name": "refGroup"
+                                },
+                                {
+                                    "name": "textStyle",
+                                    "value": "h3TextStyle"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "38",
+                            "children": [
+                                {
+                                    "repeatId": "0",
+                                    "children": [{
+                                        "children": [
+                                            {
+                                                "name": "linkedRecordType",
+                                                "value": "presentationGroup"
+                                            },
+                                            {
+                                                "name": "linkedRecordId",
+                                                "value": "divaPersonURLPGroup"
                                             }
                                         ],
                                         "name": "ref",
@@ -46198,6 +47078,98 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 06:22:29.148"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 06:36:06.098"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "5",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 06:41:56.426"
+                                }
+                            ],
+                            "name": "updated"
+                        },
+                        {
+                            "repeatId": "6",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 09:17:57.432"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -46240,11 +47212,15 @@
                             "name": "childReference"
                         },
                         {
-                            "repeatId": "1",
-                            "children": [{
-                                "repeatId": "0",
-                                "children": [
-                                    {
+                            "repeatId": "2",
+                            "children": [
+                                {
+                                    "name": "textStyle",
+                                    "value": "h3TextStyle"
+                                },
+                                {
+                                    "repeatId": "0",
+                                    "children": [{
                                         "children": [
                                             {
                                                 "name": "linkedRecordType",
@@ -46257,22 +47233,74 @@
                                         ],
                                         "name": "ref",
                                         "attributes": {"type": "text"}
-                                    },
-                                    {
-                                        "children": [
-                                            {
-                                                "name": "linkedRecordType",
-                                                "value": "presentationGroup"
-                                            },
-                                            {
-                                                "name": "linkedRecordId",
-                                                "value": "publicationTitlesPGroup"
-                                            }
-                                        ],
-                                        "name": "ref",
-                                        "attributes": {"type": "presentation"}
-                                    }
-                                ],
+                                    }],
+                                    "name": "refGroup"
+                                }
+                            ],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationGroup"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "publicationTitlesPGroup"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "3",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "coraText"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "artisticOutputContentTypeCollectionVarText"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "text"}
+                                }],
+                                "name": "refGroup"
+                            }],
+                            "name": "childReference"
+                        },
+                        {
+                            "repeatId": "4",
+                            "children": [{
+                                "repeatId": "0",
+                                "children": [{
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "presentationCollectionVar"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "artisticOutputContentTypePCollVar"
+                                        }
+                                    ],
+                                    "name": "ref",
+                                    "attributes": {"type": "presentation"}
+                                }],
                                 "name": "refGroup"
                             }],
                             "name": "childReference"

@@ -13697,19 +13697,6 @@
                             "children": [
                                 {
                                     "name": "linkedRecordType",
-                                    "value": "system"
-                                },
-                                {
-                                    "name": "linkedRecordId",
-                                    "value": "cora"
-                                }
-                            ],
-                            "name": "dataDivider"
-                        },
-                        {
-                            "children": [
-                                {
-                                    "name": "linkedRecordType",
                                     "value": "recordType"
                                 },
                                 {
@@ -13731,6 +13718,19 @@
                                 }
                             ],
                             "name": "createdBy"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "name": "linkedRecordType",
+                                    "value": "system"
+                                },
+                                {
+                                    "name": "linkedRecordId",
+                                    "value": "cora"
+                                }
+                            ],
+                            "name": "dataDivider"
                         },
                         {
                             "name": "tsCreated",
@@ -13758,6 +13758,29 @@
                                 }
                             ],
                             "name": "updated"
+                        },
+                        {
+                            "repeatId": "1",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "name": "linkedRecordType",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "name": "linkedRecordId",
+                                            "value": "141414"
+                                        }
+                                    ],
+                                    "name": "updatedBy"
+                                },
+                                {
+                                    "name": "tsUpdated",
+                                    "value": "2018-09-25 06:24:37.550"
+                                }
+                            ],
+                            "name": "updated"
                         }
                     ],
                     "name": "recordInfo"
@@ -13778,22 +13801,22 @@
                 {
                     "children": [
                         {
-                            "repeatId": "3",
+                            "repeatId": "0",
                             "children": [{
                                 "repeatId": "0",
                                 "children": [{
                                     "children": [
                                         {
                                             "name": "linkedRecordType",
-                                            "value": "coraText"
+                                            "value": "presentationGroup"
                                         },
                                         {
                                             "name": "linkedRecordId",
-                                            "value": "languageCollectionText"
+                                            "value": "namePartNameOutputPGroup"
                                         }
                                     ],
                                     "name": "ref",
-                                    "attributes": {"type": "text"}
+                                    "attributes": {"type": "presentation"}
                                 }],
                                 "name": "refGroup"
                             }],
@@ -13820,28 +13843,6 @@
                                 "name": "refGroup"
                             }],
                             "name": "childReference"
-                        },
-                        {
-                            "repeatId": "0",
-                            "children": [{
-                                "repeatId": "0",
-                                "children": [{
-                                    "children": [
-                                        {
-                                            "name": "linkedRecordType",
-                                            "value": "presentationGroup"
-                                        },
-                                        {
-                                            "name": "linkedRecordId",
-                                            "value": "namePartNameOutputPGroup"
-                                        }
-                                    ],
-                                    "name": "ref",
-                                    "attributes": {"type": "presentation"}
-                                }],
-                                "name": "refGroup"
-                            }],
-                            "name": "childReference"
                         }
                     ],
                     "name": "childReferences"
@@ -13849,6 +13850,10 @@
                 {
                     "name": "mode",
                     "value": "output"
+                },
+                {
+                    "name": "presentationStyle",
+                    "value": "inline"
                 }
             ],
             "name": "presentation",
