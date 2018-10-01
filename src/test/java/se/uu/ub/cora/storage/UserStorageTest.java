@@ -95,13 +95,6 @@ public class UserStorageTest {
 		new UserStorageImp(initInfo);
 	}
 
-	@Test
-	public void testGetGuestUser() {
-		DataGroup userGroup = userStorage.getGuestUser();
-		assertEquals(userGroup.getFirstGroupWithNameInData("recordInfo")
-				.getFirstAtomicValueWithNameInData("id"), "12345");
-	}
-
 	@Test(expectedExceptions = RecordNotFoundException.class)
 	public void testGetUserNotFound() {
 		userStorage.getUserById("ThisUserDoesNotExist");

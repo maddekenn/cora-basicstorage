@@ -93,11 +93,6 @@ public class UserStorageImp implements UserStorage {
 	}
 
 	@Override
-	public DataGroup getGuestUser() {
-		return findUser("12345");
-	}
-
-	@Override
 	public DataGroup getUserById(String id) {
 		DataGroup userDataGroup = findUser(id);
 		if (userDataGroup != null) {
