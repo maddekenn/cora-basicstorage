@@ -37,8 +37,10 @@ public class UserStorageImp implements UserStorage {
 	private List<String> userRecordTypeNames = new ArrayList<>();
 	private final String basePath;
 	private int noOfReadsFromDisk = 0;
+	private Map<String, String> initInfo;
 
 	public UserStorageImp(Map<String, String> initInfo) {
+		this.initInfo = initInfo;
 		if (!initInfo.containsKey("storageOnDiskBasePath")) {
 			throw new RuntimeException("initInfo must contain storageOnDiskBasePath");
 		}
@@ -162,5 +164,9 @@ public class UserStorageImp implements UserStorage {
 
 	private DataGroup tryAfterRepopulateFromStorageToFindNewlyCreatedUsers(String idFromLogin) {
 		return findUserByIdFromLogin(idFromLogin);
+	}
+
+	public Map<String, String> getInitInfo() {
+		return initInfo;
 	}
 }
