@@ -101,6 +101,11 @@ public class UserStorageTest {
 	}
 
 	@Test
+	public void testGetInitInfo() throws Exception {
+		assertEquals(userStorage.getInitInfo(), initInfo);
+	}
+
+	@Test
 	public void testGetUserDummy1() {
 		DataGroup userGroup = userStorage.getUserById("dummy1");
 		assertEquals(userGroup.getFirstGroupWithNameInData("recordInfo")
