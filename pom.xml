@@ -1,12 +1,22 @@
-<!-- ~ Copyright 2016 Olov McKie ~ ~ This file is part of Cora. ~ ~ Cora 
-	is free software: you can redistribute it and/or modify ~ it under the terms 
-	of the GNU General Public License as published by ~ the Free Software Foundation, 
-	either version 3 of the License, or ~ (at your option) any later version. 
-	~ ~ Cora is distributed in the hope that it will be useful, ~ but WITHOUT 
-	ANY WARRANTY; without even the implied warranty of ~ MERCHANTABILITY or FITNESS 
-	FOR A PARTICULAR PURPOSE. See the ~ GNU General Public License for more details. 
-	~ ~ You should have received a copy of the GNU General Public License ~ along 
-	with Cora. If not, see <http://www.gnu.org/licenses/>. -->
+<!--
+  ~ Copyright 2018 Uppsala University Library
+  ~ Copyright 2016 Olov McKie
+  ~
+  ~ This file is part of Cora.
+  ~
+  ~     Cora is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     Cora is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Cora.  If not, see <http://www.gnu.org/licenses/>.
+  -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -15,44 +25,29 @@
 	<parent>
 		<groupId>se.uu.ub.cora</groupId>
 		<artifactId>cora-parent</artifactId>
-		<version>0.6-SNAPSHOT</version>
+		<version>0.7-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>basicstorage</artifactId>
-	<version>0.6-SNAPSHOT</version>
+	<version>0.7-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Basic storage</name>
 
 	<properties>
-		<userpicker.version>0.3-SNAPSHOT</userpicker.version>
-		<bookkeeper.version>0.10-SNAPSHOT</bookkeeper.version>
-		<spider.version>0.14-SNAPSHOT</spider.version>
-		<apptokenstorage.version>0.3-SNAPSHOT</apptokenstorage.version>
-		<searchstorage.version>0.1-SNAPSHOT</searchstorage.version>
-		<json.version>0.3-SNAPSHOT</json.version>
+		<userpicker.version>0.4-SNAPSHOT</userpicker.version>
+		<bookkeeper.version>0.12-SNAPSHOT</bookkeeper.version>
+		<spider.version>0.15-SNAPSHOT</spider.version>
+		<apptokenstorage.version>0.4-SNAPSHOT</apptokenstorage.version>
+		<searchstorage.version>0.2-SNAPSHOT</searchstorage.version>
+		<json.version>0.4-SNAPSHOT</json.version>
 	</properties>
 
 	<scm>
-		<connection>scm:git:https://git.epc.ub.uu.se/epc/storage.git</connection>
-		<developerConnection>scm:git:https://git.epc.ub.uu.se/epc/storage.git</developerConnection>
-		<url>https://git.epc.ub.uu.se/epc/storage.git</url>
+		<connection>scm:git:https://github.com/lsu-ub-uu/storage.git</connection>
+		<developerConnection>scm:git:https://github.com/lsu-ub-uu/storage.git</developerConnection>
+		<url>https://github.com/lsu-ub-uu/storage.git</url>
 	</scm>
-
-	<repositories>
-		<repository>
-			<id>maven-public</id>
-			<name>LSU Nexus Repository</name>
-			<url>http://epc.ub.uu.se/nexus/repository/maven-public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<updatePolicy>daily</updatePolicy>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -109,7 +104,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.4.3</version>
+				<version>3.2.0</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
