@@ -127,7 +127,7 @@ public class AppTokenStorageImp implements AppTokenStorage {
 
 	private void populateUserRecordTypeNameList() {
 		Collection<DataGroup> recordTypes = recordStorage.readList(RECORD_TYPE,
-				DataGroup.withNameInData("filter"));
+				DataGroup.withNameInData("filter")).listOfDataGroups;
 
 		for (DataGroup recordTypePossibleChild : recordTypes) {
 			addChildOfUserToUserRecordTypeNameList(recordTypePossibleChild);

@@ -65,7 +65,7 @@ public class RecordStorageInMemoryListTest {
 		createPlaceInStorageWithUppsalaStorageTerm();
 		createPlaceInStorageWithStockholmStorageTerm();
 
-		Collection<DataGroup> readList = recordStorage.readList("place", emptyFilter);
+		Collection<DataGroup> readList = recordStorage.readList("place", emptyFilter).listOfDataGroups;
 
 		assertEquals(readList.size(), 2);
 	}
@@ -80,7 +80,7 @@ public class RecordStorageInMemoryListTest {
 				"NOT_UPPSALA");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList.size(), 0);
 	}
 
@@ -94,7 +94,7 @@ public class RecordStorageInMemoryListTest {
 				"NOT_placeName", "Uppsala");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList.size(), 0);
 	}
 
@@ -107,7 +107,7 @@ public class RecordStorageInMemoryListTest {
 				"Uppsala");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList.size(), 0);
 	}
 
@@ -121,7 +121,7 @@ public class RecordStorageInMemoryListTest {
 				"Uppsala");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList.size(), 1);
 		DataGroup first = readList.iterator().next();
 		assertEquals(first.getFirstGroupWithNameInData("recordInfo")
@@ -138,7 +138,7 @@ public class RecordStorageInMemoryListTest {
 				"Uppsala");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList.size(), 0);
 	}
 
@@ -150,11 +150,11 @@ public class RecordStorageInMemoryListTest {
 		filter.addChild(part);
 
 		createPlaceInStorageWithCollectedData(emptyCollectedData);
-		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList.size(), 0);
 
 		updatePlaceInStorageWithUppsalaStorageTerm();
-		Collection<DataGroup> readList2 = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList2 = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList2.size(), 1);
 	}
 
@@ -168,11 +168,11 @@ public class RecordStorageInMemoryListTest {
 				"Uppsala");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList.size(), 1);
 
 		recordStorage.deleteByTypeAndId("place", "place:0001");
-		Collection<DataGroup> readList2 = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList2 = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList2.size(), 0);
 	}
 
@@ -187,7 +187,7 @@ public class RecordStorageInMemoryListTest {
 				"Uppsala");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList.size(), 2);
 		Iterator<DataGroup> listIterator = readList.iterator();
 		DataGroup first = listIterator.next();
@@ -211,7 +211,7 @@ public class RecordStorageInMemoryListTest {
 				"Uppsala");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList.size(), 2);
 	}
 
@@ -320,7 +320,7 @@ public class RecordStorageInMemoryListTest {
 	public void testReadRecordList() {
 		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
 		String recordType = "place";
-		Collection<DataGroup> recordList = recordStorage.readList(recordType, emptyFilter);
+		Collection<DataGroup> recordList = recordStorage.readList(recordType, emptyFilter).listOfDataGroups;
 		assertEquals(recordList.iterator().next().getNameInData(), "authority");
 	}
 
@@ -332,7 +332,7 @@ public class RecordStorageInMemoryListTest {
 		createGenericBinaryRecord();
 
 		String recordType = "binary";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 3);
 	}
 
@@ -348,7 +348,7 @@ public class RecordStorageInMemoryListTest {
 				"image:0001");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readAbstractList("binary", filter);
+		Collection<DataGroup> readList = recordStorage.readAbstractList("binary", filter).listOfDataGroups;
 		assertEquals(readList.size(), 1);
 		DataGroup first = readList.iterator().next();
 		assertEquals(first.getFirstGroupWithNameInData("recordInfo")
@@ -410,7 +410,7 @@ public class RecordStorageInMemoryListTest {
 		// create no records of genericBinary
 
 		String recordType = "binary";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 2);
 	}
 
@@ -432,7 +432,7 @@ public class RecordStorageInMemoryListTest {
 		createGrandChildOfAbstractAuthorityRecord();
 
 		String recordType = "abstractAuthority";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 2);
 	}
 
@@ -461,7 +461,7 @@ public class RecordStorageInMemoryListTest {
 		createGrandChildOfAbstractAuthorityRecord();
 
 		String recordType = "abstractAuthority";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 1);
 	}
 
@@ -472,7 +472,7 @@ public class RecordStorageInMemoryListTest {
 		createChildOfAbstractAuthorityRecord();
 
 		String recordType = "abstractAuthority";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 1);
 	}
 
@@ -484,7 +484,7 @@ public class RecordStorageInMemoryListTest {
 		createGrandChildOfAbstractAuthorityRecord();
 
 		String recordType = "childToAbstractAuthority";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter);
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 2);
 	}
 }

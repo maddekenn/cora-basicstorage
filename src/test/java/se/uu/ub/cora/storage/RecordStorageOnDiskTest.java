@@ -1882,7 +1882,7 @@ public class RecordStorageOnDiskTest {
 				"Uppsala");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
 		assertEquals(readList.size(), 1);
 		DataGroup first = readList.iterator().next();
 		assertEquals(first.getFirstGroupWithNameInData("recordInfo")

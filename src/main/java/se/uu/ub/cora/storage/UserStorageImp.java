@@ -57,7 +57,7 @@ public class UserStorageImp implements UserStorage {
 
 	private void populateUserRecordTypeNameList() {
 		Collection<DataGroup> recordTypes = recordStorage.readList(RECORD_TYPE,
-				DataGroup.withNameInData("filter"));
+				DataGroup.withNameInData("filter")).listOfDataGroups;
 
 		for (DataGroup recordTypePossibleChild : recordTypes) {
 			addChildOfUserToUserRecordTypeNameList(recordTypePossibleChild);
@@ -142,7 +142,7 @@ public class UserStorageImp implements UserStorage {
 
 	private Collection<DataGroup> getUserFromStorageByIdFromLogin(String idFromLogin) {
 		DataGroup filter = createFilterForIdFromLogin(idFromLogin);
-		return recordStorage.readAbstractList("user", filter);
+		return recordStorage.readAbstractList("user", filter).listOfDataGroups;
 	}
 
 	private void throwErrorIfMoreThanOneUserReturnedFromStorage(String idFromLogin,

@@ -33,6 +33,7 @@ import se.uu.ub.cora.bookkeeper.metadata.MetadataTypes;
 import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
 import se.uu.ub.cora.searchstorage.SearchStorage;
 import se.uu.ub.cora.spider.data.SpiderDataGroup;
+import se.uu.ub.cora.spider.data.SpiderReadResult;
 import se.uu.ub.cora.spider.record.storage.RecordConflictException;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.spider.record.storage.RecordStorage;
@@ -207,15 +208,26 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	}
 
 	@Override
-	public Collection<DataGroup> readList(String type, DataGroup filter) {
+	public SpiderReadResult readList(String type, DataGroup filter) {
 		Map<String, DividerGroup> typeDividerRecords = records.get(type);
 		throwErrorIfNoRecordOfType(type, typeDividerRecords);
 
+		return getSpiderReadResult(type, filter, typeDividerRecords);
+	}
+
+	private SpiderReadResult getSpiderReadResult(String type, DataGroup filter, Map<String, DividerGroup> typeDividerRecords) {
+		SpiderReadResult spiderReadResult = new SpiderReadResult();
+		spiderReadResult.listOfDataGroups = new ArrayList<>(readFromList(type,filter,typeDividerRecords));
+		return spiderReadResult;
+	}
+
+	private Collection<DataGroup> readFromList(String type, DataGroup filter, Map<String, DividerGroup> typeDividerRecords) {
 		if (filterIsEmpty(filter)) {
 			return readListWithoutFilter(typeDividerRecords);
 		}
 		return readListWithFilter(type, filter);
 	}
+
 
 	private Collection<DataGroup> readListWithoutFilter(
 			Map<String, DividerGroup> typeDividerRecords) {
@@ -259,7 +271,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	}
 
 	@Override
-	public Collection<DataGroup> readAbstractList(String type, DataGroup filter) {
+	public SpiderReadResult readAbstractList(String type, DataGroup filter) {
 		List<DataGroup> aggregatedRecordList = new ArrayList<>();
 		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(type);
 
@@ -267,7 +279,9 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 				filter);
 		addRecordsForParentIfParentIsNotAbstract(type, filter, aggregatedRecordList);
 		throwErrorIfEmptyAggregatedList(type, aggregatedRecordList);
-		return aggregatedRecordList;
+		SpiderReadResult spiderReadResult = new SpiderReadResult();
+		spiderReadResult.listOfDataGroups = aggregatedRecordList;
+		return spiderReadResult;
 	}
 
 	private List<String> findImplementingChildRecordTypes(String type) {
@@ -331,7 +345,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private void readRecordsForTypeAndFilterAndAddToList(String implementingRecordType,
 			DataGroup filter, List<DataGroup> aggregatedRecordList) {
-		Collection<DataGroup> readList = readList(implementingRecordType, filter);
+		Collection<DataGroup> readList = readList(implementingRecordType, filter).listOfDataGroups;
 		aggregatedRecordList.addAll(readList);
 	}
 
@@ -529,14 +543,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	private void addLinksForRecordForThisRecordType(List<DataGroup> generatedLinkList,
 			Map<String, List<DataGroup>> mapOfId) {
 		for (List<DataGroup> recordToRecordLinkList : mapOfId.values()) {
-			addLinksFromRecordToRecordLinkList(generatedLinkList, recordToRecordLinkList);
-		}
-	}
-
-	private void addLinksFromRecordToRecordLinkList(List<DataGroup> generatedLinkList,
-			List<DataGroup> recordToRecordLinkList) {
-		for (DataGroup recordToRecordLink : recordToRecordLinkList) {
-			generatedLinkList.add(recordToRecordLink);
+			generatedLinkList.addAll(recordToRecordLinkList);
 		}
 	}
 
@@ -639,30 +646,30 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 			MetadataTypes metadataType) {
 		DataGroup recordTypeDataGroup = read(RECORD_TYPE, metadataType.type);
 		if (recordTypeIsAbstract(recordTypeDataGroup)) {
-			readDataGroups.addAll(readAbstractList(metadataType.type, emptyFilter));
+			readDataGroups.addAll(readAbstractList(metadataType.type, emptyFilter).listOfDataGroups);
 		} else {
-			readDataGroups.addAll(readList(metadataType.type, emptyFilter));
+			readDataGroups.addAll(readList(metadataType.type, emptyFilter).listOfDataGroups);
 		}
 	}
 
 	@Override
 	public Collection<DataGroup> getPresentationElements() {
-		return readList("presentation", emptyFilter);
+		return readList("presentation", emptyFilter).listOfDataGroups;
 	}
 
 	@Override
 	public Collection<DataGroup> getTexts() {
-		return readList("text", emptyFilter);
+		return readList("text", emptyFilter).listOfDataGroups;
 	}
 
 	@Override
 	public Collection<DataGroup> getRecordTypes() {
-		return readList(RECORD_TYPE, emptyFilter);
+		return readList(RECORD_TYPE, emptyFilter).listOfDataGroups;
 	}
 
 	@Override
 	public Collection<DataGroup> getCollectTerms() {
-		return readAbstractList("collectTerm", emptyFilter);
+		return readAbstractList("collectTerm", emptyFilter).listOfDataGroups;
 	}
 
 	@Override
