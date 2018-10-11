@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Uppsala University Library
+ * Copyright 2017, 2018 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -19,9 +19,7 @@
 
 package se.uu.ub.cora.storage;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 import se.uu.ub.cora.bookkeeper.data.DataAtomic;
@@ -29,14 +27,8 @@ import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.userpicker.UserStorage;
 
-public class UserStorageImp implements UserStorage {
+public class UserStorageImp extends SecurityStorage implements UserStorage {
 
-	protected static final String RECORD_TYPE = "recordType";
-	private static final String PARENT_ID = "parentId";
-	RecordStorageInMemoryReadFromDisk recordStorage;
-	private List<String> userRecordTypeNames = new ArrayList<>();
-	private final String basePath;
-	private int noOfReadsFromDisk = 0;
 	private Map<String, String> initInfo;
 
 	public UserStorageImp(Map<String, String> initInfo) {
@@ -46,52 +38,6 @@ public class UserStorageImp implements UserStorage {
 		}
 		basePath = initInfo.get("storageOnDiskBasePath");
 		populateFromStorage();
-	}
-
-	private void populateFromStorage() {
-		noOfReadsFromDisk++;
-		recordStorage = RecordStorageInMemoryReadFromDisk
-				.createRecordStorageOnDiskWithBasePath(basePath);
-		populateUserRecordTypeNameList();
-	}
-
-	private void populateUserRecordTypeNameList() {
-		Collection<DataGroup> recordTypes = recordStorage.readList(RECORD_TYPE,
-				DataGroup.withNameInData("filter")).listOfDataGroups;
-
-		for (DataGroup recordTypePossibleChild : recordTypes) {
-			addChildOfUserToUserRecordTypeNameList(recordTypePossibleChild);
-		}
-	}
-
-	private void addChildOfUserToUserRecordTypeNameList(DataGroup recordTypePossibleChild) {
-		if (isChildOfUserRecordType(recordTypePossibleChild)) {
-			addChildToReadRecordList(recordTypePossibleChild);
-		}
-	}
-
-	protected boolean isChildOfUserRecordType(DataGroup recordTypePossibleChild) {
-		return recordHasParent(recordTypePossibleChild)
-				&& userRecordTypeIsParentToRecord(recordTypePossibleChild);
-	}
-
-	private void addChildToReadRecordList(DataGroup recordTypePossibleChild) {
-		String childRecordType = recordTypePossibleChild.getFirstGroupWithNameInData("recordInfo")
-				.getFirstAtomicValueWithNameInData("id");
-		userRecordTypeNames.add(childRecordType);
-	}
-
-	private boolean recordHasParent(DataGroup handledRecordTypeDataGroup) {
-		return handledRecordTypeDataGroup.containsChildWithNameInData(PARENT_ID);
-	}
-
-	private boolean userRecordTypeIsParentToRecord(DataGroup recordTypePossibleChild) {
-		DataGroup parent = recordTypePossibleChild.getFirstGroupWithNameInData(PARENT_ID);
-		return "user".equals(parent.getFirstAtomicValueWithNameInData("linkedRecordId"));
-	}
-
-	public int getNoOfReadsFromDisk() {
-		return noOfReadsFromDisk;
 	}
 
 	@Override
