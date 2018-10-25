@@ -110,7 +110,6 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 				readStoredDataFromDisk(list);
 			}
 		} else {
-			// readFileAndParseFileByPath(path);
 			pathsToAllFilesInBasePath.add(path);
 		}
 	}

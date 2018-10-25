@@ -1599,7 +1599,7 @@ public class RecordStorageOnDiskTest {
 	@Test
 	public void testInitWithFileOnDiskNoLinksOnDisk() throws IOException {
 		createRecordTypePlace();
-		writePlaceFileToDisk();
+		writeZippedPlaceFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
@@ -1617,7 +1617,7 @@ public class RecordStorageOnDiskTest {
 				convertDataGroupToJsonString(dataGroupExpected));
 	}
 
-	private void writePlaceFileToDisk() throws IOException {
+	private void writeZippedPlaceFileToDisk() throws IOException {
 		writeZippedFileToDisk(expectedRecordJsonOneRecordPlace1, "cora", PLACE_CORA_FILENAME);
 	}
 
@@ -1643,14 +1643,6 @@ public class RecordStorageOnDiskTest {
 		writer2.write(json, 0, json.length());
 		writer2.flush();
 		writer2.close();
-		//
-		//
-		// BufferedWriter writer;
-		// writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
-		// StandardOpenOption.CREATE);
-		// writer.write(json, 0, json.length());
-		// writer.flush();
-		// writer.close();
 	}
 
 	private void possiblyCreateFolderForDataDivider(String dataDivider) {
@@ -1686,7 +1678,7 @@ public class RecordStorageOnDiskTest {
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("person", "true", "false");
 		recordStorage.create("recordType", "person", personRecordType, emptyCollectedData,
 				emptyLinkList, "cora");
-		writePlaceFileToDisk();
+		writeZippedPlaceFileToDisk();
 		writePersonFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
@@ -1816,10 +1808,58 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
+	public void testDeleteUnzippedFileOnDiskRemovedWhenNoRecordsLeft() throws IOException {
+		createRecordTypePlace();
+		writeFileToDisk(expectedRecordJsonOneRecordPlace1, "cora", "place_cora.json");
+
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		Path path = Paths.get(basePath, "cora", "place_cora.json");
+		assertTrue(Files.exists(path));
+
+		recordStorage.deleteByTypeAndId("place", "place:0001");
+		assertFalse(Files.exists(path));
+	}
+
+	@Test
+	public void testUnzippedLinkListFileOnDiskRemovedWhenNoLinksLeft() throws IOException {
+		createRecordTypePlace();
+		writeFileToDisk(expectedRecordJsonOneRecordPlace1, "cora", "place_cora.json");
+		writePlaceLinksFileToDisk();
+
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		Path path = Paths.get(basePath, "cora", "linkLists_cora.json");
+		assertTrue(Files.exists(path));
+
+		recordStorage.deleteByTypeAndId("place", "place:0001");
+		assertFalse(Files.exists(path));
+	}
+
+	@Test
+	public void testUnzippedCollectedDataFileOnDiskRemovedWhenNoCollectedDataLeft()
+			throws IOException {
+		createRecordTypePlace();
+		writeFileToDisk(expectedRecordJsonOneRecordPlace1, "cora", "place_cora.json");
+		writeStorageTermsPlaceFileToDisk();
+
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		Path path = Paths.get(basePath, "cora", "collectedData_cora.json");
+		assertTrue(Files.exists(path));
+
+		recordStorage.deleteByTypeAndId("place", "place:0001");
+		assertFalse(Files.exists(path));
+	}
+
+	@Test
 	public void testInitWithFileOnDiskLinksOnDisk() throws IOException {
 		createRecordTypePlace();
-		writePlaceFileToDisk();
-		writePlaceLinksFileToDisk();
+		writeZippedPlaceFileToDisk();
+		writeZippedPlaceLinksFileToDisk();
 
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
@@ -1937,8 +1977,8 @@ public class RecordStorageOnDiskTest {
 	@Test
 	public void testListWithCollectedStorageTermReadWithMatchingUppsalaFilter() throws IOException {
 		createRecordTypePlace();
-		writePlaceFileToDisk();
-		writeStorageTermsPlaceFileToDisk();
+		writeZippedPlaceFileToDisk();
+		writeZippedStorageTermsPlaceFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
@@ -1957,7 +1997,7 @@ public class RecordStorageOnDiskTest {
 	@Test(expectedExceptions = RecordNotFoundException.class)
 	// @Test
 	public void testReadingEmptyCollectedDataBeforeReadingRecordFiles() throws IOException {
-		writeStorageTermsPlaceFileToDisk();
+		writeZippedStorageTermsPlaceFileToDisk();
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
@@ -1969,7 +2009,17 @@ public class RecordStorageOnDiskTest {
 		recordStorage.readList("place", filter);
 	}
 
+	private void writeZippedPlaceLinksFileToDisk() throws IOException {
+		String expectedLinkListJson = createJsonForPlaceLinks();
+		writeZippedFileToDisk(expectedLinkListJson, "cora", LINK_LISTS_FILENAME);
+	}
+
 	private void writePlaceLinksFileToDisk() throws IOException {
+		String expectedLinkListJson = createJsonForPlaceLinks();
+		writeFileToDisk(expectedLinkListJson, "cora", "linkLists_cora.json");
+	}
+
+	private String createJsonForPlaceLinks() {
 		String expectedLinkListJson = "{\"children\":[{\"children\":[{\"children\":[{\"children\":["
 				+ "{\"children\":[{\"children\":["
 				+ "{\"name\":\"linkedRecordType\",\"value\":\"fromRecordType\"}"
@@ -1992,10 +2042,20 @@ public class RecordStorageOnDiskTest {
 				+ ",\"name\":\"to\"}],\"name\":\"recordToRecordLink\"}]"
 				+ ",\"name\":\"collectedDataLinks\"}],\"name\":\"place:0001\"}]"
 				+ ",\"name\":\"place\"}],\"name\":\"linkLists\"}";
-		writeZippedFileToDisk(expectedLinkListJson, "cora", LINK_LISTS_FILENAME);
+		return expectedLinkListJson;
+	}
+
+	private void writeZippedStorageTermsPlaceFileToDisk() throws IOException {
+		String expectedCollectedDataOneTerm = getStorageTermJson();
+		writeZippedFileToDisk(expectedCollectedDataOneTerm, "cora", COLLECTED_DATA_FILENAME);
 	}
 
 	private void writeStorageTermsPlaceFileToDisk() throws IOException {
+		String expectedCollectedDataOneTerm = getStorageTermJson();
+		writeFileToDisk(expectedCollectedDataOneTerm, "cora", "collectedData_cora.json");
+	}
+
+	private String getStorageTermJson() {
 		String expectedCollectedDataOneTerm = "{\n";
 		expectedCollectedDataOneTerm += "    \"children\": [\n";
 		expectedCollectedDataOneTerm += "        {\n";
@@ -2053,7 +2113,7 @@ public class RecordStorageOnDiskTest {
 		expectedCollectedDataOneTerm += "    ],\n";
 		expectedCollectedDataOneTerm += "    \"name\": \"collectedData\"\n";
 		expectedCollectedDataOneTerm += "}\n";
-		writeZippedFileToDisk(expectedCollectedDataOneTerm, "cora", COLLECTED_DATA_FILENAME);
+		return expectedCollectedDataOneTerm;
 	}
 
 	@Test(expectedExceptions = DataStorageException.class)
