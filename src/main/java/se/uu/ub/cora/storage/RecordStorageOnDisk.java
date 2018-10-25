@@ -136,30 +136,23 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private String readJsonFileByPath(Path path) throws IOException {
-		InputStream newInputStream = Files.newInputStream(path);
 		StringBuilder jsonBuilder = new StringBuilder();
 		if (path.toString().endsWith(GZ_ENDING)) {
-			InputStreamReader inputStreamReader = new java.io.InputStreamReader(
-					new GZIPInputStream(newInputStream), "UTF-8");
-			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-			String line = null;
-			String json = "";
-			while ((line = bufferedReader.readLine()) != null) {
-				// json += line + "\n";
-				jsonBuilder.append(line);
+			try (InputStream newInputStream = Files.newInputStream(path);
+					InputStreamReader inputStreamReader = new java.io.InputStreamReader(
+							new GZIPInputStream(newInputStream), "UTF-8");
+					BufferedReader bufferedReader = new BufferedReader(inputStreamReader);) {
+				String line = null;
+				while ((line = bufferedReader.readLine()) != null) {
+					jsonBuilder.append(line);
+				}
 			}
-			bufferedReader.close();
 		} else {
-			// StringBuilder jsonBuilder = new StringBuilder();
-			BufferedReader reader = null;
-			try {
-				reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+			try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
 				String line;
 				while ((line = reader.readLine()) != null) {
 					jsonBuilder.append(line);
 				}
-			} finally {
-				reader.close();
 			}
 		}
 		return jsonBuilder.toString();
@@ -408,22 +401,36 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void writeDataGroupToDiskAsJson(Path path, String json) throws IOException {
-		// BufferedWriter writer = null;
-		Writer writer2 = null;
+		Writer writer = null;
 		try {
-			if (path.toFile().exists()) {
-				Files.delete(path);
-			}
-			OutputStream newOutputStream = Files.newOutputStream(path, StandardOpenOption.CREATE);
-			writer2 = new OutputStreamWriter(new GZIPOutputStream(newOutputStream), "UTF-8");
-
-			// writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
-			// StandardOpenOption.CREATE);
-			writer2.write(json, 0, json.length());
-			writer2.flush();
+			possiblyRemoveOldNonZippedFile(path);
+			possiblyRemoveOldZippedFile(path);
+			writer = writeJsonToGZippedFileOnDisk(path, json);
 		} finally {
-			writer2.close();
+			writer.close();
 		}
+	}
+
+	private Writer writeJsonToGZippedFileOnDisk(Path path, String json) throws IOException {
+		OutputStream newOutputStream = Files.newOutputStream(path, StandardOpenOption.CREATE);
+		try (Writer writer = new OutputStreamWriter(new GZIPOutputStream(newOutputStream),
+				"UTF-8");) {
+			writer.write(json, 0, json.length());
+			writer.flush();
+			return writer;
+		}
+	}
+
+	private void possiblyRemoveOldZippedFile(Path path) throws IOException {
+		if (path.toFile().exists()) {
+			Files.delete(path);
+		}
+	}
+
+	private void possiblyRemoveOldNonZippedFile(Path path) throws IOException {
+		String pathWithoutGZ = path.toString().substring(0, path.toString().length() - 3);
+		Path oldFileName = Paths.get(pathWithoutGZ);
+		possiblyRemoveOldZippedFile(oldFileName);
 	}
 
 	private String convertDataGroupToJsonString(DataGroup dataGroup) {

@@ -1823,6 +1823,23 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
+	public void testUnzippedFileOnDiskRemovedWhenRecordUpdated() throws IOException {
+		createRecordTypePlace();
+		writeFileToDisk(expectedRecordJsonOneRecordPlace1, "cora", "place_cora.json");
+
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+
+		Path path = Paths.get(basePath, "cora", "place_cora.json");
+		assertTrue(Files.exists(path));
+
+		DataGroup dataGroup = createDataGroupWithRecordInfo();
+		recordStorage.update("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
+				"cora");
+		assertFalse(Files.exists(path));
+	}
+
+	@Test
 	public void testUnzippedLinkListFileOnDiskRemovedWhenNoLinksLeft() throws IOException {
 		createRecordTypePlace();
 		writeFileToDisk(expectedRecordJsonOneRecordPlace1, "cora", "place_cora.json");
