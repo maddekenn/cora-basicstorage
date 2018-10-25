@@ -27,6 +27,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -35,6 +37,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Collection;
 import java.util.stream.Stream;
+import java.util.zip.GZIPInputStream;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -257,13 +260,26 @@ public class RecordStorageOnDiskTest {
 
 	private String readJsonFileFromDisk(String fileName, String dataDivider) throws IOException {
 		Path path = Paths.get(basePath + "/" + dataDivider, fileName);
-		BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+		// BufferedReader reader = Files.newBufferedReader(path,
+		// StandardCharsets.UTF_8);
+		// String line = null;
+		// String json = "";
+		// while ((line = reader.readLine()) != null) {
+		// json += line + "\n";
+		// }
+		// reader.close();
+
+		InputStream newInputStream = Files.newInputStream(path);
+		InputStreamReader inputStreamReader = new java.io.InputStreamReader(
+				new GZIPInputStream(newInputStream), "UTF-8");
+		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 		String line = null;
 		String json = "";
-		while ((line = reader.readLine()) != null) {
+		while ((line = bufferedReader.readLine()) != null) {
 			json += line + "\n";
 		}
-		reader.close();
+		bufferedReader.close();
+
 		return json;
 	}
 

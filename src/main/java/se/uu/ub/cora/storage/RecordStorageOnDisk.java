@@ -20,14 +20,17 @@
 package se.uu.ub.cora.storage;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -36,6 +39,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Stream;
+import java.util.zip.GZIPOutputStream;
 
 import se.uu.ub.cora.bookkeeper.data.DataElement;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
@@ -68,12 +72,17 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		return new RecordStorageOnDisk(basePath);
 	}
 
+	private List<Path> pathsToAllFilesInBasePath = new ArrayList<>();
+
 	private void tryToReadStoredDataFromDisk() {
 		Stream<Path> list = Stream.empty();
 		try {
 			list = Files.list(Paths.get(basePath));
 
 			readStoredDataFromDisk(list);
+			for (Path path : pathsToAllFilesInBasePath) {
+				readFileAndParseFileByPath(path);
+			}
 		} catch (IOException e) {
 			throw DataStorageException.withMessage("can not read files from disk on init" + e);
 		} finally {
@@ -97,7 +106,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 				readStoredDataFromDisk(list);
 			}
 		} else {
-			readFileAndParseFileByPath(path);
+			// readFileAndParseFileByPath(path);
+			pathsToAllFilesInBasePath.add(path);
 		}
 	}
 
@@ -370,17 +380,21 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void writeDataGroupToDiskAsJson(Path path, String json) throws IOException {
-		BufferedWriter writer = null;
+		// BufferedWriter writer = null;
+		Writer writer2 = null;
 		try {
 			if (path.toFile().exists()) {
 				Files.delete(path);
 			}
-			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
-					StandardOpenOption.CREATE);
-			writer.write(json, 0, json.length());
-			writer.flush();
+			OutputStream newOutputStream = Files.newOutputStream(path, StandardOpenOption.CREATE);
+			writer2 = new OutputStreamWriter(new GZIPOutputStream(newOutputStream), "UTF-8");
+
+			// writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
+			// StandardOpenOption.CREATE);
+			writer2.write(json, 0, json.length());
+			writer2.flush();
 		} finally {
-			writer.close();
+			writer2.close();
 		}
 	}
 
