@@ -20,14 +20,19 @@
 package se.uu.ub.cora.storage;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -36,6 +41,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Stream;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 import se.uu.ub.cora.bookkeeper.data.DataElement;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
@@ -53,6 +60,7 @@ import se.uu.ub.cora.spider.record.storage.RecordStorage;
 
 public class RecordStorageOnDisk extends RecordStorageInMemory
 		implements RecordStorage, MetadataStorage {
+	private static final String GZ_ENDING = ".gz";
 	private static final String COLLECTED_DATA = "collectedData";
 	private static final String LINK_LISTS = "linkLists";
 	private static final String JSON_FILE_END = ".json";
@@ -68,12 +76,17 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		return new RecordStorageOnDisk(basePath);
 	}
 
+	private List<Path> pathsToAllFilesInBasePath = new ArrayList<>();
+
 	private void tryToReadStoredDataFromDisk() {
 		Stream<Path> list = Stream.empty();
 		try {
 			list = Files.list(Paths.get(basePath));
 
 			readStoredDataFromDisk(list);
+			for (Path path : pathsToAllFilesInBasePath) {
+				readFileAndParseFileByPath(path);
+			}
 		} catch (IOException e) {
 			throw DataStorageException.withMessage("can not read files from disk on init" + e);
 		} finally {
@@ -97,7 +110,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 				readStoredDataFromDisk(list);
 			}
 		} else {
-			readFileAndParseFileByPath(path);
+			pathsToAllFilesInBasePath.add(path);
 		}
 	}
 
@@ -124,15 +137,23 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	private String readJsonFileByPath(Path path) throws IOException {
 		StringBuilder jsonBuilder = new StringBuilder();
-		BufferedReader reader = null;
-		try {
-			reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
-			String line;
-			while ((line = reader.readLine()) != null) {
-				jsonBuilder.append(line);
+		if (path.toString().endsWith(GZ_ENDING)) {
+			try (InputStream newInputStream = Files.newInputStream(path);
+					InputStreamReader inputStreamReader = new java.io.InputStreamReader(
+							new GZIPInputStream(newInputStream), "UTF-8");
+					BufferedReader bufferedReader = new BufferedReader(inputStreamReader);) {
+				String line = null;
+				while ((line = bufferedReader.readLine()) != null) {
+					jsonBuilder.append(line);
+				}
 			}
-		} finally {
-			reader.close();
+		} else {
+			try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+				String line;
+				while ((line = reader.readLine()) != null) {
+					jsonBuilder.append(line);
+				}
+			}
 		}
 		return jsonBuilder.toString();
 	}
@@ -255,6 +276,11 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			Path path = Paths.get(basePath, dataDivider, collectedDataFileName);
 			if (path.toFile().exists()) {
 				removeFileFromDisk(COLLECTED_DATA, dataDivider);
+			} else {
+				path = Paths.get(basePath, dataDivider, collectedDataFileName + GZ_ENDING);
+				if (path.toFile().exists()) {
+					removeFileFromDisk(COLLECTED_DATA, dataDivider);
+				}
 			}
 		}
 	}
@@ -264,7 +290,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		for (Entry<String, DataGroup> entry : collectedDataByDataDivider.entrySet()) {
 			String dataDivider = entry.getKey();
 			Path path = Paths.get(basePath, dataDivider,
-					"collectedData_" + dataDivider + JSON_FILE_END);
+					"collectedData_" + dataDivider + JSON_FILE_END + GZ_ENDING);
 			tryToWriteDataGroupToDiskAsJson(path, entry.getValue());
 			allSeenCollectedDataFileNames.add(dataDivider);
 		}
@@ -282,7 +308,12 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		String recordTypeFileName = recordType + "_" + dataDivider + JSON_FILE_END;
 		try {
 			Path path = Paths.get(basePath, dataDivider, recordTypeFileName);
-			Files.delete(path);
+			if (Files.exists(Paths.get(basePath, dataDivider, recordTypeFileName))) {
+				Files.delete(path);
+			} else {
+				path = Paths.get(basePath, dataDivider, recordTypeFileName + GZ_ENDING);
+				Files.delete(path);
+			}
 			deleteDirectoryIfEmpty(dataDivider);
 		} catch (IOException e) {
 			throw DataStorageException.withMessage("can not delete record files from disk" + e);
@@ -343,7 +374,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 			possiblyCreateFolderForDataDivider(dataDivider);
 			Path path = Paths.get(basePath, dataDivider,
-					recordType + "_" + dataDivider + JSON_FILE_END);
+					recordType + "_" + dataDivider + JSON_FILE_END + GZ_ENDING);
 			tryToWriteDataGroupToDiskAsJson(path, dataGroupRecord);
 		}
 	}
@@ -370,18 +401,36 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void writeDataGroupToDiskAsJson(Path path, String json) throws IOException {
-		BufferedWriter writer = null;
+		Writer writer = null;
 		try {
-			if (path.toFile().exists()) {
-				Files.delete(path);
-			}
-			writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
-					StandardOpenOption.CREATE);
-			writer.write(json, 0, json.length());
-			writer.flush();
+			possiblyRemoveOldNonZippedFile(path);
+			possiblyRemoveOldZippedFile(path);
+			writer = writeJsonToGZippedFileOnDisk(path, json);
 		} finally {
 			writer.close();
 		}
+	}
+
+	private Writer writeJsonToGZippedFileOnDisk(Path path, String json) throws IOException {
+		OutputStream newOutputStream = Files.newOutputStream(path, StandardOpenOption.CREATE);
+		try (Writer writer = new OutputStreamWriter(new GZIPOutputStream(newOutputStream),
+				"UTF-8");) {
+			writer.write(json, 0, json.length());
+			writer.flush();
+			return writer;
+		}
+	}
+
+	private void possiblyRemoveOldZippedFile(Path path) throws IOException {
+		if (path.toFile().exists()) {
+			Files.delete(path);
+		}
+	}
+
+	private void possiblyRemoveOldNonZippedFile(Path path) throws IOException {
+		String pathWithoutGZ = path.toString().substring(0, path.toString().length() - 3);
+		Path oldFileName = Paths.get(pathWithoutGZ);
+		possiblyRemoveOldZippedFile(oldFileName);
 	}
 
 	private String convertDataGroupToJsonString(DataGroup dataGroup) {
@@ -464,7 +513,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		for (Entry<String, DataGroup> recordListEntry : linkListsGroups.entrySet()) {
 			String dataDivider = recordListEntry.getKey();
 			Path path = Paths.get(basePath, dataDivider,
-					"linkLists_" + dataDivider + JSON_FILE_END);
+					"linkLists_" + dataDivider + JSON_FILE_END + GZ_ENDING);
 			tryToWriteDataGroupToDiskAsJson(path, recordListEntry.getValue());
 		}
 	}
@@ -476,6 +525,11 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			Path path = Paths.get(basePath, dataDivider, linkListFileName);
 			if (path.toFile().exists()) {
 				removeFileFromDisk(LINK_LISTS, dataDivider);
+			} else {
+				path = Paths.get(basePath, dataDivider, linkListFileName + GZ_ENDING);
+				if (path.toFile().exists()) {
+					removeFileFromDisk(LINK_LISTS, dataDivider);
+				}
 			}
 		}
 	}
