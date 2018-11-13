@@ -265,14 +265,6 @@ public class RecordStorageOnDiskTest {
 
 	private String readJsonFileFromDisk(String fileName, String dataDivider) throws IOException {
 		Path path = Paths.get(basePath + "/" + dataDivider, fileName);
-		// BufferedReader reader = Files.newBufferedReader(path,
-		// StandardCharsets.UTF_8);
-		// String line = null;
-		// String json = "";
-		// while ((line = reader.readLine()) != null) {
-		// json += line + "\n";
-		// }
-		// reader.close();
 
 		InputStream newInputStream = Files.newInputStream(path);
 		InputStreamReader inputStreamReader = new java.io.InputStreamReader(
@@ -2141,8 +2133,6 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testCreateFileInLockedDir() throws IOException {
-		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
-				.createRecordStorageOnDiskWithBasePath(basePath);
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
 				"cora");
@@ -2160,8 +2150,6 @@ public class RecordStorageOnDiskTest {
 	@Test(expectedExceptions = DataStorageException.class, expectedExceptionsMessageRegExp = ""
 			+ "Could not make directory /tmp/recordStorageOnDiskTemp/cora")
 	public void testCreateDirWhenParentIsGone() throws IOException {
-		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
-				.createRecordStorageOnDiskWithBasePath(basePath);
 		removeTempFiles();
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
@@ -2170,8 +2158,6 @@ public class RecordStorageOnDiskTest {
 
 	@Test(expectedExceptions = DataStorageException.class)
 	public void testUpdateMissingPath() throws IOException {
-		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
-				.createRecordStorageOnDiskWithBasePath(basePath);
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
 				"cora");
@@ -2183,8 +2169,6 @@ public class RecordStorageOnDiskTest {
 
 	@Test(expectedExceptions = DataStorageException.class)
 	public void testDeleteMissingPath() throws IOException {
-		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
-				.createRecordStorageOnDiskWithBasePath(basePath);
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
 				"cora");
@@ -2195,12 +2179,20 @@ public class RecordStorageOnDiskTest {
 	@Test(expectedExceptions = DataStorageException.class, expectedExceptionsMessageRegExp = ""
 			+ "can not delete directory from disk/tmp/recordStorageOnDiskTemp/cora")
 	public void testCanNotDeleteDataDividerFolder() throws IOException {
-		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
-				.createRecordStorageOnDiskWithBasePath(basePath);
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
 				"cora");
 		File dir = Paths.get(basePath, "cora").toFile();
 		recordStorage.deleteDirectory(dir);
+	}
+
+	@Test(expectedExceptions = DataStorageException.class, expectedExceptionsMessageRegExp = ""
+			+ "Symbolic link points to missing path: /tmp/recordStorageOnDiskTemp/linkTest")
+	public void testStartWithSymbolicLinkPointingToNothing() throws IOException {
+		Path link = FileSystems.getDefault().getPath(basePath, "linkTest");
+		Path target = FileSystems.getDefault().getPath(basePath, "nonExistingDir");
+
+		Files.createSymbolicLink(link, target);
+		RecordStorageOnDisk.createRecordStorageOnDiskWithBasePath(basePath);
 	}
 }

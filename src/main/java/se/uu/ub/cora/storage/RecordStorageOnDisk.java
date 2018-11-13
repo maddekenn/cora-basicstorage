@@ -66,6 +66,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private static final String JSON_FILE_END = ".json";
 	private Set<String> allSeenCollectedDataFileNames = new HashSet<>();
 	private String basePath;
+	private List<Path> pathsToAllFilesInBasePath = new ArrayList<>();
 
 	protected RecordStorageOnDisk(String basePath) {
 		this.basePath = basePath;
@@ -76,14 +77,11 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		return new RecordStorageOnDisk(basePath);
 	}
 
-	private List<Path> pathsToAllFilesInBasePath = new ArrayList<>();
-
 	private void tryToReadStoredDataFromDisk() {
 		Stream<Path> list = Stream.empty();
 		try {
 			list = Files.list(Paths.get(basePath));
-
-			readStoredDataFromDisk(list);
+			collectPathsToAllFilesIncludingSubdirectoriesFromDisk(list);
 			for (Path path : pathsToAllFilesInBasePath) {
 				readFileAndParseFileByPath(path);
 			}
@@ -94,23 +92,32 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 	}
 
-	private void readStoredDataFromDisk(Stream<Path> list) throws IOException {
+	private void collectPathsToAllFilesIncludingSubdirectoriesFromDisk(Stream<Path> list)
+			throws IOException {
 		Iterator<Path> iterator = list.iterator();
 		while (iterator.hasNext()) {
-			readFileOrReadDirectoryIfNotStreamsDir(iterator);
+			collectPathsToAllFilesIncludingSubdirectoriesIfNotStreamsDir(iterator);
 		}
 	}
 
-	private void readFileOrReadDirectoryIfNotStreamsDir(Iterator<Path> iterator)
-			throws IOException {
+	private void collectPathsToAllFilesIncludingSubdirectoriesIfNotStreamsDir(
+			Iterator<Path> iterator) throws IOException {
 		Path path = iterator.next();
-		if (path.toFile().isDirectory()) {
+		File file = path.toFile();
+		if (file.isDirectory()) {
 			if (!path.endsWith("streams/")) {
 				Stream<Path> list = Files.list(path);
-				readStoredDataFromDisk(list);
+				collectPathsToAllFilesIncludingSubdirectoriesFromDisk(list);
 			}
 		} else {
+			throwErrorIfPathIsSymbolicLinkWhereTargetDoesNotExist(path);
 			pathsToAllFilesInBasePath.add(path);
+		}
+	}
+
+	private void throwErrorIfPathIsSymbolicLinkWhereTargetDoesNotExist(Path path) {
+		if (!Files.exists(path)) {
+			throw DataStorageException.withMessage("Symbolic link points to missing path: " + path);
 		}
 	}
 
@@ -136,26 +143,30 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private String readJsonFileByPath(Path path) throws IOException {
-		StringBuilder jsonBuilder = new StringBuilder();
 		if (path.toString().endsWith(GZ_ENDING)) {
 			try (InputStream newInputStream = Files.newInputStream(path);
 					InputStreamReader inputStreamReader = new java.io.InputStreamReader(
 							new GZIPInputStream(newInputStream), "UTF-8");
 					BufferedReader bufferedReader = new BufferedReader(inputStreamReader);) {
-				String line = null;
-				while ((line = bufferedReader.readLine()) != null) {
-					jsonBuilder.append(line);
-				}
-			}
-		} else {
-			try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
-				String line;
-				while ((line = reader.readLine()) != null) {
-					jsonBuilder.append(line);
-				}
+				return readContentFromReaderAsJsonString(bufferedReader);
 			}
 		}
-		return jsonBuilder.toString();
+		try (BufferedReader bufferedReader = Files.newBufferedReader(path,
+				StandardCharsets.UTF_8)) {
+			return readContentFromReaderAsJsonString(bufferedReader);
+		}
+	}
+
+	private String readContentFromReaderAsJsonString(BufferedReader bufferedReader)
+			throws IOException {
+		String json;
+		StringBuilder jsonBuilder = new StringBuilder();
+		String line = null;
+		while ((line = bufferedReader.readLine()) != null) {
+			jsonBuilder.append(line);
+		}
+		json = jsonBuilder.toString();
+		return json;
 	}
 
 	private DataGroup convertJsonStringToDataGroup(String jsonRecord) {
