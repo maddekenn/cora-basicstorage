@@ -1,5 +1,5 @@
 /*
- * Copyright 2015, 2017 Uppsala University Library
+ * Copyright 2015, 2017, 2018 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -29,6 +29,7 @@ import org.testng.annotations.Test;
 
 import se.uu.ub.cora.bookkeeper.data.DataAtomic;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.spider.data.SpiderReadResult;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.spider.record.storage.RecordStorage;
 import se.uu.ub.cora.storage.testdata.DataCreator;
@@ -65,9 +66,12 @@ public class RecordStorageInMemoryListTest {
 		createPlaceInStorageWithUppsalaStorageTerm();
 		createPlaceInStorageWithStockholmStorageTerm();
 
-		Collection<DataGroup> readList = recordStorage.readList("place", emptyFilter).listOfDataGroups;
+		SpiderReadResult readResult = recordStorage.readList("place", emptyFilter);
+		Collection<DataGroup> readList = readResult.listOfDataGroups;
 
 		assertEquals(readList.size(), 2);
+		assertEquals(readResult.start, 0);
+		assertEquals(readResult.totalNumberOfMatches, 2);
 	}
 
 	@Test
@@ -80,8 +84,11 @@ public class RecordStorageInMemoryListTest {
 				"NOT_UPPSALA");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readList("place", filter).listOfDataGroups;
+		SpiderReadResult readResult = recordStorage.readList("place", filter);
+		Collection<DataGroup> readList = readResult.listOfDataGroups;
 		assertEquals(readList.size(), 0);
+		assertEquals(readResult.start, 0);
+		assertEquals(readResult.totalNumberOfMatches, 0);
 	}
 
 	@Test
@@ -320,7 +327,8 @@ public class RecordStorageInMemoryListTest {
 	public void testReadRecordList() {
 		recordStorage = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
 		String recordType = "place";
-		Collection<DataGroup> recordList = recordStorage.readList(recordType, emptyFilter).listOfDataGroups;
+		Collection<DataGroup> recordList = recordStorage.readList(recordType,
+				emptyFilter).listOfDataGroups;
 		assertEquals(recordList.iterator().next().getNameInData(), "authority");
 	}
 
@@ -332,8 +340,11 @@ public class RecordStorageInMemoryListTest {
 		createGenericBinaryRecord();
 
 		String recordType = "binary";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
+		SpiderReadResult readResult = recordStorage.readAbstractList(recordType, emptyFilter);
+		Collection<DataGroup> recordList = readResult.listOfDataGroups;
 		assertEquals(recordList.size(), 3);
+		assertEquals(readResult.start, 0);
+		assertEquals(readResult.totalNumberOfMatches, 3);
 	}
 
 	@Test
@@ -348,8 +359,10 @@ public class RecordStorageInMemoryListTest {
 				"image:0001");
 		filter.addChild(part);
 
-		Collection<DataGroup> readList = recordStorage.readAbstractList("binary", filter).listOfDataGroups;
+		SpiderReadResult readResult = recordStorage.readAbstractList("binary", filter);
+		Collection<DataGroup> readList = readResult.listOfDataGroups;
 		assertEquals(readList.size(), 1);
+		assertEquals(readResult.totalNumberOfMatches, 1);
 		DataGroup first = readList.iterator().next();
 		assertEquals(first.getFirstGroupWithNameInData("recordInfo")
 				.getFirstAtomicValueWithNameInData("id"), "image:0001");
@@ -410,7 +423,8 @@ public class RecordStorageInMemoryListTest {
 		// create no records of genericBinary
 
 		String recordType = "binary";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType,
+				emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 2);
 	}
 
@@ -432,7 +446,8 @@ public class RecordStorageInMemoryListTest {
 		createGrandChildOfAbstractAuthorityRecord();
 
 		String recordType = "abstractAuthority";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType,
+				emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 2);
 	}
 
@@ -461,7 +476,8 @@ public class RecordStorageInMemoryListTest {
 		createGrandChildOfAbstractAuthorityRecord();
 
 		String recordType = "abstractAuthority";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType,
+				emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 1);
 	}
 
@@ -472,7 +488,8 @@ public class RecordStorageInMemoryListTest {
 		createChildOfAbstractAuthorityRecord();
 
 		String recordType = "abstractAuthority";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType,
+				emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 1);
 	}
 
@@ -484,7 +501,8 @@ public class RecordStorageInMemoryListTest {
 		createGrandChildOfAbstractAuthorityRecord();
 
 		String recordType = "childToAbstractAuthority";
-		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType, emptyFilter).listOfDataGroups;
+		Collection<DataGroup> recordList = recordStorage.readAbstractList(recordType,
+				emptyFilter).listOfDataGroups;
 		assertEquals(recordList.size(), 2);
 	}
 }

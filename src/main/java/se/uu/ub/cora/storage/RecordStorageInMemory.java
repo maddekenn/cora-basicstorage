@@ -215,19 +215,22 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		return getSpiderReadResult(type, filter, typeDividerRecords);
 	}
 
-	private SpiderReadResult getSpiderReadResult(String type, DataGroup filter, Map<String, DividerGroup> typeDividerRecords) {
+	private SpiderReadResult getSpiderReadResult(String type, DataGroup filter,
+			Map<String, DividerGroup> typeDividerRecords) {
 		SpiderReadResult spiderReadResult = new SpiderReadResult();
-		spiderReadResult.listOfDataGroups = new ArrayList<>(readFromList(type,filter,typeDividerRecords));
+		Collection<DataGroup> readFromList = readFromList(type, filter, typeDividerRecords);
+		spiderReadResult.listOfDataGroups = new ArrayList<>(readFromList);
+		spiderReadResult.totalNumberOfMatches = readFromList.size();
 		return spiderReadResult;
 	}
 
-	private Collection<DataGroup> readFromList(String type, DataGroup filter, Map<String, DividerGroup> typeDividerRecords) {
+	private Collection<DataGroup> readFromList(String type, DataGroup filter,
+			Map<String, DividerGroup> typeDividerRecords) {
 		if (filterIsEmpty(filter)) {
 			return readListWithoutFilter(typeDividerRecords);
 		}
 		return readListWithFilter(type, filter);
 	}
-
 
 	private Collection<DataGroup> readListWithoutFilter(
 			Map<String, DividerGroup> typeDividerRecords) {
@@ -281,6 +284,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		throwErrorIfEmptyAggregatedList(type, aggregatedRecordList);
 		SpiderReadResult spiderReadResult = new SpiderReadResult();
 		spiderReadResult.listOfDataGroups = aggregatedRecordList;
+		spiderReadResult.totalNumberOfMatches = aggregatedRecordList.size();
 		return spiderReadResult;
 	}
 
@@ -646,7 +650,8 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 			MetadataTypes metadataType) {
 		DataGroup recordTypeDataGroup = read(RECORD_TYPE, metadataType.type);
 		if (recordTypeIsAbstract(recordTypeDataGroup)) {
-			readDataGroups.addAll(readAbstractList(metadataType.type, emptyFilter).listOfDataGroups);
+			readDataGroups
+					.addAll(readAbstractList(metadataType.type, emptyFilter).listOfDataGroups);
 		} else {
 			readDataGroups.addAll(readList(metadataType.type, emptyFilter).listOfDataGroups);
 		}
