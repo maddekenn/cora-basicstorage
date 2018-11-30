@@ -25,22 +25,22 @@
 	<parent>
 		<groupId>se.uu.ub.cora</groupId>
 		<artifactId>cora-parent</artifactId>
-		<version>0.7-SNAPSHOT</version>
+		<version>0.8-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>basicstorage</artifactId>
-	<version>0.8-SNAPSHOT</version>
+	<version>0.9-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Basic storage</name>
 
 	<properties>
-		<userpicker.version>0.4-SNAPSHOT</userpicker.version>
-		<bookkeeper.version>0.12-SNAPSHOT</bookkeeper.version>
-		<spider.version>0.15-SNAPSHOT</spider.version>
-		<apptokenstorage.version>0.4-SNAPSHOT</apptokenstorage.version>
-		<searchstorage.version>0.2-SNAPSHOT</searchstorage.version>
-		<json.version>0.4-SNAPSHOT</json.version>
+		<userpicker.version>0.5-SNAPSHOT</userpicker.version>
+		<bookkeeper.version>0.13-SNAPSHOT</bookkeeper.version>
+		<spider.version>0.16-SNAPSHOT</spider.version>
+		<apptokenstorage.version>0.5-SNAPSHOT</apptokenstorage.version>
+		<searchstorage.version>0.3-SNAPSHOT</searchstorage.version>
+		<json.version>0.5-SNAPSHOT</json.version>
 	</properties>
 
 	<scm>
@@ -90,37 +90,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<resources>
-			<resource>
-				<targetPath>storagefiles</targetPath>
-				<directory>files</directory>
-<!-- 				<filtering>true</filtering> -->
-				<includes>
-				</includes>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.2.0</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<artifactSet>
-								<excludes>
-									<exclude>org.glassfish*</exclude>
-								</excludes>
-							</artifactSet>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 </project>
