@@ -74,6 +74,8 @@ public class TestDataRecordInMemoryStorage {
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 		recordsInMemory.create("metadataTextVariable", "dummy1", dummy, emptyCollectedData,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
+		recordsInMemory.create("metadataNumberVariable", "dummy1", dummy, emptyCollectedData,
+				DataGroup.withNameInData("collectedLinksList"), "cora");
 		recordsInMemory.create("metadataRecordLink", "dummy1", dummy, emptyCollectedData,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 		recordsInMemory.create("metadataRecordRelation", "dummyRecordRelation", dummy,
@@ -373,6 +375,7 @@ public class TestDataRecordInMemoryStorage {
 
 		createRecordTypeForWithIdAndAbstract("metadataGroup", "false", recordsInMemory);
 		createRecordTypeForWithIdAndAbstract("metadataTextVariable", "false", recordsInMemory);
+		createRecordTypeForWithIdAndAbstract("metadataNumberVariable", "false", recordsInMemory);
 		createRecordTypeForWithIdAndAbstract("metadataCollectionVariable", "false",
 				recordsInMemory);
 		createRecordTypeForWithIdAndAbstract("metadataItemCollection", "false", recordsInMemory);
