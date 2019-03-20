@@ -24,8 +24,8 @@ import java.util.Map;
 
 import se.uu.ub.cora.bookkeeper.data.DataAtomic;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.gatekeeper.user.UserStorage;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
-import se.uu.ub.cora.userpicker.UserStorage;
 
 public class UserStorageImp extends SecurityStorage implements UserStorage {
 
