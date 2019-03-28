@@ -39,7 +39,7 @@ import org.testng.annotations.Test;
 import se.uu.ub.cora.storage.testdata.TestDataAppTokenStorage;
 
 public class AppTokenStorageTest {
-	private String basePath = "/tmp/recordStorageOnDiskTemp/";
+	private String basePath = "/tmp/recordStorageOnDiskTempApptoken/";
 	private Map<String, String> initInfo;
 	private AppTokenStorageImp appTokenStorage;
 

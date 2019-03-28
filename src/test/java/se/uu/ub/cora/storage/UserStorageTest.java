@@ -40,7 +40,7 @@ import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.storage.testdata.TestDataAppTokenStorage;
 
 public class UserStorageTest {
-	private String basePath = "/tmp/recordStorageOnDiskTemp/";
+	private String basePath = "/tmp/recordStorageOnDiskTempUser/";
 	private Map<String, String> initInfo;
 	private UserStorageImp userStorage;
 

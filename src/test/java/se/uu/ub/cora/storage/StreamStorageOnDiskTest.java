@@ -42,7 +42,7 @@ import org.testng.annotations.Test;
 import se.uu.ub.cora.spider.stream.storage.StreamStorage;
 
 public class StreamStorageOnDiskTest {
-	private String basePath = "/tmp/streamStorageOnDiskTemp/";
+	private String basePath = "/tmp/streamStorageOnDiskTempStream/";
 	private StreamStorage streamStorage;
 	private InputStream streamToStore;
 
