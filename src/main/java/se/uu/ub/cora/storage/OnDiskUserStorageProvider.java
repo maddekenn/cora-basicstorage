@@ -28,7 +28,7 @@ public class OnDiskUserStorageProvider implements UserStorageProvider {
 	private UserStorageImp userStorage;
 
 	@Override
-	public int getPreferenceLevel() {
+	public int getOrderToSelectImplementionsBy() {
 		return 0;
 	}
 

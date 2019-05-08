@@ -84,7 +84,7 @@ public class OnDiskUserStorageProviderTest {
 	public void testPreferenceLevel() {
 		UserStorageProvider userStorageProvider = new OnDiskUserStorageProvider();
 		userStorageProvider.startUsingInitInfo(initInfo);
-		assertEquals(userStorageProvider.getPreferenceLevel(), 0);
+		assertEquals(userStorageProvider.getOrderToSelectImplementionsBy(), 0);
 	}
 
 	@Test
