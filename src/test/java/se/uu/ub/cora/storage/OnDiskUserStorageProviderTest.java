@@ -18,6 +18,7 @@
  */
 package se.uu.ub.cora.storage;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertSame;
 
 import java.io.File;
@@ -77,6 +78,13 @@ public class OnDiskUserStorageProviderTest {
 			File dir = new File(basePath);
 			dir.delete();
 		}
+	}
+
+	@Test
+	public void testPreferenceLevel() {
+		UserStorageProvider userStorageProvider = new OnDiskUserStorageProvider();
+		userStorageProvider.startUsingInitInfo(initInfo);
+		assertEquals(userStorageProvider.getOrderToSelectImplementionsBy(), 0);
 	}
 
 	@Test
