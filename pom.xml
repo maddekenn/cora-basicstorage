@@ -34,10 +34,11 @@
 	<name>Basic storage</name>
 
 	<properties>
+		<logger.version>1.0.0</logger.version>
 		<gatekeeper.version>1.1.0</gatekeeper.version>
 		<bookkeeper.version>1.0.0</bookkeeper.version>
 		<spider.version>1.0.0</spider.version>
-		<apptokenstorage.version>1.0.0</apptokenstorage.version>
+		<apptokenstorage.version>1.1.0</apptokenstorage.version>
 		<searchstorage.version>1.0.0</searchstorage.version>
 		<json.version>1.0.0</json.version>
 	</properties>
@@ -50,6 +51,12 @@
   </scm>
 
 	<dependencies>
+		<dependency>
+			<groupId>se.uu.ub.cora</groupId>
+			<artifactId>logger</artifactId>
+			<version>${logger.version}</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>se.uu.ub.cora</groupId>
 			<artifactId>gatekeeper</artifactId>

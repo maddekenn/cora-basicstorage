@@ -1,5 +1,6 @@
 /*
  * Copyright 2017, 2018 Uppsala University Library
+ * Copyright 2019 Olov McKie
  *
  * This file is part of Cora.
  *
@@ -25,15 +26,27 @@ import java.util.Map;
 
 import se.uu.ub.cora.apptokenstorage.AppTokenStorage;
 import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.logger.Logger;
+import se.uu.ub.cora.logger.LoggerProvider;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 
 public class AppTokenStorageImp extends SecurityStorage implements AppTokenStorage {
+	private Logger log = LoggerProvider.getLoggerForClass(AppTokenStorageImp.class);
+	private Map<String, String> initInfo;
 
-	public AppTokenStorageImp(Map<String, String> initInfo) {
+	public static AppTokenStorageImp usingInitInfo(Map<String, String> initInfo) {
+		return new AppTokenStorageImp(initInfo);
+	}
+
+	private AppTokenStorageImp(Map<String, String> initInfo) {
+		this.initInfo = initInfo;
 		if (!initInfo.containsKey("storageOnDiskBasePath")) {
-			throw new RuntimeException("initInfo must contain storageOnDiskBasePath");
+			String message = "initInfo must contain storageOnDiskBasePath";
+			log.logFatalUsingMessage(message);
+			throw new RuntimeException(message);
 		}
 		basePath = initInfo.get("storageOnDiskBasePath");
+		log.logInfoUsingMessage("Starting AppTokenStorageImp using basePath: " + basePath);
 		populateFromStorage();
 	}
 
@@ -109,6 +122,11 @@ public class AppTokenStorageImp extends SecurityStorage implements AppTokenStora
 
 	private boolean userIsActive(DataGroup user) {
 		return "active".equals(user.getFirstAtomicValueWithNameInData("activeStatus"));
+	}
+
+	public Map<String, String> getInitInfo() {
+		// needed for test
+		return initInfo;
 	}
 
 }

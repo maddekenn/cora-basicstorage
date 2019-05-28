@@ -1,5 +1,6 @@
 /*
  * Copyright 2017 Uppsala University Library
+ * Copyright 2019 Olov McKie
  *
  * This file is part of Cora.
  *
@@ -21,6 +22,7 @@ package se.uu.ub.cora.storage;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
@@ -36,15 +38,21 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import se.uu.ub.cora.logger.LoggerProvider;
+import se.uu.ub.cora.storage.log.LoggerFactorySpy;
 import se.uu.ub.cora.storage.testdata.TestDataAppTokenStorage;
 
 public class AppTokenStorageTest {
 	private String basePath = "/tmp/recordStorageOnDiskTempApptoken/";
 	private Map<String, String> initInfo;
 	private AppTokenStorageImp appTokenStorage;
+	private LoggerFactorySpy loggerFactorySpy;
+	private String testedClassName = "AppTokenStorageImp";
 
 	@BeforeMethod
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
+		loggerFactorySpy = new LoggerFactorySpy();
+		LoggerProvider.setLoggerFactory(loggerFactorySpy);
 		File dir = new File(basePath);
 		dir.mkdir();
 		deleteFiles(basePath);
@@ -52,7 +60,7 @@ public class AppTokenStorageTest {
 
 		initInfo = new HashMap<>();
 		initInfo.put("storageOnDiskBasePath", basePath);
-		appTokenStorage = new AppTokenStorageImp(initInfo);
+		appTokenStorage = AppTokenStorageImp.usingInitInfo(initInfo);
 	}
 
 	private void deleteFiles(String path) throws IOException {
@@ -88,10 +96,32 @@ public class AppTokenStorageTest {
 		assertTrue(appTokenStorage.recordStorage instanceof RecordStorageInMemoryReadFromDisk);
 	}
 
-	@Test(expectedExceptions = RuntimeException.class)
+	@Test
+	public void testStartupLogsInfoAboutUsedPath() throws Exception {
+		assertEquals(loggerFactorySpy.getInfoLogMessageUsingClassNameAndNo(testedClassName, 0),
+				"Starting AppTokenStorageImp using basePath: " + basePath);
+	}
+
+	@Test
 	public void testInitNoStorageOnDiskBasePath() {
-		Map<String, String> initInfo = new HashMap<>();
-		new AppTokenStorageImp(initInfo);
+		initInfo = new HashMap<>();
+		Exception excepiton = startAppTokenVerifierMakeSureAnExceptionIsThrown();
+		assertEquals(excepiton.getMessage(), "initInfo must contain storageOnDiskBasePath");
+		String fatalMessage = loggerFactorySpy
+				.getFatalLogMessageUsingClassNameAndNo(testedClassName, 0);
+		assertEquals(fatalMessage, "initInfo must contain storageOnDiskBasePath");
+	}
+
+	private Exception startAppTokenVerifierMakeSureAnExceptionIsThrown() {
+		Exception caughtException = null;
+		try {
+			AppTokenStorageImp.usingInitInfo(initInfo);
+		} catch (Exception e) {
+			caughtException = e;
+		}
+		assertTrue(caughtException instanceof RuntimeException);
+		assertNotNull(caughtException);
+		return caughtException;
 	}
 
 	@Test
