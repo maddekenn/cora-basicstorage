@@ -32,12 +32,14 @@ import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 
 public class AppTokenStorageImp extends SecurityStorage implements AppTokenStorage {
 	private Logger log = LoggerProvider.getLoggerForClass(AppTokenStorageImp.class);
+	private Map<String, String> initInfo;
 
 	public static AppTokenStorageImp usingInitInfo(Map<String, String> initInfo) {
 		return new AppTokenStorageImp(initInfo);
 	}
 
 	private AppTokenStorageImp(Map<String, String> initInfo) {
+		this.initInfo = initInfo;
 		if (!initInfo.containsKey("storageOnDiskBasePath")) {
 			String message = "initInfo must contain storageOnDiskBasePath";
 			log.logFatalUsingMessage(message);
@@ -120,6 +122,11 @@ public class AppTokenStorageImp extends SecurityStorage implements AppTokenStora
 
 	private boolean userIsActive(DataGroup user) {
 		return "active".equals(user.getFirstAtomicValueWithNameInData("activeStatus"));
+	}
+
+	public Map<String, String> getInitInfo() {
+		// needed for test
+		return initInfo;
 	}
 
 }

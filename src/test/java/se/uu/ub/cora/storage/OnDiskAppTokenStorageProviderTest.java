@@ -93,4 +93,11 @@ public class OnDiskAppTokenStorageProviderTest {
 		AppTokenStorage appTokenStorage = onDiskAppTokenStorageProvider.getAppTokenStorage();
 		assertTrue(appTokenStorage instanceof AppTokenStorageImp);
 	}
+
+	@Test
+	private void testInitInfoIsSentOnToImplementation() {
+		AppTokenStorageImp appTokenStorage = (AppTokenStorageImp) onDiskAppTokenStorageProvider
+				.getAppTokenStorage();
+		assertEquals(appTokenStorage.getInitInfo(), initInfo);
+	}
 }
