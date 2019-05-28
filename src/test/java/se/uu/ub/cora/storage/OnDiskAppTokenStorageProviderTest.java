@@ -34,6 +34,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import se.uu.ub.cora.apptokenstorage.AppTokenStorage;
+import se.uu.ub.cora.logger.LoggerProvider;
+import se.uu.ub.cora.storage.log.LoggerFactorySpy;
 import se.uu.ub.cora.storage.testdata.TestDataAppTokenStorage;
 
 public class OnDiskAppTokenStorageProviderTest {
@@ -41,9 +43,12 @@ public class OnDiskAppTokenStorageProviderTest {
 	private OnDiskAppTokenStorageProvider onDiskAppTokenStorageProvider;
 	private Map<String, String> initInfo = new HashMap<>();
 	private String basePath = "/tmp/recordStorageOnDiskTempApptokenStorageProvider/";
+	private LoggerFactorySpy loggerFactorySpy;
 
 	@BeforeMethod
 	public void beforeMethod() throws Exception {
+		loggerFactorySpy = new LoggerFactorySpy();
+		LoggerProvider.setLoggerFactory(loggerFactorySpy);
 		initInfo = new HashMap<>();
 		initInfo.put("storageOnDiskBasePath", basePath);
 		makeSureBasePathExistsAndIsEmpty();
