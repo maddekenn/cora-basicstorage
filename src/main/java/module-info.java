@@ -7,10 +7,10 @@ module se.uu.ub.cora.basicstorage {
 	requires transitive se.uu.ub.cora.spider;
 	requires se.uu.ub.cora.logger;
 
-	exports se.uu.ub.cora.storage;
+	exports se.uu.ub.cora.basicstorage;
 
 	provides se.uu.ub.cora.gatekeeper.user.UserStorageProvider
-			with se.uu.ub.cora.storage.OnDiskUserStorageProvider;
+			with se.uu.ub.cora.basicstorage.OnDiskUserStorageProvider;
 	provides se.uu.ub.cora.apptokenstorage.AppTokenStorageProvider
-			with se.uu.ub.cora.storage.OnDiskAppTokenStorageProvider;
+			with se.uu.ub.cora.basicstorage.OnDiskAppTokenStorageProvider;
 }
