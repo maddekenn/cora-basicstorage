@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Uppsala University Library
+ * Copyright 2017, 2019 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import se.uu.ub.cora.bookkeeper.data.DataAtomic;
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataGroup;
 
 class CollectedDataOrganiser {
 	private Map<String, DataGroup> collectedDataByDataDivider;
@@ -45,7 +45,8 @@ class CollectedDataOrganiser {
 		return collectedDataByDataDivider;
 	}
 
-	private void loopKeysAndCreateStorageTerms(Map<String, Map<String, List<StorageTermData>>> map) {
+	private void loopKeysAndCreateStorageTerms(
+			Map<String, Map<String, List<StorageTermData>>> map) {
 		for (Entry<String, Map<String, List<StorageTermData>>> mapForEntryKey : map.entrySet()) {
 			key = mapForEntryKey.getKey();
 			loopRecordIdsAndCreateStorageTerms(mapForEntryKey.getValue());
@@ -59,7 +60,8 @@ class CollectedDataOrganiser {
 		}
 	}
 
-	private void loopStorageTermDataAndCreateStorageTerms(Entry<String, List<StorageTermData>> idEntry) {
+	private void loopStorageTermDataAndCreateStorageTerms(
+			Entry<String, List<StorageTermData>> idEntry) {
 		for (StorageTermData storageTermData : idEntry.getValue()) {
 			DataGroup storageTerm = createStorageTerm(storageTermData);
 			addStorageTermToResult(storageTermData, storageTerm);
@@ -74,8 +76,8 @@ class CollectedDataOrganiser {
 		storageTerm.addChild(DataAtomic.withNameInDataAndValue("id", id));
 
 		storageTerm.addChild(DataAtomic.withNameInDataAndValue("value", storageTermData.value));
-		storageTerm
-				.addChild(DataAtomic.withNameInDataAndValue("dataDivider", storageTermData.dataDivider));
+		storageTerm.addChild(
+				DataAtomic.withNameInDataAndValue("dataDivider", storageTermData.dataDivider));
 		repeatId++;
 		return storageTerm;
 	}

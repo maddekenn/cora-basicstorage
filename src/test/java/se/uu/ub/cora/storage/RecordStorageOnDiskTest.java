@@ -1,6 +1,6 @@
 /*
  * Copyright 2016, 2018 Olov McKie
- * Copyright 2016, 2018 Uppsala University Library
+ * Copyright 2016, 2018, 2019 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -47,9 +47,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import se.uu.ub.cora.bookkeeper.data.DataAtomic;
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.bookkeeper.data.converter.DataGroupToJsonConverter;
+import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataGroup;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
 import se.uu.ub.cora.storage.testdata.DataCreator;
 

@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import se.uu.ub.cora.apptokenstorage.AppTokenStorage;
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.data.DataGroup;
 import se.uu.ub.cora.logger.Logger;
 import se.uu.ub.cora.logger.LoggerProvider;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;

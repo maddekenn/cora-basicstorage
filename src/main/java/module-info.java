@@ -6,6 +6,7 @@ module se.uu.ub.cora.basicstorage {
 	requires se.uu.ub.cora.searchstorage;
 	requires transitive se.uu.ub.cora.spider;
 	requires se.uu.ub.cora.logger;
+	requires transitive se.uu.ub.cora.data;
 
 	exports se.uu.ub.cora.storage;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Uppsala University Library
+ * Copyright 2015, 2019 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -27,8 +27,8 @@ import java.util.Iterator;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
+import se.uu.ub.cora.data.DataGroup;
 import se.uu.ub.cora.storage.testdata.DataCreator;
 import se.uu.ub.cora.storage.testdata.TestDataRecordInMemoryStorage;
 
@@ -40,7 +40,8 @@ public class MetadataStorageInMemoryTest {
 
 	@BeforeMethod
 	public void BeforeMethod() {
-		recordStorageInMemory = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+		recordStorageInMemory = TestDataRecordInMemoryStorage
+				.createRecordStorageInMemoryWithTestData();
 		metadataStorage = recordStorageInMemory;
 	}
 

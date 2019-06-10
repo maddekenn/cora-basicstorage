@@ -19,8 +19,8 @@
 
 package se.uu.ub.cora.storage.testdata;
 
-import se.uu.ub.cora.bookkeeper.data.DataAtomic;
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataGroup;
 
 public final class DataCreator {
 	private static final String SELF_PRESENTATION_VIEW_ID = "selfPresentationViewId";
@@ -41,22 +41,23 @@ public final class DataCreator {
 				abstractValue, null);
 	}
 
-	private static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(String id,
-			String userSuppliedId, String abstractValue, String parentId) {
+	private static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(
+			String id, String userSuppliedId, String abstractValue, String parentId) {
 		String idWithCapitalFirst = id.substring(0, 1).toUpperCase() + id.substring(1);
 
 		DataGroup dataGroup = DataGroup.withNameInData(RECORD_TYPE);
 		dataGroup.addChild(createRecordInfoWithRecordTypeAndRecordId(RECORD_TYPE, id));
 
-		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(METADATA_ID, "metadataGroup", id));
+		dataGroup.addChild(
+				createChildWithNamInDataLinkedTypeLinkedId(METADATA_ID, "metadataGroup", id));
 
 		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(PRESENTATION_VIEW_ID,
 				"presentationGroup", "pg" + idWithCapitalFirst + "View"));
 
 		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(PRESENTATION_FORM_ID,
 				"presentationGroup", "pg" + idWithCapitalFirst + "Form"));
-		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(NEW_METADATA_ID, "metadataGroup",
-				id + "New"));
+		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(NEW_METADATA_ID,
+				"metadataGroup", id + "New"));
 
 		dataGroup.addChild(createChildWithNamInDataLinkedTypeLinkedId(NEW_PRESENTATION_FORM_ID,
 				"presentationGroup", "pg" + idWithCapitalFirst + "FormNew"));
@@ -80,15 +81,16 @@ public final class DataCreator {
 	private static DataGroup createChildWithNamInDataLinkedTypeLinkedId(String nameInData,
 			String linkedRecordType, String id) {
 		DataGroup metadataId = DataGroup.withNameInData(nameInData);
-		metadataId.addChild(DataAtomic.withNameInDataAndValue("linkedRecordType", linkedRecordType));
+		metadataId
+				.addChild(DataAtomic.withNameInDataAndValue("linkedRecordType", linkedRecordType));
 		metadataId.addChild(DataAtomic.withNameInDataAndValue("linkedRecordId", id));
 		return metadataId;
 	}
 
 	public static DataGroup createRecordTypeWithIdAndUserSuppliedIdAndParentId(String id,
 			String userSuppliedId, String parentId) {
-		return createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(id, userSuppliedId, "false",
-				parentId);
+		return createRecordTypeWithIdAndUserSuppliedIdAndAbstractAndParentId(id, userSuppliedId,
+				"false", parentId);
 	}
 
 	public static DataGroup createRecordInfoWithRecordTypeAndRecordId(String recordType,
@@ -137,7 +139,8 @@ public final class DataCreator {
 				toRecordType);
 		to.addChild(toLinkedRecordType);
 
-		DataAtomic toLinkedRecordId = DataAtomic.withNameInDataAndValue("linkedRecordId", toRecordId);
+		DataAtomic toLinkedRecordId = DataAtomic.withNameInDataAndValue("linkedRecordId",
+				toRecordId);
 		to.addChild(toLinkedRecordId);
 
 		return recordToRecordLink;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Uppsala University Library
+ * Copyright 2015, 2019 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -19,12 +19,12 @@
 
 package se.uu.ub.cora.storage.testdata;
 
-import se.uu.ub.cora.bookkeeper.data.DataAtomic;
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
-import se.uu.ub.cora.bookkeeper.data.DataPart;
 import se.uu.ub.cora.bookkeeper.data.converter.JsonToDataConverter;
 import se.uu.ub.cora.bookkeeper.data.converter.JsonToDataConverterFactory;
 import se.uu.ub.cora.bookkeeper.data.converter.JsonToDataConverterFactoryImp;
+import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataPart;
 import se.uu.ub.cora.json.parser.JsonParser;
 import se.uu.ub.cora.json.parser.JsonValue;
 import se.uu.ub.cora.json.parser.org.OrgJsonParser;
@@ -83,13 +83,15 @@ public class TestDataAppTokenStorage {
 
 		String sameUserJson = "{\"name\":\"user\",\"children\":[{\"name\":\"recordInfo\",\"children\":[{\"name\":\"id\",\"value\":\"sameUser1\"},{\"name\":\"type\",\"value\":\"systemTwoUser\"},{\"name\":\"createdBy\",\"value\":\"131313\"},{\"name\":\"dataDivider\",\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"},{\"name\":\"linkedRecordId\",\"value\":\"systemOne\"}]}]},{\"name\":\"userId\",\"value\":\"noAppTokenUser@ub.uu.se\"},{\"name\":\"userFirstname\",\"value\":\"Dummy\"},{\"name\":\"userLastname\",\"value\":\"Dumsson\"},{\"name\":\"userRole\",\"children\":[{\"name\":\"userRole\",\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"permissionRole\"},{\"name\":\"linkedRecordId\",\"value\":\"nothing\"}]},{\"name\":\"userRoleRulePart\",\"children\":[{\"name\":\"permissionRulePart\",\"children\":[{\"name\":\"permissionRulePartValue\",\"value\":\"system.\",\"repeatId\":\"0\"}],\"attributes\":{\"type\":\"organisation\"}}]}],\"repeatId\":\"0\"},{\"name\":\"activeStatus\",\"value\":\"inactive\"}]}";
 		DataGroup sameUser1 = convertJsonStringToDataGroup(sameUserJson);
-		DataGroup collectedDataSameUser1 = createCollectedDataForUserIdWithValue("sameUser@ub.uu.se");
+		DataGroup collectedDataSameUser1 = createCollectedDataForUserIdWithValue(
+				"sameUser@ub.uu.se");
 		recordsOnDisk.create("systemTwoUser", "sameUser1", sameUser1, collectedDataSameUser1,
 				DataGroup.withNameInData("collectedLinksList"), "systemTwo");
 
 		String sameUserJson2 = "{\"name\":\"user\",\"children\":[{\"name\":\"recordInfo\",\"children\":[{\"name\":\"id\",\"value\":\"sameUser2\"},{\"name\":\"type\",\"value\":\"systemTwoUser\"},{\"name\":\"createdBy\",\"value\":\"131313\"},{\"name\":\"dataDivider\",\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"system\"},{\"name\":\"linkedRecordId\",\"value\":\"systemOne\"}]}]},{\"name\":\"userId\",\"value\":\"noAppTokenUser@ub.uu.se\"},{\"name\":\"userFirstname\",\"value\":\"Dummy\"},{\"name\":\"userLastname\",\"value\":\"Dumsson\"},{\"name\":\"userRole\",\"children\":[{\"name\":\"userRole\",\"children\":[{\"name\":\"linkedRecordType\",\"value\":\"permissionRole\"},{\"name\":\"linkedRecordId\",\"value\":\"nothing\"}]},{\"name\":\"userRoleRulePart\",\"children\":[{\"name\":\"permissionRulePart\",\"children\":[{\"name\":\"permissionRulePartValue\",\"value\":\"system.\",\"repeatId\":\"0\"}],\"attributes\":{\"type\":\"organisation\"}}]}],\"repeatId\":\"0\"},{\"name\":\"activeStatus\",\"value\":\"inactive\"}]}";
 		DataGroup sameUser2 = convertJsonStringToDataGroup(sameUserJson2);
-		DataGroup collectedDataSameUser2 = createCollectedDataForUserIdWithValue("sameUser@ub.uu.se");
+		DataGroup collectedDataSameUser2 = createCollectedDataForUserIdWithValue(
+				"sameUser@ub.uu.se");
 		recordsOnDisk.create("systemTwoUser", "sameUser2", sameUser2, collectedDataSameUser2,
 				DataGroup.withNameInData("collectedLinksList"), "systemTwo");
 
@@ -111,7 +113,8 @@ public class TestDataAppTokenStorage {
 
 	private static DataGroup createCollectedDataForUserIdWithValue(String termValue) {
 		// collectedData
-		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place", "place:0001");
+		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
+				"place:0001");
 		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
 		collectedData.addChild(collectStorageTerm);
 
@@ -155,8 +158,8 @@ public class TestDataAppTokenStorage {
 
 	private static void addRecordTypeImage(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
-		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId("image",
-				"true", "binary");
+		DataGroup dataGroup = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndParentId("image", "true", "binary");
 		recordsInMemory.create(recordType, "image", dataGroup, emptyCollectedData,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
@@ -171,24 +174,24 @@ public class TestDataAppTokenStorage {
 
 	private static void addRecordTypeSystemOneUser(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
-		DataGroup dataGroup = DataCreator
-				.createRecordTypeWithIdAndUserSuppliedIdAndParentId("systemOneUser", "true", "user");
+		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId(
+				"systemOneUser", "true", "user");
 		recordsInMemory.create(recordType, "systemOneUser", dataGroup, emptyCollectedData,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addRecordTypeSystemTwoUser(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
-		DataGroup dataGroup = DataCreator
-				.createRecordTypeWithIdAndUserSuppliedIdAndParentId("systemTwoUser", "true", "user");
+		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndParentId(
+				"systemTwoUser", "true", "user");
 		recordsInMemory.create(recordType, "systemTwoUser", dataGroup, emptyCollectedData,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 	}
 
 	private static void addRecordTypeAppToken(RecordStorageInMemory recordsInMemory) {
 		String recordType = "recordType";
-		DataGroup dataGroup = DataCreator.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("appToken",
-				"false", "false");
+		DataGroup dataGroup = DataCreator
+				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("appToken", "false", "false");
 		recordsInMemory.create(recordType, "appToken", dataGroup, emptyCollectedData,
 				DataGroup.withNameInData("collectedLinksList"), "cora");
 
