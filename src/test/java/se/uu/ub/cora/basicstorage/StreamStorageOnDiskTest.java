@@ -105,6 +105,12 @@ public class StreamStorageOnDiskTest {
 	}
 
 	@Test
+	public void testGetBasePath() throws IOException {
+		StreamStorageOnDisk streamStorageOnDisk = (StreamStorageOnDisk) streamStorage;
+		assertEquals(streamStorageOnDisk.getBasePath(), basePath);
+	}
+
+	@Test
 	public void testUploadCreatePathForNewDataDivider() {
 		streamStorage.store("someStreamId", "someDataDivider", streamToStore);
 		assertTrue(Files.exists(Paths.get(basePath, "someDataDivider")));

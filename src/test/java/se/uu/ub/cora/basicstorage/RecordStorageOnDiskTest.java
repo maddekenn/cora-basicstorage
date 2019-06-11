@@ -1,6 +1,6 @@
 /*
  * Copyright 2016, 2018 Olov McKie
- * Copyright 2016, 2018 Uppsala University Library
+ * Copyright 2016, 2018, 2019 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -224,6 +224,13 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
+	public void testGetBasePath() throws IOException {
+		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
+				.createRecordStorageOnDiskWithBasePath(basePath);
+		assertEquals(recordStorage.getBasePath(), basePath);
+	}
+
+	@Test
 	public void testInitNoFilesOnDisk() throws IOException {
 		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
 		createRecordTypePlace();
@@ -353,7 +360,6 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test(expectedExceptions = RecordNotFoundException.class)
-	// @Test
 	public void testInitStreamsFolderShouldNotBeRead() throws IOException {
 		createRecordTypePlace();
 		writeFileToDisk(expectedRecordJsonOneRecordPlace1, "streams", PLACE_CORA_FILENAME);

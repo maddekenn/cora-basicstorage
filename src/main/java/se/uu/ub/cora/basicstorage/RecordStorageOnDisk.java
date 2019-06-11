@@ -559,4 +559,9 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		super.deleteByTypeAndId(recordType, recordId);
 		writeDataToDisk(recordType, previousDataDivider);
 	}
+
+	public String getBasePath() {
+		// needed for test
+		return basePath;
+	}
 }

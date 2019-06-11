@@ -119,7 +119,8 @@ public final class StreamStorageOnDisk implements StreamStorage {
 
 		Path path = Paths.get(basePath, dataDivider, streamId);
 		if (storageDirectoryDoesNotExist(path)) {
-			throw DataStorageException.withMessage("can not read stream from disk, no such stream");
+			throw DataStorageException
+					.withMessage("can not read stream from disk, no such " + "stream");
 		}
 		return tryToReadStream(path);
 	}
@@ -135,5 +136,10 @@ public final class StreamStorageOnDisk implements StreamStorage {
 	InputStream readStream(Path path) throws IOException {
 		return Files.newInputStream(path);
 
+	}
+
+	public String getBasePath() {
+		// needed for test
+		return basePath;
 	}
 }
