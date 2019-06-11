@@ -21,7 +21,7 @@ package se.uu.ub.cora.storage;
 
 import se.uu.ub.cora.data.DataGroup;
 
-final class DividerGroup {
+public final class DividerGroup {
 
 	static DividerGroup withDataDividerAndDataGroup(String dataDivider, DataGroup dataGroup) {
 		return new DividerGroup(dataDivider, dataGroup);
