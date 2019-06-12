@@ -29,8 +29,8 @@ import org.testng.annotations.Test;
 
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
 import se.uu.ub.cora.basicstorage.testdata.TestDataRecordInMemoryStorage;
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
+import se.uu.ub.cora.data.DataGroup;
 
 public class MetadataStorageInMemoryTest {
 
@@ -40,7 +40,8 @@ public class MetadataStorageInMemoryTest {
 
 	@BeforeMethod
 	public void BeforeMethod() {
-		recordStorageInMemory = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+		recordStorageInMemory = TestDataRecordInMemoryStorage
+				.createRecordStorageInMemoryWithTestData();
 		metadataStorage = recordStorageInMemory;
 	}
 

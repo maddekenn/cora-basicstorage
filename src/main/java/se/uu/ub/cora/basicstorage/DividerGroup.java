@@ -19,9 +19,9 @@
 
 package se.uu.ub.cora.basicstorage;
 
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.data.DataGroup;
 
-final class DividerGroup {
+public final class DividerGroup {
 
 	static DividerGroup withDataDividerAndDataGroup(String dataDivider, DataGroup dataGroup) {
 		return new DividerGroup(dataDivider, dataGroup);
