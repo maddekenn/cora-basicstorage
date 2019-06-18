@@ -3,7 +3,6 @@ module se.uu.ub.cora.basicstorage {
 	requires transitive se.uu.ub.cora.bookkeeper;
 	requires se.uu.ub.cora.json;
 	requires transitive se.uu.ub.cora.apptokenstorage;
-	requires se.uu.ub.cora.searchstorage;
 	requires transitive se.uu.ub.cora.spider;
 	requires se.uu.ub.cora.logger;
 	requires se.uu.ub.cora.storage;
