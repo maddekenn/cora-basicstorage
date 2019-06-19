@@ -29,9 +29,10 @@ import java.util.Map.Entry;
 
 import se.uu.ub.cora.bookkeeper.metadata.MetadataTypes;
 import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
+import se.uu.ub.cora.data.DataCopierFactoryImp;
 import se.uu.ub.cora.data.DataElement;
 import se.uu.ub.cora.data.DataGroup;
-import se.uu.ub.cora.spider.data.SpiderDataGroup;
+import se.uu.ub.cora.data.DataGroupCopier;
 import se.uu.ub.cora.spider.record.DataGroupEnhancer;
 import se.uu.ub.cora.spider.record.storage.RecordConflictException;
 import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
@@ -107,7 +108,14 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	private DataGroup createIndependentCopy(DataGroup record) {
 		DataGroupEnhancer dataGroupEnhancer = new DataGroupEnhancer();
 		dataGroupEnhancer.enhance(record);
-		return SpiderDataGroup.fromDataGroup(record).toDataGroup();
+		return copyDataGroup(record);
+	}
+
+	private DataGroup copyDataGroup(DataGroup record) {
+		DataCopierFactoryImp dataCopierFactory = new DataCopierFactoryImp();
+		DataGroupCopier dataGroupCopier = DataGroupCopier.usingDataGroupAndCopierFactory(record,
+				dataCopierFactory);
+		return dataGroupCopier.copy();
 	}
 
 	protected void storeRecordByRecordTypeAndRecordId(String recordType, String recordId,
