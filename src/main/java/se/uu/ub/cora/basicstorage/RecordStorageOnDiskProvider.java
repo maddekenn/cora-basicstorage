@@ -58,7 +58,13 @@ public class RecordStorageOnDiskProvider implements RecordStorageProvider, Metad
 
 	private void startNewRecordStorageOnDiskInstance() {
 		String basePath = tryToGetInitParameter("storageOnDiskBasePath");
-		setStaticInstance(RecordStorageOnDisk.createRecordStorageOnDiskWithBasePath(basePath));
+		String type = tryToGetInitParameter("storageType");
+		if ("memory".equals(type)) {
+			setStaticInstance(RecordStorageInMemoryReadFromDisk
+					.createRecordStorageOnDiskWithBasePath(basePath));
+		} else {
+			setStaticInstance(RecordStorageOnDisk.createRecordStorageOnDiskWithBasePath(basePath));
+		}
 	}
 
 	private void useExistingRecordStorage() {

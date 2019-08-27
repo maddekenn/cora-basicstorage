@@ -19,6 +19,7 @@
 package se.uu.ub.cora.basicstorage;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertSame;
 import static org.testng.Assert.assertTrue;
 
@@ -54,8 +55,10 @@ public class RecordStorageOnDiskProviderTest {
 		LoggerProvider.setLoggerFactory(loggerFactorySpy);
 		initInfo = new HashMap<>();
 		initInfo.put("storageOnDiskBasePath", basePath);
+		initInfo.put("storageType", "disk");
 		makeSureBasePathExistsAndIsEmpty();
 		recordStorageOnDiskProvider = new RecordStorageOnDiskProvider();
+		RecordStorageInstance.instance = null;
 	}
 
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
@@ -94,6 +97,15 @@ public class RecordStorageOnDiskProviderTest {
 		recordStorageOnDiskProvider.startUsingInitInfo(initInfo);
 		RecordStorage recordStorage = recordStorageOnDiskProvider.getRecordStorage();
 		assertTrue(recordStorage instanceof RecordStorageOnDisk);
+		assertFalse(recordStorage instanceof RecordStorageInMemoryReadFromDisk);
+	}
+
+	@Test
+	public void testNormalStartupReturnsRecordStorageInMemoryReadFromDisk() {
+		initInfo.put("storageType", "memory");
+		recordStorageOnDiskProvider.startUsingInitInfo(initInfo);
+		RecordStorage recordStorage = recordStorageOnDiskProvider.getRecordStorage();
+		assertTrue(recordStorage instanceof RecordStorageInMemoryReadFromDisk);
 	}
 
 	@Test
@@ -123,7 +135,11 @@ public class RecordStorageOnDiskProviderTest {
 
 	@Test
 	public void testLoggingRecordStorageStartedByOtherProvider() {
+		RecordStorageSpy recordStorageSpy = new RecordStorageSpy();
+		RecordStorageInstance.instance = recordStorageSpy;
+
 		recordStorageOnDiskProvider.startUsingInitInfo(initInfo);
+
 		assertEquals(loggerFactorySpy.getInfoLogMessageUsingClassNameAndNo(testedClassName, 0),
 				"RecordStorageOnDiskProvider starting RecordStorageOnDisk...");
 		assertEquals(loggerFactorySpy.getInfoLogMessageUsingClassNameAndNo(testedClassName, 1),
@@ -157,8 +173,10 @@ public class RecordStorageOnDiskProviderTest {
 		assertEquals(loggerFactorySpy.getInfoLogMessageUsingClassNameAndNo(testedClassName, 1),
 				"Found /tmp/recordStorageOnDiskTempBasicStorageProvider/ as storageOnDiskBasePath");
 		assertEquals(loggerFactorySpy.getInfoLogMessageUsingClassNameAndNo(testedClassName, 2),
+				"Found disk as storageType");
+		assertEquals(loggerFactorySpy.getInfoLogMessageUsingClassNameAndNo(testedClassName, 3),
 				"RecordStorageOnDiskProvider started RecordStorageOnDisk");
-		assertEquals(loggerFactorySpy.getNoOfInfoLogMessagesUsingClassName(testedClassName), 3);
+		assertEquals(loggerFactorySpy.getNoOfInfoLogMessagesUsingClassName(testedClassName), 4);
 	}
 
 	@Test
