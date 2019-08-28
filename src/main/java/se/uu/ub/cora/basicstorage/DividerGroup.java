@@ -19,7 +19,7 @@
 
 package se.uu.ub.cora.basicstorage;
 
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.data.DataGroup;
 
 final class DividerGroup {
 

@@ -19,8 +19,8 @@
 
 package se.uu.ub.cora.basicstorage.testdata;
 
-import se.uu.ub.cora.bookkeeper.data.DataAtomic;
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
+import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataGroup;
 
 public final class DataCreator {
 	private static final String SELF_PRESENTATION_VIEW_ID = "selfPresentationViewId";

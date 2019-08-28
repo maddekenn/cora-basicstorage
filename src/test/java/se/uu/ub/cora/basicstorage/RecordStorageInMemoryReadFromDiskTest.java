@@ -33,9 +33,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
-import se.uu.ub.cora.bookkeeper.data.DataAtomic;
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
 import se.uu.ub.cora.bookkeeper.data.converter.DataGroupToJsonConverter;
+import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataGroup;
 
 public class RecordStorageInMemoryReadFromDiskTest {
 	private static final String FROM_RECORD_TYPE = "fromRecordType";
