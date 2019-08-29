@@ -20,9 +20,9 @@ package se.uu.ub.cora.basicstorage;
 
 import java.util.Map;
 
+import se.uu.ub.cora.basicstorage.id.TimeStampIdGenerator;
 import se.uu.ub.cora.logger.Logger;
 import se.uu.ub.cora.logger.LoggerProvider;
-import se.uu.ub.cora.spider.record.storage.TimeStampIdGenerator;
 import se.uu.ub.cora.storage.RecordIdGenerator;
 import se.uu.ub.cora.storage.RecordIdGeneratorProvider;
 

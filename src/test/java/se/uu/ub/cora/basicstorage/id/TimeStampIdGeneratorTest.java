@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Uppsala University Library
+ * Copyright 2015 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -16,25 +16,22 @@
  *     You should have received a copy of the GNU General Public License
  *     along with Cora.  If not, see <http://www.gnu.org/licenses/>.
  */
-package se.uu.ub.cora.basicstorage;
 
-import se.uu.ub.cora.storage.MetadataStorage;
-import se.uu.ub.cora.storage.RecordStorage;
+package se.uu.ub.cora.basicstorage.id;
 
-public final class RecordStorageInMemoryReadFromDisk extends RecordStorageOnDisk
-		implements RecordStorage, MetadataStorage {
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-	public static RecordStorageInMemoryReadFromDisk createRecordStorageOnDiskWithBasePath(
-			String basePath) {
-		return new RecordStorageInMemoryReadFromDisk(basePath);
-	}
+import se.uu.ub.cora.basicstorage.id.TimeStampIdGenerator;
+import se.uu.ub.cora.storage.RecordIdGenerator;
 
-	private RecordStorageInMemoryReadFromDisk(String basePath) {
-		super(basePath);
-	}
-
-	@Override
-	protected void writeDataToDisk(String recordType, String dataDivider) {
-		// do not write to disk
+public class TimeStampIdGeneratorTest {
+	@Test
+	public void testGenerateId() {
+		RecordIdGenerator idGenerator = new TimeStampIdGenerator();
+		String keyType = idGenerator.getIdForType("type");
+		String keyType2 = idGenerator.getIdForType("type2");
+		Assert.assertNotEquals(keyType, keyType2,
+				"The generated keys should not be equal for two different types");
 	}
 }

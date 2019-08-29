@@ -20,9 +20,9 @@ package se.uu.ub.cora.basicstorage;
 
 import java.util.Map;
 
-import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
 import se.uu.ub.cora.logger.Logger;
 import se.uu.ub.cora.logger.LoggerProvider;
+import se.uu.ub.cora.storage.MetadataStorage;
 import se.uu.ub.cora.storage.MetadataStorageProvider;
 import se.uu.ub.cora.storage.RecordStorage;
 import se.uu.ub.cora.storage.RecordStorageProvider;

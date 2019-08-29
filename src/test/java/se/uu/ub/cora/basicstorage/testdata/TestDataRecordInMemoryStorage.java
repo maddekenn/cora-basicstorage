@@ -20,12 +20,12 @@
 package se.uu.ub.cora.basicstorage.testdata;
 
 import se.uu.ub.cora.basicstorage.RecordStorageInMemory;
-import se.uu.ub.cora.bookkeeper.data.converter.JsonToDataConverter;
-import se.uu.ub.cora.bookkeeper.data.converter.JsonToDataConverterFactory;
-import se.uu.ub.cora.bookkeeper.data.converter.JsonToDataConverterFactoryImp;
 import se.uu.ub.cora.data.DataAtomic;
 import se.uu.ub.cora.data.DataGroup;
 import se.uu.ub.cora.data.DataPart;
+import se.uu.ub.cora.data.converter.JsonToDataConverter;
+import se.uu.ub.cora.data.converter.JsonToDataConverterFactory;
+import se.uu.ub.cora.data.converter.JsonToDataConverterFactoryImp;
 import se.uu.ub.cora.json.parser.JsonParser;
 import se.uu.ub.cora.json.parser.JsonValue;
 import se.uu.ub.cora.json.parser.org.OrgJsonParser;

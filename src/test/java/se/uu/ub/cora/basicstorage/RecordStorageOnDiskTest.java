@@ -48,10 +48,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
-import se.uu.ub.cora.bookkeeper.data.converter.DataGroupToJsonConverter;
 import se.uu.ub.cora.data.DataAtomic;
 import se.uu.ub.cora.data.DataGroup;
-import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
+import se.uu.ub.cora.data.converter.DataGroupToJsonConverter;
+import se.uu.ub.cora.storage.RecordNotFoundException;
 
 public class RecordStorageOnDiskTest {
 	private static final String PLACE_JSCLIENT_FILENAME = "place_jsClient.json.gz";

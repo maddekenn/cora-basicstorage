@@ -36,8 +36,8 @@ import se.uu.ub.cora.basicstorage.testdata.DataCreator;
 import se.uu.ub.cora.basicstorage.testdata.TestDataRecordInMemoryStorage;
 import se.uu.ub.cora.data.DataAtomic;
 import se.uu.ub.cora.data.DataGroup;
-import se.uu.ub.cora.spider.record.storage.RecordConflictException;
-import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
+import se.uu.ub.cora.storage.RecordConflictException;
+import se.uu.ub.cora.storage.RecordNotFoundException;
 import se.uu.ub.cora.storage.RecordStorage;
 
 public class RecordStorageInMemoryTest {

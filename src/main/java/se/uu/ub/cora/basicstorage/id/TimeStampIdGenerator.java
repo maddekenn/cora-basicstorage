@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Uppsala University Library
+ * Copyright 2015 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -16,25 +16,15 @@
  *     You should have received a copy of the GNU General Public License
  *     along with Cora.  If not, see <http://www.gnu.org/licenses/>.
  */
-package se.uu.ub.cora.basicstorage;
 
-import se.uu.ub.cora.storage.MetadataStorage;
-import se.uu.ub.cora.storage.RecordStorage;
+package se.uu.ub.cora.basicstorage.id;
 
-public final class RecordStorageInMemoryReadFromDisk extends RecordStorageOnDisk
-		implements RecordStorage, MetadataStorage {
+import se.uu.ub.cora.storage.RecordIdGenerator;
 
-	public static RecordStorageInMemoryReadFromDisk createRecordStorageOnDiskWithBasePath(
-			String basePath) {
-		return new RecordStorageInMemoryReadFromDisk(basePath);
-	}
-
-	private RecordStorageInMemoryReadFromDisk(String basePath) {
-		super(basePath);
-	}
+public class TimeStampIdGenerator implements RecordIdGenerator {
 
 	@Override
-	protected void writeDataToDisk(String recordType, String dataDivider) {
-		// do not write to disk
+	public String getIdForType(String type) {
+		return type + ":" + System.nanoTime();
 	}
 }

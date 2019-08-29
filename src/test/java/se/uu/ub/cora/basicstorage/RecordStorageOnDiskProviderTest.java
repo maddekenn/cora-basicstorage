@@ -35,8 +35,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import se.uu.ub.cora.basicstorage.log.LoggerFactorySpy;
-import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
 import se.uu.ub.cora.logger.LoggerProvider;
+import se.uu.ub.cora.storage.MetadataStorage;
 import se.uu.ub.cora.storage.MetadataStorageProvider;
 import se.uu.ub.cora.storage.RecordStorage;
 import se.uu.ub.cora.storage.RecordStorageProvider;

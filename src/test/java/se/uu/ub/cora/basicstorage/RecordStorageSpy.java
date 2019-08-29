@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import se.uu.ub.cora.data.DataGroup;
 import se.uu.ub.cora.storage.RecordStorage;
-import se.uu.ub.cora.storage.SpiderReadResult;
+import se.uu.ub.cora.storage.StorageReadResult;
 
 public class RecordStorageSpy implements RecordStorage {
 
@@ -41,13 +41,13 @@ public class RecordStorageSpy implements RecordStorage {
 	}
 
 	@Override
-	public SpiderReadResult readList(String type, DataGroup filter) {
+	public StorageReadResult readList(String type, DataGroup filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public SpiderReadResult readAbstractList(String type, DataGroup filter) {
+	public StorageReadResult readAbstractList(String type, DataGroup filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}

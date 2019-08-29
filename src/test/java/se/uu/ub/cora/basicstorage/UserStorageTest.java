@@ -37,7 +37,7 @@ import org.testng.annotations.Test;
 
 import se.uu.ub.cora.basicstorage.testdata.TestDataAppTokenStorage;
 import se.uu.ub.cora.data.DataGroup;
-import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
+import se.uu.ub.cora.storage.RecordNotFoundException;
 
 public class UserStorageTest {
 	private String basePath = "/tmp/recordStorageOnDiskTempUser/";

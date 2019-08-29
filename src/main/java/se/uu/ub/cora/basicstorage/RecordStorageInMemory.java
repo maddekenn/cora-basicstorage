@@ -27,16 +27,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import se.uu.ub.cora.bookkeeper.metadata.MetadataTypes;
-import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
+import se.uu.ub.cora.data.DataCopierFactoryImp;
 import se.uu.ub.cora.data.DataElement;
 import se.uu.ub.cora.data.DataGroup;
-import se.uu.ub.cora.spider.data.SpiderDataGroup;
-import se.uu.ub.cora.spider.record.storage.RecordConflictException;
-import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
+import se.uu.ub.cora.data.DataGroupCopier;
+import se.uu.ub.cora.storage.MetadataStorage;
+import se.uu.ub.cora.storage.MetadataTypes;
+import se.uu.ub.cora.storage.RecordConflictException;
+import se.uu.ub.cora.storage.RecordNotFoundException;
 import se.uu.ub.cora.storage.RecordStorage;
 import se.uu.ub.cora.storage.SearchStorage;
-import se.uu.ub.cora.storage.SpiderReadResult;
+import se.uu.ub.cora.storage.StorageReadResult;
 
 public class RecordStorageInMemory implements RecordStorage, MetadataStorage, SearchStorage {
 	private static final String RECORD_TYPE = "recordType";
@@ -52,7 +53,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		// Make it possible to use default empty record storage
 	}
 
-	public RecordStorageInMemory(Map<String, Map<String, DividerGroup>> records) {
+	RecordStorageInMemory(Map<String, Map<String, DividerGroup>> records) {
 		throwErrorIfConstructorArgumentIsNull(records);
 		this.records = records;
 	}
@@ -104,7 +105,10 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	}
 
 	private DataGroup createIndependentCopy(DataGroup record) {
-		return SpiderDataGroup.fromDataGroup(record).toDataGroup();
+		DataCopierFactoryImp dataCopierFactory = new DataCopierFactoryImp();
+		DataGroupCopier dataGroupCopier = DataGroupCopier.usingDataGroupAndCopierFactory(record,
+				dataCopierFactory);
+		return dataGroupCopier.copy();
 	}
 
 	protected void storeRecordByRecordTypeAndRecordId(String recordType, String recordId,
@@ -208,20 +212,20 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	}
 
 	@Override
-	public SpiderReadResult readList(String type, DataGroup filter) {
+	public StorageReadResult readList(String type, DataGroup filter) {
 		Map<String, DividerGroup> typeDividerRecords = records.get(type);
 		throwErrorIfNoRecordOfType(type, typeDividerRecords);
 
-		return getSpiderReadResult(type, filter, typeDividerRecords);
+		return getStorageReadResult(type, filter, typeDividerRecords);
 	}
 
-	private SpiderReadResult getSpiderReadResult(String type, DataGroup filter,
+	private StorageReadResult getStorageReadResult(String type, DataGroup filter,
 			Map<String, DividerGroup> typeDividerRecords) {
-		SpiderReadResult spiderReadResult = new SpiderReadResult();
+		StorageReadResult readResult = new StorageReadResult();
 		Collection<DataGroup> readFromList = readFromList(type, filter, typeDividerRecords);
-		spiderReadResult.listOfDataGroups = new ArrayList<>(readFromList);
-		spiderReadResult.totalNumberOfMatches = readFromList.size();
-		return spiderReadResult;
+		readResult.listOfDataGroups = new ArrayList<>(readFromList);
+		readResult.totalNumberOfMatches = readFromList.size();
+		return readResult;
 	}
 
 	private Collection<DataGroup> readFromList(String type, DataGroup filter,
@@ -274,7 +278,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	}
 
 	@Override
-	public SpiderReadResult readAbstractList(String type, DataGroup filter) {
+	public StorageReadResult readAbstractList(String type, DataGroup filter) {
 		List<DataGroup> aggregatedRecordList = new ArrayList<>();
 		List<String> implementingChildRecordTypes = findImplementingChildRecordTypes(type);
 
@@ -282,10 +286,10 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 				filter);
 		addRecordsForParentIfParentIsNotAbstract(type, filter, aggregatedRecordList);
 		throwErrorIfEmptyAggregatedList(type, aggregatedRecordList);
-		SpiderReadResult spiderReadResult = new SpiderReadResult();
-		spiderReadResult.listOfDataGroups = aggregatedRecordList;
-		spiderReadResult.totalNumberOfMatches = aggregatedRecordList.size();
-		return spiderReadResult;
+		StorageReadResult readResult = new StorageReadResult();
+		readResult.listOfDataGroups = aggregatedRecordList;
+		readResult.totalNumberOfMatches = aggregatedRecordList.size();
+		return readResult;
 	}
 
 	private List<String> findImplementingChildRecordTypes(String type) {

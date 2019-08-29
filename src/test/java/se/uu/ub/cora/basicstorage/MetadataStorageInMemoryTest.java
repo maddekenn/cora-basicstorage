@@ -29,8 +29,8 @@ import org.testng.annotations.Test;
 
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
 import se.uu.ub.cora.basicstorage.testdata.TestDataRecordInMemoryStorage;
-import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.storage.MetadataStorage;
 
 public class MetadataStorageInMemoryTest {
 

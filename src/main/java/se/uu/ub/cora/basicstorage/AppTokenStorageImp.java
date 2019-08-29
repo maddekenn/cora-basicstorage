@@ -28,7 +28,7 @@ import se.uu.ub.cora.apptokenstorage.AppTokenStorage;
 import se.uu.ub.cora.data.DataGroup;
 import se.uu.ub.cora.logger.Logger;
 import se.uu.ub.cora.logger.LoggerProvider;
-import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
+import se.uu.ub.cora.storage.RecordNotFoundException;
 
 public class AppTokenStorageImp extends SecurityStorage implements AppTokenStorage {
 	private Logger log = LoggerProvider.getLoggerForClass(AppTokenStorageImp.class);
