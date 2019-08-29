@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Uppsala University Library
+ * Copyright 2015 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -17,22 +17,21 @@
  *     along with Cora.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package se.uu.ub.cora.basicstorage;
+package se.uu.ub.cora.basicstorage.id;
 
-import se.uu.ub.cora.data.DataGroup;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-final class DividerGroup {
+import se.uu.ub.cora.basicstorage.id.TimeStampIdGenerator;
+import se.uu.ub.cora.storage.RecordIdGenerator;
 
-	static DividerGroup withDataDividerAndDataGroup(String dataDivider, DataGroup dataGroup) {
-		return new DividerGroup(dataDivider, dataGroup);
+public class TimeStampIdGeneratorTest {
+	@Test
+	public void testGenerateId() {
+		RecordIdGenerator idGenerator = new TimeStampIdGenerator();
+		String keyType = idGenerator.getIdForType("type");
+		String keyType2 = idGenerator.getIdForType("type2");
+		Assert.assertNotEquals(keyType, keyType2,
+				"The generated keys should not be equal for two different types");
 	}
-
-	String dataDivider;
-	DataGroup dataGroup;
-
-	private DividerGroup(String dataDivider, DataGroup dataGroup) {
-		this.dataDivider = dataDivider;
-		this.dataGroup = dataGroup;
-	}
-
 }

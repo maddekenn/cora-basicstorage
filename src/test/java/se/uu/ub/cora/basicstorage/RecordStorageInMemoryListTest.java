@@ -29,11 +29,11 @@ import org.testng.annotations.Test;
 
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
 import se.uu.ub.cora.basicstorage.testdata.TestDataRecordInMemoryStorage;
-import se.uu.ub.cora.bookkeeper.data.DataAtomic;
-import se.uu.ub.cora.bookkeeper.data.DataGroup;
-import se.uu.ub.cora.spider.record.storage.RecordNotFoundException;
+import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.storage.RecordNotFoundException;
 import se.uu.ub.cora.storage.RecordStorage;
-import se.uu.ub.cora.storage.SpiderReadResult;
+import se.uu.ub.cora.storage.StorageReadResult;
 
 public class RecordStorageInMemoryListTest {
 	private RecordStorage recordStorage;
@@ -66,7 +66,7 @@ public class RecordStorageInMemoryListTest {
 		createPlaceInStorageWithUppsalaStorageTerm();
 		createPlaceInStorageWithStockholmStorageTerm();
 
-		SpiderReadResult readResult = recordStorage.readList("place", emptyFilter);
+		StorageReadResult readResult = recordStorage.readList("place", emptyFilter);
 		Collection<DataGroup> readList = readResult.listOfDataGroups;
 
 		assertEquals(readList.size(), 2);
@@ -84,7 +84,7 @@ public class RecordStorageInMemoryListTest {
 				"NOT_UPPSALA");
 		filter.addChild(part);
 
-		SpiderReadResult readResult = recordStorage.readList("place", filter);
+		StorageReadResult readResult = recordStorage.readList("place", filter);
 		Collection<DataGroup> readList = readResult.listOfDataGroups;
 		assertEquals(readList.size(), 0);
 		assertEquals(readResult.start, 0);
@@ -340,7 +340,7 @@ public class RecordStorageInMemoryListTest {
 		createGenericBinaryRecord();
 
 		String recordType = "binary";
-		SpiderReadResult readResult = recordStorage.readAbstractList(recordType, emptyFilter);
+		StorageReadResult readResult = recordStorage.readAbstractList(recordType, emptyFilter);
 		Collection<DataGroup> recordList = readResult.listOfDataGroups;
 		assertEquals(recordList.size(), 3);
 		assertEquals(readResult.start, 0);
@@ -359,7 +359,7 @@ public class RecordStorageInMemoryListTest {
 				"image:0001");
 		filter.addChild(part);
 
-		SpiderReadResult readResult = recordStorage.readAbstractList("binary", filter);
+		StorageReadResult readResult = recordStorage.readAbstractList("binary", filter);
 		Collection<DataGroup> readList = readResult.listOfDataGroups;
 		assertEquals(readList.size(), 1);
 		assertEquals(readResult.totalNumberOfMatches, 1);

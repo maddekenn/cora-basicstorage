@@ -28,9 +28,9 @@ import java.util.Map;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import se.uu.ub.cora.basicstorage.id.TimeStampIdGenerator;
 import se.uu.ub.cora.basicstorage.log.LoggerFactorySpy;
 import se.uu.ub.cora.logger.LoggerProvider;
-import se.uu.ub.cora.spider.record.storage.TimeStampIdGenerator;
 import se.uu.ub.cora.storage.RecordIdGenerator;
 
 public class TimeStampIdGeneratorProviderTest {

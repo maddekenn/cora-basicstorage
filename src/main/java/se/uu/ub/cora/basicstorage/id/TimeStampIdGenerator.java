@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Uppsala University Library
+ * Copyright 2015 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -17,22 +17,14 @@
  *     along with Cora.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package se.uu.ub.cora.basicstorage;
+package se.uu.ub.cora.basicstorage.id;
 
-import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.storage.RecordIdGenerator;
 
-final class DividerGroup {
+public class TimeStampIdGenerator implements RecordIdGenerator {
 
-	static DividerGroup withDataDividerAndDataGroup(String dataDivider, DataGroup dataGroup) {
-		return new DividerGroup(dataDivider, dataGroup);
+	@Override
+	public String getIdForType(String type) {
+		return type + ":" + System.nanoTime();
 	}
-
-	String dataDivider;
-	DataGroup dataGroup;
-
-	private DividerGroup(String dataDivider, DataGroup dataGroup) {
-		this.dataDivider = dataDivider;
-		this.dataGroup = dataGroup;
-	}
-
 }

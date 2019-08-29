@@ -18,7 +18,7 @@
  */
 package se.uu.ub.cora.basicstorage;
 
-import se.uu.ub.cora.bookkeeper.storage.MetadataStorage;
+import se.uu.ub.cora.storage.MetadataStorage;
 import se.uu.ub.cora.storage.RecordStorage;
 
 public final class RecordStorageInMemoryReadFromDisk extends RecordStorageOnDisk
