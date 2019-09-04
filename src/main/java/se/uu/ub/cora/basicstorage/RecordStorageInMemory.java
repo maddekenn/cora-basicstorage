@@ -31,12 +31,12 @@ import se.uu.ub.cora.data.DataCopierFactoryImp;
 import se.uu.ub.cora.data.DataElement;
 import se.uu.ub.cora.data.DataGroup;
 import se.uu.ub.cora.data.DataGroupCopier;
+import se.uu.ub.cora.searchstorage.SearchStorage;
 import se.uu.ub.cora.storage.MetadataStorage;
 import se.uu.ub.cora.storage.MetadataTypes;
 import se.uu.ub.cora.storage.RecordConflictException;
 import se.uu.ub.cora.storage.RecordNotFoundException;
 import se.uu.ub.cora.storage.RecordStorage;
-import se.uu.ub.cora.storage.SearchStorage;
 import se.uu.ub.cora.storage.StorageReadResult;
 
 public class RecordStorageInMemory implements RecordStorage, MetadataStorage, SearchStorage {
