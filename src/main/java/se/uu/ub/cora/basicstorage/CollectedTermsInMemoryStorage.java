@@ -32,7 +32,8 @@ class CollectedTermsInMemoryStorage {
 
 	void removePreviousCollectedStorageTerms(String recordType, String recordId) {
 		if (termsExistForRecordType(recordType)) {
-			Map<String, Map<String, List<StorageTermData>>> termsForRecordType = terms.get(recordType);
+			Map<String, Map<String, List<StorageTermData>>> termsForRecordType = terms
+					.get(recordType);
 			removePreviousCollectedStorageTermsForRecordType(recordId, termsForRecordType);
 		}
 	}
@@ -57,8 +58,8 @@ class CollectedTermsInMemoryStorage {
 		removeStorageTermsForIds(termsForRecordId, idsToRemove);
 	}
 
-	private void findIdsToRemove(String recordId, Map<String, List<StorageTermData>> termsForRecordId,
-			List<String> idsToRemove) {
+	private void findIdsToRemove(String recordId,
+			Map<String, List<StorageTermData>> termsForRecordId, List<String> idsToRemove) {
 		for (Entry<String, List<StorageTermData>> recordIdEntry : termsForRecordId.entrySet()) {
 			if (termsExistForRecordId(recordId, recordIdEntry)) {
 				idsToRemove.add(recordIdEntry.getKey());
@@ -86,8 +87,8 @@ class CollectedTermsInMemoryStorage {
 		}
 	}
 
-	private void storeCollectedStorageTerms(String recordType, String recordId, DataGroup collectedTerms,
-			String dataDivider) {
+	private void storeCollectedStorageTerms(String recordType, String recordId,
+			DataGroup collectedTerms, String dataDivider) {
 		DataGroup collectStorageTerm = collectedTerms.getFirstGroupWithNameInData("storage");
 		for (DataGroup collectedDataTerm : collectStorageTerm
 				.getAllGroupsWithNameInData("collectedDataTerm")) {
@@ -115,8 +116,8 @@ class CollectedTermsInMemoryStorage {
 		listOfStorageTermData.add(storageTermData);
 	}
 
-	private List<StorageTermData> ensureStorageListExistsForTermForTypeAndKeyAndId(String recordType,
-			String storageKey, String recordId) {
+	private List<StorageTermData> ensureStorageListExistsForTermForTypeAndKeyAndId(
+			String recordType, String storageKey, String recordId) {
 		ensureStorageMapExistsForRecordType(recordType);
 		Map<String, Map<String, List<StorageTermData>>> storageKeysForType = terms.get(recordType);
 		ensureStorageListExistsForTermKey(storageKey, storageKeysForType);
@@ -157,10 +158,10 @@ class CollectedTermsInMemoryStorage {
 		String key = filterPart.getFirstAtomicValueWithNameInData("key");
 		String value = filterPart.getFirstAtomicValueWithNameInData("value");
 		Map<String, Map<String, List<StorageTermData>>> storageTermsForRecordType = terms.get(type);
-		if (storageTermsForRecordType.containsKey(key)) {
 
-			Map<String, List<StorageTermData>> mapOfIdsAndStorageTermForTypeAndKey = storageTermsForRecordType
-					.get(key);
+		Map<String, List<StorageTermData>> mapOfIdsAndStorageTermForTypeAndKey = storageTermsForRecordType
+				.get(key);
+		if (null != mapOfIdsAndStorageTermForTypeAndKey) {
 			return findRecordIdsMatchingValueForKey(value, mapOfIdsAndStorageTermForTypeAndKey);
 		}
 		return Collections.emptyList();

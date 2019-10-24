@@ -58,7 +58,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		this.records = records;
 	}
 
-	private void throwErrorIfConstructorArgumentIsNull(
+	private final void throwErrorIfConstructorArgumentIsNull(
 			Map<String, Map<String, DividerGroup>> records) {
 		if (null == records) {
 			throw new IllegalArgumentException("Records must not be null");
@@ -75,17 +75,17 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		storeLinks(recordType, recordId, linkList, dataDivider);
 	}
 
-	protected void ensureStorageExistsForRecordType(String recordType) {
+	protected final void ensureStorageExistsForRecordType(String recordType) {
 		if (holderForRecordTypeDoesNotExistInStorage(recordType)) {
 			createHolderForRecordTypeInStorage(recordType);
 		}
 	}
 
-	private boolean holderForRecordTypeDoesNotExistInStorage(String recordType) {
+	private final boolean holderForRecordTypeDoesNotExistInStorage(String recordType) {
 		return !records.containsKey(recordType);
 	}
 
-	private void createHolderForRecordTypeInStorage(String recordType) {
+	private final void createHolderForRecordTypeInStorage(String recordType) {
 		records.put(recordType, new HashMap<String, DividerGroup>());
 		linkLists.put(recordType, new HashMap<String, DividerGroup>());
 	}
@@ -250,7 +250,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private Collection<DataGroup> readRecordsForTypeAndListOfIds(String type,
 			List<String> foundRecordIdsForFilter) {
-		List<DataGroup> foundRecords = new ArrayList<>();
+		List<DataGroup> foundRecords = new ArrayList<>(foundRecordIdsForFilter.size());
 		for (String foundRecordId : foundRecordIdsForFilter) {
 			foundRecords.add(read(type, foundRecordId));
 		}
@@ -270,7 +270,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private Map<String, DataGroup> addDataGroupToRecordTypeList(
 			Map<String, DividerGroup> typeDividerRecords) {
-		Map<String, DataGroup> typeRecords = new HashMap<>();
+		Map<String, DataGroup> typeRecords = new HashMap<>(typeDividerRecords.size());
 		for (Entry<String, DividerGroup> entry : typeDividerRecords.entrySet()) {
 			typeRecords.put(entry.getKey(), entry.getValue().dataGroup);
 		}
@@ -583,12 +583,11 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	private void removeOldLinksStoredAsIncomingLinks(String recordType, String recordId) {
 		DataGroup oldLinkList = readLinkList(recordType, recordId);
 		for (DataElement linkElement : oldLinkList.getChildren()) {
-			removeOldLinkStoredAsIncomingLink(linkElement);
+			removeOldLinkStoredAsIncomingLink((DataGroup) linkElement);
 		}
 	}
 
-	private void removeOldLinkStoredAsIncomingLink(DataElement linkElement) {
-		DataGroup link = (DataGroup) linkElement;
+	private void removeOldLinkStoredAsIncomingLink(DataGroup link) {
 		DataGroup toPartOfLink = link.getFirstGroupWithNameInData("to");
 		String toType = extractLinkedRecordTypeValue(toPartOfLink);
 		String toId = extractLinkedRecordIdValue(toPartOfLink);
@@ -622,10 +621,11 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 		String fromType = extractLinkedRecordTypeValue(from);
 		String fromId = extractLinkedRecordIdValue(from);
 
-		if (linksForToPart.containsKey(fromType)) {
-			linksForToPart.get(fromType).remove(fromId);
+		Map<String, List<DataGroup>> fromTypeMap = linksForToPart.get(fromType);
+		if (null != fromTypeMap) {
+			fromTypeMap.remove(fromId);
 
-			if (linksForToPart.get(fromType).isEmpty()) {
+			if (fromTypeMap.isEmpty()) {
 				linksForToPart.remove(fromType);
 			}
 		}

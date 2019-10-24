@@ -40,14 +40,18 @@ public class AppTokenStorageImp extends SecurityStorage implements AppTokenStora
 
 	private AppTokenStorageImp(Map<String, String> initInfo) {
 		this.initInfo = initInfo;
+		ensureInitInfoContainsStorageOnDiskBasePath(initInfo);
+		basePath = initInfo.get("storageOnDiskBasePath");
+		log.logInfoUsingMessage("Starting AppTokenStorageImp using basePath: " + basePath);
+		populateFromStorage();
+	}
+
+	private void ensureInitInfoContainsStorageOnDiskBasePath(Map<String, String> initInfo) {
 		if (!initInfo.containsKey("storageOnDiskBasePath")) {
 			String message = "initInfo must contain storageOnDiskBasePath";
 			log.logFatalUsingMessage(message);
 			throw new RuntimeException(message);
 		}
-		basePath = initInfo.get("storageOnDiskBasePath");
-		log.logInfoUsingMessage("Starting AppTokenStorageImp using basePath: " + basePath);
-		populateFromStorage();
 	}
 
 	@Override
@@ -102,7 +106,7 @@ public class AppTokenStorageImp extends SecurityStorage implements AppTokenStora
 	}
 
 	private List<String> getAppTokensForAppTokenGroups(List<DataGroup> userAppTokenGroups) {
-		List<String> apptokens = new ArrayList<>();
+		List<String> apptokens = new ArrayList<>(userAppTokenGroups.size());
 		for (DataGroup userAppTokenGroup : userAppTokenGroups) {
 			String appTokenId = extractAppTokenId(userAppTokenGroup);
 			apptokens.add(getTokenFromStorage(appTokenId));

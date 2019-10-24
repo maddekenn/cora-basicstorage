@@ -77,7 +77,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		return new RecordStorageOnDisk(basePath);
 	}
 
-	private void tryToReadStoredDataFromDisk() {
+	private final void tryToReadStoredDataFromDisk() {
 		Stream<Path> list = Stream.empty();
 		try {
 			list = Files.list(Paths.get(basePath));
@@ -92,7 +92,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 	}
 
-	private void collectPathsToAllFilesIncludingSubdirectoriesFromDisk(Stream<Path> list)
+	private final void collectPathsToAllFilesIncludingSubdirectoriesFromDisk(Stream<Path> list)
 			throws IOException {
 		Iterator<Path> iterator = list.iterator();
 		while (iterator.hasNext()) {
@@ -100,7 +100,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 	}
 
-	private void collectPathsToAllFilesIncludingSubdirectoriesIfNotStreamsDir(
+	private final void collectPathsToAllFilesIncludingSubdirectoriesIfNotStreamsDir(
 			Iterator<Path> iterator) throws IOException {
 		Path path = iterator.next();
 		File file = path.toFile();
@@ -115,13 +115,13 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 	}
 
-	private void throwErrorIfPathIsSymbolicLinkWhereTargetDoesNotExist(Path path) {
+	private final void throwErrorIfPathIsSymbolicLinkWhereTargetDoesNotExist(Path path) {
 		if (!Files.exists(path)) {
 			throw DataStorageException.withMessage("Symbolic link points to missing path: " + path);
 		}
 	}
 
-	private void readFileAndParseFileByPath(Path path) throws IOException {
+	private final void readFileAndParseFileByPath(Path path) throws IOException {
 		String fileNameTypePart = getTypeFromPath(path);
 		String dataDivider = getDataDividerFromPath(path);
 		List<DataElement> recordsFromFile = extractChildrenFromFileByPath(path);
@@ -136,7 +136,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 	}
 
-	private List<DataElement> extractChildrenFromFileByPath(Path path) throws IOException {
+	private final List<DataElement> extractChildrenFromFileByPath(Path path) throws IOException {
 		String json = readJsonFileByPath(path);
 		DataGroup recordList = convertJsonStringToDataGroup(json);
 		return recordList.getChildren();
@@ -146,7 +146,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		if (path.toString().endsWith(GZ_ENDING)) {
 			try (InputStream newInputStream = Files.newInputStream(path);
 					InputStreamReader inputStreamReader = new java.io.InputStreamReader(
-							new GZIPInputStream(newInputStream), "UTF-8");
+							new GZIPInputStream(newInputStream), StandardCharsets.UTF_8);
 					BufferedReader bufferedReader = new BufferedReader(inputStreamReader);) {
 				return readContentFromReaderAsJsonString(bufferedReader);
 			}
@@ -179,38 +179,39 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		return (DataGroup) dataPart;
 	}
 
-	private boolean fileContainsLinkLists(String fileNameTypePart) {
+	private final boolean fileContainsLinkLists(String fileNameTypePart) {
 		return fileNameTypePart.equals(LINK_LISTS);
 	}
 
-	private void parseAndStoreDataLinksInMemory(String dataDivider, List<DataElement> recordTypes) {
+	private final void parseAndStoreDataLinksInMemory(String dataDivider,
+			List<DataElement> recordTypes) {
 		for (DataElement typesElement : recordTypes) {
-			parseAndStoreRecordTypeDataLinksInMemory(dataDivider, typesElement);
+			parseAndStoreRecordTypeDataLinksInMemory(dataDivider, (DataGroup) typesElement);
 		}
 	}
 
 	private void parseAndStoreRecordTypeDataLinksInMemory(String dataDivider,
-			DataElement typesElement) {
-		DataGroup recordType = (DataGroup) typesElement;
+			DataGroup recordType) {
 		String recordTypeName = recordType.getNameInData();
 		ensureStorageExistsForRecordType(recordTypeName);
 
 		List<DataElement> records = recordType.getChildren();
 		for (DataElement recordElement : records) {
-			parseAndStoreRecordDataLinksInMemory(dataDivider, recordTypeName, recordElement);
+			parseAndStoreRecordDataLinksInMemory(dataDivider, recordTypeName,
+					(DataGroup) recordElement);
 		}
 	}
 
 	private void parseAndStoreRecordDataLinksInMemory(String dataDivider, String recordTypeName,
-			DataElement recordElement) {
-		DataGroup record = (DataGroup) recordElement;
+			DataGroup record) {
 		String recordId = record.getNameInData();
 		DataGroup collectedDataLinks = (DataGroup) record
 				.getFirstChildWithNameInData("collectedDataLinks");
 		storeLinks(recordTypeName, recordId, collectedDataLinks, dataDivider);
 	}
 
-	private void parseAndStoreCollectedStorageTermsInMemory(List<DataElement> recordsFromFile) {
+	private final void parseAndStoreCollectedStorageTermsInMemory(
+			List<DataElement> recordsFromFile) {
 		for (DataElement storageTerm : recordsFromFile) {
 			parseAndStoreCollectedStorageTermInMemory((DataGroup) storageTerm);
 		}
@@ -230,18 +231,17 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		return StorageTermData.withValueAndDataDivider(value, dataDivider);
 	}
 
-	private void parseAndStoreRecordsInMemory(String fileNameTypePart, String dataDivider,
+	private final void parseAndStoreRecordsInMemory(String fileNameTypePart, String dataDivider,
 			List<DataElement> recordTypes) {
 		ensureStorageExistsForRecordType(fileNameTypePart);
 
 		for (DataElement dataElement : recordTypes) {
-			parseAndStoreRecordInMemory(fileNameTypePart, dataDivider, dataElement);
+			parseAndStoreRecordInMemory(fileNameTypePart, dataDivider, (DataGroup) dataElement);
 		}
 	}
 
 	private void parseAndStoreRecordInMemory(String fileNameTypePart, String dataDivider,
-			DataElement dataElement) {
-		DataGroup record = (DataGroup) dataElement;
+			DataGroup record) {
 
 		DataGroup recordInfo = record.getFirstGroupWithNameInData("recordInfo");
 		String recordId = recordInfo.getFirstAtomicValueWithNameInData("id");
@@ -249,12 +249,12 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		storeRecordByRecordTypeAndRecordId(fileNameTypePart, recordId, record, dataDivider);
 	}
 
-	private String getDataDividerFromPath(Path path) {
+	private final String getDataDividerFromPath(Path path) {
 		String fileName2 = path.getFileName().toString();
 		return fileName2.substring(fileName2.lastIndexOf('_') + 1, fileName2.indexOf('.'));
 	}
 
-	private String getTypeFromPath(Path path) {
+	private final String getTypeFromPath(Path path) {
 		String fileName = path.getFileName().toString();
 		return fileName.substring(0, fileName.lastIndexOf('_'));
 	}
