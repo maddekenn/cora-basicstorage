@@ -1,5 +1,6 @@
 /*
  * Copyright 2016 Olov McKie
+ * Copyright 2019 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -29,5 +30,15 @@ public class DataStorageExceptionTest {
 		String message = "message";
 		DataStorageException exception = DataStorageException.withMessage(message);
 		assertEquals(exception.getMessage(), "message");
+	}
+
+	@Test
+	public void testWithMessageAndException() throws Exception {
+		Exception e = new Exception("some message");
+		DataStorageException exception = DataStorageException
+				.withMessageAndException("second message", e);
+		assertEquals(exception.getMessage(), "second message");
+		assertEquals(exception.getCause().getMessage(), "some message");
+
 	}
 }

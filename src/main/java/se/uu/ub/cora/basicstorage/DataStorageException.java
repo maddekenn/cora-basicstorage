@@ -1,5 +1,6 @@
 /*
- * Copyright 2016 Olov McKie
+ * Copyright 2019 Olov McKie
+ * Copyright 2019 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -26,7 +27,15 @@ public final class DataStorageException extends RuntimeException {
 		return new DataStorageException(message);
 	}
 
+	public static DataStorageException withMessageAndException(String message, Exception e) {
+		return new DataStorageException(message, e);
+	}
+
 	private DataStorageException(String message) {
 		super(message);
+	}
+
+	private DataStorageException(String message, Exception e) {
+		super(message, e);
 	}
 }
