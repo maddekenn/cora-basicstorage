@@ -26,6 +26,6 @@ public class RecordStorageInstance {
 		throw new UnsupportedOperationException();
 	}
 
-	public static RecordStorage instance;
+	static RecordStorage instance;
 
 }

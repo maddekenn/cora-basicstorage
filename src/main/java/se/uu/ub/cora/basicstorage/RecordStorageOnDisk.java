@@ -64,6 +64,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private static final String COLLECTED_DATA = "collectedData";
 	private static final String LINK_LISTS = "linkLists";
 	private static final String JSON_FILE_END = ".json";
+	private static final int FILE_EXTENSION_LENGTH = ".gz".length();
 	private Set<String> allSeenCollectedDataFileNames = new HashSet<>();
 	private String basePath;
 	private List<Path> pathsToAllFilesInBasePath = new ArrayList<>();
@@ -128,7 +129,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 		if (fileContainsLinkLists(fileNameTypePart)) {
 			parseAndStoreDataLinksInMemory(dataDivider, recordsFromFile);
-		} else if (fileNameTypePart.equals(COLLECTED_DATA)) {
+		} else if (COLLECTED_DATA.equals(fileNameTypePart)) {
 			allSeenCollectedDataFileNames.add(dataDivider);
 			parseAndStoreCollectedStorageTermsInMemory(recordsFromFile);
 		} else {
@@ -159,14 +160,12 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 
 	private String readContentFromReaderAsJsonString(BufferedReader bufferedReader)
 			throws IOException {
-		String json;
 		StringBuilder jsonBuilder = new StringBuilder();
 		String line = null;
 		while ((line = bufferedReader.readLine()) != null) {
 			jsonBuilder.append(line);
 		}
-		json = jsonBuilder.toString();
-		return json;
+		return jsonBuilder.toString();
 	}
 
 	private DataGroup convertJsonStringToDataGroup(String jsonRecord) {
@@ -180,7 +179,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private final boolean fileContainsLinkLists(String fileNameTypePart) {
-		return fileNameTypePart.equals(LINK_LISTS);
+		return LINK_LISTS.equals(fileNameTypePart);
 	}
 
 	private final void parseAndStoreDataLinksInMemory(String dataDivider,
@@ -249,14 +248,14 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		storeRecordByRecordTypeAndRecordId(fileNameTypePart, recordId, record, dataDivider);
 	}
 
-	private final String getDataDividerFromPath(Path path) {
-		String fileName2 = path.getFileName().toString();
-		return fileName2.substring(fileName2.lastIndexOf('_') + 1, fileName2.indexOf('.'));
-	}
-
 	private final String getTypeFromPath(Path path) {
 		String fileName = path.getFileName().toString();
 		return fileName.substring(0, fileName.lastIndexOf('_'));
+	}
+
+	private final String getDataDividerFromPath(Path path) {
+		String fileName2 = path.getFileName().toString();
+		return fileName2.substring(fileName2.lastIndexOf('_') + 1, fileName2.indexOf('.'));
 	}
 
 	@Override
@@ -354,21 +353,21 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private Map<String, DataGroup> divideRecordTypeDataByDataDivider(String recordType) {
-		Map<String, DividerGroup> readList = records.get(recordType);
-		Map<String, DataGroup> recordLists = new HashMap<>();
-		for (Entry<String, DividerGroup> dividerEntry : readList.entrySet()) {
-			addRecordToListBasedOnDataDivider(recordLists, dividerEntry);
+		Map<String, DividerGroup> mapOfRecordsOfRecordType = records.get(recordType);
+		Map<String, DataGroup> mapOfRecordsByDataDivider = new HashMap<>();
+		for (Entry<String, DividerGroup> dividerEntry : mapOfRecordsOfRecordType.entrySet()) {
+			addRecordToListBasedOnDataDivider(mapOfRecordsByDataDivider, dividerEntry);
 		}
-		return recordLists;
+		return mapOfRecordsByDataDivider;
 	}
 
-	private void addRecordToListBasedOnDataDivider(Map<String, DataGroup> recordLists,
+	private void addRecordToListBasedOnDataDivider(Map<String, DataGroup> mapOfRecordsByDataDivider,
 			Entry<String, DividerGroup> dividerEntry) {
 		DividerGroup dividerGroup = dividerEntry.getValue();
 		String currentDataDivider = dividerGroup.dataDivider;
 		DataGroup currentDataGroup = dividerGroup.dataGroup;
-		ensureListForDataDivider(recordLists, currentDataDivider);
-		recordLists.get(currentDataDivider).addChild(currentDataGroup);
+		ensureListForDataDivider(mapOfRecordsByDataDivider, currentDataDivider);
+		mapOfRecordsByDataDivider.get(currentDataDivider).addChild(currentDataGroup);
 	}
 
 	private void ensureListForDataDivider(Map<String, DataGroup> recordLists,
@@ -425,7 +424,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private Writer writeJsonToGZippedFileOnDisk(Path path, String json) throws IOException {
 		OutputStream newOutputStream = Files.newOutputStream(path, StandardOpenOption.CREATE);
 		try (Writer writer = new OutputStreamWriter(new GZIPOutputStream(newOutputStream),
-				"UTF-8");) {
+				StandardCharsets.UTF_8);) {
 			writer.write(json, 0, json.length());
 			writer.flush();
 			return writer;
@@ -439,7 +438,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private void possiblyRemoveOldNonZippedFile(Path path) throws IOException {
-		String pathWithoutGZ = path.toString().substring(0, path.toString().length() - 3);
+		String pathWithoutGZ = path.toString().substring(0,
+				path.toString().length() - FILE_EXTENSION_LENGTH);
 		Path oldFileName = Paths.get(pathWithoutGZ);
 		possiblyRemoveOldZippedFile(oldFileName);
 	}
