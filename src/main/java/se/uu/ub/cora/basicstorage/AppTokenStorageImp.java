@@ -46,7 +46,7 @@ public class AppTokenStorageImp extends SecurityStorage implements AppTokenStora
 		populateFromStorage();
 	}
 
-	private void ensureInitInfoContainsStorageOnDiskBasePath(Map<String, String> initInfo) {
+	private final void ensureInitInfoContainsStorageOnDiskBasePath(Map<String, String> initInfo) {
 		if (!initInfo.containsKey("storageOnDiskBasePath")) {
 			String message = "initInfo must contain storageOnDiskBasePath";
 			log.logFatalUsingMessage(message);
