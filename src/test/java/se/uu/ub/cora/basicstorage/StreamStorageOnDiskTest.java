@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -100,6 +101,20 @@ public class StreamStorageOnDiskTest {
 	}
 
 	@Test
+	public void testInitNoPermissionOnPathSentAlongException() throws IOException {
+		Exception caughtException = null;
+		try {
+			removeTempFiles();
+			StreamStorageOnDisk.usingBasePath("/root/streamsDOESNOTEXIST");
+		} catch (Exception e) {
+			caughtException = e;
+		}
+		assertTrue(caughtException.getCause() instanceof AccessDeniedException);
+		assertEquals(caughtException.getMessage(), "can not write files to disk: "
+				+ "java.nio.file.AccessDeniedException: /root/streamsDOESNOTEXIST");
+	}
+
+	@Test
 	public void testInitMissingPath() throws IOException {
 		removeTempFiles();
 		StreamStorageOnDisk.usingBasePath(basePath);
@@ -137,7 +152,7 @@ public class StreamStorageOnDiskTest {
 		}
 		assertTrue(caughtException.getCause() instanceof FileSystemException);
 		assertEquals(caughtException.getMessage(),
-				"can not write files to diskjava.nio.file.FileSystemException: : Is a directory");
+				"can not write files to disk: java.nio.file.FileSystemException: : Is a directory");
 	}
 
 	@Test
@@ -191,5 +206,18 @@ public class StreamStorageOnDiskTest {
 	@Test(expectedExceptions = DataStorageException.class)
 	public void testDownloadPathForStreamIsBroken() throws IOException {
 		((StreamStorageOnDisk) streamStorage).tryToReadStream(Paths.get("/broken/path"));
+	}
+
+	@Test
+	public void testDownloadPathForStreamIsBrokenSentAlongException() throws IOException {
+		Exception caughtException = null;
+		try {
+			((StreamStorageOnDisk) streamStorage).tryToReadStream(Paths.get("/broken/path"));
+		} catch (Exception e) {
+			caughtException = e;
+		}
+		assertTrue(caughtException.getCause() instanceof FileSystemException);
+		assertEquals(caughtException.getMessage(),
+				"can not write files to disk: java.nio.file.NoSuchFileException: /broken/path");
 	}
 }
