@@ -138,6 +138,16 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		}
 	}
 
+	private final String getTypeFromPath(Path path) {
+		String fileName = path.getFileName().toString();
+		return fileName.substring(0, fileName.lastIndexOf('_'));
+	}
+
+	private final String getDataDividerFromPath(Path path) {
+		String fileName2 = path.getFileName().toString();
+		return fileName2.substring(fileName2.lastIndexOf('_') + 1, fileName2.indexOf('.'));
+	}
+
 	private final List<DataElement> extractChildrenFromFileByPath(Path path) throws IOException {
 		String json = readJsonFileByPath(path);
 		DataGroup recordList = convertJsonStringToDataGroup(json);
@@ -247,16 +257,6 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		String recordId = recordInfo.getFirstAtomicValueWithNameInData("id");
 
 		storeRecordByRecordTypeAndRecordId(fileNameTypePart, recordId, record, dataDivider);
-	}
-
-	private final String getTypeFromPath(Path path) {
-		String fileName = path.getFileName().toString();
-		return fileName.substring(0, fileName.lastIndexOf('_'));
-	}
-
-	private final String getDataDividerFromPath(Path path) {
-		String fileName2 = path.getFileName().toString();
-		return fileName2.substring(fileName2.lastIndexOf('_') + 1, fileName2.indexOf('.'));
 	}
 
 	@Override
