@@ -408,28 +408,23 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		try {
 			writeDataGroupToDiskAsJson(path, json);
 		} catch (IOException | NullPointerException e) {
-			throw DataStorageException.withMessage("can not write files to disk" + e);
+			throw DataStorageException.withMessageAndException("can not write files to disk: " + e,
+					e);
 		}
 	}
 
 	private void writeDataGroupToDiskAsJson(Path path, String json) throws IOException {
-		Writer writer = null;
-		try {
-			possiblyRemoveOldNonZippedFile(path);
-			possiblyRemoveOldZippedFile(path);
-			writer = writeJsonToGZippedFileOnDisk(path, json);
-		} finally {
-			writer.close();
-		}
+		possiblyRemoveOldNonZippedFile(path);
+		possiblyRemoveOldZippedFile(path);
+		writeJsonToGZippedFileOnDisk(path, json);
 	}
 
-	private Writer writeJsonToGZippedFileOnDisk(Path path, String json) throws IOException {
-		OutputStream newOutputStream = Files.newOutputStream(path, StandardOpenOption.CREATE);
-		try (Writer writer = new OutputStreamWriter(new GZIPOutputStream(newOutputStream),
-				StandardCharsets.UTF_8);) {
+	private void writeJsonToGZippedFileOnDisk(Path path, String json) throws IOException {
+		try (OutputStream newOutputStream = Files.newOutputStream(path, StandardOpenOption.CREATE);
+				Writer writer = new OutputStreamWriter(new GZIPOutputStream(newOutputStream),
+						StandardCharsets.UTF_8);) {
 			writer.write(json, 0, json.length());
 			writer.flush();
-			return writer;
 		}
 	}
 

@@ -33,6 +33,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
@@ -2162,10 +2163,13 @@ public class RecordStorageOnDiskTest {
 			recordStorage.create("organisation", "org:0001", dataGroup, emptyCollectedData,
 					emptyLinkList, "cora");
 		} catch (Exception e) {
+			assertTrue(e.getCause() instanceof AccessDeniedException);
 			assertEquals(e.getMessage(),
-					"can not write files to diskjava.lang.NullPointerException");
+					"can not write files to disk: java.nio.file.AccessDeniedException: "
+							+ "/tmp/recordStorageOnDiskTemp/cora/organisation_cora.json.gz");
+		} finally {
+			Paths.get(basePath, "cora").toFile().setWritable(true);
 		}
-		Paths.get(basePath, "cora").toFile().setWritable(true);
 	}
 
 	@Test(expectedExceptions = DataStorageException.class, expectedExceptionsMessageRegExp = ""
