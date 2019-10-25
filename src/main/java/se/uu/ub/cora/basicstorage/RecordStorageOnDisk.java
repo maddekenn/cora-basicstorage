@@ -87,7 +87,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 				readFileAndParseFileByPath(path);
 			}
 		} catch (IOException e) {
-			throw DataStorageException.withMessage("can not read files from disk on init" + e);
+			throw DataStorageException
+					.withMessageAndException("can not read files from disk on init: " + e, e);
 		} finally {
 			list.close();
 		}
@@ -326,7 +327,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			}
 			deleteDirectoryIfEmpty(dataDivider);
 		} catch (IOException e) {
-			throw DataStorageException.withMessage("can not delete record files from disk" + e);
+			throw DataStorageException
+					.withMessageAndException("can not delete record files from disk" + e, e);
 		}
 	}
 

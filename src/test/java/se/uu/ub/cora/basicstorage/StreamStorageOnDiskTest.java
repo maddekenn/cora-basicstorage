@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -124,6 +125,19 @@ public class StreamStorageOnDiskTest {
 	@Test(expectedExceptions = DataStorageException.class)
 	public void testUploadCreateFileForStreamPathIsEmpty() throws IOException {
 		((StreamStorageOnDisk) streamStorage).tryToStoreStream(streamToStore, Paths.get(""));
+	}
+
+	@Test
+	public void testUploadCreateFileForStreamPathIsEmptySentAlongException() throws IOException {
+		Exception caughtException = null;
+		try {
+			((StreamStorageOnDisk) streamStorage).tryToStoreStream(streamToStore, Paths.get(""));
+		} catch (Exception e) {
+			caughtException = e;
+		}
+		assertTrue(caughtException.getCause() instanceof FileSystemException);
+		assertEquals(caughtException.getMessage(),
+				"can not write files to diskjava.nio.file.FileSystemException: : Is a directory");
 	}
 
 	@Test

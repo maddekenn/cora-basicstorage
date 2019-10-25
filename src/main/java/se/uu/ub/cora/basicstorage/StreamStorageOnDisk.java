@@ -67,7 +67,8 @@ public final class StreamStorageOnDisk implements StreamStorage {
 		try {
 			return storeStream(stream, path);
 		} catch (IOException e) {
-			throw DataStorageException.withMessage(CAN_NOT_WRITE_FILES_TO_DISK + e);
+			// throw DataStorageException.withMessage(CAN_NOT_WRITE_FILES_TO_DISK + e);
+			throw DataStorageException.withMessageAndException(CAN_NOT_WRITE_FILES_TO_DISK + e, e);
 		}
 	}
 

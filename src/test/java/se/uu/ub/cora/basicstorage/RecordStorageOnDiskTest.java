@@ -35,6 +35,7 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -2138,6 +2139,20 @@ public class RecordStorageOnDiskTest {
 	}
 
 	@Test
+	public void testInitMissingPathSendsAlongException() throws IOException {
+		removeTempFiles();
+		Exception caughtException = null;
+		try {
+			RecordStorageOnDisk.createRecordStorageOnDiskWithBasePath(basePath);
+		} catch (Exception e) {
+			caughtException = e;
+		}
+		assertTrue(caughtException.getCause() instanceof NoSuchFileException);
+		assertEquals(caughtException.getMessage(), "can not read files from disk on init: "
+				+ "java.nio.file.NoSuchFileException: /tmp/recordStorageOnDiskTemp");
+	}
+
+	@Test
 	public void testCreateFileInLockedDir() throws IOException {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
@@ -2180,6 +2195,24 @@ public class RecordStorageOnDiskTest {
 				"cora");
 		removeTempFiles();
 		recordStorage.deleteByTypeAndId("place", "place:0001");
+	}
+
+	@Test
+	public void testDeleteMissingPathSentAlongException() throws IOException {
+		Exception caughtException = null;
+		try {
+			DataGroup dataGroup = createDataGroupWithRecordInfo();
+			recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData,
+					emptyLinkList, "cora");
+			removeTempFiles();
+			recordStorage.deleteByTypeAndId("place", "place:0001");
+		} catch (Exception e) {
+			caughtException = e;
+		}
+		assertTrue(caughtException.getCause() instanceof NoSuchFileException);
+		assertEquals(caughtException.getMessage(),
+				"can not delete record files from diskjava.nio.file.NoSuchFileException: "
+						+ "/tmp/recordStorageOnDiskTemp/cora/place_cora.json.gz");
 	}
 
 	@Test(expectedExceptions = DataStorageException.class, expectedExceptionsMessageRegExp = ""
