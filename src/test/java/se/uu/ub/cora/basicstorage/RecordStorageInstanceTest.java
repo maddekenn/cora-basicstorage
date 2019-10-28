@@ -18,6 +18,7 @@
  */
 package se.uu.ub.cora.basicstorage;
 
+import static org.testng.Assert.assertSame;
 import static org.testng.Assert.assertTrue;
 
 import java.lang.reflect.Constructor;
@@ -25,6 +26,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 
 import org.testng.annotations.Test;
+
+import se.uu.ub.cora.storage.RecordStorage;
 
 public class RecordStorageInstanceTest {
 
@@ -42,5 +45,12 @@ public class RecordStorageInstanceTest {
 		assertTrue(Modifier.isPrivate(constructor.getModifiers()));
 		constructor.setAccessible(true);
 		constructor.newInstance();
+	}
+
+	@Test
+	public void testSetInstance() {
+		RecordStorage storage = new RecordStorageSpy();
+		RecordStorageInstance.setInstance(storage);
+		assertSame(RecordStorageInstance.getInstance(), storage);
 	}
 }

@@ -58,7 +58,7 @@ public class RecordStorageOnDiskProviderTest {
 		initInfo.put("storageType", "disk");
 		makeSureBasePathExistsAndIsEmpty();
 		recordStorageOnDiskProvider = new RecordStorageOnDiskProvider();
-		RecordStorageInstance.instance = null;
+		RecordStorageInstance.setInstance(null);
 	}
 
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
@@ -127,7 +127,7 @@ public class RecordStorageOnDiskProviderTest {
 	@Test
 	public void testRecordStorageStartedByOtherProviderIsReturned() {
 		RecordStorageSpy recordStorageSpy = new RecordStorageSpy();
-		RecordStorageInstance.instance = recordStorageSpy;
+		RecordStorageInstance.setInstance(recordStorageSpy);
 		recordStorageOnDiskProvider.startUsingInitInfo(initInfo);
 		RecordStorage recordStorage = recordStorageOnDiskProvider.getRecordStorage();
 		assertSame(recordStorage, recordStorageSpy);
@@ -136,7 +136,7 @@ public class RecordStorageOnDiskProviderTest {
 	@Test
 	public void testLoggingRecordStorageStartedByOtherProvider() {
 		RecordStorageSpy recordStorageSpy = new RecordStorageSpy();
-		RecordStorageInstance.instance = recordStorageSpy;
+		RecordStorageInstance.setInstance(recordStorageSpy);
 
 		recordStorageOnDiskProvider.startUsingInitInfo(initInfo);
 
@@ -153,7 +153,7 @@ public class RecordStorageOnDiskProviderTest {
 	public void testRecordStorageIsAccessibleToOthers() {
 		recordStorageOnDiskProvider.startUsingInitInfo(initInfo);
 		RecordStorage recordStorage = recordStorageOnDiskProvider.getRecordStorage();
-		assertSame(recordStorage, RecordStorageInstance.instance);
+		assertSame(recordStorage, RecordStorageInstance.getInstance());
 	}
 
 	@Test

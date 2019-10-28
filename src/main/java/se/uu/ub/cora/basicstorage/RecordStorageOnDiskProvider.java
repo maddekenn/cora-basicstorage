@@ -53,7 +53,7 @@ public class RecordStorageOnDiskProvider implements RecordStorageProvider, Metad
 	}
 
 	private boolean noRunningRecordStorageExists() {
-		return RecordStorageInstance.instance == null;
+		return RecordStorageInstance.getInstance() == null;
 	}
 
 	private void startNewRecordStorageOnDiskInstance() {
@@ -72,7 +72,7 @@ public class RecordStorageOnDiskProvider implements RecordStorageProvider, Metad
 	}
 
 	static void setStaticInstance(RecordStorage recordStorage) {
-		RecordStorageInstance.instance = recordStorage;
+		RecordStorageInstance.setInstance(recordStorage);
 	}
 
 	private String tryToGetInitParameter(String parameterName) {
@@ -92,12 +92,12 @@ public class RecordStorageOnDiskProvider implements RecordStorageProvider, Metad
 
 	@Override
 	public RecordStorage getRecordStorage() {
-		return RecordStorageInstance.instance;
+		return RecordStorageInstance.getInstance();
 	}
 
 	@Override
 	public MetadataStorage getMetadataStorage() {
-		return (MetadataStorage) RecordStorageInstance.instance;
+		return (MetadataStorage) RecordStorageInstance.getInstance();
 	}
 
 }

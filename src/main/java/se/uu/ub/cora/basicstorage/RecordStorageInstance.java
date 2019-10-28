@@ -22,10 +22,18 @@ import se.uu.ub.cora.storage.RecordStorage;
 
 public class RecordStorageInstance {
 
+	private static RecordStorage instance;
+
 	private RecordStorageInstance() {
 		throw new UnsupportedOperationException();
 	}
 
-	static RecordStorage instance;
+	public static void setInstance(RecordStorage storage) {
+		instance = storage;
+	}
+
+	public static RecordStorage getInstance() {
+		return instance;
+	}
 
 }
