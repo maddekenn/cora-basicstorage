@@ -27,10 +27,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import se.uu.ub.cora.data.DataCopierFactoryImp;
+import se.uu.ub.cora.basicdata.DataCopierFactoryImp;
 import se.uu.ub.cora.data.DataElement;
 import se.uu.ub.cora.data.DataGroup;
-import se.uu.ub.cora.data.DataGroupCopier;
+import se.uu.ub.cora.data.DataGroupProvider;
 import se.uu.ub.cora.searchstorage.SearchStorage;
 import se.uu.ub.cora.storage.MetadataStorage;
 import se.uu.ub.cora.storage.MetadataTypes;
@@ -43,7 +43,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	private static final String RECORD_TYPE = "recordType";
 	private static final String NO_RECORDS_EXISTS_MESSAGE = "No records exists with recordType: ";
 
-	private DataGroup emptyFilter = DataGroup.withNameInData("filter");
+	private DataGroup emptyFilter = DataGroupProvider.getDataGroupUsingNameInData("filter");
 	protected Map<String, Map<String, DividerGroup>> records = new HashMap<>();
 	protected CollectedTermsInMemoryStorage collectedTermsHolder = new CollectedTermsInMemoryStorage();
 	protected Map<String, Map<String, DividerGroup>> linkLists = new HashMap<>();
@@ -494,7 +494,7 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	public DataGroup readLinkList(String recordType, String recordId) {
 		checkRecordExists(recordType, recordId);
 		if (linksMissingForRecord(recordType, recordId)) {
-			return DataGroup.withNameInData("collectedDataLinks");
+			return DataGroupProvider.getDataGroupUsingNameInData("collectedDataLinks");
 		}
 		return linkLists.get(recordType).get(recordId).dataGroup;
 	}

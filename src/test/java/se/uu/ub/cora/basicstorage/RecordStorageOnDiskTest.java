@@ -49,10 +49,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import se.uu.ub.cora.basicdata.converter.DataGroupToJsonConverter;
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
-import se.uu.ub.cora.data.DataAtomic;
 import se.uu.ub.cora.data.DataGroup;
-import se.uu.ub.cora.data.converter.DataGroupToJsonConverter;
 import se.uu.ub.cora.storage.RecordNotFoundException;
 
 public class RecordStorageOnDiskTest {
@@ -234,7 +233,7 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testInitNoFilesOnDisk() throws IOException {
-		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
+		DataGroup emptyLinkList = new DataGroupSpy("collectedDataLinks");
 		createRecordTypePlace();
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
@@ -256,7 +255,7 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testInitNoFilesOnDiskTwoSystems() throws IOException {
-		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
+		DataGroup emptyLinkList = new DataGroupSpy("collectedDataLinks");
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
@@ -291,7 +290,7 @@ public class RecordStorageOnDiskTest {
 
 	@Test
 	public void testInitNoFilesOnDiskTwoSystemsMoveRecordBetweenSystems() throws IOException {
-		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
+		DataGroup emptyLinkList = new DataGroupSpy("collectedDataLinks");
 		RecordStorageOnDisk recordStorage = RecordStorageOnDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
@@ -1022,7 +1021,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -1079,7 +1078,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -1093,7 +1092,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
 		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0002");
-		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm2 = new DataGroupSpy("storage");
 		collectedData2.addChild(collectStorageTerm2);
 
 		DataGroup collectedDataTerm2 = DataCreator
@@ -1178,7 +1177,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -1269,7 +1268,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -1283,7 +1282,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
 		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0002");
-		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm2 = new DataGroupSpy("storage");
 		collectedData2.addChild(collectStorageTerm2);
 
 		DataGroup collectedDataTerm2 = DataCreator
@@ -1376,7 +1375,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -1441,7 +1440,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -1479,7 +1478,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -1512,7 +1511,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -1526,7 +1525,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
 		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0002");
-		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm2 = new DataGroupSpy("storage");
 		collectedData2.addChild(collectStorageTerm2);
 
 		DataGroup collectedDataTerm2 = DataCreator
@@ -1561,7 +1560,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -1575,7 +1574,7 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup2 = createDataGroupWithRecordInfo();
 		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0002");
-		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm2 = new DataGroupSpy("storage");
 		collectedData2.addChild(collectStorageTerm2);
 
 		DataGroup collectedDataTerm2 = DataCreator
@@ -1707,7 +1706,7 @@ public class RecordStorageOnDiskTest {
 		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
 				"cora");
 
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue("someNameInData", "someValue"));
+		dataGroup.addChild(new DataAtomicSpy("someNameInData", "someValue"));
 		recordStorage.update("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
 				"cora");
 

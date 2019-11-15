@@ -40,7 +40,8 @@ public class MetadataStorageInMemoryTest {
 
 	@BeforeMethod
 	public void BeforeMethod() {
-		recordStorageInMemory = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+		recordStorageInMemory = TestDataRecordInMemoryStorage
+				.createRecordStorageInMemoryWithTestData();
 		metadataStorage = recordStorageInMemory;
 	}
 
@@ -115,7 +116,7 @@ public class MetadataStorageInMemoryTest {
 		DataGroup collectIndexTerm = DataCreator
 				.createRecordInfoWithRecordTypeAndRecordId("collectIndexTerm", "someIndexTerm");
 		recordStorageInMemory.create("collectIndexTerm", "someIndexTerm", collectIndexTerm,
-				emptyCollectedData, DataGroup.withNameInData("collectedLinksList"), "cora");
+				emptyCollectedData, new DataGroupSpy("collectedLinksList"), "cora");
 
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
 		assertEquals(collectTerms.size(), 2);
@@ -126,8 +127,8 @@ public class MetadataStorageInMemoryTest {
 		DataGroup collectPermissionTerm = DataCreator.createRecordInfoWithRecordTypeAndRecordId(
 				"collectPermissionTerm", "somePermissionTerm");
 		recordStorageInMemory.create("collectPermissionTerm", "somePermissionTerm",
-				collectPermissionTerm, emptyCollectedData,
-				DataGroup.withNameInData("collectedLinksList"), "cora");
+				collectPermissionTerm, emptyCollectedData, new DataGroupSpy("collectedLinksList"),
+				"cora");
 
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
 		assertEquals(collectTerms.size(), 2);

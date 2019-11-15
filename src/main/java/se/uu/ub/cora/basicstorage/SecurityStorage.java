@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.List;
 
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupProvider;
 
 public abstract class SecurityStorage {
 
@@ -42,7 +43,7 @@ public abstract class SecurityStorage {
 
 	private void populateUserRecordTypeNameList() {
 		Collection<DataGroup> recordTypes = recordStorage.readList(RECORD_TYPE,
-				DataGroup.withNameInData("filter")).listOfDataGroups;
+				DataGroupProvider.getDataGroupUsingNameInData("filter")).listOfDataGroups;
 
 		for (DataGroup recordTypePossibleChild : recordTypes) {
 			addChildOfUserToUserRecordTypeNameList(recordTypePossibleChild);

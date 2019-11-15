@@ -32,10 +32,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import se.uu.ub.cora.basicdata.converter.DataGroupToJsonConverter;
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
 import se.uu.ub.cora.data.DataAtomic;
 import se.uu.ub.cora.data.DataGroup;
-import se.uu.ub.cora.data.converter.DataGroupToJsonConverter;
 
 public class RecordStorageInMemoryReadFromDiskTest {
 	private static final String FROM_RECORD_TYPE = "fromRecordType";
@@ -70,14 +70,14 @@ public class RecordStorageInMemoryReadFromDiskTest {
 	}
 
 	private void setUpData() {
-		DataGroup emptyLinkList = DataGroup.withNameInData("collectedDataLinks");
+		DataGroup emptyLinkList = new DataGroupSpy("collectedDataLinks");
 		recordStorage = RecordStorageInMemoryReadFromDisk
 				.createRecordStorageOnDiskWithBasePath(basePath);
 
 		DataGroup placeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true", "false");
-		recordStorage.create("recordType", "place", placeRecordType, emptyCollectedData, emptyLinkList,
-				"cora");
+		recordStorage.create("recordType", "place", placeRecordType, emptyCollectedData,
+				emptyLinkList, "cora");
 		DataGroup recordTypeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("recordType", "true", "false");
 		recordStorage.create("recordType", "recordType", recordTypeRecordType, emptyCollectedData,
@@ -119,8 +119,8 @@ public class RecordStorageInMemoryReadFromDiskTest {
 		DataGroup linkListWithTwoLinks = createLinkListWithTwoLinks("place:0001");
 
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
-		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, linkListWithTwoLinks,
-				"cora");
+		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData,
+				linkListWithTwoLinks, "cora");
 		DataGroup dataGroupOut = recordStorage.read("place", "place:0001");
 		assertJsonEqualDataGroup(dataGroupOut, dataGroup);
 

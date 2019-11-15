@@ -35,9 +35,11 @@
 
 	<properties>
 		<logger.version>2.0.0</logger.version>
-		<coradata.version>2.0.0</coradata.version>
-		<storage.version>2.1.0</storage.version>
-		<searchstorage.version>2.0.0</searchstorage.version>
+		<coradata.version>2.1-SNAPSHOT</coradata.version>
+		<!-- TODO: ta bort den ska inte vara med här -->
+		<basicdata.version>1.0-SNAPSHOT</basicdata.version>
+		<storage.version>2.2-SNAPSHOT</storage.version>
+		<searchstorage.version>2.1-SNAPSHOT</searchstorage.version>
 		<apptokenstorage.version>2.0.0</apptokenstorage.version>
 		<gatekeeper.version>2.0.0</gatekeeper.version>
 		<json.version>2.0.1</json.version>
@@ -61,6 +63,11 @@
 			<groupId>se.uu.ub.cora</groupId>
 			<artifactId>coradata</artifactId>
 			<version>${coradata.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>se.uu.ub.cora</groupId>
+			<artifactId>basicdata</artifactId>
+			<version>${basicdata.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>se.uu.ub.cora</groupId>
