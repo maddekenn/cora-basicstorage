@@ -209,7 +209,6 @@ public class RecordStorageOnDiskTest {
 		DataAtomicProvider.setDataAtomicFactory(dataAtomicFactory);
 		dataCopierFactory = new DataCopierFactorySpy();
 		DataCopierProvider.setDataCopierFactory(dataCopierFactory);
-		// dataToJsonConverterFactory = new DataToJsonConverterFactorySpy();
 		dataToJsonConverterFactory = new DataToJsonConverterFactoryImp();
 		DataToJsonConverterProvider.setDataToJsonConverterFactory(dataToJsonConverterFactory);
 		jsonToDataConverterFactory = new JsonToDataConverterFactoryImp();
