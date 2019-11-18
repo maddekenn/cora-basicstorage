@@ -27,10 +27,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import se.uu.ub.cora.basicdata.DataCopierFactoryImp;
 import se.uu.ub.cora.data.DataElement;
 import se.uu.ub.cora.data.DataGroup;
 import se.uu.ub.cora.data.DataGroupProvider;
+import se.uu.ub.cora.data.copier.DataCopier;
+import se.uu.ub.cora.data.copier.DataCopierProvider;
 import se.uu.ub.cora.searchstorage.SearchStorage;
 import se.uu.ub.cora.storage.MetadataStorage;
 import se.uu.ub.cora.storage.MetadataTypes;
@@ -105,10 +106,11 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 	}
 
 	private DataGroup createIndependentCopy(DataGroup record) {
-		DataCopierFactoryImp dataCopierFactory = new DataCopierFactoryImp();
-		DataGroupCopier dataGroupCopier = DataGroupCopier.usingDataGroupAndCopierFactory(record,
-				dataCopierFactory);
-		return dataGroupCopier.copy();
+		DataCopier dataCopier = DataCopierProvider.getDataCopierUsingDataElement(record);
+		// DataCopierFactoryImp dataCopierFactory = new DataCopierFactoryImp();
+		// DataGroupCopier dataGroupCopier = DataGroupCopier.usingDataGroupAndCopierFactory(record,
+		// dataCopierFactory);
+		return (DataGroup) dataCopier.copy();
 	}
 
 	protected void storeRecordByRecordTypeAndRecordId(String recordType, String recordId,

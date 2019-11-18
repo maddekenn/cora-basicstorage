@@ -18,37 +18,24 @@
  */
 package se.uu.ub.cora.basicstorage;
 
-import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupFactory;
 
-public class DataAtomicSpy implements DataAtomic {
-	public String nameInData;
-	public String value;
-	public String repeatId;
+public class DataGroupFactorySpy implements DataGroupFactory {
 
-	public DataAtomicSpy(String nameInData, String value) {
-		this.nameInData = nameInData;
-		this.value = value;
+	public DataGroupSpy dataGroupSpy;
+
+	@Override
+	public DataGroup factorUsingNameInData(String nameInData) {
+		dataGroupSpy = new DataGroupSpy(nameInData);
+		return dataGroupSpy;
 	}
 
 	@Override
-	public String getRepeatId() {
-		return repeatId;
-	}
-
-	@Override
-	public String getNameInData() {
-		return nameInData;
-	}
-
-	@Override
-	public String getValue() {
-		return value;
-	}
-
-	@Override
-	public void setRepeatId(String repeatId) {
+	public DataGroup factorAsLinkWithNameInDataTypeAndId(String nameInData, String recordType,
+			String recordId) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 
 }

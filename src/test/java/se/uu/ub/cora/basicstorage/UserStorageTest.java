@@ -35,17 +35,35 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import se.uu.ub.cora.basicdata.converter.DataToJsonConverterFactoryImp;
+import se.uu.ub.cora.basicdata.converter.JsonToDataConverterFactoryImp;
 import se.uu.ub.cora.basicstorage.testdata.TestDataAppTokenStorage;
+import se.uu.ub.cora.data.DataAtomicFactory;
+import se.uu.ub.cora.data.DataAtomicProvider;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupFactory;
+import se.uu.ub.cora.data.DataGroupProvider;
+import se.uu.ub.cora.data.converter.DataToJsonConverterFactory;
+import se.uu.ub.cora.data.converter.DataToJsonConverterProvider;
+import se.uu.ub.cora.data.converter.JsonToDataConverterFactory;
+import se.uu.ub.cora.data.converter.JsonToDataConverterProvider;
+import se.uu.ub.cora.data.copier.DataCopierFactory;
+import se.uu.ub.cora.data.copier.DataCopierProvider;
 import se.uu.ub.cora.storage.RecordNotFoundException;
 
 public class UserStorageTest {
 	private String basePath = "/tmp/recordStorageOnDiskTempUser/";
 	private Map<String, String> initInfo;
 	private UserStorageImp userStorage;
+	private DataGroupFactory dataGroupFactory;
+	private DataAtomicFactory dataAtomicFactory;
+	private DataCopierFactory dataCopierFactory;
+	private DataToJsonConverterFactory dataToJsonConverterFactory;
+	private JsonToDataConverterFactory jsonToDataConverterFactory;
 
 	@BeforeMethod
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
+		setUpFactoriesAndProviders();
 		File dir = new File(basePath);
 		dir.mkdir();
 		deleteFiles(basePath);
@@ -54,6 +72,21 @@ public class UserStorageTest {
 		initInfo = new HashMap<>();
 		initInfo.put("storageOnDiskBasePath", basePath);
 		userStorage = new UserStorageImp(initInfo);
+	}
+
+	private void setUpFactoriesAndProviders() {
+		dataGroupFactory = new DataGroupFactorySpy();
+		DataGroupProvider.setDataGroupFactory(dataGroupFactory);
+		dataAtomicFactory = new DataAtomicFactorySpy();
+		DataAtomicProvider.setDataAtomicFactory(dataAtomicFactory);
+		dataCopierFactory = new DataCopierFactorySpy();
+		DataCopierProvider.setDataCopierFactory(dataCopierFactory);
+		dataToJsonConverterFactory = new DataToJsonConverterFactoryImp();
+		// dataToJsonConverterFactory = new DataToJsonConverterFactorySpy();
+		DataToJsonConverterProvider.setDataToJsonConverterFactory(dataToJsonConverterFactory);
+		// jsonToDataConverterFactory = new JsonToDataConverterFactorySpy();
+		jsonToDataConverterFactory = new JsonToDataConverterFactoryImp();
+		JsonToDataConverterProvider.setJsonToDataConverterFactory(jsonToDataConverterFactory);
 	}
 
 	private void deleteFiles(String path) throws IOException {

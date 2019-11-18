@@ -18,37 +18,16 @@
  */
 package se.uu.ub.cora.basicstorage;
 
-import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataPart;
+import se.uu.ub.cora.data.converter.JsonToDataConverter;
 
-public class DataAtomicSpy implements DataAtomic {
-	public String nameInData;
-	public String value;
-	public String repeatId;
-
-	public DataAtomicSpy(String nameInData, String value) {
-		this.nameInData = nameInData;
-		this.value = value;
-	}
+public class JsonToDataConverterSpy implements JsonToDataConverter {
+	public DataPart createdInstance;
 
 	@Override
-	public String getRepeatId() {
-		return repeatId;
-	}
-
-	@Override
-	public String getNameInData() {
-		return nameInData;
-	}
-
-	@Override
-	public String getValue() {
-		return value;
-	}
-
-	@Override
-	public void setRepeatId(String repeatId) {
-		// TODO Auto-generated method stub
-
+	public DataPart toInstance() {
+		createdInstance = new DataGroupSpy("someNameInData");
+		return createdInstance;
 	}
 
 }

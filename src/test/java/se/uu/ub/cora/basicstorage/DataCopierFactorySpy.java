@@ -9,7 +9,7 @@
  *     (at your option) any later version.
  *
  *     Cora is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of	
  *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *     GNU General Public License for more details.
  *
@@ -18,37 +18,18 @@
  */
 package se.uu.ub.cora.basicstorage;
 
-import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataElement;
+import se.uu.ub.cora.data.copier.DataCopier;
+import se.uu.ub.cora.data.copier.DataCopierFactory;
 
-public class DataAtomicSpy implements DataAtomic {
-	public String nameInData;
-	public String value;
-	public String repeatId;
+public class DataCopierFactorySpy implements DataCopierFactory {
 
-	public DataAtomicSpy(String nameInData, String value) {
-		this.nameInData = nameInData;
-		this.value = value;
-	}
+	public DataCopier factoredCopier;
 
 	@Override
-	public String getRepeatId() {
-		return repeatId;
-	}
-
-	@Override
-	public String getNameInData() {
-		return nameInData;
-	}
-
-	@Override
-	public String getValue() {
-		return value;
-	}
-
-	@Override
-	public void setRepeatId(String repeatId) {
-		// TODO Auto-generated method stub
-
+	public DataCopier factorForDataElement(DataElement dataElement) {
+		factoredCopier = new DataCopierSpy(dataElement);
+		return factoredCopier;
 	}
 
 }

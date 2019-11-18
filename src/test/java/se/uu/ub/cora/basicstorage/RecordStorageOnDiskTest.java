@@ -50,8 +50,20 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import se.uu.ub.cora.basicdata.converter.DataGroupToJsonConverter;
+import se.uu.ub.cora.basicdata.converter.DataToJsonConverterFactoryImp;
+import se.uu.ub.cora.basicdata.converter.JsonToDataConverterFactoryImp;
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
+import se.uu.ub.cora.data.DataAtomicFactory;
+import se.uu.ub.cora.data.DataAtomicProvider;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupFactory;
+import se.uu.ub.cora.data.DataGroupProvider;
+import se.uu.ub.cora.data.converter.DataToJsonConverterFactory;
+import se.uu.ub.cora.data.converter.DataToJsonConverterProvider;
+import se.uu.ub.cora.data.converter.JsonToDataConverterFactory;
+import se.uu.ub.cora.data.converter.JsonToDataConverterProvider;
+import se.uu.ub.cora.data.copier.DataCopierFactory;
+import se.uu.ub.cora.data.copier.DataCopierProvider;
 import se.uu.ub.cora.storage.RecordNotFoundException;
 
 public class RecordStorageOnDiskTest {
@@ -65,6 +77,11 @@ public class RecordStorageOnDiskTest {
 	private static final String TO_RECORD_TYPE = "toRecordType";
 	private String basePath = "/tmp/recordStorageOnDiskTemp/";
 	private DataGroup emptyLinkList = DataCreator.createEmptyLinkList();
+	private DataGroupFactory dataGroupFactory;
+	private DataAtomicFactory dataAtomicFactory;
+	private DataCopierFactory dataCopierFactory;
+	private DataToJsonConverterFactory dataToJsonConverterFactory;
+	private JsonToDataConverterFactory jsonToDataConverterFactory;
 	DataGroup emptyCollectedData = DataCreator.createEmptyCollectedData();
 
 	private String expectedRecordJsonOneRecordPlace1 = getExpectedRecordJsonOneRecordPlace1();
@@ -186,6 +203,18 @@ public class RecordStorageOnDiskTest {
 		File dir = new File(basePath);
 		dir.mkdir();
 		deleteFiles(basePath);
+		dataGroupFactory = new DataGroupFactorySpy();
+		DataGroupProvider.setDataGroupFactory(dataGroupFactory);
+		dataAtomicFactory = new DataAtomicFactorySpy();
+		DataAtomicProvider.setDataAtomicFactory(dataAtomicFactory);
+		dataCopierFactory = new DataCopierFactorySpy();
+		DataCopierProvider.setDataCopierFactory(dataCopierFactory);
+		// dataToJsonConverterFactory = new DataToJsonConverterFactorySpy();
+		dataToJsonConverterFactory = new DataToJsonConverterFactoryImp();
+		DataToJsonConverterProvider.setDataToJsonConverterFactory(dataToJsonConverterFactory);
+		jsonToDataConverterFactory = new JsonToDataConverterFactoryImp();
+		JsonToDataConverterProvider.setJsonToDataConverterFactory(jsonToDataConverterFactory);
+
 		recordStorage = RecordStorageOnDisk.createRecordStorageOnDiskWithBasePath(basePath);
 	}
 
@@ -1663,11 +1692,15 @@ public class RecordStorageOnDiskTest {
 	private String convertDataGroupToJsonString(DataGroup dataGroup) {
 		DataGroupToJsonConverter dataToJsonConverter = convertDataGroupToJson(dataGroup);
 		return dataToJsonConverter.toJson();
+		// return "";
 	}
 
 	private DataGroupToJsonConverter convertDataGroupToJson(DataGroup dataGroup) {
 		se.uu.ub.cora.json.builder.JsonBuilderFactory jsonBuilderFactory = new se.uu.ub.cora.json.builder.org.OrgJsonBuilderFactoryAdapter();
-		return DataGroupToJsonConverter.usingJsonFactoryForDataGroup(jsonBuilderFactory, dataGroup);
+		return (DataGroupToJsonConverter) dataToJsonConverterFactory
+				.createForDataElement(jsonBuilderFactory, dataGroup);
+		// return DataGroupToJsonConverter.usingJsonFactoryForDataGroup(jsonBuilderFactory,
+		// dataGroup);
 	}
 
 	@Test
@@ -1774,8 +1807,8 @@ public class RecordStorageOnDiskTest {
 		DataGroup dataGroup = createDataGroupWithRecordInfo();
 		recordStorage.create("place", "place:0001", dataGroup, emptyCollectedData, emptyLinkList,
 				"cora");
-		assertEquals(readJsonFileFromDisk(PLACE_CORA_FILENAME, "cora"),
-				expectedRecordJsonOneRecordPlace1);
+		String readJsonFileFromDisk = readJsonFileFromDisk(PLACE_CORA_FILENAME, "cora");
+		assertEquals(readJsonFileFromDisk, expectedRecordJsonOneRecordPlace1);
 
 		DataGroup dataGroup2 = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("authority",

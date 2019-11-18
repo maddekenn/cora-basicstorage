@@ -30,16 +30,26 @@ import org.testng.annotations.Test;
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
 import se.uu.ub.cora.basicstorage.testdata.TestDataRecordInMemoryStorage;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupFactory;
+import se.uu.ub.cora.data.DataGroupProvider;
+import se.uu.ub.cora.data.copier.DataCopierFactory;
+import se.uu.ub.cora.data.copier.DataCopierProvider;
 import se.uu.ub.cora.storage.MetadataStorage;
 
 public class MetadataStorageInMemoryTest {
 
 	private MetadataStorage metadataStorage;
 	private RecordStorageInMemory recordStorageInMemory;
+	private DataGroupFactory dataGroupFactory;
+	private DataCopierFactory dataCopierFactory;
 	DataGroup emptyCollectedData = DataCreator.createEmptyCollectedData();
 
 	@BeforeMethod
 	public void BeforeMethod() {
+		dataGroupFactory = new DataGroupFactorySpy();
+		DataGroupProvider.setDataGroupFactory(dataGroupFactory);
+		dataCopierFactory = new DataCopierFactorySpy();
+		DataCopierProvider.setDataCopierFactory(dataCopierFactory);
 		recordStorageInMemory = TestDataRecordInMemoryStorage
 				.createRecordStorageInMemoryWithTestData();
 		metadataStorage = recordStorageInMemory;

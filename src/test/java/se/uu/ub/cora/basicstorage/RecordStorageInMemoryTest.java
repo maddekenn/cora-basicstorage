@@ -22,6 +22,7 @@ package se.uu.ub.cora.basicstorage;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertSame;
 import static org.testng.Assert.assertTrue;
 
 import java.util.Collection;
@@ -36,6 +37,9 @@ import se.uu.ub.cora.basicstorage.testdata.DataCreator;
 import se.uu.ub.cora.basicstorage.testdata.TestDataRecordInMemoryStorage;
 import se.uu.ub.cora.data.DataAtomic;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupFactory;
+import se.uu.ub.cora.data.DataGroupProvider;
+import se.uu.ub.cora.data.copier.DataCopierProvider;
 import se.uu.ub.cora.storage.RecordConflictException;
 import se.uu.ub.cora.storage.RecordNotFoundException;
 import se.uu.ub.cora.storage.RecordStorage;
@@ -50,9 +54,16 @@ public class RecordStorageInMemoryTest {
 	private DataGroup emptyCollectedData = DataCreator.createEmptyCollectedData();
 	DataGroup emptyFilter = new DataGroupSpy("filter");
 	private String dataDivider = "cora";
+	private DataGroupFactory dataGroupFactory;
+	private DataCopierFactorySpy dataCopierFactory;
 
 	@BeforeMethod
 	public void beforeMethod() {
+		dataGroupFactory = new DataGroupFactorySpy();
+		DataGroupProvider.setDataGroupFactory(dataGroupFactory);
+		dataCopierFactory = new DataCopierFactorySpy();
+		DataCopierProvider.setDataCopierFactory(dataCopierFactory);
+
 		recordStorage = new RecordStorageInMemory();
 		DataGroup typeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("type", "true", "false");
@@ -350,10 +361,12 @@ public class RecordStorageInMemoryTest {
 
 		dataGroup.getChildren().clear();
 
-		DataGroup dataGroupOut = recordStorage.read("type", "place:0001");
-		DataAtomic child = (DataAtomic) dataGroupOut.getChildren().get(1);
-
-		assertEquals(child.getValue(), "childValue");
+		DataCopierSpy copier = (DataCopierSpy) dataCopierFactory.factoredCopier;
+		assertSame(copier.originalDataElement, dataGroup);
+		// DataGroup dataGroupOut = recordStorage.read("type", "place:0001");
+		// DataAtomic child = (DataAtomic) dataGroupOut.getChildren().get(1);
+		//
+		// assertEquals(child.getValue(), "childValue");
 	}
 
 	@Test(expectedExceptions = RecordConflictException.class)
@@ -651,10 +664,12 @@ public class RecordStorageInMemoryTest {
 
 		dataGroup.getChildren().clear();
 
-		DataGroup dataGroupOut = recordStorage.read("type", "place:0001");
-		DataAtomic child = (DataAtomic) dataGroupOut.getChildren().get(1);
-
-		assertEquals(child.getValue(), "childValue");
+		DataCopierSpy copier = (DataCopierSpy) dataCopierFactory.factoredCopier;
+		assertSame(copier.originalDataElement, dataGroup);
+		// DataGroup dataGroupOut = recordStorage.read("type", "place:0001");
+		// DataAtomic child = (DataAtomic) dataGroupOut.getChildren().get(1);
+		//
+		// assertEquals(child.getValue(), "childValue");
 	}
 
 	@Test

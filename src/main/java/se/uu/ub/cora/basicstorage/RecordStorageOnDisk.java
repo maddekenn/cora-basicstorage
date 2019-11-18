@@ -46,12 +46,12 @@ import java.util.zip.GZIPOutputStream;
 
 import se.uu.ub.cora.data.DataElement;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupProvider;
 import se.uu.ub.cora.data.DataPart;
-import se.uu.ub.cora.data.converter.DataGroupToJsonConverter;
+import se.uu.ub.cora.data.converter.DataToJsonConverter;
+import se.uu.ub.cora.data.converter.DataToJsonConverterProvider;
 import se.uu.ub.cora.data.converter.JsonToDataConverter;
-import se.uu.ub.cora.data.converter.JsonToDataConverterFactory;
-import se.uu.ub.cora.data.converter.JsonToDataConverterFactoryImp;
-import se.uu.ub.cora.json.builder.org.OrgJsonBuilderFactoryAdapter;
+import se.uu.ub.cora.data.converter.JsonToDataConverterProvider;
 import se.uu.ub.cora.json.parser.JsonParser;
 import se.uu.ub.cora.json.parser.JsonValue;
 import se.uu.ub.cora.json.parser.org.OrgJsonParser;
@@ -182,10 +182,16 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private DataGroup convertJsonStringToDataGroup(String jsonRecord) {
 		JsonParser jsonParser = new OrgJsonParser();
 		JsonValue jsonValue = jsonParser.parseString(jsonRecord);
-		JsonToDataConverterFactory jsonToDataConverterFactory = new JsonToDataConverterFactoryImp();
-		JsonToDataConverter jsonToDataConverter = jsonToDataConverterFactory
-				.createForJsonObject(jsonValue);
+		JsonToDataConverter jsonToDataConverter = JsonToDataConverterProvider
+				.getConverterUsingJsonObject(jsonValue);
+		// JsonToDataConverterFactory jsonToDataConverterFactory = new
+		// JsonToDataConverterFactoryImp();
+		// JsonToDataConverter jsonToDataConverter = jsonToDataConverterFactory
+		// .createForJsonObject(jsonValue);
 		DataPart dataPart = jsonToDataConverter.toInstance();
+		if (!(dataPart instanceof DataGroup)) {
+			System.out.println("not a dataGroup");
+		}
 		return (DataGroup) dataPart;
 	}
 
@@ -375,7 +381,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private void ensureListForDataDivider(Map<String, DataGroup> recordLists,
 			String currentDataDivider) {
 		if (!recordLists.containsKey(currentDataDivider)) {
-			recordLists.put(currentDataDivider, DataGroup.withNameInData("recordList"));
+			recordLists.put(currentDataDivider,
+					DataGroupProvider.getDataGroupUsingNameInData("recordList"));
 		}
 	}
 
@@ -442,13 +449,16 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private String convertDataGroupToJsonString(DataGroup dataGroup) {
-		DataGroupToJsonConverter dataToJsonConverter = createDataGroupToJsonConvert(dataGroup);
+		DataToJsonConverter dataToJsonConverter = createDataGroupToJsonConvert(dataGroup);
 		return dataToJsonConverter.toJson();
 	}
 
-	private DataGroupToJsonConverter createDataGroupToJsonConvert(DataGroup dataGroup) {
-		se.uu.ub.cora.json.builder.JsonBuilderFactory jsonBuilderFactory = new OrgJsonBuilderFactoryAdapter();
-		return DataGroupToJsonConverter.usingJsonFactoryForDataGroup(jsonBuilderFactory, dataGroup);
+	private DataToJsonConverter createDataGroupToJsonConvert(DataGroup dataGroup) {
+		// se.uu.ub.cora.json.builder.JsonBuilderFactory jsonBuilderFactory = new
+		// OrgJsonBuilderFactoryAdapter();
+		return DataToJsonConverterProvider.getConverterUsingDataPart(dataGroup);
+		// return DataGroupToJsonConverter.usingJsonFactoryForDataGroup(jsonBuilderFactory,
+		// dataGroup);
 	}
 
 	private void possiblyRemoveOldDataDividerFile(String recordType, String dataDivider,
@@ -496,7 +506,8 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	private void ensureLinkListForDataDivider(Map<String, DataGroup> linkListsGroups,
 			String currentDataDivider) {
 		if (!linkListsGroups.containsKey(currentDataDivider)) {
-			linkListsGroups.put(currentDataDivider, DataGroup.withNameInData(LINK_LISTS));
+			linkListsGroups.put(currentDataDivider,
+					DataGroupProvider.getDataGroupUsingNameInData(LINK_LISTS));
 		}
 	}
 
@@ -504,14 +515,16 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 			Entry<String, Map<String, DividerGroup>> recordType, String currentDataDivider) {
 		if (!linkListsGroups.get(currentDataDivider)
 				.containsChildWithNameInData(recordType.getKey())) {
-			DataGroup recordTypeGroup = DataGroup.withNameInData(recordType.getKey());
+			DataGroup recordTypeGroup = DataGroupProvider
+					.getDataGroupUsingNameInData(recordType.getKey());
 			linkListsGroups.get(currentDataDivider).addChild(recordTypeGroup);
 		}
 	}
 
 	private void addLinkListsForRecord(Entry<String, DividerGroup> recordEntry,
 			DividerGroup dataDividerGroup, DataGroup recordTypeChild) {
-		DataGroup recordIdGroup = DataGroup.withNameInData(recordEntry.getKey());
+		DataGroup recordIdGroup = DataGroupProvider
+				.getDataGroupUsingNameInData(recordEntry.getKey());
 		recordIdGroup.addChild(dataDividerGroup.dataGroup);
 
 		recordTypeChild.addChild(recordIdGroup);

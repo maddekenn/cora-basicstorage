@@ -40,92 +40,126 @@ public class DataGroupSpy implements DataGroup {
 
 	@Override
 	public String getRepeatId() {
-		// TODO Auto-generated method stub
-		return null;
+		return repeatId;
 	}
 
 	@Override
 	public String getNameInData() {
-		// TODO Auto-generated method stub
-		return null;
+		return nameInData;
 	}
 
 	@Override
 	public String getFirstAtomicValueWithNameInData(String nameInData) {
-		// TODO Auto-generated method stub
+		for (DataElement dataElement : children) {
+			if (nameInData.equals(dataElement.getNameInData())) {
+				if (dataElement instanceof DataAtomic) {
+					return ((DataAtomic) dataElement).getValue();
+				}
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public DataGroup getFirstGroupWithNameInData(String childNameInData) {
-		// TODO Auto-generated method stub
+		for (DataElement dataElement : children) {
+			if (childNameInData.equals(dataElement.getNameInData())) {
+				if (dataElement instanceof DataGroup) {
+					return ((DataGroup) dataElement);
+				}
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public void addChild(DataElement dataElement) {
-		// TODO Auto-generated method stub
+		children.add(dataElement);
 
 	}
 
 	@Override
 	public List<DataElement> getChildren() {
-		// TODO Auto-generated method stub
-		return null;
+		return children;
 	}
 
 	@Override
 	public boolean containsChildWithNameInData(String nameInData) {
-		// TODO Auto-generated method stub
+		for (DataElement dataElement : children) {
+			if (nameInData.equals(dataElement.getNameInData())) {
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public void setRepeatId(String repeatId) {
-		// TODO Auto-generated method stub
+		this.repeatId = repeatId;
 
 	}
 
 	@Override
 	public void addAttributeByIdWithValue(String id, String value) {
-		// TODO Auto-generated method stub
+		attributes.put(id, value);
 
 	}
 
 	@Override
 	public DataElement getFirstChildWithNameInData(String nameInData) {
-		// TODO Auto-generated method stub
+		for (DataElement dataElement : children) {
+			if (nameInData.equals(dataElement.getNameInData())) {
+				return dataElement;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public List<DataGroup> getAllGroupsWithNameInData(String nameInData) {
-		// TODO Auto-generated method stub
-		return null;
+		List<DataGroup> matchingDataGroups = new ArrayList<>();
+		for (DataElement dataElement : children) {
+			if (nameInData.equals(dataElement.getNameInData())
+					&& dataElement instanceof DataGroup) {
+				matchingDataGroups.add((DataGroup) dataElement);
+			}
+		}
+		return matchingDataGroups;
 	}
 
 	@Override
 	public String getAttribute(String attributeId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DataAtomic> getAllDataAtomicsWithNameInData(String childNameInData) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void removeFirstChildWithNameInData(String childNameInData) {
-		// TODO Auto-generated method stub
-
+		return attributes.get(attributeId);
 	}
 
 	@Override
 	public Map<String, String> getAttributes() {
-		// TODO Auto-generated method stub
-		return null;
+		return attributes;
+	}
+
+	@Override
+	public List<DataAtomic> getAllDataAtomicsWithNameInData(String childNameInData) {
+		List<DataAtomic> matchingDataAtomics = new ArrayList<>();
+		for (DataElement dataElement : children) {
+			if (childNameInData.equals(dataElement.getNameInData())
+					&& dataElement instanceof DataAtomic) {
+				matchingDataAtomics.add((DataAtomic) dataElement);
+			}
+		}
+		return matchingDataAtomics;
+	}
+
+	@Override
+	public void removeFirstChildWithNameInData(String childNameInData) {
+		for (DataElement dataElement : getChildren()) {
+			if (dataElementsNameInDataIs(dataElement, childNameInData)) {
+				getChildren().remove(dataElement);
+			}
+		}
+	}
+
+	private boolean dataElementsNameInDataIs(DataElement dataElement, String childNameInData) {
+		return dataElement.getNameInData().equals(childNameInData);
 	}
 
 }
