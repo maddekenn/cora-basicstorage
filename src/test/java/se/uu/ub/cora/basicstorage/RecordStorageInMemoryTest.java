@@ -666,10 +666,6 @@ public class RecordStorageInMemoryTest {
 
 		DataCopierSpy copier = (DataCopierSpy) dataCopierFactory.factoredCopier;
 		assertSame(copier.originalDataElement, dataGroup);
-		// DataGroup dataGroupOut = recordStorage.read("type", "place:0001");
-		// DataAtomic child = (DataAtomic) dataGroupOut.getChildren().get(1);
-		//
-		// assertEquals(child.getValue(), "childValue");
 	}
 
 	@Test

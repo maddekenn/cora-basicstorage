@@ -107,9 +107,6 @@ public class RecordStorageInMemory implements RecordStorage, MetadataStorage, Se
 
 	private DataGroup createIndependentCopy(DataGroup record) {
 		DataCopier dataCopier = DataCopierProvider.getDataCopierUsingDataElement(record);
-		// DataCopierFactoryImp dataCopierFactory = new DataCopierFactoryImp();
-		// DataGroupCopier dataGroupCopier = DataGroupCopier.usingDataGroupAndCopierFactory(record,
-		// dataCopierFactory);
 		return (DataGroup) dataCopier.copy();
 	}
 

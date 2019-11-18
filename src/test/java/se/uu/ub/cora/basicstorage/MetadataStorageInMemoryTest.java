@@ -99,22 +99,6 @@ public class MetadataStorageInMemoryTest {
 		assertIdInRecordInfoIsCorrect(recordType, "image");
 	}
 
-	// @Test(expectedExceptions = RecordNotFoundException.class)
-	// public void testGetCollectTermsWhitoutCollectTerms() {
-	// metadataStorage.getCollectTerms();
-	// }
-	//
-	// @Test
-	// public void testGetCollectTerms() {
-	// Exception e1 = emptyCollectedData;
-	// try {
-	// metadataStorage.getCollectTerms();
-	// } catch (Exception e) {
-	// e1 = e;
-	// }
-	// StackTraceElement[] stackTrace = e1.getStackTrace();
-	// assertEquals(stackTrace[1].getMethodName(), "readAbstractList");
-	// }
 	@Test
 	public void testGetCollectTermsWithoutCollectTerms() {
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();

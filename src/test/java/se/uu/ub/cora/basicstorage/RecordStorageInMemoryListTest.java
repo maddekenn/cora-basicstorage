@@ -30,6 +30,10 @@ import org.testng.annotations.Test;
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
 import se.uu.ub.cora.basicstorage.testdata.TestDataRecordInMemoryStorage;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupFactory;
+import se.uu.ub.cora.data.DataGroupProvider;
+import se.uu.ub.cora.data.copier.DataCopierFactory;
+import se.uu.ub.cora.data.copier.DataCopierProvider;
 import se.uu.ub.cora.storage.RecordNotFoundException;
 import se.uu.ub.cora.storage.RecordStorage;
 import se.uu.ub.cora.storage.StorageReadResult;
@@ -40,9 +44,16 @@ public class RecordStorageInMemoryListTest {
 	DataGroup emptyFilter = new DataGroupSpy("filter");
 	private DataGroup emptyCollectedData = DataCreator.createEmptyCollectedData();
 	private String dataDivider = "cora";
+	private DataGroupFactory dataGroupFactory;
+	private DataCopierFactory dataCopierFactory;
 
 	@BeforeMethod
 	public void beforeMethod() {
+		dataGroupFactory = new DataGroupFactorySpy();
+		DataGroupProvider.setDataGroupFactory(dataGroupFactory);
+		dataCopierFactory = new DataCopierFactorySpy();
+		DataCopierProvider.setDataCopierFactory(dataCopierFactory);
+
 		recordStorage = new RecordStorageInMemory();
 		DataGroup recordTypeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true", "false");

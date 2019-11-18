@@ -184,14 +184,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 		JsonValue jsonValue = jsonParser.parseString(jsonRecord);
 		JsonToDataConverter jsonToDataConverter = JsonToDataConverterProvider
 				.getConverterUsingJsonObject(jsonValue);
-		// JsonToDataConverterFactory jsonToDataConverterFactory = new
-		// JsonToDataConverterFactoryImp();
-		// JsonToDataConverter jsonToDataConverter = jsonToDataConverterFactory
-		// .createForJsonObject(jsonValue);
 		DataPart dataPart = jsonToDataConverter.toInstance();
-		if (!(dataPart instanceof DataGroup)) {
-			System.out.println("not a dataGroup");
-		}
 		return (DataGroup) dataPart;
 	}
 
@@ -454,11 +447,7 @@ public class RecordStorageOnDisk extends RecordStorageInMemory
 	}
 
 	private DataToJsonConverter createDataGroupToJsonConvert(DataGroup dataGroup) {
-		// se.uu.ub.cora.json.builder.JsonBuilderFactory jsonBuilderFactory = new
-		// OrgJsonBuilderFactoryAdapter();
 		return DataToJsonConverterProvider.getConverterUsingDataPart(dataGroup);
-		// return DataGroupToJsonConverter.usingJsonFactoryForDataGroup(jsonBuilderFactory,
-		// dataGroup);
 	}
 
 	private void possiblyRemoveOldDataDividerFile(String recordType, String dataDivider,
