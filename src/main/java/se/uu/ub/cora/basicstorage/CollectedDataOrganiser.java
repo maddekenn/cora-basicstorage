@@ -23,8 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataAtomicProvider;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupProvider;
 
 class CollectedDataOrganiser {
 	private Map<String, DataGroup> collectedDataByDataDivider;
@@ -69,15 +70,17 @@ class CollectedDataOrganiser {
 	}
 
 	private DataGroup createStorageTerm(StorageTermData storageTermData) {
-		DataGroup storageTerm = DataGroup.withNameInData("storageTerm");
+		DataGroup storageTerm = DataGroupProvider.getDataGroupUsingNameInData("storageTerm");
 		storageTerm.setRepeatId(String.valueOf(repeatId));
-		storageTerm.addChild(DataAtomic.withNameInDataAndValue("type", recordType));
-		storageTerm.addChild(DataAtomic.withNameInDataAndValue("key", key));
-		storageTerm.addChild(DataAtomic.withNameInDataAndValue("id", id));
-
-		storageTerm.addChild(DataAtomic.withNameInDataAndValue("value", storageTermData.value));
 		storageTerm.addChild(
-				DataAtomic.withNameInDataAndValue("dataDivider", storageTermData.dataDivider));
+				DataAtomicProvider.getDataAtomicUsingNameInDataAndValue("type", recordType));
+		storageTerm.addChild(DataAtomicProvider.getDataAtomicUsingNameInDataAndValue("key", key));
+		storageTerm.addChild(DataAtomicProvider.getDataAtomicUsingNameInDataAndValue("id", id));
+
+		storageTerm.addChild(DataAtomicProvider.getDataAtomicUsingNameInDataAndValue("value",
+				storageTermData.value));
+		storageTerm.addChild(DataAtomicProvider.getDataAtomicUsingNameInDataAndValue("dataDivider",
+				storageTermData.dataDivider));
 		repeatId++;
 		return storageTerm;
 	}
@@ -90,7 +93,8 @@ class CollectedDataOrganiser {
 
 	private void ensureCollectedDataForDataDivider(String dataDivider) {
 		if (!collectedDataByDataDivider.containsKey(dataDivider)) {
-			DataGroup collectedData = DataGroup.withNameInData("collectedData");
+			DataGroup collectedData = DataGroupProvider
+					.getDataGroupUsingNameInData("collectedData");
 			collectedDataByDataDivider.put(dataDivider, collectedData);
 		}
 	}

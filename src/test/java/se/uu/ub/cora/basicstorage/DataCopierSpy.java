@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Uppsala University Library
+ * Copyright 2019 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -16,24 +16,23 @@
  *     You should have received a copy of the GNU General Public License
  *     along with Cora.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package se.uu.ub.cora.basicstorage;
 
-import static org.testng.Assert.assertEquals;
+import se.uu.ub.cora.data.DataElement;
+import se.uu.ub.cora.data.copier.DataCopier;
 
-import org.testng.annotations.Test;
+public class DataCopierSpy implements DataCopier {
 
-import se.uu.ub.cora.data.DataGroup;
+	public DataElement originalDataElement;
 
-public class DividerGroupTest {
-	@Test
-	public void testInit() {
-		String dataDivider = "cora";
-		DataGroup dataGroup = new DataGroupSpy("someGroup");
-		DividerGroup dividerGroup = DividerGroup.withDataDividerAndDataGroup(dataDivider,
-				dataGroup);
-		assertEquals(dividerGroup.dataDivider, "cora");
-		assertEquals(dividerGroup.dataGroup, dataGroup);
-
+	public DataCopierSpy(DataElement dataElement) {
+		this.originalDataElement = dataElement;
 	}
+
+	@Override
+	public DataElement copy() {
+		return originalDataElement;
+		// return new DataGroupSpy(originalDataElement.getNameInData());
+	}
+
 }

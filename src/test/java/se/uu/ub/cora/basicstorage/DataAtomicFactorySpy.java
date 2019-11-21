@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Uppsala University Library
+ * Copyright 2019 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -16,24 +16,22 @@
  *     You should have received a copy of the GNU General Public License
  *     along with Cora.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package se.uu.ub.cora.basicstorage;
 
-import static org.testng.Assert.assertEquals;
+import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataAtomicFactory;
 
-import org.testng.annotations.Test;
+public class DataAtomicFactorySpy implements DataAtomicFactory {
 
-import se.uu.ub.cora.data.DataGroup;
-
-public class DividerGroupTest {
-	@Test
-	public void testInit() {
-		String dataDivider = "cora";
-		DataGroup dataGroup = new DataGroupSpy("someGroup");
-		DividerGroup dividerGroup = DividerGroup.withDataDividerAndDataGroup(dataDivider,
-				dataGroup);
-		assertEquals(dividerGroup.dataDivider, "cora");
-		assertEquals(dividerGroup.dataGroup, dataGroup);
-
+	@Override
+	public DataAtomic factorUsingNameInDataAndValue(String nameInData, String value) {
+		return new DataAtomicSpy(nameInData, value);
 	}
+
+	@Override
+	public DataAtomic factorUsingNameInDataAndValueAndRepeatId(String nameInData, String value,
+			String repeatId) {
+		return new DataAtomicSpy(nameInData, value);
+	}
+
 }

@@ -22,8 +22,9 @@ package se.uu.ub.cora.basicstorage;
 import java.util.Collection;
 import java.util.Map;
 
-import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataAtomicProvider;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupProvider;
 import se.uu.ub.cora.gatekeeper.user.UserStorage;
 import se.uu.ub.cora.storage.RecordNotFoundException;
 
@@ -100,11 +101,12 @@ public class UserStorageImp extends SecurityStorage implements UserStorage {
 	}
 
 	private DataGroup createFilterForIdFromLogin(String idFromLogin) {
-		DataGroup filter = DataGroup.withNameInData("filter");
-		DataGroup part = DataGroup.withNameInData("part");
+		DataGroup filter = DataGroupProvider.getDataGroupUsingNameInData("filter");
+		DataGroup part = DataGroupProvider.getDataGroupUsingNameInData("part");
 		filter.addChild(part);
-		part.addChild(DataAtomic.withNameInDataAndValue("key", "userId"));
-		part.addChild(DataAtomic.withNameInDataAndValue("value", idFromLogin));
+		part.addChild(DataAtomicProvider.getDataAtomicUsingNameInDataAndValue("key", "userId"));
+		part.addChild(
+				DataAtomicProvider.getDataAtomicUsingNameInDataAndValue("value", idFromLogin));
 		return filter;
 	}
 

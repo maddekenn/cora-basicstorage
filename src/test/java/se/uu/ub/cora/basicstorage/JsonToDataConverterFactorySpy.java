@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Uppsala University Library
+ * Copyright 2019 Uppsala University Library
  *
  * This file is part of Cora.
  *
@@ -16,24 +16,23 @@
  *     You should have received a copy of the GNU General Public License
  *     along with Cora.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package se.uu.ub.cora.basicstorage;
 
-import static org.testng.Assert.assertEquals;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.testng.annotations.Test;
+import se.uu.ub.cora.data.converter.JsonToDataConverter;
+import se.uu.ub.cora.data.converter.JsonToDataConverterFactory;
+import se.uu.ub.cora.json.parser.JsonValue;
 
-import se.uu.ub.cora.data.DataGroup;
+public class JsonToDataConverterFactorySpy implements JsonToDataConverterFactory {
+	public List<JsonToDataConverter> createdConverters = new ArrayList<>();
 
-public class DividerGroupTest {
-	@Test
-	public void testInit() {
-		String dataDivider = "cora";
-		DataGroup dataGroup = new DataGroupSpy("someGroup");
-		DividerGroup dividerGroup = DividerGroup.withDataDividerAndDataGroup(dataDivider,
-				dataGroup);
-		assertEquals(dividerGroup.dataDivider, "cora");
-		assertEquals(dividerGroup.dataGroup, dataGroup);
-
+	@Override
+	public JsonToDataConverter createForJsonObject(JsonValue jsonValue) {
+		JsonToDataConverterSpy createdConverter = new JsonToDataConverterSpy();
+		createdConverters.add(createdConverter);
+		return createdConverter;
 	}
+
 }

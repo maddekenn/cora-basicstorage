@@ -30,17 +30,28 @@ import org.testng.annotations.Test;
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
 import se.uu.ub.cora.basicstorage.testdata.TestDataRecordInMemoryStorage;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupFactory;
+import se.uu.ub.cora.data.DataGroupProvider;
+import se.uu.ub.cora.data.copier.DataCopierFactory;
+import se.uu.ub.cora.data.copier.DataCopierProvider;
 import se.uu.ub.cora.storage.MetadataStorage;
 
 public class MetadataStorageInMemoryTest {
 
 	private MetadataStorage metadataStorage;
 	private RecordStorageInMemory recordStorageInMemory;
+	private DataGroupFactory dataGroupFactory;
+	private DataCopierFactory dataCopierFactory;
 	DataGroup emptyCollectedData = DataCreator.createEmptyCollectedData();
 
 	@BeforeMethod
 	public void BeforeMethod() {
-		recordStorageInMemory = TestDataRecordInMemoryStorage.createRecordStorageInMemoryWithTestData();
+		dataGroupFactory = new DataGroupFactorySpy();
+		DataGroupProvider.setDataGroupFactory(dataGroupFactory);
+		dataCopierFactory = new DataCopierFactorySpy();
+		DataCopierProvider.setDataCopierFactory(dataCopierFactory);
+		recordStorageInMemory = TestDataRecordInMemoryStorage
+				.createRecordStorageInMemoryWithTestData();
 		metadataStorage = recordStorageInMemory;
 	}
 
@@ -88,22 +99,6 @@ public class MetadataStorageInMemoryTest {
 		assertIdInRecordInfoIsCorrect(recordType, "image");
 	}
 
-	// @Test(expectedExceptions = RecordNotFoundException.class)
-	// public void testGetCollectTermsWhitoutCollectTerms() {
-	// metadataStorage.getCollectTerms();
-	// }
-	//
-	// @Test
-	// public void testGetCollectTerms() {
-	// Exception e1 = emptyCollectedData;
-	// try {
-	// metadataStorage.getCollectTerms();
-	// } catch (Exception e) {
-	// e1 = e;
-	// }
-	// StackTraceElement[] stackTrace = e1.getStackTrace();
-	// assertEquals(stackTrace[1].getMethodName(), "readAbstractList");
-	// }
 	@Test
 	public void testGetCollectTermsWithoutCollectTerms() {
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
@@ -115,7 +110,7 @@ public class MetadataStorageInMemoryTest {
 		DataGroup collectIndexTerm = DataCreator
 				.createRecordInfoWithRecordTypeAndRecordId("collectIndexTerm", "someIndexTerm");
 		recordStorageInMemory.create("collectIndexTerm", "someIndexTerm", collectIndexTerm,
-				emptyCollectedData, DataGroup.withNameInData("collectedLinksList"), "cora");
+				emptyCollectedData, new DataGroupSpy("collectedLinksList"), "cora");
 
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
 		assertEquals(collectTerms.size(), 2);
@@ -126,8 +121,8 @@ public class MetadataStorageInMemoryTest {
 		DataGroup collectPermissionTerm = DataCreator.createRecordInfoWithRecordTypeAndRecordId(
 				"collectPermissionTerm", "somePermissionTerm");
 		recordStorageInMemory.create("collectPermissionTerm", "somePermissionTerm",
-				collectPermissionTerm, emptyCollectedData,
-				DataGroup.withNameInData("collectedLinksList"), "cora");
+				collectPermissionTerm, emptyCollectedData, new DataGroupSpy("collectedLinksList"),
+				"cora");
 
 		Collection<DataGroup> collectTerms = metadataStorage.getCollectTerms();
 		assertEquals(collectTerms.size(), 2);

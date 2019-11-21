@@ -29,8 +29,11 @@ import org.testng.annotations.Test;
 
 import se.uu.ub.cora.basicstorage.testdata.DataCreator;
 import se.uu.ub.cora.basicstorage.testdata.TestDataRecordInMemoryStorage;
-import se.uu.ub.cora.data.DataAtomic;
 import se.uu.ub.cora.data.DataGroup;
+import se.uu.ub.cora.data.DataGroupFactory;
+import se.uu.ub.cora.data.DataGroupProvider;
+import se.uu.ub.cora.data.copier.DataCopierFactory;
+import se.uu.ub.cora.data.copier.DataCopierProvider;
 import se.uu.ub.cora.storage.RecordNotFoundException;
 import se.uu.ub.cora.storage.RecordStorage;
 import se.uu.ub.cora.storage.StorageReadResult;
@@ -38,12 +41,19 @@ import se.uu.ub.cora.storage.StorageReadResult;
 public class RecordStorageInMemoryListTest {
 	private RecordStorage recordStorage;
 	private DataGroup emptyLinkList = DataCreator.createEmptyLinkList();
-	DataGroup emptyFilter = DataGroup.withNameInData("filter");
+	DataGroup emptyFilter = new DataGroupSpy("filter");
 	private DataGroup emptyCollectedData = DataCreator.createEmptyCollectedData();
 	private String dataDivider = "cora";
+	private DataGroupFactory dataGroupFactory;
+	private DataCopierFactory dataCopierFactory;
 
 	@BeforeMethod
 	public void beforeMethod() {
+		dataGroupFactory = new DataGroupFactorySpy();
+		DataGroupProvider.setDataGroupFactory(dataGroupFactory);
+		dataCopierFactory = new DataCopierFactorySpy();
+		DataCopierProvider.setDataCopierFactory(dataCopierFactory);
+
 		recordStorage = new RecordStorageInMemory();
 		DataGroup recordTypeRecordType = DataCreator
 				.createRecordTypeWithIdAndUserSuppliedIdAndAbstract("place", "true", "false");
@@ -240,7 +250,7 @@ public class RecordStorageInMemoryListTest {
 	private DataGroup createCollectedDataWithUppsalaStorageTerm() {
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -284,7 +294,7 @@ public class RecordStorageInMemoryListTest {
 	private DataGroup createCollectedDataWithStockholmStorageTerm() {
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0002");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -301,7 +311,7 @@ public class RecordStorageInMemoryListTest {
 
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("place",
 				"place:0003");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -372,11 +382,11 @@ public class RecordStorageInMemoryListTest {
 		DataGroup dataGroup = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
 						"image", "image:0001");
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		dataGroup.addChild(new DataAtomicSpy("childId", "childValue"));
 
 		DataGroup collectedData = DataCreator.createCollectedDataWithTypeAndId("image",
 				"image:0001");
-		DataGroup collectStorageTerm = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm = new DataGroupSpy("storage");
 		collectedData.addChild(collectStorageTerm);
 
 		DataGroup collectedDataTerm = DataCreator
@@ -390,11 +400,11 @@ public class RecordStorageInMemoryListTest {
 		DataGroup dataGroup2 = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
 						"image", "image:0002");
-		dataGroup2.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		dataGroup2.addChild(new DataAtomicSpy("childId", "childValue"));
 
 		DataGroup collectedData2 = DataCreator.createCollectedDataWithTypeAndId("image",
 				"image:0002");
-		DataGroup collectStorageTerm2 = DataGroup.withNameInData("storage");
+		DataGroup collectStorageTerm2 = new DataGroupSpy("storage");
 		collectedData2.addChild(collectStorageTerm2);
 
 		DataGroup collectedDataTerm2 = DataCreator
@@ -410,7 +420,7 @@ public class RecordStorageInMemoryListTest {
 		DataGroup dataGroup = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
 						"genericBinary", "genericBinary:0001");
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		dataGroup.addChild(new DataAtomicSpy("childId", "childValue"));
 		recordStorage.create("genericBinary", "genericBinary:0001", dataGroup,
 				DataCreator.createEmptyCollectedData(), emptyLinkList, dataDivider);
 	}
@@ -455,7 +465,7 @@ public class RecordStorageInMemoryListTest {
 		DataGroup dataGroup = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
 						"childToAbstractAuthority", "childToAbstractAuthority:0001");
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		dataGroup.addChild(new DataAtomicSpy("childId", "childValue"));
 		recordStorage.create("childToAbstractAuthority", "childToAbstractAuthority:0001", dataGroup,
 				DataCreator.createEmptyCollectedData(), emptyLinkList, dataDivider);
 	}
@@ -464,7 +474,7 @@ public class RecordStorageInMemoryListTest {
 		DataGroup dataGroup = DataCreator
 				.createDataGroupWithNameInDataAndRecordInfoWithRecordTypeAndRecordId("nameInData",
 						"grandChildToAbstractAuthority", "grandChildToAbstractAuthority:0001");
-		dataGroup.addChild(DataAtomic.withNameInDataAndValue("childId", "childValue"));
+		dataGroup.addChild(new DataAtomicSpy("childId", "childValue"));
 		recordStorage.create("grandChildToAbstractAuthority", "grandChildToAbstractAuthority:0001",
 				dataGroup, DataCreator.createEmptyCollectedData(), emptyLinkList, dataDivider);
 	}
