@@ -36,6 +36,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import se.uu.ub.cora.basicstorage.log.LoggerFactorySpy;
+import se.uu.ub.cora.data.DataGroupFactory;
+import se.uu.ub.cora.data.DataGroupProvider;
 import se.uu.ub.cora.logger.LoggerProvider;
 import se.uu.ub.cora.storage.MetadataStorage;
 import se.uu.ub.cora.storage.MetadataStorageProvider;
@@ -48,11 +50,15 @@ public class RecordStorageOnDiskProviderTest {
 	private LoggerFactorySpy loggerFactorySpy;
 	private String testedClassName = "RecordStorageOnDiskProvider";
 	private RecordStorageProvider recordStorageOnDiskProvider;
+	private DataGroupFactory dataGroupFactory;
 
 	@BeforeMethod
 	public void beforeMethod() throws Exception {
 		loggerFactorySpy = new LoggerFactorySpy();
 		LoggerProvider.setLoggerFactory(loggerFactorySpy);
+		dataGroupFactory = new DataGroupFactorySpy();
+		DataGroupProvider.setDataGroupFactory(dataGroupFactory);
+
 		initInfo = new HashMap<>();
 		initInfo.put("storageOnDiskBasePath", basePath);
 		initInfo.put("storageType", "disk");
