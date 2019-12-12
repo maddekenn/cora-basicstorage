@@ -36,6 +36,16 @@ import org.testng.annotations.Test;
 import se.uu.ub.cora.apptokenstorage.AppTokenStorage;
 import se.uu.ub.cora.basicstorage.log.LoggerFactorySpy;
 import se.uu.ub.cora.basicstorage.testdata.TestDataAppTokenStorage;
+import se.uu.ub.cora.data.DataAtomicFactory;
+import se.uu.ub.cora.data.DataAtomicProvider;
+import se.uu.ub.cora.data.DataGroupFactory;
+import se.uu.ub.cora.data.DataGroupProvider;
+import se.uu.ub.cora.data.converter.DataToJsonConverterFactory;
+import se.uu.ub.cora.data.converter.DataToJsonConverterProvider;
+import se.uu.ub.cora.data.converter.JsonToDataConverterFactory;
+import se.uu.ub.cora.data.converter.JsonToDataConverterProvider;
+import se.uu.ub.cora.data.copier.DataCopierFactory;
+import se.uu.ub.cora.data.copier.DataCopierProvider;
 import se.uu.ub.cora.logger.LoggerProvider;
 
 public class OnDiskAppTokenStorageProviderTest {
@@ -44,16 +54,35 @@ public class OnDiskAppTokenStorageProviderTest {
 	private Map<String, String> initInfo = new HashMap<>();
 	private String basePath = "/tmp/recordStorageOnDiskTempApptokenStorageProvider/";
 	private LoggerFactorySpy loggerFactorySpy;
+	private DataGroupFactory dataGroupFactory;
+	private DataCopierFactory dataCopierFactory;
+	private DataAtomicFactory dataAtomicFactory;
+	private DataToJsonConverterFactory dataToJsonConverterFactory;
+	private JsonToDataConverterFactory jsonToDataConverterFactory;
 
 	@BeforeMethod
 	public void beforeMethod() throws Exception {
-		loggerFactorySpy = new LoggerFactorySpy();
-		LoggerProvider.setLoggerFactory(loggerFactorySpy);
+		setUpFactoriesAndProviders();
 		initInfo = new HashMap<>();
 		initInfo.put("storageOnDiskBasePath", basePath);
 		makeSureBasePathExistsAndIsEmpty();
 		onDiskAppTokenStorageProvider = new OnDiskAppTokenStorageProvider();
 		onDiskAppTokenStorageProvider.startUsingInitInfo(initInfo);
+	}
+
+	private void setUpFactoriesAndProviders() {
+		loggerFactorySpy = new LoggerFactorySpy();
+		LoggerProvider.setLoggerFactory(loggerFactorySpy);
+		dataGroupFactory = new DataGroupFactorySpy();
+		DataGroupProvider.setDataGroupFactory(dataGroupFactory);
+		dataCopierFactory = new DataCopierFactorySpy();
+		DataCopierProvider.setDataCopierFactory(dataCopierFactory);
+		dataToJsonConverterFactory = new DataToJsonConverterFactorySpy();
+		DataToJsonConverterProvider.setDataToJsonConverterFactory(dataToJsonConverterFactory);
+		dataAtomicFactory = new DataAtomicFactorySpy();
+		DataAtomicProvider.setDataAtomicFactory(dataAtomicFactory);
+		jsonToDataConverterFactory = new JsonToDataConverterFactorySpy();
+		JsonToDataConverterProvider.setJsonToDataConverterFactory(jsonToDataConverterFactory);
 	}
 
 	public void makeSureBasePathExistsAndIsEmpty() throws IOException {
